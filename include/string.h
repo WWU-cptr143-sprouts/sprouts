@@ -1,3 +1,7 @@
+/*
+ * Garrett added this. It's fast enough.
+ */
+
 #ifndef H_TOSTRING
 #define H_TOSTRING
 
@@ -11,4 +15,4 @@ template<class T> std::string to_string(T t)
     return s.str();
 }
 
-#endif // H_TOSTRING
+#endif

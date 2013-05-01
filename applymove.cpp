@@ -1,43 +1,46 @@
 #include "stdafx.h"
 
+#include <list>
 #include "include/Sprout.h"
 #include "include/bezier.h"
-#include <list>
-
 
 bool Game::setConnected(std::list<int> toConnect,std::list<int> canConnect)
-	{
-		std::list<int>::iterator iterTo;
-		std::list<int>::iterator iterCan;
+{
+    std::list<int>::iterator iterTo;
+    std::list<int>::iterator iterCan;
 
-		for(iterTo = toConnect.begin(); iterTo!=toConnect.end(); iterTo++)
-		{
-			for(int i = 0; connectable[i][i]!=-1; i++)//sets the connected part of the matrix of all 'toConnect' to '0'
-			{
-				if(i>(*iterTo))
-				{
-					connectable[(*iterTo)][i] = 0;
-				}
-				if((*iterTo)>i)
-				{
-					connectable[i][(*iterTo)] = 0;
-				}
-			}
-			for(iterCan = canConnect.begin();iterCan!=canConnect.end(); iterCan++) //this for loop will now
-			{                                                                      //set all toConnect's 'connectable'
-				if((*iterCan)>(*iterTo))										   //matrix to '1' where they intersect with										   //matrix to '1' where they intersect with
-				{																   //the members of canConnect.
-					connectable[(*iterTo)][(*iterCan)] = 1;
-				}
-				else if ((*iterTo)>(*iterCan))
-				{
-					connectable[(*iterCan)][(*iterTo)] = 1;
-				}
-			}
-		}
+    for (iterTo = toConnect.begin(); iterTo!=toConnect.end(); iterTo++)
+    {
+        // Sets the connected part of the matrix of all 'toConnected' to '0'
+        for (int i = 0; connectable[i][i]!=-1; i++)
+        {
+            if(i>(*iterTo))
+            {
+                connectable[(*iterTo)][i] = 0;
+            }
+            else if((*iterTo)>i)
+            {
+                connectable[i][(*iterTo)] = 0;
+            }
+        }
 
-		return 1;
-	}
+        // Sets all toConnect's 'connectable' matrix to '1' where they intersect with
+        // the members of canConnect
+        for(iterCan = canConnect.begin();iterCan!=canConnect.end(); iterCan++)
+        {
+            if((*iterCan)>(*iterTo))
+            {
+                connectable[(*iterTo)][(*iterCan)] = 1;
+            }
+            else if ((*iterTo)>(*iterCan))
+            {
+                connectable[(*iterCan)][(*iterTo)] = 1;
+            }
+        }
+    }
+
+    return true;
+}
 
 
 int Game::findConnected(int from, int current)
@@ -70,78 +73,85 @@ int Game::findConnected(int from, int current)
 	//std::cout<<"Iterated all the way through. \n";
 	return -1;
 }
+
 bool Game::notEnregioned(int node, std::list<int> encapsulated)
 {
 	std::list<int>::iterator iterTo;
 	std::list<int>::iterator iterEnd;
 	iterEnd = encapsulated.end();
-		for(iterTo = encapsulated.begin(); iterTo!=iterEnd; iterTo++)
-		{
-			if ((*iterTo)==node)
-			{
-				return false;
-			}
-		}
-		return true;
+
+    for(iterTo = encapsulated.begin(); iterTo!=iterEnd; iterTo++)
+    {
+        if ((*iterTo)==node)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
-std::list<int> Game::findBorders(int from, int to, int prev, std::list<int> encapsulated)  //fun function to find the borders of a region
-	{
+
+std::list<int> Game::findBorders(int from, int to, int prev, std::list<int> encapsulated)
+{
 /*
-		int nextConnected = 0;
-		std::list<int>* borderNodes = new std::list<int>;
+    int nextConnected = 0;
+    std::list<int>* borderNodes = new std::list<int>;
 
-		if (from==to)
-		{
-			borderNodes->push_front(from);
-			return borderNodes;
-		}
-		else
-		{
-		 while(nextConnected!=-1)
-		 {
-		  //std::cout<<"Connection found from "<<from<<" to "<<nextConnected<<"\n";
-		  nextConnected = findConnected(from, nextConnected); //finds the next connection of the node
-		  if ((nextConnected!=-1)&&(nextConnected!=prev)&&(notEnregioned(nextConnected,encapsulated)))
-		  {
-			  if (nextConnected!=-1)//if there IS another connection
-				  borderNodes->merge(findBorders(nextConnected,to,from,encapsulated)); //call find borders to the next connection
-			  if (!borderNodes->empty())//if, after all of that, borderNodes isn't empty (which will only occur if it is
-				  borderNodes->push_front(from);//along the path to 'to'), then add 'from' to the list, and return
-				//test harness
-				std::list<int>::iterator iterTo;
-				if (!borderNodes->empty())
-				{
-				iterTo = borderNodes->begin();
-					while (iterTo!=borderNodes->end())
-					{
-						std::cout<<(*iterTo);
-						iterTo++;
-					}
-					std::cout<<std::endl;
-				}
-				else std::cout <<"Empty\n";
-				//test harness
-			  borderNodes->sort(); //sorts borderNodes to prepare it for the 'merge' function.
-			  return borderNodes;
-		  }
-		  else
-		  {
-			  //std::cout<<"Invalid connection found from "<<from<<" to "<<nextConnected<<"\n";
-			  nextConnected += 1;
-		  }
-		}
-		}
+    if (from==to)
+    {
+        borderNodes->push_front(from);
+        return borderNodes;
+    }
+    else
+    {
+        while(nextConnected!=-1)
+        {
+            //std::cout<<"Connection found from "<<from<<" to "<<nextConnected<<"\n";
+            nextConnected = findConnected(from, nextConnected); //finds the next connection of the node
+            if ((nextConnected!=-1)&&(nextConnected!=prev)&&(notEnregioned(nextConnected,encapsulated)))
+            {
+                if (nextConnected!=-1)//if there IS another connection
+                    borderNodes->merge(findBorders(nextConnected,to,from,encapsulated)); //call find borders to the next connection
 
+                if (!borderNodes->empty())//if, after all of that, borderNodes isn't empty (which will only occur if it is
+                    borderNodes->push_front(from);//along the path to 'to'), then add 'from' to the list, and return
 
-		return borderNodes;*/
+                //test harness
+                std::list<int>::iterator iterTo;
+                if (!borderNodes->empty())
+                {
+                    iterTo = borderNodes->begin();
 
-		return encapsulated;
-	}
+                    while (iterTo!=borderNodes->end())
+                    {
+                        std::cout<<(*iterTo);
+                        iterTo++;
+                    }
 
+                    std::cout<<std::endl;
+                }
+                else std::cout <<"Empty\n";
+
+                //test harness
+                borderNodes->sort(); //sorts borderNodes to prepare it for the 'merge' function.
+                return borderNodes;
+            }
+            else
+            {
+                //std::cout<<"Invalid connection found from "<<from<<" to "<<nextConnected<<"\n";
+                nextConnected += 1;
+            }
+        }
+    }
+
+    return borderNodes;*/
+
+    return encapsulated;
+}
 
 bool Game::checkRegion(int created, int from, int to)
 {
-for (int i = 0; connectable[i][i]>-1; i++)
+    for (int i = 0; connectable[i][i]>-1; i++)
 	{
 		if (from>i)
 		{
@@ -176,7 +186,6 @@ for (int i = 0; connectable[i][i]>-1; i++)
 			}
 		}
 
-
 		if (to>i)
 		{
 			if(!connectable[i][to])
@@ -209,11 +218,9 @@ for (int i = 0; connectable[i][i]>-1; i++)
 				}
 			}
 		}
-
-
 	}
 
-return 0;
+    return false;
 }
 
 bool Game::applyMove(int from, int to, int creates, std::list<int> encapsulated, bool clockwise, int near)
@@ -221,30 +228,28 @@ bool Game::applyMove(int from, int to, int creates, std::list<int> encapsulated,
 	turn = (turn+1)%2;
 	output_console();
 	this->nodes[creates] = new Sprout(creates, from, to, sproutClips,nodes, this);//creates a new node in the node array
-	nodeNumbers++;
+    nodeNumbers++;
 
-  // lets the sprouts know of the additional connections
-  this->nodes[creates]->addConnection();
-  this->nodes[creates]->addConnection();
-  this->nodes[to]->addConnection();
-  this->nodes[from]->addConnection();
-
-
-
+    // lets the sprouts know of the additional connections
+    this->nodes[creates]->addConnection();
+    this->nodes[creates]->addConnection();
+    this->nodes[to]->addConnection();
+    this->nodes[from]->addConnection();
 
 	if(connection[creates][from]<0)//this section handles creating bezier curves in the 4n connection matrix
 		connection[creates][from] = new Bezier(creates,from,this);
-	else connection[from][creates] = new Bezier(creates,from,this);
+	else
+        connection[from][creates] = new Bezier(creates,from,this);
+
 	if(connection[to][creates]<0)
 		connection[to][creates] = new Bezier(to,creates,this);
-	else connection[creates][to]= new Bezier(to,creates,this);
-
-
+	else
+        connection[creates][to]= new Bezier(to,creates,this);
 
 	std::list<int> enregioning;
 	int enregioned = 0;
 
-		for(int i = 0; connectable[i][i]!=-1; i++)//initializes the 'connected' side of the array to zero for the new node?
+    for(int i = 0; connectable[i][i]!=-1; i++)//initializes the 'connected' side of the array to zero for the new node?
 	{
 		if(i>creates)
 		{
@@ -256,82 +261,82 @@ bool Game::applyMove(int from, int to, int creates, std::list<int> encapsulated,
 		}
 	}
 
-	//this section handles the 'connected' side of the array.
-	if (from>creates)  //creating the connection from the 'from' node to the created node
-	{
-		connectable[from][creates] = 1;
-	}
-  else
-  {
-		connectable[creates][from] = 1;
-	}
-	connectable[from][from]+=1;
-	if (to>creates)  //creating the connection from the 'to' node to the created node.
-	{
-		connectable[to][creates] = 1;
-	}
-  else
-	{
-		connectable[creates][to] = 1;
-	}
-	connectable[to][to]+=1;
-	connectable[creates][creates]=2;
+    //this section handles the 'connected' side of the array.
+    if (from>creates)  //creating the connection from the 'from' node to the created node
+    {
+        connectable[from][creates] = 1;
+    }
+    else
+    {
+        connectable[creates][from] = 1;
+    }
 
+    connectable[from][from]+=1;
 
+    if (to>creates)  //creating the connection from the 'to' node to the created node.
+    {
+        connectable[to][creates] = 1;
+    }
+    else
+    {
+        connectable[creates][to] = 1;
+    }
 
-for (int i = 0;connectable[i][i]!=-1;i++) //this handles the initialization of the 'connectable' side of the array
-  {											//for the created node, taking into consideration the 'near' node.
-	if(near>i)                              //Note, however, that everything else related to enregioning is performed
-	{										//At the bottom of the function
-		if (connectable[i][near])
-		{
-			if(creates>i)
-			{
-			  connectable[i][creates]=1;
-			}
-			else if (creates<i)
-			{
-			  connectable[creates][i]=1;
-			}
-		}
-	}
-	if(i>near)
-	{
-		if (connectable[i][near])
-		{
-			if(i<creates)
-			{
-			  connectable[i][creates]=1;
-			}
-			else if (creates<i)
-			{
-			  connectable[creates][i]=1;
-			}
-		}
-	 }
-  }
+    connectable[to][to]+=1;
+    connectable[creates][creates]=2;
 
+    for (int i = 0;connectable[i][i]!=-1;i++) //this handles the initialization of the 'connectable' side of the array
+    {											//for the created node, taking into consideration the 'near' node.
+        if(near>i)                              //Note, however, that everything else related to enregioning is performed
+        {										//At the bottom of the function
+            if (connectable[i][near])
+            {
+                if(creates>i)
+                {
+                    connectable[i][creates]=1;
+                }
+                else if (creates<i)
+                {
+                    connectable[creates][i]=1;
+                }
+            }
+        }
+        else if(i>near)
+        {
+            if (connectable[i][near])
+            {
+                if(i<creates)
+                {
+                    connectable[i][creates]=1;
+                }
+                else if (creates<i)
+                {
+                    connectable[creates][i]=1;
+                }
+            }
+        }
+    }
 
-	if (!encapsulated.empty())//if the list of encapsulated nodes is not empty, start figuring out the regions
-	{
-		enregioning = encapsulated;
-		enregioning.sort();
-		if (to!=from)
-		{
-			//enregioning.merge(findBorders(creates, to, to, encapsulated));//adds the borders to the enregioning list
-		}
-		else
-		{
-			enregioning.push_front(to);
-			enregioning.push_front(creates);
-		}
-		setConnected(encapsulated, enregioning);
-	}
+    if (!encapsulated.empty())//if the list of encapsulated nodes is not empty, start figuring out the regions
+    {
+        enregioning = encapsulated;
+        enregioning.sort();
+        if (to!=from)
+        {
+            //enregioning.merge(findBorders(creates, to, to, encapsulated));//adds the borders to the enregioning list
+        }
+        else
+        {
+            enregioning.push_front(to);
+            enregioning.push_front(creates);
+        }
 
-	checkRegion(creates,from,to); //checks to see if the created node is inside a region, and, if so, adjusts the connectable matrix accordingly.
-	gameWinState = checkWin();
-	std::cout<<"Player "<<gameWinState<<" has won.";
+        setConnected(encapsulated, enregioning);
+    }
 
-	return 0;
+    checkRegion(creates,from,to); //checks to see if the created node is inside a region, and, if so, adjusts the connectable matrix accordingly.
+    gameWinState = checkWin();
+    std::cout<<"Player "<<gameWinState<<" has won.";
 
+    return false;
 }

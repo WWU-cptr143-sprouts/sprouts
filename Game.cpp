@@ -1,18 +1,18 @@
+//#include <SDL.h>
+#include <iostream>
+#include <cstdlib>
+#include <stdio.h>
 #include "stdafx.h"
 #include "include/bezier.h"
 #include "include/draw.h"
 #include "include/textbox.h"
-#include <SDL.h>
-#include <iostream>
-#include <cstdlib>
-#include <stdio.h>
 
-//Main Constructor.  Sets up a game by allocating memory.
-Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * clips){
-  this->gameWinState = 0; //Sets the game to no victory
-  this->mesier = mesier_game; //Set Mesier.
-  this->turn = initial_turn; //Set initial turn.
-  this->count = num_nodes; //Set number of nodes.
+Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * clips)
+{
+  gameWinState = 0; //Sets the game to no victory
+  mesier = mesier_game; //Set Mesier.
+  turn = initial_turn; //Set initial turn.
+  count = num_nodes; //Set number of nodes.
   nodeNumbers = count; //Tell it how many nodes the game has
 
   // create the TextBox
@@ -20,50 +20,56 @@ Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * cli
   Point boxPlace = {205,4};
   text = new TextBox(clips->font, color, TEXTBOX_TYPE_MOVE, boxPlace, this);
 
-  this->sproutClips = clips;
+  sproutClips = clips;
 
-  this->nodes = NULL; //Initialize Node pointer to NULL.
-  this->nodes = (Sprout **)malloc(4 * count * sizeof(Sprout*)); //Allocate 4*count Node pointers.
+  // TODO: why are we using malloc instead of the new operator?
+  nodes = NULL; //Initialize Node pointer to NULL.
+  nodes = (Sprout **)malloc(4 * count * sizeof(Sprout*)); //Allocate 4*count Node pointers.
 
-  this->connectable = NULL; //Initialize Connectable.
-  this->connectable = (int **)malloc(4 * count * sizeof(int *)); //Allocate 4*count int pointers (first dimension).
-  if(this->connectable == NULL) //If it didn't work...
+  connectable = NULL; //Initialize Connectable.
+  connectable = (int **)malloc(4 * count * sizeof(int *)); //Allocate 4*count int pointers (first dimension).
+
+  if(connectable == NULL) //If it didn't work...
   {
     std::cout << "Out of memory!" << std::endl; //We are out of memory and must quit.
-    system("PAUSE");
-    exit(0);
-  }else{ //It worked...
+    exit(1);
+  }
+  else
+  {
+    //It worked...
     for(int i = 0; i < 4 * count; i++) //Now we allocate memory to each pointer allocated before.
     {
-      this->connectable[i] = NULL; //Initialize.
-      this->connectable[i] = (int *)malloc(4 * count * sizeof(int)); //Allocate 4*count ints to each pointer established before.
-      if(this->connectable[i] == NULL) //If one failes we have to quit.
+      connectable[i] = NULL; //Initialize.
+      connectable[i] = (int *)malloc(4 * count * sizeof(int)); //Allocate 4*count ints to each pointer established before.
+
+      if(connectable[i] == NULL) //If one failes we have to quit.
       {
         std::cout << "Out of memory!" << std::endl;
-        system("PAUSE");
-        exit(0);
+        exit(1);
       }
     }
   }
 
   //This is identical to the above, it just allocates Bezier pointers instead of ints.
-  this->connection = NULL;
-  this->connection = (Bezier ***)malloc(4 * count * sizeof(Bezier **));
-  if(this->connection == NULL)
+  connection = NULL;
+  connection = (Bezier ***)malloc(4 * count * sizeof(Bezier **));
+
+  if(connection == NULL)
   {
     std::cout << "Out of memory!" << std::endl;
-    system("PAUSE");
-    exit(0);
-  }else{
+    exit(1);
+  }
+  else
+  {
     for(int i = 0; i < 4 * count; i++)
     {
-      this->connection[i] = NULL;
-      this->connection[i] = (Bezier **)malloc(4 * count * sizeof(Bezier *));
-      if(this->connection[i] == NULL)
+      connection[i] = NULL;
+      connection[i] = (Bezier **)malloc(4 * count * sizeof(Bezier *));
+
+      if(connection[i] == NULL)
       {
         std::cout << "Out of memory!" << std::endl;
-        system("PAUSE");
-        exit(0);
+        exit(1);
       }
     }
   }
@@ -73,10 +79,10 @@ Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * cli
   {
     for(int j = 0; j < 4 * count; j++) //Loop through columns.
     {
-      this->connectable[i][j] = -1; //Initialize everything in Connectable to -1.
-      this->connection[i][j] = NULL; //Initialize all Bezier pointers to NULL.
+      connectable[i][j] = -1; //Initialize everything in Connectable to -1.
+      connection[i][j] = NULL; //Initialize all Bezier pointers to NULL.
     }
-    this->nodes[i] = NULL; //Initialize all Node pointers to Null;
+    nodes[i] = NULL; //Initialize all Node pointers to Null;
   }
 
   for(int i = 0; i < count; i++)
@@ -84,64 +90,66 @@ Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * cli
     for(int j = 0; j < count; j++)
     {
       if(j <= i)
-        this->connectable[i][j] = 0;
+        connectable[i][j] = 0;
       else
-        this->connectable[i][j] = 1;
+        connectable[i][j] = 1;
     }
-    this->nodes[i] = new Sprout(i, -1, -1, sproutClips, nodes, this);
+    nodes[i] = new Sprout(i, -1, -1, sproutClips, nodes, this);
   }
 }
 
-//Game copy constructor.  Exactly the same as the main constructor except it copies data from a game reference passed to it.
-Game::Game(Game *current){
-  this->mesier = current->mesier;
-  this->turn = current->turn;
-  this->count = current->count;
+// Game copy constructor.  Exactly the same as the main constructor except it copies data from a game reference passed to it.
+Game::Game(Game *current)
+{
+  mesier = current->mesier;
+  turn = current->turn;
+  count = current->count;
 
   text = current->text;
 
-  this->gameWinState = current->gameWinState;
-  this->nodes = NULL;
-  this->nodes = (Sprout **)malloc(4 * count * sizeof(Sprout *));
+  gameWinState = current->gameWinState;
+  nodes = NULL;
+  nodes = (Sprout **)malloc(4 * count * sizeof(Sprout *));
 
-  this->connectable = NULL;
-  this->connectable = (int **)malloc(4 * count * sizeof(int *));
-  if(this->connectable == NULL)
+  connectable = NULL;
+  connectable = (int **)malloc(4 * count * sizeof(int *));
+
+  if(connectable == NULL)
   {
     std::cout << "Out of memory!" << std::endl;
-    system("PAUSE");
-    exit(0);
-  }else{
+    exit(1);
+  }
+  else
+  {
     for(int i = 0; i < 4 * count; i++)
     {
-      this->connectable[i] = NULL;
-      this->connectable[i] = (int *)malloc(4 * count * sizeof(int *));
-      if(this->connectable[i] == NULL)
+      connectable[i] = NULL;
+      connectable[i] = (int *)malloc(4 * count * sizeof(int *));
+      if(connectable[i] == NULL)
       {
         std::cout << "Out of memory!" << std::endl;
-        system("PAUSE");
-        exit(0);
+        exit(1);
       }
     }
   }
 
-  this->connection = NULL;
-  this->connection = (Bezier ***)malloc(4 * count * sizeof(Bezier *));
-  if(this->connection == NULL)
+  connection = NULL;
+  connection = (Bezier ***)malloc(4 * count * sizeof(Bezier *));
+  if(connection == NULL)
   {
     std::cout << "Out of memory!" << std::endl;
-    system("PAUSE");
-    exit(0);
-  }else{
+    exit(1);
+  }
+  else
+  {
     for(int i = 0; i < 4 * count; i++)
     {
-      this->connection[i] = NULL;
-      this->connection[i] = (Bezier **)malloc(4 * count * sizeof(Bezier *));
-      if(this->connection[i] == NULL)
+      connection[i] = NULL;
+      connection[i] = (Bezier **)malloc(4 * count * sizeof(Bezier *));
+      if(connection[i] == NULL)
       {
         std::cout << "Out of memory!" << std::endl;
-        system("PAUSE");
-        exit(0);
+        exit(1);
       }
     }
   }
@@ -150,17 +158,17 @@ Game::Game(Game *current){
   {
     for(int j = 0; j < 4 * count; j++)
     {
-      this->connectable[i][j] = current->connectable[i][j];
+      connectable[i][j] = current->connectable[i][j];
       if(current->connection[i][j] != NULL)
-        this->connection[i][j] = new Bezier(current->connection[i][j]);
+        connection[i][j] = new Bezier(current->connection[i][j]);
       else
-        this->connection[i][j] = NULL;
+        connection[i][j] = NULL;
     }
     if(current->nodes[i] != NULL)
-      //this->nodes[i] = new Sprout(NULL);
-      this->nodes[i] = new Sprout(current->nodes[i]);
+      //nodes[i] = new Sprout(NULL);
+      nodes[i] = new Sprout(current->nodes[i]);
     else
-      this->nodes[i] = NULL;
+      nodes[i] = NULL;
   }
 }
 
@@ -187,8 +195,8 @@ void Game::output_console(void){
   std::cout << "  ";
   int z = 0;
 
-  if(4 * this->count < 10)
-    z = 4 * this->count;
+  if(4 * count < 10)
+    z = 4 * count;
   else
     z = 10;
 
@@ -201,8 +209,8 @@ void Game::output_console(void){
     std::cout << i << " ";
     for(int j = 0; j < z; j++)
     {
-      if(this->connectable[i][j] != -1)
-        std::cout << this->connectable[i][j];
+      if(connectable[i][j] != -1)
+        std::cout << connectable[i][j];
       else
         std::cout << " ";
     }
@@ -230,9 +238,9 @@ void Game::output_file(FILE *fle, char *move){
     fputs(",", fle);
     for(int j = 0; j < 4 * count; j++)
     {
-      if(this->connectable[i][j] != -1)
+      if(connectable[i][j] != -1)
       {
-        sprintf(buffer, "%d", this->connectable[i][j]);
+        sprintf(buffer, "%d", connectable[i][j]);
         fputs(buffer, fle);
       }
       fputs(",", fle);
@@ -247,8 +255,8 @@ void Game::move(char *move){
   bool clockwise = true;
   std::list<int> encap;
 
-  error = this->parsemove(move, &from, &to, &creates, &near, &clockwise, &encap);
-	this->parseerror(error);
+  error = parsemove(move, &from, &to, &creates, &near, &clockwise, &encap);
+	parseerror(error);
 
 	std::cout << "Move: " << move << std::endl;
 	std::cout << from << " Creates " << creates << " To " << to;
@@ -257,7 +265,7 @@ void Game::move(char *move){
 	std::cout << std::endl;
 
 	if(error == 0)
-    this->applyMove(from, to, creates, encap, clockwise, near);
+    applyMove(from, to, creates, encap, clockwise, near);
   else
     std::cout << "Error: " << error << std::endl;
 }

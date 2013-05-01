@@ -5,31 +5,26 @@
 
 #define BUFFER 5      // The extra edge for the box
 
-//Constructor
 Button::Button(Point placement, std::string textString, TTF_Font * theFont)
 {
   // Probably should verify these before applying them
   point.x = placement.x;
   point.y = placement.y;
 
-  state = B_STATE_NORMAL;  // Set the intial state to be normal
+  state = B_STATE_NORMAL;  // Set the initial state to be normal
 
   SDL_Color textColor = {0,0,0};
 
   font = theFont;
 
   text = TTF_RenderText_Blended( font, textString.c_str(), textColor);
-
-  // Everything initialized
 }
 
-//Destructor
 Button::~Button(void)
 {
 	SDL_FreeSurface(text);
 }
 
-// Sets the state of the button to the new state
 bool Button::setState(ButtonState newState)
 {
   if (state != newState)
@@ -43,7 +38,6 @@ bool Button::setState(ButtonState newState)
   }
 }
 
-// Gets the current button state
 ButtonState Button::getState()
 {
   return state;
@@ -65,7 +59,7 @@ bool Button::isMouseover(int x, int y)
 // Draws the button based on the state given
 bool Button::draw(SDL_Surface* dest)
 {
-  // Ouput a box with text in the middle
+  // Output a box with text in the middle
   Sint16 x1 = point.x-BUFFER;
   Sint16 x2 = point.x + text->clip_rect.w+BUFFER;
   Sint16 y1 = point.y-BUFFER;
@@ -79,7 +73,7 @@ bool Button::draw(SDL_Surface* dest)
   // Might want to check if destination is valid
   //apply_surface(location.x, location.y, image, destination, &clips[state]);
 
-  // It was succesful
+  // It was successful
   return true;
 }
 

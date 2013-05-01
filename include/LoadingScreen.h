@@ -1,19 +1,12 @@
-#pragma once
+#ifndef H_LOADING
+#define H_LOADING
 
 #include "draw.h"
-//#include "../SDL/SDL.h"
 #include <string>
 
-//#include "../SDL/SDL_timer.h"
-
-
-
-//header for the loading screen
-//declaration of the class
 class LoadingScreen
 {
-  private:
-    int frame;//declarations of variables
+    int frame;
     int ticksStart;
     std::string folder;
     std::string screenname;
@@ -22,12 +15,17 @@ class LoadingScreen
     SDL_Surface *loadingScreen[150];
     SDL_Surface *loadingWait;
     SDL_Surface *loadingLoad[150];
-
     bool initing;
-  public:
-    LoadingScreen();//constructor
-    void PlayWait();//music
-    void PlayStart();//music
-    bool draw(SDL_Surface* destination);//draws the loading screen
+
+public:
+    LoadingScreen();
+
+    // Music
+    void PlayWait();
+    void PlayStart();
+
+    // Graphics
+    bool draw(SDL_Surface* destination);
 };
 
+#endif
