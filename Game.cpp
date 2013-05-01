@@ -1,10 +1,10 @@
-//#include <SDL.h>
 #include <iostream>
 #include <cstdlib>
 #include <stdio.h>
 #include "stdafx.h"
 #include "include/bezier.h"
 #include "include/draw.h"
+#include "include/string.h"
 #include "include/textbox.h"
 
 Game::Game(bool initial_turn, bool mesier_game, int num_nodes, SproutClips * clips)
@@ -172,26 +172,30 @@ Game::Game(Game *current)
   }
 }
 
-//freeConnections: Count the number of free connections a Node has.
-//Input: Node number
-//Output: Number of free connections.
-int Game::freeConnections(int node){
-	int free = 3; //Start with 3 and decrement when we find something.
+// freeConnections: Count the number of free connections a Node has.
+// Input: Node number
+// Output: Number of free connections.
+int Game::freeConnections(int node)
+{
+	int free = 3; // Start with 3 and decrement when we find something.
 
-	for(int i = 0; i < node; i++) //Loop until row = column (divides our half matrix).
+	for(int i = 0; i < node; i++) // Loop until row = column (divides our half matrix).
 	{
-		if(connectable[node][i] != -1) //If it is a useable node...
-			free -= connectable[node][i]; //Subtract what we find (0, 1, 2, 3).
+		if(connectable[node][i] != -1) // If it is a useable node...
+			free -= connectable[node][i]; // Subtract what we find (0, 1, 2, 3).
 	}
-	for(int i = node + 1; i < 4 * count; i++) //Now loop from row = column + 1 to the end of the matrix.
+
+	for(int i = node + 1; i < 4 * count; i++) // Now loop from row = column + 1 to the end of the matrix.
 	{
 		if(connectable[i][node] != -1)
-			free -= connectable[node][i]; //Subtract what we find.
+			free -= connectable[node][i]; // Subtract what we find.
 	}
-	return free; //Return the number of free connections.
+
+	return free; // Return the number of free connections.
 }
 
-void Game::output_console(void){
+void Game::output_console(void)
+{
   std::cout << "  ";
   int z = 0;
 
@@ -202,11 +206,13 @@ void Game::output_console(void){
 
   for(int j = 0; j < z; j++)
     std::cout << j;
+
   std::cout << std::endl << std::endl;
 
   for(int i = 0; i < z; i++)
   {
     std::cout << i << " ";
+
     for(int j = 0; j < z; j++)
     {
       if(connectable[i][j] != -1)
@@ -214,18 +220,20 @@ void Game::output_console(void){
       else
         std::cout << " ";
     }
+
     std::cout << std::endl;
   }
 }
 
-void Game::output_file(FILE *fle, char *move){
-  char buffer[32];
+// TODO: use ifstream instead of FILE
+void Game::output_file(FILE *fle, char *move)
+{
   fputs(move, fle);
   fputs(",", fle);
+
   for(int j = 0; j < 4 * count; j++)
   {
-    sprintf(buffer, "%d", j);
-    fputs(buffer, fle);
+    fputs(to_string(j).c_str(), fle);
     fputs(",", fle);
   }
 
@@ -233,54 +241,63 @@ void Game::output_file(FILE *fle, char *move){
 
   for(int i = 0; i < 4 * count; i++)
   {
-    sprintf(buffer,"%d", i);
-    fputs(buffer,fle);
+    fputs(to_string(i).c_str(),fle);
     fputs(",", fle);
+
     for(int j = 0; j < 4 * count; j++)
     {
       if(connectable[i][j] != -1)
       {
-        sprintf(buffer, "%d", connectable[i][j]);
-        fputs(buffer, fle);
+        fputs(to_string(connectable[i][j]).c_str(), fle);
       }
+
       fputs(",", fle);
     }
+
     fputs("\n", fle);
   }
+
   fputs("\n", fle);
 }
 
-void Game::move(char *move){
+void Game::move(char *move)
+{
   int to = -1, from = -1, creates = -1, near = -1, error = 0;
   bool clockwise = true;
   std::list<int> encap;
 
   error = parsemove(move, &from, &to, &creates, &near, &clockwise, &encap);
-	parseerror(error);
+  parseerror(error);
 
-	std::cout << "Move: " << move << std::endl;
-	std::cout << from << " Creates " << creates << " To " << to;
-	if(near != -1)
-		std::cout << " Near " << near;
-	std::cout << std::endl;
+  std::cout << "Move: " << move << std::endl;
+  std::cout << from << " Creates " << creates << " To " << to;
 
-	if(error == 0)
+  if(near != -1)
+    std::cout << " Near " << near;
+
+  std::cout << std::endl;
+
+  if(error == 0)
     applyMove(from, to, creates, encap, clockwise, near);
   else
     std::cout << "Error: " << error << std::endl;
 }
 
-int Game::get_connected(int from, int to){
+int Game::get_connected(int from, int to)
+{
   return connectable[std::min(from, to)][std::max(from, to)];
 }
 
-int Game::get_connectable(int from, int to){
+int Game::get_connectable(int from, int to)
+{
   return connectable[std::max(from, to)][std::min(from, to)];
 }
 
 //Game destructor.
-Game::~Game(void){
+Game::~Game()
+{
   int i = 0;
+
   // Free the nodes memory
   for (i = 0; nodes[i] != NULL; i++)
     delete nodes[i];
@@ -291,7 +308,7 @@ Game::~Game(void){
       if (connection[j][k] != NULL)
         delete connection[j][k];
 
-  free(nodes); //Free nodes memory.
+  free(nodes);
 
   // loop through and free the 2nd dimension memory
   for (i = 0; i < 4*count-1; i++)
@@ -300,7 +317,7 @@ Game::~Game(void){
     free(connection[i]);
   }
 
-  free(connectable); //Free connectable memory.
-  free(connection); //Free connection memory.
-  delete text; // Free the textbox
+  free(connectable);
+  free(connection);
+  delete text;
 }

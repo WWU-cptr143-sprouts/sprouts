@@ -1,5 +1,3 @@
-// Sprouts2.cpp : Defines the entry point for the console application.
-
 #include <time.h>
 #include "stdafx.h"
 #include "include/bezier.h"
@@ -10,10 +8,13 @@
 #include "SDL_ttf.h"
 
 // Define Game States
-enum GameState{ GAME_STATE_LOADING,
-      GAME_STATE_START,
-      GAME_STATE_PLAY,
-      GAME_STATE_QUIT};
+enum GameState
+{
+    GAME_STATE_LOADING,
+    GAME_STATE_START,
+    GAME_STATE_PLAY,
+    GAME_STATE_QUIT
+};
 
 struct Move
 {
