@@ -1,0 +1,326 @@
+# depslib dependency file v1.0
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\applymove.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+	<list>
+
+1367193983 g:\home\garrett\junk\school\sprouts\10.working\stdafx.h
+	<iostream>
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\draw.h
+	"SDL.h"
+	"SDL_image.h"
+	<string>
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_platform.h
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\begin_code.h
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\close_code.h
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_keysym.h
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\game.h
+	<list>
+	"Sprout.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_gfxprimitives.h
+	<math.h>
+	"SDL.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\button.h
+	"../stdafx.h"
+	"draw.h"
+	<string>
+	"../SDL/SDL_ttf.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\checkwin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\draw.cpp
+	"stdafx.h"
+	"include/draw.h"
+	<string>
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\game.cpp
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/textbox.h"
+	<SDL.h>
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\textbox.h
+	"../stdafx.h"
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+	<string>
+
+1367194127 source:g:\home\garrett\junk\school\sprouts\10.working\loadingscreen.cpp
+	"stdafx.h"
+	"include/string.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1367194085 g:\home\garrett\junk\school\sprouts\10.working\include\string.h
+	<string>
+	<sstream>
+
+1367193589 g:\home\garrett\junk\school\sprouts\10.working\include\loadingscreen.h
+	"draw.h"
+	<string>
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\parse.cpp
+	"stdafx.h"
+	<stack>
+	<math.h>
+	"include/game.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\sprout.cpp
+	"stdafx.h"
+	<cmath>
+	"include/game.h"
+	"include/Sprout.h"
+	"SDL_ttf.h"
+
+1367194371 source:g:\home\garrett\junk\school\sprouts\10.working\sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1303927128 source:g:\home\garrett\junk\school\sprouts\10.working\stdafx.cpp
+	"stdafx.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\timer.h
+

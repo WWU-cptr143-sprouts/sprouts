@@ -9,13 +9,19 @@
 	<cstdlib>
 	<stdio.h>
 
+1367194085 
+
 1273257254 c:\users\steven\code\git\stdafx.h
 	<iostream>
+
+1303927128 
 
 1273429126 c:\users\steven\code\git\include\bezier.h
 	"draw.h"
 	"game.h"
 	"SDL_gfxPrimitives.h"
+
+1303927130 imitives.h"
 
 1273441413 c:\users\steven\code\git\include\draw.h
 	"SDL.h"
@@ -40,6 +46,8 @@
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
+
+1303927116 e.h"
 
 1255800450 c:\users\steven\code\git\sdl\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
@@ -185,6 +193,8 @@
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
+1303927116 .h"
+
 1255800450 c:\users\steven\code\git\sdl\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
@@ -216,6 +226,8 @@
 	"draw.h"
 	"SDL_ttf.h"
 
+1303927130 "
+
 1184479368 c:\users\steven\code\git\sdl\include\sdl\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
@@ -236,6 +248,8 @@
 	"stdafx.h"
 	"include/draw.h"
 	"include/LoadingScreen.h"
+
+1367194127 oadingScreen.h"
 
 1273257340 c:\users\steven\code\git\include\loadingscreen.h
 	"draw.h"
@@ -264,17 +278,23 @@
 	"include/LoadingScreen.h"
 	"include/button.h"
 
+1367194371 utton.h"
+
 1273172701 c:\users\steven\code\git\include\button.h
 	"../stdafx.h"
 	"draw.h"
 	<string>
 	"../SDL/SDL_ttf.h"
 
+1303927130 L_ttf.h"
+
 1273087014 source:c:\users\steven\code\git\applymove.cpp
 	"stdafx.h"
 	"include/Sprout.h"
 	"include/bezier.h"
 	<list>
+
+1303927130 ezier.h"
 
 1273429139 source:c:\users\steven\code\git\bezier.cpp
 	"stdafx.h"
@@ -304,6 +324,8 @@
 	<math.h>
 	"include/game.h"
 
+1303927126 ame.h"
+
 1181080948 source:c:\users\steven\code\git\stdafx.cpp
 	"stdafx.h"
 
@@ -317,9 +339,11 @@
 	"SDL.h"
 	"include/timer.h"
 
+1303927126 imer.h"
+
 1181080948 c:\users\steven\code\git\include\timer.h
 
-1275875245 source:/home/grosda/WWU_sprouts/Game.cpp
+1280289968 source:/home/grosda/WWU_sprouts/Game.cpp
 	"stdafx.h"
 	"include/bezier.h"
 	"include/draw.h"
@@ -329,20 +353,20 @@
 	<cstdlib>
 	<stdio.h>
 
-1275875268 /home/grosda/WWU_sprouts/stdafx.h
+1280289968 /home/grosda/WWU_sprouts/stdafx.h
 	<iostream>
 
-1275875267 /home/grosda/WWU_sprouts/include/bezier.h
+1280289969 /home/grosda/WWU_sprouts/include/bezier.h
 	"draw.h"
 	"game.h"
 	"SDL_gfxPrimitives.h"
 
-1275973024 /home/grosda/WWU_sprouts/include/draw.h
+1280289969 /home/grosda/WWU_sprouts/include/draw.h
 	"SDL.h"
 	"SDL_image.h"
 	<string>
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_audio.h"
@@ -361,14 +385,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_main.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_stdinc.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -394,17 +418,17 @@
 	<stdlib.h>
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_config.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_config.h
 	"SDL_platform.h"
 	<stdarg.h>
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_platform.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_platform.h
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/begin_code.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/begin_code.h
 
-1275875251 /home/grosda/WWU_sprouts/SDL/include/SDL/close_code.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/close_code.h
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_audio.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -414,23 +438,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_error.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_endian.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_endian.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_mutex.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_thread.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_mutex.h"
@@ -438,24 +462,24 @@
 	<process.h>
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_rwops.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_cdrom.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_cdrom.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_cpuinfo.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_events.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_active.h"
@@ -466,164 +490,164 @@
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_active.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_active.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_keyboard.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keysym.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_keysym.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_keysym.h
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_mouse.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_video.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_joystick.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_quit.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_loadso.h
-	"SDL_stdinc.h"
-	"SDL_error.h"
-	"begin_code.h"
-	"close_code.h"
-
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_timer.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_version.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_image.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875267 /home/grosda/WWU_sprouts/include/game.h
+1280289969 /home/grosda/WWU_sprouts/include/game.h
 	<list>
 	"Sprout.h"
 
-1275875267 /home/grosda/WWU_sprouts/include/Sprout.h
+1280289969 /home/grosda/WWU_sprouts/include/Sprout.h
 	"draw.h"
 	"SDL_ttf.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_ttf.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1275875250 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_gfxPrimitives.h
+1280289960 /home/grosda/WWU_sprouts/SDL/include/SDL/SDL_gfxPrimitives.h
 	<math.h>
 	"SDL.h"
 
-1275875268 /home/grosda/WWU_sprouts/include/textbox.h
+1280289969 /home/grosda/WWU_sprouts/include/textbox.h
 	"../stdafx.h"
 	"SDL_ttf.h"
 	"draw.h"
 	"game.h"
 	<string>
 
-1275983122 source:/home/grosda/WWU_sprouts/LoadingScreen.cpp
+1280289960 source:/home/grosda/WWU_sprouts/LoadingScreen.cpp
 	"stdafx.h"
 	"include/draw.h"
 	"include/LoadingScreen.h"
 
-1275983021 /home/grosda/WWU_sprouts/include/LoadingScreen.h
+1280289969 /home/grosda/WWU_sprouts/include/LoadingScreen.h
 	"draw.h"
 	<string>
 
-1275875259 source:/home/grosda/WWU_sprouts/Sprout.cpp
+1280289969 source:/home/grosda/WWU_sprouts/Sprout.cpp
 	"stdafx.h"
 	<cmath>
 	"include/game.h"
 	"include/Sprout.h"
 	"SDL_ttf.h"
 
-1275875259 source:/home/grosda/WWU_sprouts/applymove.cpp
+1280289968 source:/home/grosda/WWU_sprouts/applymove.cpp
 	"stdafx.h"
 	"include/Sprout.h"
 	"include/bezier.h"
 	<list>
 
-1275875259 source:/home/grosda/WWU_sprouts/bezier.cpp
+1280289968 source:/home/grosda/WWU_sprouts/bezier.cpp
 	"stdafx.h"
 	"include/draw.h"
 	"include/bezier.h"
 	"SDL_gfxPrimitives.h"
 
-1275875259 source:/home/grosda/WWU_sprouts/button.cpp
+1280289968 source:/home/grosda/WWU_sprouts/button.cpp
 	"stdafx.h"
 	"include/button.h"
 	"include/draw.h"
 	"SDL_gfxPrimitives.h"
 
-1275875267 /home/grosda/WWU_sprouts/include/button.h
+1280289969 /home/grosda/WWU_sprouts/include/button.h
 	"../stdafx.h"
 	"draw.h"
 	<string>
 	"../SDL/SDL_ttf.h"
 
-1275875259 source:/home/grosda/WWU_sprouts/checkWin.cpp
+1280289969 source:/home/grosda/WWU_sprouts/checkWin.cpp
 	"stdafx.h"
 	"include/Sprout.h"
 	"include/bezier.h"
 
-1275980719 source:/home/grosda/WWU_sprouts/draw.cpp
+1280289968 source:/home/grosda/WWU_sprouts/draw.cpp
 	"stdafx.h"
 	"include/draw.h"
 	<string>
 
-1275875268 source:/home/grosda/WWU_sprouts/parse.cpp
+1280289968 source:/home/grosda/WWU_sprouts/parse.cpp
 	"stdafx.h"
 	<stack>
 	<math.h>
 	"include/game.h"
 
-1275875268 source:/home/grosda/WWU_sprouts/stdafx.cpp
+1280289968 source:/home/grosda/WWU_sprouts/stdafx.cpp
 	"stdafx.h"
 
-1275875268 source:/home/grosda/WWU_sprouts/textbox.cpp
+1280289969 source:/home/grosda/WWU_sprouts/textbox.cpp
 	"stdafx.h"
 	"include/textbox.h"
 	"SDL_gfxPrimitives.h"
 
-1275875268 source:/home/grosda/WWU_sprouts/timer.cpp
+1280289968 source:/home/grosda/WWU_sprouts/timer.cpp
 	"stdafx.h"
 	"SDL.h"
 	"include/timer.h"
 
-1275875268 /home/grosda/WWU_sprouts/include/timer.h
+1280289969 /home/grosda/WWU_sprouts/include/timer.h
 
-1275982977 source:/home/grosda/WWU_sprouts/Sprouts2.cpp
+1280289969 source:/home/grosda/WWU_sprouts/Sprouts2.cpp
 	<time.h>
 	"stdafx.h"
 	"include/bezier.h"
@@ -942,4 +966,1294 @@
 	"include/timer.h"
 
 1275678438 c:\documents and settings\robin zane\desktop\cptr143 proj\project\include\timer.h
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\game.cpp
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/textbox.h"
+	<SDL.h>
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+
+1303927129 k:\class\cptr\143\sprouts 2010\wwu_sprouts\stdafx.h
+	<iostream>
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\draw.h
+	"SDL.h"
+	"SDL_image.h"
+	<string>
+
+1303927115 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_platform.h
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\begin_code.h
+
+1303927115 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\close_code.h
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_keysym.h
+
+1303927115 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\game.h
+	<list>
+	"Sprout.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 k:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_gfxprimitives.h
+	<math.h>
+	"SDL.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\textbox.h
+	"../stdafx.h"
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+	<string>
+
+1303927116 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\loadingscreen.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\loadingscreen.h
+	"draw.h"
+	<string>
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\applymove.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+	<list>
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\button.h
+	"../stdafx.h"
+	"draw.h"
+	<string>
+	"../SDL/SDL_ttf.h"
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\draw.cpp
+	"stdafx.h"
+	"include/draw.h"
+	<string>
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\parse.cpp
+	"stdafx.h"
+	<stack>
+	<math.h>
+	"include/game.h"
+
+1303927128 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\stdafx.cpp
+	"stdafx.h"
+
+1303927126 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1303927130 k:\class\cptr\143\sprouts 2010\wwu_sprouts\include\timer.h
+
+1303927130 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\sprout.cpp
+	"stdafx.h"
+	<cmath>
+	"include/game.h"
+	"include/Sprout.h"
+	"SDL_ttf.h"
+
+1303927129 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1303927130 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\checkwin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1303927130 source:k:\class\cptr\143\sprouts 2010\wwu_sprouts\textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\game.cpp
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/textbox.h"
+	<SDL.h>
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+
+1303927129 z:\class\cptr\143\sprouts 2010\wwu_sprouts\stdafx.h
+	<iostream>
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\draw.h
+	"SDL.h"
+	"SDL_image.h"
+	<string>
+
+1303927115 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_platform.h
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\begin_code.h
+
+1303927115 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\close_code.h
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_keysym.h
+
+1303927115 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\game.h
+	<list>
+	"Sprout.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\class\cptr\143\sprouts 2010\wwu_sprouts\sdl\include\sdl\sdl_gfxprimitives.h
+	<math.h>
+	"SDL.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\textbox.h
+	"../stdafx.h"
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+	<string>
+
+1303927116 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\loadingscreen.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\loadingscreen.h
+	"draw.h"
+	<string>
+
+1303927130 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\sprout.cpp
+	"stdafx.h"
+	<cmath>
+	"include/game.h"
+	"include/Sprout.h"
+	"SDL_ttf.h"
+
+1303927129 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\button.h
+	"../stdafx.h"
+	"draw.h"
+	<string>
+	"../SDL/SDL_ttf.h"
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\applymove.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+	<list>
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\checkwin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\draw.cpp
+	"stdafx.h"
+	"include/draw.h"
+	<string>
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\parse.cpp
+	"stdafx.h"
+	<stack>
+	<math.h>
+	"include/game.h"
+
+1303927128 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\stdafx.cpp
+	"stdafx.h"
+
+1303927130 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:z:\class\cptr\143\sprouts 2010\wwu_sprouts\timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1303927130 z:\class\cptr\143\sprouts 2010\wwu_sprouts\include\timer.h
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\applymove.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+	<list>
+
+1367193983 g:\home\garrett\junk\school\sprouts\10.working\stdafx.h
+	<iostream>
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\draw.h
+	"SDL.h"
+	"SDL_image.h"
+	<string>
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_platform.h
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\begin_code.h
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\close_code.h
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_keysym.h
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\game.h
+	<list>
+	"Sprout.h"
+
+1303927116 g:\home\garrett\junk\school\sprouts\10.working\sdl\include\sdl\sdl_gfxprimitives.h
+	<math.h>
+	"SDL.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\button.h
+	"../stdafx.h"
+	"draw.h"
+	<string>
+	"../SDL/SDL_ttf.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\checkwin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\draw.cpp
+	"stdafx.h"
+	"include/draw.h"
+	<string>
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\game.cpp
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/textbox.h"
+	<SDL.h>
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\textbox.h
+	"../stdafx.h"
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+	<string>
+
+1367194127 source:g:\home\garrett\junk\school\sprouts\10.working\loadingscreen.cpp
+	"stdafx.h"
+	"include/string.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1367193589 g:\home\garrett\junk\school\sprouts\10.working\include\loadingscreen.h
+	"draw.h"
+	<string>
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\parse.cpp
+	"stdafx.h"
+	<stack>
+	<math.h>
+	"include/game.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\sprout.cpp
+	"stdafx.h"
+	<cmath>
+	"include/game.h"
+	"include/Sprout.h"
+	"SDL_ttf.h"
+
+1367194371 source:g:\home\garrett\junk\school\sprouts\10.working\sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1303927128 source:g:\home\garrett\junk\school\sprouts\10.working\stdafx.cpp
+	"stdafx.h"
+
+1303927130 source:g:\home\garrett\junk\school\sprouts\10.working\textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:g:\home\garrett\junk\school\sprouts\10.working\timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\timer.h
+
+1367194085 g:\home\garrett\junk\school\sprouts\10.working\include\string.h
+	<string>
+	<sstream>
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/applymove.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+	<list>
+
+1367193983 /home/garrett/junk/School/sprouts/10.linux/stdafx.h
+	<iostream>
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/Sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/draw.h
+	"SDL.h"
+	"SDL_image.h"
+	<string>
+
+1303927115 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_platform.h
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/begin_code.h
+
+1303927115 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/close_code.h
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_keysym.h
+
+1303927115 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/game.h
+	<list>
+	"Sprout.h"
+
+1303927116 /home/garrett/junk/School/sprouts/10.linux/SDL/include/SDL/SDL_gfxPrimitives.h
+	<math.h>
+	"SDL.h"
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/button.h
+	"../stdafx.h"
+	"draw.h"
+	<string>
+	"../SDL/SDL_ttf.h"
+
+1303927130 source:/home/garrett/junk/School/sprouts/10.linux/checkWin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/draw.cpp
+	"stdafx.h"
+	"include/draw.h"
+	<string>
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/Game.cpp
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/textbox.h"
+	<SDL.h>
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/textbox.h
+	"../stdafx.h"
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+	<string>
+
+1367194127 source:/home/garrett/junk/School/sprouts/10.linux/LoadingScreen.cpp
+	"stdafx.h"
+	"include/string.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1367194085 /home/garrett/junk/School/sprouts/10.linux/include/string.h
+	<string>
+	<sstream>
+
+1367193589 /home/garrett/junk/School/sprouts/10.linux/include/LoadingScreen.h
+	"draw.h"
+	<string>
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/parse.cpp
+	"stdafx.h"
+	<stack>
+	<math.h>
+	"include/game.h"
+
+1303927130 source:/home/garrett/junk/School/sprouts/10.linux/Sprout.cpp
+	"stdafx.h"
+	<cmath>
+	"include/game.h"
+	"include/Sprout.h"
+	"SDL_ttf.h"
+
+1367194371 source:/home/garrett/junk/School/sprouts/10.linux/Sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1303927128 source:/home/garrett/junk/School/sprouts/10.linux/stdafx.cpp
+	"stdafx.h"
+
+1303927130 source:/home/garrett/junk/School/sprouts/10.linux/textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:/home/garrett/junk/School/sprouts/10.linux/timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1303927130 /home/garrett/junk/School/sprouts/10.linux/include/timer.h
 

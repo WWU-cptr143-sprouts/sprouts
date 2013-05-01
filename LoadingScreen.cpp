@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "include/string.h"
 #include "include/draw.h"
 #include "include/LoadingScreen.h"
 
@@ -24,8 +25,7 @@ LoadingScreen::LoadingScreen(void)
           if (i >= 9)
              pic = i*9;
              /*screenname = "";*/
-          sprintf(buffer, "%d", i);
-          filename = folder + screenname + buffer +".jpg";
+          filename = folder + screenname + to_string(i) +".jpg";
           //std::cout << "Filename String: " << filename << std::endl;
           loadingScreen[i] = load_image(filename);
        }
@@ -33,8 +33,7 @@ LoadingScreen::LoadingScreen(void)
 //   for (int i = 121; i >= 0; i--)
     for (int i = 0; i <= 121; i++)
        {
-          sprintf(buffer, "%d", i);
-          filename = folder + screenname + buffer +".jpg";
+          filename = folder + screenname + to_string(i) +".jpg";
           loadingLoad[121-i] = load_image(filename);
        }
 

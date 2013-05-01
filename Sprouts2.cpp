@@ -69,7 +69,7 @@ SDL_Surface * text2         = NULL;
 LoadingScreen * loading;
 Button * startButton;
 
-Move * move;
+Move * mv;
 // End more globals
 
 void setSproutClips()
@@ -336,12 +336,12 @@ int drawPlay()  // Draws the GAME_STATE_PLAY stuff
     // do nothing finding the
   }
 
-  if (move != NULL)
+  if (mv != NULL)
   {
-    if (move->fromCurve != NULL)
-      move->fromCurve->draw(screen);
-    if (move->toCurve != NULL)
-      move->toCurve->draw(screen);
+    if (mv->fromCurve != NULL)
+      mv->fromCurve->draw(screen);
+    if (mv->toCurve != NULL)
+      mv->toCurve->draw(screen);
   }
 
   for (int j = 0; j <= i; j++)
@@ -357,9 +357,9 @@ int drawPlay()  // Draws the GAME_STATE_PLAY stuff
     i++;
   }
 
-  if (move != NULL)
-    if (move->newSprout != NULL)
-      move->newSprout->draw(screen);
+  if (mv != NULL)
+    if (mv->newSprout != NULL)
+      mv->newSprout->draw(screen);
 
   return 1;
 }
@@ -400,30 +400,30 @@ int Draw()
 
 void clearMove(void)
 {
-  if (move != NULL)
+  if (mv != NULL)
   {
     // set the colors back to normal for the nodes
-    if (move->to != -1)
-      g->nodes[move->to]->removeConnection();
-    if (move->from != -1)
-      g->nodes[move->from]->removeConnection();
+    if (mv->to != -1)
+      g->nodes[mv->to]->removeConnection();
+    if (mv->from != -1)
+      g->nodes[mv->from]->removeConnection();
 
     // Delete the new objects created
-    if (move->toCurve != NULL)
-      delete move->toCurve;
-    if (move->fromCurve != NULL)
-      delete move->fromCurve;
-    if (move->newSprout != NULL)
-      delete move->newSprout;
+    if (mv->toCurve != NULL)
+      delete mv->toCurve;
+    if (mv->fromCurve != NULL)
+      delete mv->fromCurve;
+    if (mv->newSprout != NULL)
+      delete mv->newSprout;
 
     // Set values back to base values
-    move->to        = -1;
-    move->from      = -1;
-    move->toCurve   = NULL;
-    move->fromCurve = NULL;
-    move->newSprout = NULL;
+    mv->to        = -1;
+    mv->from      = -1;
+    mv->toCurve   = NULL;
+    mv->fromCurve = NULL;
+    mv->newSprout = NULL;
 
-    for (move->creates = 0; g->nodes[move->creates] != NULL; move->creates++)
+    for (mv->creates = 0; g->nodes[mv->creates] != NULL; mv->creates++)
     {
       // find the first null node
     }
@@ -443,21 +443,21 @@ void newGame(bool player, bool mesier, int nodes)
 
 void sendMove()
 {
-  // Make sure its a valid move
-  if (move != NULL && move->newSprout != NULL)
+  // Make sure its a valid mv
+  if (mv != NULL && mv->newSprout != NULL)
   {
     char temp[50];
-    sprintf(temp,"%d(%d)%d",move->to+1,move->creates+1,move->from+1);
+    sprintf(temp,"%d(%d)%d",mv->to+1,mv->creates+1,mv->from+1);
     g->move(temp);
   }
-  if (g->nodes[move->creates] != NULL)
+  if (g->nodes[mv->creates] != NULL)
   {
-    Point temp = move->newSprout->getPoint();
-    g->nodes[move->creates]->setPoint(temp.x, temp.y);
-    if(g->connection[move->to][move->creates] != NULL)
-      g->connection[move->to][move->creates]->adjustCoord(CURVE_START,temp.x,temp.y);
-    if(g->connection[move->creates][move->from] != NULL)
-      g->connection[move->creates][move->from]->adjustCoord(CURVE_END,temp.x,temp.y);
+    Point temp = mv->newSprout->getPoint();
+    g->nodes[mv->creates]->setPoint(temp.x, temp.y);
+    if(g->connection[mv->to][mv->creates] != NULL)
+      g->connection[mv->to][mv->creates]->adjustCoord(CURVE_START,temp.x,temp.y);
+    if(g->connection[mv->creates][mv->from] != NULL)
+      g->connection[mv->creates][mv->from]->adjustCoord(CURVE_END,temp.x,temp.y);
     clearMove();
   }
 }
@@ -495,16 +495,16 @@ int main(int argc, char* argv[])
 
   g = new Game(false,true,4,&sproutClips);
 
-  move = new Move;
-  for (move->creates = 0; g->nodes[move->creates] != NULL; move->creates++)
+  mv = new Move;
+  for (mv->creates = 0; g->nodes[mv->creates] != NULL; mv->creates++)
   {
     // find the first null node
   }
-  move->to        = -1;
-  move->from      = -1;
-  move->toCurve   = NULL;
-  move->fromCurve = NULL;
-  move->newSprout = NULL;
+  mv->to        = -1;
+  mv->from      = -1;
+  mv->toCurve   = NULL;
+  mv->fromCurve = NULL;
+  mv->newSprout = NULL;
 
 
   if (Draw())
@@ -558,12 +558,12 @@ int main(int argc, char* argv[])
         switch(gameState)
         {
           case GAME_STATE_PLAY:
-            if (move->toCurve != NULL)
-              move->toCurve->setCurve(event.button.x,event.button.y);
-            if (move->fromCurve != NULL)
-              move->fromCurve->setCurve(event.button.x,event.button.y);
-            if (move->newSprout != NULL)
-              move->newSprout->setPoint(event.button.x,event.button.y);
+            if (mv->toCurve != NULL)
+              mv->toCurve->setCurve(event.button.x,event.button.y);
+            if (mv->fromCurve != NULL)
+              mv->fromCurve->setCurve(event.button.x,event.button.y);
+            if (mv->newSprout != NULL)
+              mv->newSprout->setPoint(event.button.x,event.button.y);
 
             int i = 0;
             while (g->nodes[i] != NULL)
@@ -604,27 +604,27 @@ int main(int argc, char* argv[])
               {
                 if (g->nodes[i]->isMouseOver(event.button.x,event.button.y))
                 {
-                  if (move->to == -1)
+                  if (mv->to == -1)
                   {
                     if (g->nodes[i]->getConnections() < 3)
                     {
-                      move->to = i;
+                      mv->to = i;
                       g->nodes[i]->setState(MOUSE_CLICK);
-                      move->toCurve = new Bezier(g->nodes[i]->getPoint());
+                      mv->toCurve = new Bezier(g->nodes[i]->getPoint());
                     }
                   }
-                  else if (move->from == -1)
+                  else if (mv->from == -1)
                   {
                     if (g->nodes[i]->getConnections() < 3)
                     {
-                      for (move->creates = 0; g->nodes[move->creates] != NULL; move->creates++)
+                      for (mv->creates = 0; g->nodes[mv->creates] != NULL; mv->creates++)
                       {
                         // find the first null node
                       }
-                      move->from = i;
+                      mv->from = i;
                       g->nodes[i]->setState(MOUSE_CLICK);
-                      move->fromCurve = new Bezier(g->nodes[i]->getPoint());
-                      move->newSprout = new Sprout(move->creates, event.button.x, event.button.y, &sproutClips);
+                      mv->fromCurve = new Bezier(g->nodes[i]->getPoint());
+                      mv->newSprout = new Sprout(mv->creates, event.button.x, event.button.y, &sproutClips);
                     }
                   }
                   found = true;
@@ -634,7 +634,7 @@ int main(int argc, char* argv[])
               }
 
               // The click is not over any sprouts or the text box
-              if (move->newSprout != NULL && !found)
+              if (mv->newSprout != NULL && !found)
               {
                 // Make sure its not on the top bar
                 if (event.button.y < 30)

@@ -12,8 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-W" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-W" />
 					<Add option="-O0" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_CONSOLE" />
@@ -39,18 +40,13 @@
 			<Add directory="SDL/include/SDL" />
 		</Compiler>
 		<Linker>
-			<Add option="-lSDLmain -lSDL -lSDL_gfx -lSDL_ttf -lSDL_image" />
-			<Add library="/usr/lib/libSDL.a" />
-			<Add library="/usr/lib/libSDL.dll.a" />
-			<Add library="/usr/lib/libSDL_gfx.a" />
-			<Add library="/usr/lib/libSDL_image.a" />
-			<Add library="/usr/lib/libSDLmain.a" />
-			<Add library="/usr/lib/libSDL_ttf.a" />
+			<Add option="-lmingw32 -lSDLmain -lSDL.dll -lSDL -lSDL_gfx -lSDL_ttf -lSDL_image -mconsole" />
+			<Add library="SDL\lib\SDL_image.lib" />
+			<Add library="SDL\lib\SDL_ttf.lib" />
 			<Add directory="SDL/lib" />
 		</Linker>
 		<Unit filename="Game.cpp" />
 		<Unit filename="LoadingScreen.cpp" />
-		<Unit filename="ReadMe.txt" />
 		<Unit filename="Sprout.cpp" />
 		<Unit filename="Sprouts2.cpp" />
 		<Unit filename="applymove.cpp" />
@@ -64,6 +60,7 @@
 		<Unit filename="include/button.h" />
 		<Unit filename="include/draw.h" />
 		<Unit filename="include/game.h" />
+		<Unit filename="include/string.h" />
 		<Unit filename="include/textbox.h" />
 		<Unit filename="include/timer.h" />
 		<Unit filename="parse.cpp" />
@@ -74,6 +71,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
