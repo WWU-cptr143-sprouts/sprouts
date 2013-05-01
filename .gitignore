@@ -4,6 +4,5 @@
 *.so
 *.lai
 *.la
-*.a
 *.db
 *.db
