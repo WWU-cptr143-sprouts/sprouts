@@ -4,7 +4,6 @@
 *.so
 *.lai
 *.la
-*.a
 *.db
 *.db
 *.exe
