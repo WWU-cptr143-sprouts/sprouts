@@ -324,3 +324,328 @@
 
 1303927130 g:\home\garrett\junk\school\sprouts\10.working\include\timer.h
 
+1367387571 source:z:\common\cptr 143\game of sprouts\10.cleanup\game.cpp
+	<iostream>
+	<cstdlib>
+	<stdio.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/draw.h"
+	"include/string.h"
+	"include/textbox.h"
+
+1367193983 z:\common\cptr 143\game of sprouts\10.cleanup\stdafx.h
+	<iostream>
+
+1367381168 z:\common\cptr 143\game of sprouts\10.cleanup\include\bezier.h
+	"draw.h"
+	"game.h"
+	"SDL_gfxPrimitives.h"
+
+1367381407 z:\common\cptr 143\game of sprouts\10.cleanup\include\draw.h
+	<string>
+	"SDL.h"
+	"SDL_image.h"
+
+1303927115 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1303927115 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_platform.h
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\begin_code.h
+
+1303927115 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\close_code.h
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_keysym.h
+
+1303927115 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927115 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1367381609 z:\common\cptr 143\game of sprouts\10.cleanup\include\game.h
+	<list>
+	"Sprout.h"
+
+1367382058 z:\common\cptr 143\game of sprouts\10.cleanup\include\sprout.h
+	"draw.h"
+	"SDL_ttf.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1303927116 z:\common\cptr 143\game of sprouts\10.cleanup\sdl\include\sdl\sdl_gfxprimitives.h
+	<math.h>
+	"SDL.h"
+
+1367382104 z:\common\cptr 143\game of sprouts\10.cleanup\include\string.h
+	<string>
+	<sstream>
+
+1367383516 z:\common\cptr 143\game of sprouts\10.cleanup\include\textbox.h
+	"../stdafx.h"
+	<string>
+	"SDL_ttf.h"
+	"draw.h"
+	"game.h"
+
+1367387766 source:z:\common\cptr 143\game of sprouts\10.cleanup\loadingscreen.cpp
+	"stdafx.h"
+	"include/string.h"
+	"include/draw.h"
+	"include/LoadingScreen.h"
+
+1367381672 z:\common\cptr 143\game of sprouts\10.cleanup\include\loadingscreen.h
+	"draw.h"
+	<string>
+
+1367388629 source:z:\common\cptr 143\game of sprouts\10.cleanup\sprout.cpp
+	<cmath>
+	"stdafx.h"
+	"SDL_ttf.h"
+	"include/game.h"
+	"include/Sprout.h"
+
+1367388653 source:z:\common\cptr 143\game of sprouts\10.cleanup\sprouts2.cpp
+	<time.h>
+	"stdafx.h"
+	"include/bezier.h"
+	"include/button.h"
+	"include/LoadingScreen.h"
+	"include/Sprout.h"
+	"include/textbox.h"
+	"SDL_ttf.h"
+	"include/bezier.h"
+	"SDL_ttf.h"
+	"include/textbox.h"
+	"include/Sprout.h"
+	"include/LoadingScreen.h"
+	"include/button.h"
+
+1367381359 z:\common\cptr 143\game of sprouts\10.cleanup\include\button.h
+	<string>
+	"draw.h"
+	"../stdafx.h"
+	"../SDL/SDL_ttf.h"
+
+1367383986 source:z:\common\cptr 143\game of sprouts\10.cleanup\applymove.cpp
+	"stdafx.h"
+	<list>
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1367384028 source:z:\common\cptr 143\game of sprouts\10.cleanup\bezier.cpp
+	"stdafx.h"
+	"include/draw.h"
+	"include/bezier.h"
+	"SDL_gfxPrimitives.h"
+
+1367384093 source:z:\common\cptr 143\game of sprouts\10.cleanup\button.cpp
+	"stdafx.h"
+	"include/button.h"
+	"include/draw.h"
+	"SDL_gfxPrimitives.h"
+
+1367384162 source:z:\common\cptr 143\game of sprouts\10.cleanup\checkwin.cpp
+	"stdafx.h"
+	"include/Sprout.h"
+	"include/bezier.h"
+
+1367384256 source:z:\common\cptr 143\game of sprouts\10.cleanup\draw.cpp
+	<string>
+	"stdafx.h"
+	"include/draw.h"
+
+1367388241 source:z:\common\cptr 143\game of sprouts\10.cleanup\parse.cpp
+	<stack>
+	<cmath>
+	"stdafx.h"
+	"include/game.h"
+
+1367388989 source:z:\common\cptr 143\game of sprouts\10.cleanup\stdafx.cpp
+	"stdafx.h"
+
+1303927130 source:z:\common\cptr 143\game of sprouts\10.cleanup\textbox.cpp
+	"stdafx.h"
+	"include/textbox.h"
+	"SDL_gfxPrimitives.h"
+
+1303927126 source:z:\common\cptr 143\game of sprouts\10.cleanup\timer.cpp
+	"stdafx.h"
+	"SDL.h"
+	"include/timer.h"
+
+1367383550 z:\common\cptr 143\game of sprouts\10.cleanup\include\timer.h
+
