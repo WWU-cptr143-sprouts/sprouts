@@ -4,8 +4,8 @@ OBJ		= ${SRC:.cpp=.o}
 DEPENDS = .depends
 
 CC		= g++
-CFLAGS	:= -g -std=c++11 -O2 -Wall -Wextra -Wpedantic -ISDL/include/SDL ${CFLAGS}
-LDFLAGS := -LSDL/lib -lSDLmain -lSDL.dll -lSDL -lSDL_gfx_linux -lSDL_ttf -lSDL_image  SDL/lib/SDL_image.lib SDL/lib/SDL_ttf.lib
+CFLAGS	:= ${CFLAGS} -g -std=c++11 -O2 -Wall -Wextra -Wpedantic $(pkg-config sdl SDL_gfx SDL_image SDL_ttf --cflags)
+LDFLAGS := $(shell pkg-config sdl SDL_gfx SDL_image SDL_ttf --libs)
 
 all: ${OUT}
 

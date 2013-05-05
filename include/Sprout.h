@@ -9,7 +9,7 @@ Problems: Clicking on nodes not fully implemented
 #define H_SPROUT
 
 #include "draw.h"
-#include "SDL_ttf.h"
+#include <SDL/SDL_ttf.h>
 
 class Game;
 

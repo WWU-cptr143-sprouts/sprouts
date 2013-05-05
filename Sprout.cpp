@@ -7,7 +7,7 @@ Problems: Clicking on nodes not fully implemented
 **********************************************************************/
 #include <cmath>
 #include "stdafx.h"
-#include "SDL_ttf.h"
+#include <SDL/SDL_ttf.h>
 #include "include/game.h"
 #include "include/Sprout.h"
 

@@ -3,7 +3,7 @@
 
 #include "draw.h"
 #include "game.h"
-#include "SDL_gfxPrimitives.h"
+#include <SDL/SDL_gfxPrimitives.h>
 
 enum Curve
 {

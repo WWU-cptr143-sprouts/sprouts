@@ -9,8 +9,8 @@ Problems: None that we know of
 #define H_DRAW
 
 #include <string>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 //Screen attributes
 const int SCREEN_WIDTH  = 800;

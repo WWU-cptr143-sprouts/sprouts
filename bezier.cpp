@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "include/draw.h"
 #include "include/bezier.h"
-#include "SDL_gfxPrimitives.h"
+#include <SDL/SDL_gfxPrimitives.h>
 
 //Constructor, sets xy via array
 Bezier::Bezier(Point coord[4])

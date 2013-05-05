@@ -4,7 +4,7 @@
 #include <string>
 #include "draw.h"
 #include "../stdafx.h"
-#include "../SDL/SDL_ttf.h"
+#include <SDL/SDL_ttf.h>
 
 
 // Base Class for buttons, which should include all basic button functionality

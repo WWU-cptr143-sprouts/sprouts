@@ -7,6 +7,8 @@
 *.db
 *.db
 *.exe
+*.depend
+*.layout
 sprouts
 Sprouts2
 stdout.txt

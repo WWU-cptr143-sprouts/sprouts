@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "include/button.h"
 #include "include/draw.h"
-#include "SDL_gfxPrimitives.h"
+#include <SDL/SDL_gfxPrimitives.h>
 
 #define BUFFER 5      // The extra edge for the box
 

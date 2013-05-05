@@ -1,11 +1,11 @@
-#include <time.h>
+#include <ctime>
 #include "stdafx.h"
 #include "include/bezier.h"
 #include "include/button.h"
 #include "include/LoadingScreen.h"
 #include "include/Sprout.h"
 #include "include/textbox.h"
-#include "SDL_ttf.h"
+#include <SDL/SDL_ttf.h>
 
 // Define Game States
 enum GameState
@@ -28,7 +28,6 @@ struct Move
 
 // Temp include here
 #include "include/bezier.h"
-#include "SDL_ttf.h"
 #include "include/textbox.h"
 #include "include/Sprout.h"
 #include "include/LoadingScreen.h"
