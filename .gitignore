@@ -3,13 +3,14 @@
 *.o
 *.so
 *.lai
-*.la
 *.db
 *.db
 *.exe
 *.depend
 *.layout
+windows/bin
+windows/obj
 .depends
 sprouts
-Sprouts2
 stdout.txt
+stderr.txt

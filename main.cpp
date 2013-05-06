@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 #include <SDL/SDL_gfxPrimitives.h>
 #include "sprout.h"
 
