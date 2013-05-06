@@ -9,6 +9,7 @@
 *.exe
 *.depend
 *.layout
+.depends
 sprouts
 Sprouts2
 stdout.txt
