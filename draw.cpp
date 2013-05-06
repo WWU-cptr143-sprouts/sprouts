@@ -1,50 +1,29 @@
-/**********************************************************************
-File Name: draw.cpp
-Author: Chris Wills                                        Date: 6/5/07
-File Purpose: Basic Drawing functions used by most classes
-Description: Drawing Functions implemented
-Problems: None that we know of
-**********************************************************************/
-#include <string>
-#include "stdafx.h"
-#include "include/draw.h"
+#include "draw.h"
 
-// Takes a given surface and applies it to the other surface.
-// Precondition: 2 valid surfaces.
-// Postcondition: the second surface contains the first surface at the (x,y) coords given.
-void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL)
+Uint32 getpixel(SDL_Surface *surface, int x, int y)
 {
-    // Temporary rectangle to hold the offsets
-    SDL_Rect offset;
+    int bpp = surface->format->BytesPerPixel;
+    /* Here p is the address to the pixel we want to retrieve */
+    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
 
-    // Get the offsets
-    offset.x = x;
-    offset.y = y;
+    switch (bpp)
+    {
+        case 1:
+            return *p;
 
-    // Blit the surface
-    SDL_BlitSurface( source, clip, destination, &offset );
-}
+        case 2:
+            return *(Uint16 *)p;
 
-// Load a pre-existing image
-SDL_Surface *load_image( std::string filename )
-{
-  SDL_Surface* loadedImage = NULL;
+        case 3:
+            if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+                return p[0] << 16 | p[1] << 8 | p[2];
+            else
+                return p[0] | p[1] << 8 | p[2] << 16;
 
-  // The optimized image that will be used
-  SDL_Surface* optimizedImage = NULL;
+        case 4:
+            return *(Uint32 *)p;
 
-  loadedImage = IMG_Load(filename.c_str());
-
-  // If the image loaded
-  if(loadedImage != NULL)
-  {
-    // Create an optimized image
-    optimizedImage = SDL_DisplayFormat( loadedImage );
-
-    // Free the old image
-    SDL_FreeSurface( loadedImage );
-  }
-
-  // Return the optimized image
-  return optimizedImage;
+        default:
+            return 0;       /* shouldn't happen, but avoids warnings */
+    }
 }
