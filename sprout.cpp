@@ -1,48 +1,5 @@
-#include <vector>
-#include "draw.h"
-#include "bezierDraw.h"
+#include "sprout.h"
 
-class Sprout
-{
-	private:
-		/* Constants */
-		static const Uint32 defaultColor = 0xFFFFFFFF;		//
-		static const Uint32 grayedColor = 0xD4D4D4D4;		// assuming big-endian?
-		static const Uint32 highlightColor = 0xFF00FFFF;	//
-		static const int sproutRadius = 5;
-		static const int selectRadius = 15;
-		static const int thickness = 1;		// thickness for drawing lines and points
-
-		/* Structures and other storage stuff */
-		struct sprout   { int xPoint,yPoint,degree; };
-		struct connection { std::vector<int*> xPoints, yPoints; };
-
-		std::vector<sprout*>  sprouts;	// all the sprouts
-		std::vector<connection*> lines;	// all the lines
-
-		int activeSprout;
-
-		/* Variables */
-		SDL_Surface *surface;	// screen for drawing
-		bool doLockSurface;		// for internal use - make this false (be sure to reset it) if multiple draw commands need to be executed before flipping the surface
-		bool highlighted;
-
-		/* Private functions */
-		void thickLine(SDL_Surface*,int,int,int,int,Uint32);	// draws a line of thickness n+2 (last parameter n)
-		  void connect(int,int,int,int);	// (by index) connect first sprout to second sprout through (x,y)
-		  void drawSprouts(void);		// draw all the sprouts
-		  void drawConnection(connection*);		// draw the current temporary line
-		  bool select(int,int);			// set sprout active it near x,y
-		double dist(int,int,int,int);	// return distance between (x0,y0) and (x1,y1)
-		   int dist2(int,int,int,int);	// return square of distance between (x0,y0) and (x1,y1)
-		  bool lineValid(int,int,int,int);	// draw line segments from x0,y0 to x,y : returns false if hit another line
-	public:
-		Sprout(SDL_Surface*,int);	// default constructor : feed it a surface and initial sprouts number
-
-        void drawLines(void);
-		bool highlightNear(int,int);	// highlight sprout if near x,y (calls select())
-		bool connect(void);				// loop to connect two sprouts
-};
 Sprout::Sprout(SDL_Surface *sf, int numSprouts)
 {
 	doLockSurface = true;
@@ -75,6 +32,7 @@ Sprout::Sprout(SDL_Surface *sf, int numSprouts)
 	drawSprouts();
 	/* End sprouts setup */
 }
+
 void Sprout::thickLine(SDL_Surface *sf, int x0, int y0, int x, int y, Uint32 color)
 {
 	for( int i = -thickness; i <= thickness; i++ )
@@ -85,17 +43,17 @@ void Sprout::thickLine(SDL_Surface *sf, int x0, int y0, int x, int y, Uint32 col
 		}
 	}
 }
-bool Sprout::connect(void)
+
+bool Sprout::connect()
 {
 	SDL_Event event;			// dump event polls into this
-	int ctlPts[4];
 	int *tmpInt;
 	
-	int firstSprout, secondSprout, x, y;
+	//int firstSprout;
 	int index = 0;
 	int xVec, yVec;
 	double xUnit, yUnit;
-	bool run = true, drawn = true, intersects = false, planted = false;
+	bool run = true, planted = false;
 
 	sprout *tmpSprout;
 	connection *tmpConnection;
@@ -125,7 +83,7 @@ bool Sprout::connect(void)
 								{
 									if( sprouts[activeSprout]->degree < 3 )
 									{
-										firstSprout = activeSprout;
+										//firstSprout = activeSprout;
 										tmpConnection = new connection;
 										tmpConnection->xPoints.push_back( &sprouts[activeSprout]->xPoint );
 										tmpConnection->yPoints.push_back( &sprouts[activeSprout]->yPoint );
@@ -256,6 +214,7 @@ bool Sprout::connect(void)
 		return false;
 	return true;
 }
+
 void Sprout::connect(int firstSprout, int secondSprout, int x, int y)
 {
 	int middleSprout;
@@ -288,7 +247,8 @@ void Sprout::connect(int firstSprout, int secondSprout, int x, int y)
 	lines.push_back(two);
 	lines.push_back(one);
 }
-void Sprout::drawSprouts(void)
+
+void Sprout::drawSprouts()
 {
 	if( doLockSurface )
 		SDL_LockSurface( surface );
@@ -302,11 +262,9 @@ void Sprout::drawSprouts(void)
 		SDL_Flip( surface );
 	}
 }
-void Sprout::drawLines(void)
-{
-	int xNew, yNew, xOld, yOld;
-	double step;
 
+void Sprout::drawLines()
+{
     if( doLockSurface )
         SDL_LockSurface( surface );
 	SDL_FillRect( surface, NULL, 0 );	// blank surface
@@ -327,6 +285,7 @@ void Sprout::drawLines(void)
         SDL_Flip( surface );
     }
 }
+
 void Sprout::drawConnection(connection *tmpConnection)
 {
 	if( doLockSurface )
@@ -341,7 +300,8 @@ void Sprout::drawConnection(connection *tmpConnection)
         SDL_Flip( surface );
     }
 }
-// WARNING! only call this function if the line from index to x,y has not been drawn (only call this once per drawLines() call)
+
+// WARNING! Only call this function if the line from index to x,y has not been drawn (only call this once per drawLines() call)
 // lock the screen, blank the screen, draw the other lines, then call this function twice (for two lines), then unlock and flip the screen
 bool Sprout::lineValid(int x0, int y0, int x, int y)
 {
@@ -397,6 +357,7 @@ bool Sprout::lineValid(int x0, int y0, int x, int y)
 	}
 	return clear;
 }
+
 bool Sprout::select(int x, int y)
 {
 	if( sprouts.empty() )
@@ -418,6 +379,7 @@ bool Sprout::select(int x, int y)
 	}
 	return false;
 }
+
 /* TODO: make this so it will draw properly if two points are too close together */
 bool Sprout::highlightNear(int x, int y)
 {
@@ -436,10 +398,16 @@ bool Sprout::highlightNear(int x, int y)
 	}
 	if( doLockSurface )
 		SDL_Flip( surface );
-}
-inline double Sprout::dist(int x0, int y0, int x1, int y1)
-{ return (sqrt((double)dist2(x0, y0, x1, y1))); }
-inline int Sprout::dist2(int x0, int y0, int x1, int y1)
-{ return ((x1-x0)*(x1-x0) + (y1-y0)*(y1-y0)); }
 
-// Note: how about this? http://www.codeproject.com/KB/graphics/BezierSpline.aspx
+    return highlighted;
+}
+
+inline double Sprout::dist(int x0, int y0, int x1, int y1)
+{
+    return (std::sqrt((double)dist2(x0, y0, x1, y1)));
+}
+
+inline int Sprout::dist2(int x0, int y0, int x1, int y1)
+{
+    return ((x1-x0)*(x1-x0) + (y1-y0)*(y1-y0));
+}
