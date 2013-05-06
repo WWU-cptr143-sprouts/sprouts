@@ -1,9 +1,15 @@
+#include <string>
+#include <iostream>
 #include <SDL/SDL.h>
 #include <SDL/SDL_gfxPrimitives.h>
 #include "sprout.h"
 
 int main()
 {
+    int width = 800;
+    int height = 602;
+    std::string background = "images/background.jpg";
+
 	bool gameRunning = true;
     bool ended = false;
 	SDL_Event event;	// dump event polls into this
@@ -19,13 +25,24 @@ int main()
     atexit(SDL_Quit);
 
     // get current display information (for height, width, color depth, etc.)
-	const SDL_VideoInfo* info = SDL_GetVideoInfo();	
-    int width  = info->current_w*2/3;
-    int height = info->current_h*2/3;
-    int depth  = 8;
-    SDL_Surface *screen = SDL_SetVideoMode(width, height, depth, SDL_HWSURFACE|SDL_DOUBLEBUF);
+	//const SDL_VideoInfo* info = SDL_GetVideoInfo();	
+    //int width  = info->current_w*2/3;
+    //int height = info->current_h*2/3;
+    int depth  = 0; // Set to current screen depth
+    
+    // What we draw on in memory since the algorithms are pixel-based
+    // We'll use 16 bpp since 8 doesn't allow line-crossing detection for some reason.
+    SDL_Surface *buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
 
-    if (screen == NULL)
+    // What we draw on the screen
+    SDL_Surface *screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+    
+    SDL_Surface *img = IMG_Load(background.c_str());
+    SDL_Surface *bg_img = SDL_DisplayFormat(img);
+    SDL_FreeSurface(img);
+    SDL_BlitSurface(bg_img, NULL, screen, NULL);
+
+    if (screen == NULL || buffer == NULL)
     {
         fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
             width, height, depth, SDL_GetError());
@@ -43,16 +60,16 @@ int main()
 	SDL_Surface *gameOver = SDL_LoadBMP("gameOver.bmp");
 
     // The center of the screen
-	SDL_Rect *rect = new SDL_Rect;
-	rect->x = screen->w/2 - gameOver->w/2;
-	rect->y = screen->h/2 - gameOver->h/2;
+	SDL_Rect rect;
+	rect.x = screen->w/2 - gameOver->w/2;
+	rect.y = screen->h/2 - gameOver->h/2;
 
     // Game loop
-	Sprout sp(screen,3);	// create new Sprout object
+	Sprout sp(screen, buffer, 3);	// create new Sprout object
 
 	while (gameRunning)
 	{
-		while (SDL_PollEvent(&event))
+		while (gameRunning && SDL_PollEvent(&event))
 		{
 			switch (event.type)
 			{
@@ -67,7 +84,9 @@ int main()
 					else if (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE)
 					{
 						if(ended)
-							return 0;
+                        {
+                            gameRunning = false;
+                        }
 					}
 					break;
 				case SDL_MOUSEBUTTONDOWN:	break;	// mouse pressed
@@ -75,23 +94,30 @@ int main()
 					if (event.button.button == SDL_BUTTON_LEFT)
 					{
 						if (ended)
-							return 0;
+                        {
+                            gameRunning = false;
+                            break;
+                        }
+
 						if (!sp.connect())		// game has ended (all nodes have degree 3 or escape pressed)
 						{
 							ended = true;
-							SDL_BlitSurface(gameOver, NULL, screen, rect);
+							SDL_BlitSurface(gameOver, NULL, screen, &rect);
 							SDL_Flip(screen);
 						}
 					}
 					break;
 				case SDL_MOUSEMOTION:		// mouse moved
-					sp.highlightNear(event.motion.x, event.motion.y);
+                    sp.highlightNear(event.motion.x, event.motion.y);
 					break;
 				default:
 					break;
 			}
 		}
 	}
+
+	SDL_FreeSurface(gameOver);
+    SDL_Quit();
 
 	return 0;
 }
