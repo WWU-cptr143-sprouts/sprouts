@@ -1,11 +1,11 @@
 #include <SDL/SDL.h>
-//#include <SDL/SDL_ttf.h>
 #include <SDL/SDL_gfxPrimitives.h>
 #include "sprout.h"
 
 int main()
 {
-	bool gameRunning = true, ended = false;
+	bool gameRunning = true;
+    bool ended = false;
 	SDL_Event event;	// dump event polls into this
 
     // Initialize everything
@@ -15,15 +15,7 @@ int main()
         return 1;
 	}
 
-    // TODO: are we going to use this?
-    /*if (TTF_Init() < 0)
-    {
-        fprintf(stderr, "Unable to init SDL_ttf: %s\n", TTF_GetError());
-        return 1;
-    }*/
-
     // Cleanup on exit
-    //atexit(TTF_Quit);
     atexit(SDL_Quit);
 
     // get current display information (for height, width, color depth, etc.)
@@ -70,11 +62,11 @@ int main()
 				case SDL_ACTIVEEVENT:	break;	// see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
 				case SDL_KEYDOWN:		break;	// keyboard pressed
 				case SDL_KEYUP:					// keyboard released
-					if( event.key.keysym.sym == SDLK_ESCAPE )
+					if (event.key.keysym.sym == SDLK_ESCAPE)
 						gameRunning = false;
-					else if( event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE )
+					else if (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE)
 					{
-						if( ended )
+						if(ended)
 							return 0;
 					}
 					break;
