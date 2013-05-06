@@ -4,7 +4,7 @@ OBJ		= ${SRC:.cpp=.o}
 DEPENDS = .depends
 
 CC		= g++
-CFLAGS	:= ${CFLAGS} -g -std=c++11 -O2 -Wall -Wextra -Wpedantic $(pkg-config sdl SDL_gfx SDL_image SDL_ttf --cflags)
+CFLAGS	:= ${CFLAGS} -g -O2 -Wall -Wextra -Wpedantic $(shell pkg-config sdl SDL_gfx SDL_image SDL_ttf --cflags)
 LDFLAGS := $(shell pkg-config sdl SDL_gfx SDL_image SDL_ttf --libs)
 
 all: ${OUT}
