@@ -38,10 +38,11 @@ int main()
     // What we draw on the screen
     SDL_Surface *screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
     
-    SDL_Surface *img = IMG_Load(background.c_str());
-    SDL_Surface *bg_img = SDL_DisplayFormat(img);
-    SDL_FreeSurface(img);
-    SDL_BlitSurface(bg_img, NULL, screen, NULL);
+    // Draw the background image
+    //SDL_Surface *img = IMG_Load(background.c_str());
+    //SDL_Surface *bg_img = SDL_DisplayFormat(img);
+    //SDL_FreeSurface(img);
+    //SDL_BlitSurface(bg_img, NULL, screen, NULL);
 
     if (screen == NULL || buffer == NULL)
     {
