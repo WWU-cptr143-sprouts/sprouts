@@ -5,7 +5,7 @@
 #include <SDL/SDL_gfxPrimitives.h>
 #include "sprout.h"
 
-int main()
+int main(int argc,char *argv[])
 {
     int width = 800;
     int height = 602;
@@ -26,18 +26,18 @@ int main()
     atexit(SDL_Quit);
 
     // get current display information (for height, width, color depth, etc.)
-	//const SDL_VideoInfo* info = SDL_GetVideoInfo();	
+	//const SDL_VideoInfo* info = SDL_GetVideoInfo();
     //int width  = info->current_w*2/3;
     //int height = info->current_h*2/3;
     int depth  = 0; // Set to current screen depth
-    
+
     // What we draw on in memory since the algorithms are pixel-based
     // We'll use 16 bpp since 8 doesn't allow line-crossing detection for some reason.
     SDL_Surface *buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
 
     // What we draw on the screen
     SDL_Surface *screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
-    
+
     // Draw the background image
     //SDL_Surface *img = IMG_Load(background.c_str());
     //SDL_Surface *bg_img = SDL_DisplayFormat(img);

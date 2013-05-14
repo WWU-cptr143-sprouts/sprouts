@@ -11,7 +11,7 @@ Sprout::Sprout(SDL_Surface *sf, SDL_Surface *buf, int numSprouts)
 	tmpSprout.xPoint = surface->w/2;
 	tmpSprout.yPoint = surface->h/2;
 	sprouts.push_back(tmpSprout);
-	
+
 	/* Put sprouts along an ellipse at the center of the screen */
 	for (int i = 1; i < numSprouts; i++)
 	{
@@ -42,7 +42,7 @@ void Sprout::thickLine(SDL_Surface *sf, int x0, int y0, int x, int y, Uint32 col
 bool Sprout::connect()
 {
 	SDL_Event event;			// dump event polls into this
-	
+
 	//int firstSprout;
 	int index = 0;
 	int xVec, yVec;
@@ -273,6 +273,7 @@ void Sprout::drawLines()
     if (doLockSurface)
         SDL_LockSurface(surface);
 
+    //Blanks the screen
 	SDL_FillRect(buffer, NULL, 0);
     SDL_FillRect(surface, NULL, 0);
 
@@ -459,7 +460,8 @@ inline double Sprout::dist(int x0, int y0, int x1, int y1)
 {
     return std::sqrt((double)dist2(x0, y0, x1, y1));
 }
-
+//This is not a distance function.
+//TODO: Change name if possible to what it is actualy being used for
 inline int Sprout::dist2(int x0, int y0, int x1, int y1)
 {
     return (x1-x0)*(x1-x0) + (y1-y0)*(y1-y0);
