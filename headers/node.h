@@ -1,4 +1,5 @@
 #include <vector>
+#include "structs.h"
 
 #ifndef H_Node
 #define H_Node

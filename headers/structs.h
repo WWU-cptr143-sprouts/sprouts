@@ -6,6 +6,8 @@
  */
 #include <vector>
 #ifndef H_structs
+#define H_structs
+
 class Node;
 
 struct Coord
