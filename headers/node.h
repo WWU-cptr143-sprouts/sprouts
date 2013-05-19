@@ -1,8 +1,10 @@
 #include <vector>
-//#include
+
 #ifndef H_Node
 #define H_Node
+
 using namespace std;
+
 class Node
 {
 protected:
@@ -13,7 +15,6 @@ protected:
 public:
     Node();
     void walk(vector<area> &areas); //Append new cirucits/areas to this vector
-
-
 };
+
 #endif

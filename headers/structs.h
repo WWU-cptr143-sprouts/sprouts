@@ -1,10 +1,9 @@
 /*
-This is the difintions file for miscilanious structs
-inluding
-Coord
-Connection
-Line
-*/
+ * This is the definitions file for miscellaneous structs including:
+ *   Coord
+ *   Connection
+ *   Line
+ */
 #include <vector>
 #ifndef H_structs
 class Node;
@@ -22,4 +21,5 @@ struct Connection
 };
 
 typedef vector<Coord> Line;
+
 #endif
