@@ -16,12 +16,15 @@ struct Coord
     int y;
 };
 
+typedef vector<Coord> Line;
+
 struct Connection
 {
     Line* line;
     Node* dest;
+    bool exists() const {return (line&&dest);}
 };
 
-typedef vector<Coord> Line;
+
 
 #endif

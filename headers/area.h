@@ -1,16 +1,10 @@
 #include <vector>
+#include "structs.h"
 
 #ifndef H_AREA
 #define H_AREA
 
-class Area
-{
-    
-};
-
-class Areaset
-{
-
-};
-
+typedef vector<Connection*> Area;
+typedef vector<Area*> Areaset;
+static const Areaset defaultAreaset; //create default/null vector
 #endif

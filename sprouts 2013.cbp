@@ -31,6 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="game.cpp" />
+		<Unit filename="headers/area.h" />
 		<Unit filename="headers/game.h" />
 		<Unit filename="headers/node.h" />
 		<Unit filename="headers/structs.h" />
