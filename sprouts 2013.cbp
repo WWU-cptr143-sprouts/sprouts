@@ -36,6 +36,7 @@
 		<Unit filename="headers/game.h" />
 		<Unit filename="headers/node.h" />
 		<Unit filename="headers/structs.h" />
+		<Unit filename="node.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
