@@ -17,6 +17,7 @@ protected:
 public:
     Node();
     void walk(vector<Area>& areas); //Append new circuits/areas to this vector
+    Connection* getConnAddr(); //return array connection
 };
 
 #endif

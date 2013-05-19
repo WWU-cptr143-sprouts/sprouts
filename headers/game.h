@@ -6,6 +6,10 @@
 class Game
 {
     protected:
+    vector<Node> nodes;
+    vector<Area> areas;
+    vector<Areaset> areasets;
+    vector
 
     public:
 }
