@@ -31,7 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="headers/game.h" />
 		<Unit filename="headers/node.h" />
+		<Unit filename="headers/structs.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
