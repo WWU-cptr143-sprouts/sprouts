@@ -1,4 +1,6 @@
 #include <vector>
+#include "area.h"
+#include "structure.h"
 
 #ifndef H_Node
 #define H_Node
@@ -14,7 +16,7 @@ protected:
     bool open[4];
 public:
     Node();
-    void walk(vector<area> &areas); //Append new cirucits/areas to this vector
+    void walk(vector<Area>& areas); //Append new circuits/areas to this vector
 };
 
 #endif
