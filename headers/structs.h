@@ -7,6 +7,7 @@
 #include <vector>
 #ifndef H_structs
 #define H_structs
+using namespace std;
 
 class Node;
 

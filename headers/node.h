@@ -1,10 +1,12 @@
 #include <vector>
+#include <cstdlib>
 
 #include "area.h"
-#include "structure.h"
+#include "structs.h"
 
 #ifndef H_Node
 #define H_Node
+class Game;
 
 using namespace std;
 
@@ -18,13 +20,15 @@ protected:
 public:
     //Node();
     Node(Coord);
-    void walk(vector<Area>& areas); //Append new circuits/areas to this vector: be sure to check if exits
+    void walk(vector<Area>& areas, Area history = Area(), Connection* connection = NULL);//Append new circuits/areas to this vector: be sure to check if exits
     Connection* getConnAddr(); //return array connection
     bool dead() const; //true if dead node
     bool vertical() const; // runs on assumption that there are two connections; if we impliment expectsions should thrown one if NOT two noded
     const Coord& getLoci() const {return loci;}
     void setAreasets(Areaset* sets[2]);
     ~Node();
+    friend Game;
+
 };
 
 enum dir

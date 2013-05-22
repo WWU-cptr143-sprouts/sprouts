@@ -3,6 +3,7 @@
 
 #ifndef H_AREA
 #define H_AREA
+using namespace std;
 
 typedef vector<Connection*> Area;
 typedef vector<Area*> Areaset;
