@@ -10,6 +10,8 @@
 *.layout
 windows/bin
 windows/obj
+bin
+obj
 .depends
 sprouts
 stdout.txt
