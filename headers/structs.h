@@ -4,9 +4,11 @@
  *   Connection
  *   Line
  */
-#include <vector>
 #ifndef H_structs
 #define H_structs
+
+#include <vector>
+
 using namespace std;
 
 class Node;
@@ -26,11 +28,9 @@ struct Connection
 {
     Line* line;
     Node* dest;
-    bool exists() const {return (line&&dest);}
+    bool exists() const { return (line&&dest); }
 
     Connection() :line(NULL), dest(NULL) { }
 };
-
-
 
 #endif
