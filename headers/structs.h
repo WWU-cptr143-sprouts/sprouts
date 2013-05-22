@@ -15,6 +15,9 @@ struct Coord
 {
     int x;
     int y;
+
+    Coord() { }
+    Coord(int x, int y) :x(x), y(y) { }
 };
 
 typedef vector<Coord> Line;
@@ -24,6 +27,8 @@ struct Connection
     Line* line;
     Node* dest;
     bool exists() const {return (line&&dest);}
+
+    Connection() :line(NULL), dest(NULL) { }
 };
 
 

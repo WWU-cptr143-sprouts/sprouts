@@ -3,7 +3,7 @@
 
 int main()
 {
-    Game gammy;
-    gammy.updateAreas();
+    Game g;
+    g.updateAreas();
     return 0;
 }

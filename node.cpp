@@ -4,11 +4,14 @@
 */
 #include "headers/node.h"
 
-Node::Node(Coord point)
+Node::Node(Coord point, Connection con1, Connection con2)
+    : loci(point)
 {
-    loci=point;
     areasets[0] =0;
     areasets[1] =0;
+    connections[0] = con1;
+    connections[1] = con2;
+    connections[2] = Connection();
 }
 
 Connection* Node::getConnAddr()
@@ -48,7 +51,7 @@ void Node::walk(vector<Area>& areas, Area history, Connection* connection)
         for(int i=0;i<oSize;i++)
         {
             //fixed itterator
-            rotatedHist[i]=history[(*ind+i)%oSize];
+            rotatedHist[i]=history[(ind-history.begin()+i)%oSize];
             //int ind &min;newVector[i]=origional[(min+i)%origiona.size()]
         }
         // Add history to areas vector
@@ -60,8 +63,8 @@ void Node::walk(vector<Area>& areas, Area history, Connection* connection)
     {
         // If a connection is filled and we have not already been to it, recurse
         // TODO: skip selfloops?
-        if (connection[i].exists() && find(history.begin(), history.end(), connection[i]) == history.end())
-            walk(areas, history, connection[i]);
+        if (connection[i].exists() && find(history.begin(), history.end(), &connection[i]) == history.end())
+            walk(areas, history, &connection[i]);
     }
 }
 
@@ -69,4 +72,8 @@ void Node::setAreasets(Areaset* sets[2])
 {
     areasets[0]=sets[0];
     areasets[1]=sets[1];
+}
+
+Node::~Node()
+{
 }

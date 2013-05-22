@@ -1,5 +1,6 @@
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
 #include "area.h"
 #include "structs.h"
@@ -19,7 +20,7 @@ protected:
     bool open[4];
 public:
     //Node();
-    Node(Coord);
+    Node(Coord, Connection = Connection(), Connection = Connection());
     void walk(vector<Area>& areas, Area history = Area(), Connection* connection = NULL);//Append new circuits/areas to this vector: be sure to check if exits
     Connection* getConnAddr(); //return array connection
     bool dead() const; //true if dead node

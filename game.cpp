@@ -160,6 +160,16 @@ bool Game::connectable(const Node& nodea,const Node& nodeb) const
      && !nodea.dead() && !nodeb.dead());
 }
 
+void Game::insertNode(const Node& node)
+{
+    nodes.push_back(node);
+}
+
+void Game::insertLine(const Line& line)
+{
+    lines.push_back(line);
+}
+
 Game::~Game()
 {
 
