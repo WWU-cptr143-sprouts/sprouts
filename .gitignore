@@ -16,3 +16,6 @@ obj
 sprouts
 stdout.txt
 stderr.txt
+.cproject
+.project
+.DS_Store
