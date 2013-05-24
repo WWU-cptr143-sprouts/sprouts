@@ -9,6 +9,7 @@ using namespace std;
 
 class Game
 {
+    // TODO: don't rely on same address locations  with vectors
     private:
         vector<Area> areas;
         vector<Areaset> areasets;
@@ -20,8 +21,8 @@ class Game
         void updateAreas(); //will call node.walk in its process
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
-        void insertNode(const Node&);
-        void insertLine(const Line&);
+        Node& insert(const Node&);
+        Line& insert(const Line&);
 
         ~Game();
 };

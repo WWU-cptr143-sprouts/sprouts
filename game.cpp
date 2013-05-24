@@ -152,7 +152,7 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame luke fo
             }
         }
     }
-    return lCount%2; // if it is in the area then lCount,the number of lines between it and the origion, will be odd, and thus return twu
+    return lCount%2; // if it is in the area then lCount,the number of lines between it and the origin, will be odd, and thus return two
 }
 
 bool Game::connectable(const Node& nodea,const Node& nodeb) const
@@ -164,14 +164,16 @@ bool Game::connectable(const Node& nodea,const Node& nodeb) const
      && !nodea.dead() && !nodeb.dead());
 }
 
-void Game::insertNode(const Node& node)
+Node& Game::insert(const Node& node)
 {
     nodes.push_back(node);
+    return nodes.back();
 }
 
-void Game::insertLine(const Line& line)
+Line& Game::insert(const Line& line)
 {
     lines.push_back(line);
+    return lines.back();
 }
 
 Game::~Game()
