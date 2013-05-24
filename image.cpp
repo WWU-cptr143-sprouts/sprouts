@@ -3,7 +3,11 @@
 Image::Image(const string& s)
 {
     img = SDL_LoadBMP(s.c_str());
-    Uint32 colorkey= SDL_MapRGB(img->format, 255, 255, 255);
+
+    if (!img)
+        throw ImageNotLoaded();
+
+    Uint32 colorkey = SDL_MapRGB(img->format, 255, 255, 255);
     SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
 }
 

@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class ImageNotLoaded { };
+
 class Image
 {
     private:
