@@ -3,7 +3,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_gfxPrimitives.h>
-#include "headers/game.h"
+#include "headers/gamegui.h"
+#include "headers/image.h"
 
 int main(int argc,char *argv[])
 {
@@ -12,7 +13,6 @@ int main(int argc,char *argv[])
     std::string background = "images/background.jpg";
 
 	bool gameRunning = true;
-    bool ended = false;
 	SDL_Event event;	// dump event polls into this
 
     // Initialize everything
@@ -52,22 +52,12 @@ int main(int argc,char *argv[])
     }
 
     // Window title and icon
-	SDL_Surface *icon = SDL_LoadBMP("icon.bmp");
-	Uint32 colorkey = SDL_MapRGB(icon->format, 255,255,255);
-	SDL_SetColorKey(icon, SDL_SRCCOLORKEY, colorkey);
-	SDL_WM_SetIcon(icon, NULL);
-	SDL_FreeSurface(icon);
+    Image icon("icon.bmp");
+    SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
-	SDL_Surface *gameOver = SDL_LoadBMP("gameOver.bmp");
-
-    // The center of the screen
-	SDL_Rect rect;
-	rect.x = screen->w/2 - gameOver->w/2;
-	rect.y = screen->h/2 - gameOver->h/2;
-
     // Game loop
-	GameGUI sp(screen, buffer, 3);	// create new Sprout object
+	GameGUI game(screen, 3);	// create new Sprout object with 3 nodes
 
 	while (gameRunning)
 	{
@@ -75,42 +65,26 @@ int main(int argc,char *argv[])
 		{
 			switch (event.type)
 			{
-				case SDL_QUIT:					// top-right X clicked
+				case SDL_QUIT: // Alt+F4, X, ...
 					gameRunning = false;
 					break;
-				case SDL_ACTIVEEVENT:	break;	// see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
-				case SDL_KEYDOWN:		break;	// keyboard pressed
-				case SDL_KEYUP:					// keyboard released
+                case SDL_ACTIVEEVENT:
+                    // see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
+                    break;
+				case SDL_KEYDOWN:
+                    break;
+				case SDL_KEYUP:
 					if (event.key.keysym.sym == SDLK_ESCAPE)
-						gameRunning = false;
-					else if (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_SPACE)
-					{
-						if(ended)
-                        {
-                            gameRunning = false;
-                        }
-					}
+                        game.cancel();
 					break;
-				case SDL_MOUSEBUTTONDOWN:	break;	// mouse pressed
-				case SDL_MOUSEBUTTONUP:		// mouse released
+                case SDL_MOUSEBUTTONDOWN:
+                    break;
+				case SDL_MOUSEBUTTONUP:
 					if (event.button.button == SDL_BUTTON_LEFT)
-					{
-						if (ended)
-                        {
-                            gameRunning = false;
-                            break;
-                        }
-
-						if (!sp.connect())		// game has ended (all nodes have degree 3 or escape pressed)
-						{
-							ended = true;
-							SDL_BlitSurface(gameOver, NULL, screen, &rect);
-							SDL_Flip(screen);
-						}
-					}
+                        game.click(event.button.x, event.button.y);
 					break;
-				case SDL_MOUSEMOTION:		// mouse moved
-                    sp.highlightNear(event.motion.x, event.motion.y);
+				case SDL_MOUSEMOTION:
+                    game.cursor(event.motion.x, event.motion.y);
 					break;
 				default:
 					break;
@@ -118,7 +92,6 @@ int main(int argc,char *argv[])
 		}
 	}
 
-	SDL_FreeSurface(gameOver);
     SDL_Quit();
 
 	return 0;
