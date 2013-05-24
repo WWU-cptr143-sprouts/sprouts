@@ -75,6 +75,20 @@ void Node::setAreasets(Areaset* sets[2])
     areasets[1]=sets[1];
 }
 
+bool Node::addConnection(const Connection& con)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        if (!connections[i].exists())
+        {
+            connections[i] = con;
+            return true;
+        }
+    }
+
+    return false;
+}
+
 Node::~Node()
 {
 }

@@ -27,6 +27,7 @@ class Node
         bool vertical() const; // runs on assumption that there are two connections; if we implement exceptions should thrown one if NOT two noded
         const Coord& getLoci() const {return loci;}
         void setAreasets(Areaset* sets[2]);
+        bool addConnection(const Connection&); // adds connection to first available slot, returns false if all used already
         ~Node();
         friend class Game;
 };
