@@ -1,5 +1,5 @@
 /*
-*Implimentation of game class
+* Implementation of game class
 * AChecker
 */
 
@@ -9,6 +9,7 @@ Game::Game()
 {
 
 }
+
 void Game::updateAreas()
 {
     int nNodes = nodes.size(), nAreas=0;
@@ -18,12 +19,15 @@ void Game::updateAreas()
     Connection* nodeConns;
     areasets.clear();
     areasets.push_back(defaultAreaset);
-    // Find all Cuirticts/areas
+
+    // Find all Circuits/areas
     for(int i=0;i<nNodes;i++)
     {
         nodes[i].walk(areas);
     }
+
     nAreas=areas.size();
+
     //create and apply area sets to each node
     for(int i=0;i<nNodes;i++)
     {
@@ -32,7 +36,7 @@ void Game::updateAreas()
 
         nodeConns = nodes[i].getConnAddr();
         /*
-        * this if statment is only true if on a border, since conn 1
+        * this if statement is only true if on a border, since conn 1
         * would have to be non null, and dead eliminated dead node
         */
         if(nodeConns[1].exists())
@@ -48,7 +52,7 @@ void Game::updateAreas()
                     //if its above added to the above area set
                     if(isInArea(areas[i],tempLoci))
                         tempSets[0].push_back(&areas[i]);
-                    //Need to make x -1 to origiona
+                    //Need to make x -1 to origin
                     tempLoci.x--;
                     tempLoci.x--;
 
@@ -56,7 +60,7 @@ void Game::updateAreas()
                     if(isInArea(areas[i],tempLoci))
                         tempSets[1].push_back(&areas[i]);
 
-                    tempLoci.x++; //reset to origional coordinates
+                    tempLoci.x++; //reset to original coordinates
                 }
             }
             else
@@ -70,7 +74,7 @@ void Game::updateAreas()
                     //if its right added to the right area set
                     if(isInArea(areas[i],tempLoci))
                         tempSets[0].push_back(&areas[i]);
-                    //Need to make x -1 to origiona
+                    //Need to make x -1 to origin
                     tempLoci.y--;
                     tempLoci.y--;
 
@@ -78,7 +82,7 @@ void Game::updateAreas()
                     if(isInArea(areas[i],tempLoci))
                         tempSets[1].push_back(&areas[i]);
 
-                    tempLoci.y++; //reset to origional coordinates
+                    tempLoci.y++; //reset to original coordinates
                 }
             }
         }
@@ -92,9 +96,9 @@ void Game::updateAreas()
                     tempSets[0].push_back(&areas[i]);
             }
         }
+
         /*
-        * At this point we are all VEYR sleepy
-        * this sorts the area sets, does NOT add if duplicate
+        * This sorts the area sets, does NOT add if duplicate
         * And then applies them to the node
         */
         sort(tempSets[0].begin(),tempSets[0].end());
@@ -113,7 +117,7 @@ void Game::updateAreas()
             nodeAS[1]=&areasets.back();
         }
         else nodeAS[1]=&(*itB);
-        //if(tempSets[0]==defaultAreaset)
+
         nodes[i].setAreasets(nodeAS);
     }
 }

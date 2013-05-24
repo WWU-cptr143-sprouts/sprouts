@@ -1,5 +1,5 @@
-OUT		= sprouts
-SRC		= ${wildcard *.cpp}
+OUT		= tests
+SRC		= ${wildcard *.cpp} ${filter-out ../main.cpp, ${wildcard ../*.cpp}}
 OBJ		= ${SRC:.cpp=.o}
 DEPENDS = .depends
 
@@ -21,11 +21,8 @@ ${DEPENDS}: ${SRC}
 
 depends: ${DEPENDS}
 
-tests:
-	$(MAKE) -C tests
-
 clean:
 	${RM} ${OUT} ${OBJ}
 
 include ${DEPENDS}
-.PHONY: all depends clean tests
+.PHONY: all depends clean

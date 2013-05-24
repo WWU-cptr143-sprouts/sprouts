@@ -1,14 +1,13 @@
 /*
-*
-* These implimations likely are not complete
+* These implications likely are not complete
 */
 #include "headers/node.h"
 
 Node::Node(Coord point, Connection con1, Connection con2)
     : loci(point)
 {
-    areasets[0] =0;
-    areasets[1] =0;
+    areasets[0] = NULL;
+    areasets[1] = NULL;
     connections[0] = con1;
     connections[1] = con2;
     connections[2] = Connection();
@@ -19,6 +18,7 @@ Connection* Node::getConnAddr()
     return connections;
 }
 
+// NOTE: We MUST add keep these in order so that the last one filled is [2]
 bool Node::dead() const
 {
     return (connections[2].exists());
@@ -36,8 +36,9 @@ void Node::walk(vector<Area>& areas, Area history, Connection* connection)
     // Add this to the history if we're not already on the initial iteration
     if (connection)
         history.push_back(connection);
+
     // We have a circuit/loop if we're back to the start node
-    if (connection->dest == this)
+    if (connection && connection->dest == this)
     {
         //rotate the area to allow for uniquness comparision
         Area::iterator ind;
@@ -63,8 +64,8 @@ void Node::walk(vector<Area>& areas, Area history, Connection* connection)
     {
         // If a connection is filled and we have not already been to it, recurse
         // TODO: skip selfloops?
-        if (connection[i].exists() && find(history.begin(), history.end(), &connection[i]) == history.end())
-            walk(areas, history, &connection[i]);
+        if (connections[i].exists() && find(history.begin(), history.end(), &connections[i]) == history.end())
+            walk(areas, history, &connections[i]);
     }
 }
 
