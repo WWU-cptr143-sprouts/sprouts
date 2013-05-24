@@ -12,6 +12,7 @@ Game::Game()
 
 void Game::updateAreas()
 {
+    int nNodes = nodes.size(), nAreas=0;
     Areaset tempSets[2];
     Coord tempLoci;
     areas.clear();
@@ -20,13 +21,15 @@ void Game::updateAreas()
     areasets.push_back(defaultAreaset);
 
     // Find all Circuits/areas
-    for (Node& node : nodes)
+    for(int i=0;i<nNodes;i++)
     {
-        node.walk(areas);
+        nodes[i].walk(areas);
     }
 
+    nAreas=areas.size();
+
     //create and apply area sets to each node
-    for (Node& node : nodes)
+    for(int i=0;i<nNodes;i++)
     {
         Areaset* nodeAS[2];
         if(nodes[i].dead()) continue;

@@ -1,7 +1,7 @@
 #ifndef H_Game
 #define H_Game
 
-#include <list>
+#include <vector>
 #include <algorithm>
 #include "node.h"
 
@@ -9,13 +9,13 @@ using namespace std;
 
 class Game
 {
-    // TODO: don't rely on same address locations with vectors
+    // TODO: don't rely on same address locations  with vectors
     private:
-        list<Area> areas;
-        list<Areaset> areasets;
+        vector<Area> areas;
+        vector<Areaset> areasets;
     protected:
-        list<Node> nodes;
-        list<Line> lines;
+        vector<Node> nodes;
+        vector<Line> lines;
     public:
         Game();
         void updateAreas(); //will call node.walk in its process

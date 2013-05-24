@@ -1,7 +1,7 @@
 #ifndef H_IMAGE
 #define H_IMAGE
 
-#include <SDL.h>
+#include <SDL/SDL.h>
 #include <string>
 
 using namespace std;

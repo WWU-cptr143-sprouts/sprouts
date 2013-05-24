@@ -1,8 +1,8 @@
 #ifndef H_GameGUI
 #define H_GameGUI
 
-#include <SDL.h>
-#include <SDL_gfxPrimitives.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_gfxPrimitives.h>
 #include "game.h"
 
 using namespace std;
