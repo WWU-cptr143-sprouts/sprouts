@@ -46,7 +46,7 @@ void Game::updateAreas()
     for(int i=0;i<nNodes;i++)
     {
         Areaset* nodeAS[2];
-        
+
         if(nodes[i]->dead())
             continue;
 
@@ -206,7 +206,7 @@ Game::~Game()
     // ALWAYS skip the first one, which is static, the defaultAreaset.
     for (int i = 1; i < areasets.size(); ++i)
         delete areasets[i];
-    
+
     for (int i = 0; i < nodes.size(); ++i)
         delete nodes[i];
 
@@ -214,50 +214,68 @@ Game::~Game()
         delete lines[i];
 }
 
+ostream& operator<<(ostream& os, const Connection& c)
+{
+    os << "Node Address:" << c.dest
+        << "\tLine Address:" << c.line;
+    return os;
+}
+ostream& operator<<(ostream& os, const Line& l)
+{
+    os << "Line Address:" << &l << endl;
+    int lSize = l.size();
+    for(int i =0;i<lSize-1; i++)
+    {
+        os << "(" << l[i].x << "," << l[i].y << ") -> ";
+    }
+        os << "(" << l[lSize-1].x << "," << l[lSize-1].y << ")";
+    return os;
+}
+
 ostream& operator<<(ostream& os, const Game& g)
 {
     // Areas
     for (int i = 0; i < g.areas.size(); i++)
     {
-        cout << "Area " << g.areas[i] << ": ";
+        os << "Area " << g.areas[i] << ": ";
 
         for (int j = 0; j < g.areas[i]->size(); ++j)
         {
             const Area& area = *g.areas[i];
-            cout << area[j] << " ";
+            os << area[j] << " ";
         }
 
-        cout << endl;
+        os << endl;
     }
 
     // Areasets
     for (int i = 0; i < g.areasets.size(); i++)
     {
-        cout << "Areaset " << g.areasets[i] << endl;
+        os << "Areaset " << g.areasets[i] << endl;
 
         for (int j = 0; j < g.areasets[i]->size(); ++j)
         {
             const Areaset& areaset = *g.areasets[i];
-            cout << "Area " << g.areasets[i] << ": " << areaset[j] << endl;
+            os << "Area " << g.areasets[i] << ": " << areaset[j] << endl;
         }
     }
 
     // Nodes
     for (int i = 0; i < g.nodes.size(); i++)
     {
-        cout << "Node " << g.nodes[i] << endl;
+        os << "Node " << g.nodes[i] << endl;
 
         for (int j = 0; j < 3; j++)
         {
-            cout << "  Connection[" << j << "] " << g.nodes[i]->connections[j] << endl;
+            os << "  Connection[" << j << "] " << g.nodes[i]->connections[j] << endl;
         }
     }
-    
+
     // Lines
     for (int i = 0; i < g.lines.size(); i++)
     {
-        cout << "Line " << g.lines[i] << ": " << *g.lines[i] << endl;
+        os << "Line " << g.lines[i] << ": " << *g.lines[i] << endl;
     }
-    
+
     return os;
 }
