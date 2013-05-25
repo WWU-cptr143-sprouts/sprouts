@@ -24,9 +24,9 @@ TestSuite::TestSuite()
 
     updateAreas();
 
-    Node& a = insert(Node(Coord(0,0)));
-    Node& b = insert(Node(Coord(10,10)));
-    Node& c = insert(Node(Coord(20,20)));
+    Node& a = insertNode(Coord(0,0));
+    Node& b = insertNode(Coord(10,10));
+    Node& c = insertNode(Coord(20,20));
 
     updateAreas();
 
@@ -62,13 +62,13 @@ TestSuite::TestSuite()
     //if (g.connectable(a, b))
 
     // If so, save and get the unique identifier (the pointer)
-    Line& AD = insert(AD_line);
-    Line& DB = insert(DB_line);
+    Line& AD = insertLine(AD_line);
+    Line& DB = insertLine(DB_line);
 
     // Put the node on second line
-    Node& d = insert(Node(Coord(5, 10),
+    Node& d = insertNode(Coord(5, 10),
         Connection(&AD, &a),  // From A to D
-        Connection(&DB, &b))); // From D to B
+        Connection(&DB, &b)); // From D to B
 
     // Add connection from A and from B
     a.addConnection(Connection(&AD, &d));
@@ -118,13 +118,13 @@ TestSuite::TestSuite()
     //if (g.connectable(d, b))
 
     // If so, save and get the unique identifier (the pointer)
-    Line& DE = insert(DE_line);
-    Line& EB = insert(EB_line);
+    Line& DE = insertLine(DE_line);
+    Line& EB = insertLine(EB_line);
 
     // Put the node on second line
-    Node& e = insert(Node(Coord(10, 30),
+    Node& e = insertNode(Coord(10, 30),
         Connection(&DE, &d),  // From D to E
-        Connection(&EB, &b))); // From E to B
+        Connection(&EB, &b)); // From E to B
 
     // Add connection to D
     d.addConnection(Connection(&DE, &e));

@@ -8,6 +8,9 @@ using namespace std;
 
 typedef vector<Connection*> Area;
 typedef vector<Area*> Areaset;
-static const Areaset defaultAreaset; //create default/null vector
+
+// This should really be constant, but we have to add it's address to a
+// non-const vector
+static Areaset defaultAreaset; //create default/null vector
 
 #endif

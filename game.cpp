@@ -15,72 +15,82 @@ void Game::updateAreas()
     int nNodes = nodes.size(), nAreas=0;
     Areaset tempSets[2];
     Coord tempLoci;
-    areas.clear();
     Connection* nodeConns;
+
+    for (int i = 0; i < areas.size(); ++i)
+        delete areas[i];
+
+    for (int i = 0; i < areasets.size(); ++i)
+        delete areasets[i];
+
+    areas.clear();
     areasets.clear();
-    areasets.push_back(defaultAreaset);
+
+    // When we unique the areasets, we need a catch-all one
+    areasets.push_back(&defaultAreaset);
 
     // Find all Circuits/areas
     for(int i=0;i<nNodes;i++)
-    {
-        nodes[i].walk(areas);
-    }
+        nodes[i]->walk(areas);
 
+    // This must be this late since Node::walk appends to it
     nAreas=areas.size();
 
     //create and apply area sets to each node
     for(int i=0;i<nNodes;i++)
     {
         Areaset* nodeAS[2];
-        if(nodes[i].dead()) continue;
+        
+        if(nodes[i]->dead())
+            continue;
 
-        nodeConns = nodes[i].getConnAddr();
+        nodeConns = nodes[i]->getConnAddr();
+
         /*
         * this if statement is only true if on a border, since conn 1
         * would have to be non null, and dead eliminated dead node
         */
         if(nodeConns[1].exists())
         {
-            if(nodes[i].vertical())
+            if(nodes[i]->vertical())
             {
-                tempLoci = nodes[i].getLoci();
+                tempLoci = nodes[i]->getLoci();
 
                 for(int i=0;i<nAreas;i++)
                 {
-
                     tempLoci.x++;
                     //if its above added to the above area set
-                    if(isInArea(areas[i],tempLoci))
-                        tempSets[0].push_back(&areas[i]);
+                    if(isInArea(*areas[i],tempLoci))
+                        tempSets[0].push_back(areas[i]);
                     //Need to make x -1 to origin
                     tempLoci.x--;
                     tempLoci.x--;
 
                     //if it is below then added to the below areas set
-                    if(isInArea(areas[i],tempLoci))
-                        tempSets[1].push_back(&areas[i]);
+                    if(isInArea(*areas[i],tempLoci))
+                        tempSets[1].push_back(areas[i]);
 
                     tempLoci.x++; //reset to original coordinates
                 }
             }
             else
             {
-                tempLoci = nodes[i].getLoci();
+                tempLoci = nodes[i]->getLoci();
 
                 for(int i=0;i<nAreas;i++)
                 {
 
                     tempLoci.y++;
                     //if its right added to the right area set
-                    if(isInArea(areas[i],tempLoci))
-                        tempSets[0].push_back(&areas[i]);
+                    if(isInArea(*areas[i],tempLoci))
+                        tempSets[0].push_back(areas[i]);
                     //Need to make x -1 to origin
                     tempLoci.y--;
                     tempLoci.y--;
 
                     //if it is left then added to the left areas set
-                    if(isInArea(areas[i],tempLoci))
-                        tempSets[1].push_back(&areas[i]);
+                    if(isInArea(*areas[i],tempLoci))
+                        tempSets[1].push_back(areas[i]);
 
                     tempLoci.y++; //reset to original coordinates
                 }
@@ -88,12 +98,12 @@ void Game::updateAreas()
         }
         else if(nodeConns[0].exists()) //this must be after the above code
         {
-            tempLoci = nodes[i].getLoci();
+            tempLoci = nodes[i]->getLoci();
 
             for(int i=0;i<nAreas;i++)
             {
-                if(isInArea(areas[i],tempLoci))
-                    tempSets[0].push_back(&areas[i]);
+                if(isInArea(*areas[i],tempLoci))
+                    tempSets[0].push_back(areas[i]);
             }
         }
 
@@ -103,29 +113,34 @@ void Game::updateAreas()
         */
         sort(tempSets[0].begin(),tempSets[0].end());
         sort(tempSets[1].begin(),tempSets[1].end());
-        vector<Areaset>::iterator itA=find(areasets.begin(),areasets.end(), tempSets[0]);
+        vector<Areaset*>::iterator itA=find_if(areasets.begin(),areasets.end(),
+            PointerFind<Areaset>(tempSets[0]));
         if(itA==areasets.end())
         {
-            areasets.push_back(tempSets[0]);
-            nodeAS[0]=&areasets.back();
+            areasets.push_back(&tempSets[0]);
+            nodeAS[0]=areasets.back();
         }
-        else nodeAS[0]=&(*itA);
-        vector<Areaset>::iterator itB=find(areasets.begin(),areasets.end(), tempSets[1]);
+        else nodeAS[0]=*itA;
+        vector<Areaset*>::iterator itB=find_if(areasets.begin(),areasets.end(),
+            PointerFind<Areaset>(tempSets[1]));
         if(itB==areasets.end())
         {
-            areasets.push_back(tempSets[1]);
-            nodeAS[1]=&areasets.back();
+            areasets.push_back(&tempSets[1]);
+            nodeAS[1]=areasets.back();
         }
-        else nodeAS[1]=&(*itB);
+        else nodeAS[1]=*itB;
 
-        nodes[i].setAreasets(nodeAS);
+        nodes[i]->setAreasets(nodeAS);
     }
 }
 
 /*
-*
-*/
-bool Game::isInArea(const Area& target, Coord position) const    //Blame luke for any problems here
+ * Look at horizontal lines and see if drawing a vertical line from the current
+ * point to that line would cross it. If we cross an odd number of lines within
+ * an area in the one direction (here, up), we're in the area since we only
+ * allow 90 degree angles.
+ */
+bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke for any problems here
 {
     int tSize=target.size(), lCount=0,lSize=0;
     for(int i=0;i<tSize;i++)
@@ -141,7 +156,6 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame luke fo
             const Line& lRef= *(target[i]->line);
             if((lRef[j-1].x==lRef[j].x && lRef[j].x < position.x))
             {
-                //if()
                 int minY,maxY;
                 minY=min(lRef[j].y,lRef[j-1].y);
                 maxY=max(lRef[j].y,lRef[j-1].y);
@@ -164,19 +178,32 @@ bool Game::connectable(const Node& nodea,const Node& nodeb) const
      && !nodea.dead() && !nodeb.dead());
 }
 
-Node& Game::insert(const Node& node)
+Node& Game::insertNode(Coord coord, Connection con1, Connection con2)
 {
+    Node* node = new Node(coord, con1, con2);
     nodes.push_back(node);
-    return nodes.back();
+    return *node;
 }
 
-Line& Game::insert(const Line& line)
+Line& Game::insertLine(const Line& line)
 {
-    lines.push_back(line);
-    return lines.back();
+    Line* keep = new Line(line);
+    lines.push_back(keep);
+    return *keep;
 }
 
 Game::~Game()
 {
+    for (int i = 0; i < areas.size(); ++i)
+        delete areas[i];
 
+    // ALWAYS skip the first one, which is static, the defaultAreaset.
+    for (int i = 1; i < areasets.size(); ++i)
+        delete areasets[i];
+    
+    for (int i = 0; i < nodes.size(); ++i)
+        delete nodes[i];
+
+    for (int i = 0; i < lines.size(); ++i)
+        delete lines[i];
 }

@@ -30,8 +30,8 @@ bool Node::vertical() const
 }
 
 // Note: we could pass in history by reference if we delete added entries at the end of each
-// itertion
-void Node::walk(vector<Area>& areas, Area history, Connection* connection)
+// iteration
+void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
 {
     // Add this to the history if we're not already on the initial iteration
     if (connection)
@@ -40,25 +40,24 @@ void Node::walk(vector<Area>& areas, Area history, Connection* connection)
     // We have a circuit/loop if we're back to the start node
     if (connection && connection->dest == this)
     {
-        //rotate the area to allow for uniquness comparision
-        Area::iterator ind;
+        //rotate the area to allow for uniqueness comparison
+        Area::iterator iter;
         int oSize=history.size();
         Area rotatedHist(oSize);
-        ind= min(history.begin(),history.end());
-        if(ind==history.end()) //this should never happen
-        {
-            throw "Node::walk()-tantrum";
-        }
-        for(int i=0;i<oSize;i++)
-        {
-            //fixed itterator
-            rotatedHist[i]=history[(ind-history.begin()+i)%oSize];
-            //int ind &min;newVector[i]=origional[(min+i)%origiona.size()]
-        }
-        // Add history to areas vector
-        areas.push_back(history);
+        iter = min(history.begin(),history.end());
+
+        if (iter==history.end()) //this should never happen
+            throw "Node::walk() didn't find minimum";
+
+        for (int i=0;i<oSize;i++)
+            rotatedHist[i]=history[(iter-history.begin()+i)%oSize];
+
+        // Add a copy of the rotated history to areas vector
+        Area* keep = new Area(rotatedHist);
+        areas.push_back(keep);
         return;
     }
+
     //walk each connection
     for (int i = 0; i < 3; i++)
     {

@@ -21,7 +21,7 @@ class Node
     public:
         //Node();
         Node(Coord, Connection = Connection(), Connection = Connection());
-        void walk(vector<Area>& areas, Area history = Area(), Connection* connection = NULL);//Append new circuits/areas to this vector: be sure to check if exits
+        void walk(vector<Area*>& areas, Area history = Area(), Connection* connection = NULL);//Append new circuits/areas to this vector: be sure to check if exits
         Connection* getConnAddr(); //return array connection
         bool dead() const; //true if dead node
         bool vertical() const; // runs on assumption that there are two connections; if we implement exceptions should thrown one if NOT two noded
