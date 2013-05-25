@@ -43,6 +43,7 @@ class Game
 
         // Used for debugging
         friend ostream& operator<<(ostream&, const Game&);
+        friend class TestSuite;
 
         ~Game();
 };

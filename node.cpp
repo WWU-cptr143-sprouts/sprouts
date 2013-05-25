@@ -57,14 +57,23 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
         areas.push_back(keep);
         return;
     }
+    else
+    {
+        if (connection)
+            cout << connection->dest << " vs. " << this << endl;
+        else
+            cout << "no connection" << endl;
+    }
 
     //walk each connection
     for (int i = 0; i < 3; i++)
     {
         // If a connection is filled and we have not already been to it, recurse
-        // TODO: skip selfloops?
-        if (connections[i].exists() && find(history.begin(), history.end(), &connections[i]) == history.end())
+        if (connections[i].exists() && find_if(history.begin(), history.end(),
+            LineFind(connections[i].line)) == history.end())
+        {
             walk(areas, history, &connections[i]);
+        }
     }
 }
 

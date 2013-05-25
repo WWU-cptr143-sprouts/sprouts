@@ -12,6 +12,21 @@ using namespace std;
 
 class Game;
 
+// Determine if we've gone on a connection by the line instead of the
+// connection, which is unidirectional
+class LineFind
+{
+    const Line* line;
+
+    public:
+        LineFind(const Line* line) :line(line) { }
+
+        bool operator()(Connection* search)
+        {
+            return line == search->line;
+        }
+};
+
 class Node
 {
     protected:
