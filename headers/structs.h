@@ -8,6 +8,7 @@
 #define H_structs
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -20,6 +21,8 @@ struct Coord
 
     Coord() { }
     Coord(int x, int y) :x(x), y(y) { }
+
+    friend ostream& operator<<(ostream&,const Coord&);
 };
 
 typedef vector<Coord> Line;
@@ -32,6 +35,10 @@ struct Connection
 
     Connection() :line(NULL), dest(NULL) { }
     Connection(Line* l, Node* d) :line(l), dest(d) { }
+    
+    friend ostream& operator<<(ostream&,const Connection&);
 };
+
+ostream& operator<<(ostream&,const Line&);
 
 #endif

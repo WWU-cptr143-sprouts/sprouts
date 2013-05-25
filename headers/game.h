@@ -2,6 +2,7 @@
 #define H_Game
 
 #include <vector>
+#include <iostream>
 #include <algorithm>
 #include "node.h"
 #include "structs.h"
@@ -39,6 +40,9 @@ class Game
         bool isInArea(const Area&,Coord) const;
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
         Line& insertLine(const Line&);
+
+        // Used for debugging
+        friend ostream& operator<<(ostream&, const Game&);
 
         ~Game();
 };

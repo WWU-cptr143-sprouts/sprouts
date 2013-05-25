@@ -20,17 +20,15 @@ class TestSuite : public Game
 TestSuite::TestSuite()
     :Game()
 {
-    bool passed = false;
-
     updateAreas();
+    bool passed = false;
 
     Node& a = insertNode(Coord(0,0));
     Node& b = insertNode(Coord(10,10));
     Node& c = insertNode(Coord(20,20));
 
-    updateAreas();
-
     // Test 1, all original nodes connectable
+    updateAreas();
     passed = true;
 
     if (!connectable(a, b) ||
@@ -42,6 +40,7 @@ TestSuite::TestSuite()
         passed = false;
 
     test("1", passed);
+    cout << *this;
 
     // Draw a line down 10 pixels and over 10 pixels from A to B
     /*Line l;
@@ -75,6 +74,7 @@ TestSuite::TestSuite()
     b.addConnection(Connection(&DB, &d));
 
     // Test 2, all 2nd play nodes connectable
+    updateAreas();
     passed = true;
 
     if (!connectable(a, b) ||
@@ -92,6 +92,20 @@ TestSuite::TestSuite()
         passed = false;
 
     test("2", passed);
+    cout << *this;
+
+    cout << "AB is " << ((connectable(a,b))?"":"not ") << "connectable." << endl;
+    cout << "AC is " << ((connectable(a,c))?"":"not ") << "connectable." << endl;
+    cout << "AD is " << ((connectable(a,d))?"":"not ") << "connectable." << endl;
+    cout << "BA is " << ((connectable(b,a))?"":"not ") << "connectable." << endl;
+    cout << "BC is " << ((connectable(b,c))?"":"not ") << "connectable." << endl;
+    cout << "BD is " << ((connectable(b,d))?"":"not ") << "connectable." << endl;
+    cout << "CA is " << ((connectable(c,a))?"":"not ") << "connectable." << endl;
+    cout << "CB is " << ((connectable(c,b))?"":"not ") << "connectable." << endl;
+    cout << "CD is " << ((connectable(c,d))?"":"not ") << "connectable." << endl;
+    cout << "DA is " << ((connectable(d,a))?"":"not ") << "connectable." << endl;
+    cout << "DB is " << ((connectable(d,b))?"":"not ") << "connectable." << endl;
+    cout << "DC is " << ((connectable(d,c))?"":"not ") << "connectable." << endl;
 
     // Draw line around C, from D to B
     /*Line l;
@@ -129,10 +143,21 @@ TestSuite::TestSuite()
     // Add connection to D
     d.addConnection(Connection(&DE, &e));
     b.addConnection(Connection(&EB, &e));
+
+    // Test 3, some non-connectable nodes
+    updateAreas();
+    passed = true;
+
+    if (!connectable(a, b) ||
+        !connectable(a, c))
+        passed = false;
+
+    test("3", passed);
+    cout << *this;
 }
 
 int main()
 {
-    TestSuite t;
+    TestSuite();
     return 0;
 }

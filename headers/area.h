@@ -2,6 +2,7 @@
 #define H_AREA
 
 #include <vector>
+#include <iostream>
 #include "structs.h"
 
 using namespace std;
