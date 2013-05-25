@@ -94,19 +94,6 @@ TestSuite::TestSuite()
     test("2", passed);
     cout << *this;
 
-    cout << "AB is " << ((connectable(a,b))?"":"not ") << "connectable." << endl;
-    cout << "AC is " << ((connectable(a,c))?"":"not ") << "connectable." << endl;
-    cout << "AD is " << ((connectable(a,d))?"":"not ") << "connectable." << endl;
-    cout << "BA is " << ((connectable(b,a))?"":"not ") << "connectable." << endl;
-    cout << "BC is " << ((connectable(b,c))?"":"not ") << "connectable." << endl;
-    cout << "BD is " << ((connectable(b,d))?"":"not ") << "connectable." << endl;
-    cout << "CA is " << ((connectable(c,a))?"":"not ") << "connectable." << endl;
-    cout << "CB is " << ((connectable(c,b))?"":"not ") << "connectable." << endl;
-    cout << "CD is " << ((connectable(c,d))?"":"not ") << "connectable." << endl;
-    cout << "DA is " << ((connectable(d,a))?"":"not ") << "connectable." << endl;
-    cout << "DB is " << ((connectable(d,b))?"":"not ") << "connectable." << endl;
-    cout << "DC is " << ((connectable(d,c))?"":"not ") << "connectable." << endl;
-
     // Draw line around C, from D to B
     /*Line l;
     l.push_back(Coord(5,10));
@@ -124,8 +111,7 @@ TestSuite::TestSuite()
     Line EB_line;
     EB_line.push_back(Coord(10,30));
     EB_line.push_back(Coord(30,30));
-    EB_line.push_back(Coord(30,5));
-    EB_line.push_back(Coord(10,5));
+    EB_line.push_back(Coord(30,10));
     EB_line.push_back(Coord(10,10));
 
     // Check if D and B can be connected...
@@ -146,14 +132,53 @@ TestSuite::TestSuite()
 
     // Test 3, some non-connectable nodes
     updateAreas();
-    passed = true;
+    passed = false;
 
-    if (!connectable(a, b) ||
-        !connectable(a, c))
-        passed = false;
+    if (connectable(a,b) &&
+        connectable(a,e) &&
+        connectable(b,a) &&
+        connectable(b,c) &&
+        connectable(b,e) &&
+        connectable(c,b) &&
+        connectable(c,e) &&
+        connectable(e,a) &&
+        connectable(e,b) &&
+        connectable(e,c) &&
+        !connectable(a,c) &&
+        !connectable(a,d) &&
+        !connectable(b,d) &&
+        !connectable(c,a) &&
+        !connectable(c,d) &&
+        !connectable(d,a) &&
+        !connectable(d,b) &&
+        !connectable(d,c) &&
+        !connectable(d,e) &&
+        !connectable(e,d))
+        passed = true;
 
     test("3", passed);
     cout << *this;
+
+    cout << "AB is " << ((connectable(a,b))?"":"not ") << "connectable." << endl;
+    cout << "AE is " << ((connectable(a,e))?"":"not ") << "connectable." << endl;
+    cout << "BA is " << ((connectable(b,a))?"":"not ") << "connectable." << endl;
+    cout << "BC is " << ((connectable(b,c))?"":"not ") << "connectable." << endl;
+    cout << "BE is " << ((connectable(b,e))?"":"not ") << "connectable." << endl;
+    cout << "CB is " << ((connectable(c,b))?"":"not ") << "connectable." << endl;
+    cout << "CE is " << ((connectable(c,e))?"":"not ") << "connectable." << endl;
+    cout << "EA is " << ((connectable(e,a))?"":"not ") << "connectable." << endl;
+    cout << "EB is " << ((connectable(e,b))?"":"not ") << "connectable." << endl;
+    cout << "EC is " << ((connectable(e,c))?"":"not ") << "connectable." << endl;
+    cout << "AC is " << ((connectable(a,c))?"":"not ") << "connectable." << endl;
+    cout << "AD is " << ((connectable(a,d))?"":"not ") << "connectable." << endl;
+    cout << "BD is " << ((connectable(b,d))?"":"not ") << "connectable." << endl;
+    cout << "CA is " << ((connectable(c,a))?"":"not ") << "connectable." << endl;
+    cout << "CD is " << ((connectable(c,d))?"":"not ") << "connectable." << endl;
+    cout << "DA is " << ((connectable(d,a))?"":"not ") << "connectable." << endl;
+    cout << "DB is " << ((connectable(d,b))?"":"not ") << "connectable." << endl;
+    cout << "DC is " << ((connectable(d,c))?"":"not ") << "connectable." << endl;
+    cout << "DE is " << ((connectable(d,e))?"":"not ") << "connectable." << endl;
+    cout << "ED is " << ((connectable(e,d))?"":"not ") << "connectable." << endl;
 }
 
 int main()

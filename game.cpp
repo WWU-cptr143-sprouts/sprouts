@@ -1,6 +1,11 @@
 /*
 * Implementation of game class
 * AChecker
+*
+* TODO:
+*   - only allow connections going out at 180 degrees until third
+*   - update openings[]
+*   - when doing a self loop, does connectable() need to check for 2 free connections?
 */
 
 #include "headers/game.h"
