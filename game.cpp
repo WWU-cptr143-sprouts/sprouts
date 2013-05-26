@@ -1,10 +1,5 @@
 /*
-* Implementation of game class
-* AChecker
-*
-* TODO:
-*   - only allow connections going out at 180 degrees until third
-*   - when doing a self loop, does connectable() need to check for 2 free connections?
+* Implementation of game class, the AChecker
 */
 
 #include "headers/game.h"
@@ -181,6 +176,11 @@ bool Game::connectable(const Node& nodea, const Node& nodeb) const
     if (!updated)
         throw AreasOutdated();
 
+    // A self loop is possible if we have two free connections
+    if (&nodea == &nodeb)
+        return !nodea.connections[1].exists() && !nodea.connections[2].exists();
+
+    // Otherwise, deal with it normally
     return ((nodea.areasets[0]==nodeb.areasets[0] ||
              nodea.areasets[0]==nodeb.areasets[1] ||
              nodea.areasets[1]==nodeb.areasets[0] ||
