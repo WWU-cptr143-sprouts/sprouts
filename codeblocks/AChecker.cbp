@@ -37,6 +37,7 @@
         <Unit filename="../headers/node.h" />
         <Unit filename="../headers/structs.h" />
         <Unit filename="../node.cpp" />
+        <Unit filename="../structs.cpp" />
         <Unit filename="../tests/main.cpp" />
 		<Extensions>
 			<code_completion />
