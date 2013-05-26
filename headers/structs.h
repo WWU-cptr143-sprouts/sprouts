@@ -39,6 +39,8 @@ struct Connection
     friend ostream& operator<<(ostream&,const Connection&);
 };
 
+ostream& operator<<(ostream&,const Coord&);
 ostream& operator<<(ostream&,const Line&);
+ostream& operator<<(ostream&,const Connection&);
 
 #endif
