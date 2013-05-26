@@ -36,10 +36,19 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
     // Add this to the history if we're not already on the initial iteration
     if (connection)
         history.push_back(connection);
-
+    #ifdef DEBUG
+    cout << "Currently in Node:" << this << " by following:" << connection << endl
+        << "connection: " << connection ;
+        if(connection) cout << "\tconnection->dest:" << connection->dest;
+        cout << "\tthis:" << this
+        << "\tconnection && connection->dest == this:" << (int)(connection && (connection->dest == this)) << endl;
+    #endif
     // We have a circuit/loop if we're back to the start node
     if (connection && connection->dest == this)
     {
+        #ifdef DEBUG
+        cout << "entered first if statment" << endl;
+        #endif
         //rotate the area to allow for uniqueness comparison
         Area::iterator iter;
         int oSize=history.size();
@@ -57,6 +66,7 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
         areas.push_back(keep);
         return;
     }
+    #ifdef DEBUG
     else
     {
         if (connection)
@@ -64,7 +74,7 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
         else
             cout << "no connection" << endl;
     }
-
+    #endif
     //walk each connection
     for (int i = 0; i < 3; i++)
     {

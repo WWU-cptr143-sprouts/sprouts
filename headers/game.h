@@ -48,4 +48,9 @@ class Game
         ~Game();
 };
 
+//maybe inclose these in ifdef DEBUG
+ostream& operator<<(ostream& os, const Connection& c);
+ostream& operator<<(ostream& os, const Game& g);
+ostream& operator<<(ostream& os, const Line& l);
+
 #endif

@@ -102,7 +102,7 @@ TestSuite::TestSuite()
     l.push_back(Coord(30,5));
     l.push_back(Coord(10,5));
     l.push_back(Coord(10,10));*/
-    
+
     // Place a coordinate at (10,30), somehow split line into D->E and E->B
     Line DE_line;
     DE_line.push_back(Coord(5,10));
@@ -157,7 +157,7 @@ TestSuite::TestSuite()
         passed = true;
 
     test("3", passed);
-    cout << *this;
+    cout << "final game state:\n" << *this;
 
     cout << "AB is " << ((connectable(a,b))?"":"not ") << "connectable." << endl;
     cout << "AE is " << ((connectable(a,e))?"":"not ") << "connectable." << endl;

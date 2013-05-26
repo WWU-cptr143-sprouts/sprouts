@@ -37,8 +37,13 @@ void Game::updateAreas()
 
     // Find all Circuits/areas
     for(int i=0;i<nNodes;i++)
+    {
         nodes[i]->walk(areas);
-
+        #ifdef DEBUG
+        cout <<  "Walked node:" << i << endl << "game status:" << endl
+            << *this << "\nEnd Game status" << endl;
+        #endif
+    }
     // This must be this late since Node::walk appends to it
     nAreas=areas.size();
 
@@ -217,9 +222,10 @@ Game::~Game()
 ostream& operator<<(ostream& os, const Connection& c)
 {
     os << "Node Address:" << c.dest
-        << "\tLine Address:" << c.line;
+        << "\t Line Address:" << c.line;
     return os;
 }
+
 ostream& operator<<(ostream& os, const Line& l)
 {
     os << "Line Address:" << &l << endl;
@@ -263,7 +269,7 @@ ostream& operator<<(ostream& os, const Game& g)
     // Nodes
     for (int i = 0; i < g.nodes.size(); i++)
     {
-        os << "Node " << g.nodes[i] << endl;
+        os << "Node " << g.nodes[i]  << " @ " << "(" << g.nodes[i]->getLoci().x << "," << g.nodes[i]->getLoci().y << ")" << endl;
 
         for (int j = 0; j < 3; j++)
         {
