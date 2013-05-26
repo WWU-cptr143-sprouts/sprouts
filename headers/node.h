@@ -27,6 +27,14 @@ class LineFind
         }
 };
 
+// Thrown if the coordinate at the beginning or end of the line is not
+// the coordinate of the node.
+class InvalidLine { };
+
+// Thrown if we try to have a 90 degree corner when only two connections
+// instead of coming in at 180 degrees like our design calls for.
+class InvalidCorner { };
+
 class Node
 {
     protected:
@@ -46,11 +54,18 @@ class Node
         ~Node();
         friend class Game;
         friend ostream& operator<<(ostream&, const Game&);
+        friend ostream& operator<<(ostream&, const Connection&);
+    private:
+        void updateOpen(); // update open array after adding a connection
 };
 
-enum dir
+enum Dir
 {
-    up=0, right, down, left
+    Up=0, Right, Down, Left
 };
+
+// This is here since we want to print out the coordinate of the Node
+// which requires that the class has been declared.
+ostream& operator<<(ostream&,const Connection&);
 
 #endif

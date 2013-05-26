@@ -1,17 +1,17 @@
-/*
-* These implications likely are not complete
-*/
 #include "headers/node.h"
 
 Node::Node(Coord point, Connection con1, Connection con2)
     : loci(point)
 {
-    fill(&open[0], &open[0]+4, false);
     areasets[0] = NULL;
     areasets[1] = NULL;
     connections[0] = con1;
     connections[1] = con2;
     connections[2] = Connection();
+
+    // Update openings for the initial connections if specified
+    fill(&open[0], &open[0]+4, true); // By default every direction is open
+    updateOpen();
 }
 
 Connection* Node::getConnAddr()
@@ -27,7 +27,7 @@ bool Node::dead() const
 
 bool Node::vertical() const
 {
-    return !open[up]; // if the node has a line coming in from the top then it is vertical
+    return !open[Up]; // if the node has a line coming in from the top then it is vertical
 }
 
 // Note: we could pass in history by reference if we delete added entries at the end of each
@@ -122,6 +122,7 @@ bool Node::addConnection(const Connection& con)
         if (!connections[i].exists())
         {
             connections[i] = con;
+            updateOpen();
             return true;
         }
     }
@@ -129,6 +130,81 @@ bool Node::addConnection(const Connection& con)
     return false;
 }
 
+void Node::updateOpen()
+{
+    int count = 0;
+
+    // For each of the connections, set open[dir] to false
+    for (int i = 0; i < 3; i++)
+    {
+        if (connections[i].exists())
+        {
+            const Coord* other;
+
+            // Keep track so we can check if it's valid afterwards
+            ++count;
+
+            // Note that this can be simplified if we always make sure a line
+            // ends with the node pointed to by dest, but until then, check
+            // based on coordinates
+            const Line& line = *(connections[i].line);
+
+            // A line must be at least the beginning and ending node
+            if (line.size() < 2)
+                throw InvalidLine();
+
+            if (line.front() == loci) // At beginning
+                other = &line[1];
+            else if (line.back() == loci) // At end
+                other = &line[line.size()-2];
+            else // In the middle? It should be at the beginning or end!
+                throw InvalidLine();
+
+            // It can't be the same point
+            if (loci == *other)
+                throw InvalidLine();
+
+            // Determine direction
+            if (loci.x == other->x) // Vertical
+            {
+                if (loci.y < other->y) // Down
+                    open[Down] = false;
+                else // Up
+                    open[Up] = false;
+            }
+            else if (loci.y == other->y) // Horizontal
+            {
+                if (loci.x < other->x) // Left
+                    open[Left] = false;
+                else // Up
+                    open[Right] = false;
+            }
+            else // Neither, so invalid
+            {
+                throw InvalidLine();
+            }
+        }
+    }
+
+    // If there's only two, they must be 180 degrees from each other
+    if (count == 2 &&
+        !((open[Left] == false && open[Right] == false) ||
+         (open[Up]   == false && open[Down]  == false)))
+        throw InvalidCorner();
+}
+
 Node::~Node()
 {
+
+}
+
+ostream& operator<<(ostream& os, const Connection& con)
+{
+    if (con.exists())
+        os << "Node " << con.dest << " @ " << con.dest->loci
+           << " via " << con.line << ":{ " << *con.line << " }";
+    else
+        os << "default";
+
+    return os;
 }

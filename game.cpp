@@ -1,11 +1,5 @@
 /*
-* Implementation of game class
-* AChecker
-*
-* TODO:
-*   - only allow connections going out at 180 degrees until third
-*   - update openings[]
-*   - when doing a self loop, does connectable() need to check for 2 free connections?
+* Implementation of game class, the AChecker
 */
 
 #include "headers/game.h"
@@ -36,10 +30,11 @@ void Game::updateAreas()
     {
         nodes[i]->walk(areas);
         #ifdef DEBUG
-        cout <<  "Walked node:" << i << endl << "game status:" << endl
+        cout << "Walked node:" << i << endl << "game status:" << endl
             << *this << "\nEnd Game status" << endl;
         #endif
     }
+
     // This must be this late since Node::walk appends to it
     nAreas=areas.size();
 
@@ -189,6 +184,11 @@ bool Game::connectable(const Node& nodea, const Node& nodeb) const
     if (!updated)
         throw AreasOutdated();
 
+    // A self loop is possible if we have two free connections
+    if (&nodea == &nodeb)
+        return !nodea.connections[1].exists() && !nodea.connections[2].exists();
+
+    // Otherwise, deal with it normally
     return ((nodea.areasets[0]==nodeb.areasets[0] ||
              nodea.areasets[0]==nodeb.areasets[1] ||
              nodea.areasets[1]==nodeb.areasets[0] ||
@@ -272,7 +272,9 @@ ostream& operator<<(ostream& os, const Game& g)
     // Nodes
     for (int i = 0; i < g.nodes.size(); i++)
     {
-        os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << endl;
+        os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << " { U:"
+            << g.nodes[i]->open[Up]   << ", R:" << g.nodes[i]->open[Right] << ", D:"
+            << g.nodes[i]->open[Down] << ", L:" << g.nodes[i]->open[Left]  << " }" << endl;
 
         for (int j = 0; j < 3; j++)
         {
