@@ -111,12 +111,17 @@ bool Node::addConnection(const Connection& con)
 
 void Node::updateOpen()
 {
+    int count = 0;
+
     // For each of the connections, set open[dir] to false
     for (int i = 0; i < 3; i++)
     {
         if (connections[i].exists())
         {
             const Coord* other;
+
+            // Keep track so we can check if it's valid afterwards
+            ++count;
 
             // Note that this can be simplified if we always make sure a line
             // ends with the node pointed to by dest, but until then, check
@@ -159,6 +164,12 @@ void Node::updateOpen()
             }
         }
     }
+
+    // If there's only two, they must be 180 degrees from each other
+    if (count == 2 &&
+        !((open[Left] == false && open[Right] == false) ||
+         (open[Up]   == false && open[Down]  == false)))
+        throw InvalidCorner();
 }
 
 Node::~Node()

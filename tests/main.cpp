@@ -114,6 +114,14 @@ TestSuite::TestSuite()
     EB_line.push_back(Coord(30,10));
     EB_line.push_back(Coord(10,10));
 
+    /* Tests InvalidCorner()
+    Line EB_line;
+    EB_line.push_back(Coord(10,30));
+    EB_line.push_back(Coord(30,30));
+    EB_line.push_back(Coord(30,5));
+    EB_line.push_back(Coord(10,5));
+    EB_line.push_back(Coord(10,10));*/
+
     // Check if D and B can be connected...
     //if (g.connectable(d, b))
 

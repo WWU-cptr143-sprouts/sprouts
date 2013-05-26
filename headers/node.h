@@ -31,6 +31,10 @@ class LineFind
 // the coordinate of the node.
 class InvalidLine { };
 
+// Thrown if we try to have a 90 degree corner when only two connections
+// instead of coming in at 180 degrees like our design calls for.
+class InvalidCorner { };
+
 class Node
 {
     protected:
