@@ -27,6 +27,10 @@ class LineFind
         }
 };
 
+// Thrown if the coordinate at the beginning or end of the line is not
+// the coordinate of the node.
+class InvalidLine { };
+
 class Node
 {
     protected:
@@ -46,11 +50,13 @@ class Node
         ~Node();
         friend class Game;
         friend ostream& operator<<(ostream&, const Game&);
+    private:
+        void updateOpen(); // update open array after adding a connection
 };
 
-enum dir
+enum Dir
 {
-    up=0, right, down, left
+    Up=0, Right, Down, Left
 };
 
 #endif

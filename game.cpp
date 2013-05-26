@@ -4,7 +4,6 @@
 *
 * TODO:
 *   - only allow connections going out at 180 degrees until third
-*   - update openings[]
 *   - when doing a self loop, does connectable() need to check for 2 free connections?
 */
 
@@ -36,10 +35,11 @@ void Game::updateAreas()
     {
         nodes[i]->walk(areas);
         #ifdef DEBUG
-        cout <<  "Walked node:" << i << endl << "game status:" << endl
+        cout << "Walked node:" << i << endl << "game status:" << endl
             << *this << "\nEnd Game status" << endl;
         #endif
     }
+
     // This must be this late since Node::walk appends to it
     nAreas=areas.size();
 
@@ -264,7 +264,9 @@ ostream& operator<<(ostream& os, const Game& g)
     // Nodes
     for (int i = 0; i < g.nodes.size(); i++)
     {
-        os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << endl;
+        os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << " { U:"
+            << g.nodes[i]->open[Up]   << ", R:" << g.nodes[i]->open[Right] << ", D:"
+            << g.nodes[i]->open[Down] << ", L:" << g.nodes[i]->open[Left]  << " }" << endl;
 
         for (int j = 0; j < 3; j++)
         {

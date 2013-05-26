@@ -23,6 +23,7 @@ struct Coord
     Coord(int x, int y) :x(x), y(y) { }
 
     friend ostream& operator<<(ostream&,const Coord&);
+    bool operator==(const Coord& c) const { return x==c.x && y==c.y; }
 };
 
 typedef vector<Coord> Line;
