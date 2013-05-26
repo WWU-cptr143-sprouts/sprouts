@@ -233,26 +233,6 @@ Game::~Game()
         delete lines[i];
 }
 
-
-ostream& operator<<(ostream& os, const Connection& c)
-{
-    os << "Node Address:" << c.dest
-        << "\t Line Address:" << c.line;
-    return os;
-}
-
-ostream& operator<<(ostream& os, const Line& l)
-{
-    os << "Line Address:" << &l << endl;
-    int lSize = l.size();
-    for(int i =0;i<lSize-1; i++)
-    {
-        os << "(" << l[i].x << "," << l[i].y << ") -> ";
-    }
-        os << "(" << l[lSize-1].x << "," << l[lSize-1].y << ")";
-    return os;
-}
-
 ostream& operator<<(ostream& os, const Game& g)
 {
     // Areas
@@ -284,7 +264,7 @@ ostream& operator<<(ostream& os, const Game& g)
     // Nodes
     for (int i = 0; i < g.nodes.size(); i++)
     {
-        os << "Node " << g.nodes[i]  << " @ " << "(" << g.nodes[i]->getLoci().x << "," << g.nodes[i]->getLoci().y << ")" << endl;
+        os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << endl;
 
         for (int j = 0; j < 3; j++)
         {
