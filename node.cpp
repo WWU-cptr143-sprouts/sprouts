@@ -6,6 +6,7 @@
 Node::Node(Coord point, Connection con1, Connection con2)
     : loci(point)
 {
+    fill(&open[0], &open[0]+4, false);
     areasets[0] = NULL;
     areasets[1] = NULL;
     connections[0] = con1;

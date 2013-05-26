@@ -23,11 +23,15 @@ template<class T> class PointerFind
         }
 };
 
+// We'll throw this when trying to use connectable() with outdated areasets
+class AreasOutdated { };
+
 class Game
 {
     // Vectors of addresses since addresses of an element in a vector will
     // change as it grows
     private:
+        bool updated;
         vector<Area*> areas;
         vector<Areaset*> areasets;
     protected:
@@ -38,6 +42,7 @@ class Game
         void updateAreas(); //will call node.walk in its process
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
+        void clearAreas(); // empty areas/areasets and delete items pointed to
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
         Line& insertLine(const Line&);
 
