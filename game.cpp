@@ -149,6 +149,10 @@ void Game::updateAreas()
  */
 bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke for any problems here
 {
+    #ifdef DEBUG
+    cout << "is in area loci; " << position << endl;
+    #endif
+    //if(!target) return false;
     int tSize=target.size(), lCount=0,lSize=0;
     for(int i=0;i<tSize;i++)
     {
@@ -160,6 +164,10 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
             * if this was change to y instead of x
             * then it would find horizontal lines
             */
+            #ifdef DEBUG
+            cout << "target[i]:" << target[i] << endl;
+            cout << "(target[i]->line):" << (target[i]->line) << endl;
+            #endif
             const Line& lRef= *(target[i]->line);
             if((lRef[j-1].x==lRef[j].x && lRef[j].x < position.x))
             {

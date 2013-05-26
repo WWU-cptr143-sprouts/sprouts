@@ -38,11 +38,17 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
     if (connection)
         history.push_back(connection);
     #ifdef DEBUG
-    cout << "Currently in Node:" << this << " by following:" << connection << endl
+    cout << "Current origion Node(this):" << this << " by following:" << connection << endl
         << "connection: " << connection ;
         if(connection) cout << "\tconnection->dest:" << connection->dest;
-        cout << "\tthis:" << this
-        << "\tconnection && connection->dest == this:" << (int)(connection && (connection->dest == this)) << endl;
+        cout //<< "\tthis:" << this
+        << "\tconnection && connection->dest == this:" << (int)(connection && (connection->dest == this)) << endl
+        << "history: "; // << history << endl;  maybe we should make an opperator for this
+        for(int i =0;i<history.size();i++)
+        {
+            cout << history[i] << " ";
+        }
+        cout << endl;
     #endif
     // We have a circuit/loop if we're back to the start node
     if (connection && connection->dest == this)
@@ -79,11 +85,26 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
     //walk each connection
     for (int i = 0; i < 3; i++)
     {
-        // If a connection is filled and we have not already been to it, recurse
-        if (connections[i].exists() && find_if(history.begin(), history.end(),
-            LineFind(connections[i].line)) == history.end())
+        bool visited =false;
+        for(int j = 0,k=history.size()-1;j<k;j++)
         {
-            walk(areas, history, &connections[i]);
+            if(!connection) break;
+            if(history[j]->line==connection->line)
+            {
+                #ifdef DEBUG
+                cout << "setting visited to true" << endl;
+                #endif
+                visited =true;
+
+                continue;
+            }
+        }
+        // If a connection is filled and we have not already been to it, recurse
+        if (connections[i].exists() && !visited
+            /* find_if(history.begin(), history.end(),
+            LineFind(connections[i].line)) == history.end()*/ )
+        {
+            connections[i].dest->walk(areas, history, &connections[i]);
         }
     }
 }
