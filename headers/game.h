@@ -42,14 +42,15 @@ class Game
         void updateAreas(); //will call node.walk in its process
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
-        void clearAreas(); // empty areas/areasets and delete items pointed to
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
         Line& insertLine(const Line&);
 
         // Used for debugging
         friend ostream& operator<<(ostream&, const Game&);
         friend class TestSuite;
-
+    private:
+        void clearAreas(); // empty areas/areasets and delete items pointed to
+    public:
         ~Game();
 };
 
