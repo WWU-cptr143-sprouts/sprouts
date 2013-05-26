@@ -11,6 +11,7 @@
 #include "headers/game.h"
 
 Game::Game()
+    :updated(false)
 {
 
 }
@@ -22,15 +23,10 @@ void Game::updateAreas()
     Coord tempLoci;
     Connection* nodeConns;
 
-    for (int i = 0; i < areas.size(); ++i)
-        delete areas[i];
+    // We have once again updated the area
+    updated = true;
 
-    // ALWAYS skip the first one, which is static, the defaultAreaset.
-    for (int i = 1; i < areasets.size(); ++i)
-        delete areasets[i];
-
-    areas.clear();
-    areasets.clear();
+    clearAreas();
 
     // When we unique the areasets, we need a catch-all one
     areasets.push_back(&defaultAreaset);
@@ -182,6 +178,9 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
 
 bool Game::connectable(const Node& nodea, const Node& nodeb) const
 {
+    if (!updated)
+        throw AreasOutdated();
+
     return ((nodea.areasets[0]==nodeb.areasets[0] ||
              nodea.areasets[0]==nodeb.areasets[1] ||
              nodea.areasets[1]==nodeb.areasets[0] ||
@@ -191,6 +190,9 @@ bool Game::connectable(const Node& nodea, const Node& nodeb) const
 
 Node& Game::insertNode(Coord coord, Connection con1, Connection con2)
 {
+    // We've changed something, must update after this
+    updated = false;
+
     Node* node = new Node(coord, con1, con2);
     nodes.push_back(node);
     return *node;
@@ -198,12 +200,15 @@ Node& Game::insertNode(Coord coord, Connection con1, Connection con2)
 
 Line& Game::insertLine(const Line& line)
 {
+    // We've changed something, must update after this
+    updated = false;
+
     Line* keep = new Line(line);
     lines.push_back(keep);
     return *keep;
 }
 
-Game::~Game()
+void Game::clearAreas()
 {
     for (int i = 0; i < areas.size(); ++i)
         delete areas[i];
@@ -212,12 +217,22 @@ Game::~Game()
     for (int i = 1; i < areasets.size(); ++i)
         delete areasets[i];
 
+    // Just to make sure we never try accessing those again
+    areas.clear();
+    areasets.clear();
+}
+
+Game::~Game()
+{
+    clearAreas();
+
     for (int i = 0; i < nodes.size(); ++i)
         delete nodes[i];
 
     for (int i = 0; i < lines.size(); ++i)
         delete lines[i];
 }
+
 
 ostream& operator<<(ostream& os, const Connection& c)
 {

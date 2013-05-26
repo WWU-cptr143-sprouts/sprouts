@@ -23,11 +23,15 @@ template<class T> class PointerFind
         }
 };
 
+// We'll throw this when trying to use connectable() with outdated areasets
+class AreasOutdated { };
+
 class Game
 {
     // Vectors of addresses since addresses of an element in a vector will
     // change as it grows
     private:
+        bool updated;
         vector<Area*> areas;
         vector<Areaset*> areasets;
     protected:
@@ -44,7 +48,9 @@ class Game
         // Used for debugging
         friend ostream& operator<<(ostream&, const Game&);
         friend class TestSuite;
-
+    private:
+        void clearAreas(); // empty areas/areasets and delete items pointed to
+    public:
         ~Game();
 };
 
