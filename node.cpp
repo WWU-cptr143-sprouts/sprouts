@@ -1,6 +1,3 @@
-/*
-* These implications likely are not complete
-*/
 #include "headers/node.h"
 
 Node::Node(Coord point, Connection con1, Connection con2)
@@ -167,4 +164,15 @@ void Node::updateOpen()
 Node::~Node()
 {
 
+}
+
+ostream& operator<<(ostream& os, const Connection& con)
+{
+    if (con.exists())
+        os << "Node " << con.dest << " @ " << con.dest->loci
+           << " via " << con.line << ":{ " << *con.line << " }";
+    else
+        os << "default";
+
+    return os;
 }

@@ -50,6 +50,7 @@ class Node
         ~Node();
         friend class Game;
         friend ostream& operator<<(ostream&, const Game&);
+        friend ostream& operator<<(ostream&, const Connection&);
     private:
         void updateOpen(); // update open array after adding a connection
 };
@@ -58,5 +59,9 @@ enum Dir
 {
     Up=0, Right, Down, Left
 };
+
+// This is here since we want to print out the coordinate of the Node
+// which requires that the class has been declared.
+ostream& operator<<(ostream&,const Connection&);
 
 #endif

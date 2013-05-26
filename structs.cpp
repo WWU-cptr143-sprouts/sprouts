@@ -6,16 +6,6 @@ ostream& operator<<(ostream& os, const Coord& coord)
     return os;
 }
 
-ostream& operator<<(ostream& os, const Connection& con)
-{
-    if (con.exists())
-        os << "Node " << con.dest << " via " << con.line << ":{ " << *con.line << " }";
-    else
-        os << "default";
-
-    return os;
-}
-
 ostream& operator<<(ostream& os, const Line& line)
 {
     for (int i = 0; i < line.size(); i++)
