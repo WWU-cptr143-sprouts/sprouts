@@ -31,16 +31,26 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="`pkg-config sdl SDL_gfx SDL_image SDL_ttf --cflags`" />
 		</Compiler>
+		<Linker>
+			<Add option="`pkg-config sdl SDL_gfx SDL_image SDL_ttf --libs`" />
+		</Linker>
+		<Unit filename="../area.cpp" />
 		<Unit filename="../game.cpp" />
 		<Unit filename="../headers/area.h" />
 		<Unit filename="../headers/game.h" />
+		<Unit filename="../headers/image.h" />
 		<Unit filename="../headers/node.h" />
 		<Unit filename="../headers/structs.h" />
+		<Unit filename="../image.cpp" />
 		<Unit filename="../node.cpp" />
-		<Unit filename="../area.cpp" />
 		<Unit filename="../structs.cpp" />
+		<Unit filename="../tests/exceptions.cpp" />
+		<Unit filename="../tests/game1.cpp" />
 		<Unit filename="../tests/main.cpp" />
+		<Unit filename="../tests/tests.cpp" />
+		<Unit filename="../tests/tests.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
