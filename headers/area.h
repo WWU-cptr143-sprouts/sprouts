@@ -14,4 +14,6 @@ typedef vector<Area*> Areaset;
 // non-const vector
 static Areaset defaultAreaset; //create default/null vector
 
+ostream& operator<<(ostream& os, const Area& a);
+
 #endif

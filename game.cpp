@@ -13,7 +13,6 @@ Game::Game()
 void Game::updateAreas()
 {
     int nNodes = nodes.size(), nAreas=0;
-    Areaset tempSets[2];
     Coord tempLoci;
     Connection* nodeConns;
 
@@ -41,10 +40,12 @@ void Game::updateAreas()
     //create and apply area sets to each node
     for(int i=0;i<nNodes;i++)
     {
-        Areaset* nodeAS[2];
-
         if(nodes[i]->dead())
             continue;
+
+        Areaset* tempSets[2];
+        tempSets[0] = new Areaset();
+        tempSets[1] = new Areaset();
 
         nodeConns = nodes[i]->getConnAddr();
 
@@ -63,14 +64,14 @@ void Game::updateAreas()
                     tempLoci.x++;
                     //if its above added to the above area set
                     if(isInArea(*areas[j],tempLoci))
-                        tempSets[0].push_back(areas[j]);
+                        tempSets[0]->push_back(areas[j]);
                     // We incremented x once, so decrement twice
                     tempLoci.x--;
                     tempLoci.x--;
 
                     //if it is below then added to the below areas set
                     if(isInArea(*areas[j],tempLoci))
-                        tempSets[1].push_back(areas[j]);
+                        tempSets[1]->push_back(areas[j]);
 
                     tempLoci.x++; //reset to original coordinates
                 }
@@ -84,14 +85,14 @@ void Game::updateAreas()
                     tempLoci.y++;
                     //if its right added to the right area set
                     if(isInArea(*areas[j],tempLoci))
-                        tempSets[0].push_back(areas[j]);
+                        tempSets[0]->push_back(areas[j]);
                     // We incremented x once, so decrement twice
                     tempLoci.y--;
                     tempLoci.y--;
 
                     //if it is left then added to the left areas set
                     if(isInArea(*areas[j],tempLoci))
-                        tempSets[1].push_back(areas[j]);
+                        tempSets[1]->push_back(areas[j]);
 
                     tempLoci.y++; //reset to original coordinates
                 }
@@ -104,7 +105,7 @@ void Game::updateAreas()
             for(int j=0;j<nAreas;j++)
             {
                 if(isInArea(*areas[j],tempLoci))
-                    tempSets[0].push_back(areas[j]);
+                    tempSets[0]->push_back(areas[j]);
             }
         }
 
@@ -112,26 +113,36 @@ void Game::updateAreas()
         * This sorts the area sets, does NOT add if duplicate
         * And then applies them to the node
         */
-        sort(tempSets[0].begin(),tempSets[0].end());
-        sort(tempSets[1].begin(),tempSets[1].end());
+        sort(tempSets[0]->begin(),tempSets[0]->end());
+        sort(tempSets[1]->begin(),tempSets[1]->end());
+
         vector<Areaset*>::iterator itA=find_if(areasets.begin(),areasets.end(),
-            PointerFind<Areaset>(tempSets[0]));
+            PointerFind<Areaset>(*tempSets[0]));
+
         if(itA==areasets.end())
         {
-            areasets.push_back(&tempSets[0]);
-            nodeAS[0]=areasets.back();
+            areasets.push_back(tempSets[0]);
         }
-        else nodeAS[0]=*itA;
+        else
+        {
+            delete tempSets[0];
+            tempSets[0]=*itA;
+        }
+
         vector<Areaset*>::iterator itB=find_if(areasets.begin(),areasets.end(),
-            PointerFind<Areaset>(tempSets[1]));
+            PointerFind<Areaset>(*tempSets[1]));
+
         if(itB==areasets.end())
         {
-            areasets.push_back(&tempSets[1]);
-            nodeAS[1]=areasets.back();
+            areasets.push_back(tempSets[1]);
         }
-        else nodeAS[1]=*itB;
+        else
+        {
+            delete tempSets[1];
+            tempSets[1]=*itB;
+        }
 
-        nodes[i]->setAreasets(nodeAS);
+        nodes[i]->setAreasets(tempSets);
     }
 }
 
@@ -151,7 +162,7 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
     for(int i=0;i<tSize;i++)
     {
         lSize=target[i]->line->size();
-        for(int j=1;j<lSize;i++)
+        for(int j=1;j<lSize;j++)
         {
             /*
             * This code checks for vertical lines
@@ -244,33 +255,17 @@ ostream& operator<<(ostream& os, const Game& g)
 {
     // Areas
     for (int i = 0; i < g.areas.size(); i++)
-    {
-        os << "Area " << g.areas[i] << ": { ";
-
-        for (int j = 0; j < g.areas[i]->size(); ++j)
-        {
-            const Area& area = *g.areas[i];
-            os << "Connection " << *(area[j]->line);
-
-            if (j+1 != g.areas[i]->size())
-               os << ",";
-
-            os << " ";
-        }
-
-        os << "}" << endl;
-    }
+        os << "Area " << g.areas[i] << ": " << *g.areas[i] << endl;
 
     // Areasets
     for (int i = 0; i < g.areasets.size(); i++)
     {
+        const Areaset& areaset = *(g.areasets[i]);
         os << "Areaset " << g.areasets[i] << endl;
 
-        for (int j = 0; j < g.areasets[i]->size(); ++j)
-        {
-            const Areaset& areaset = *g.areasets[i];
-            os << "Area " << g.areasets[i] << ": " << areaset[j] << endl;
-        }
+        for (int j = 0; j < areaset.size(); j++)
+            if (areaset[j])
+                os << "  Area " << &areaset << ": " << *areaset[j] << endl;
     }
 
     // Nodes
@@ -288,9 +283,7 @@ ostream& operator<<(ostream& os, const Game& g)
 
     // Lines
     for (int i = 0; i < g.lines.size(); i++)
-    {
         os << "Line " << g.lines[i] << ": " << *g.lines[i] << endl;
-    }
 
     return os;
 }

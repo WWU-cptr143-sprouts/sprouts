@@ -187,7 +187,6 @@ TestSuite::TestSuite()
     cout << "DC is " << ((connectable(d,c))?"":"not ") << "connectable." << endl;
     cout << "DE is " << ((connectable(d,e))?"":"not ") << "connectable." << endl;
     cout << "ED is " << ((connectable(e,d))?"":"not ") << "connectable." << endl;
-    cout << areas.size() << endl;
 }
 
 int main()
