@@ -166,27 +166,6 @@ TestSuite::TestSuite()
 
     test("3", passed);
     cout << "final game state:\n" << *this;
-
-    cout << "AB is " << ((connectable(a,b))?"":"not ") << "connectable." << endl;
-    cout << "AE is " << ((connectable(a,e))?"":"not ") << "connectable." << endl;
-    cout << "BA is " << ((connectable(b,a))?"":"not ") << "connectable." << endl;
-    cout << "BC is " << ((connectable(b,c))?"":"not ") << "connectable." << endl;
-    cout << "BE is " << ((connectable(b,e))?"":"not ") << "connectable." << endl;
-    cout << "CB is " << ((connectable(c,b))?"":"not ") << "connectable." << endl;
-    cout << "CE is " << ((connectable(c,e))?"":"not ") << "connectable." << endl;
-    cout << "EA is " << ((connectable(e,a))?"":"not ") << "connectable." << endl;
-    cout << "EB is " << ((connectable(e,b))?"":"not ") << "connectable." << endl;
-    cout << "EC is " << ((connectable(e,c))?"":"not ") << "connectable." << endl;
-    cout << "AC is " << ((connectable(a,c))?"":"not ") << "connectable." << endl;
-    cout << "AD is " << ((connectable(a,d))?"":"not ") << "connectable." << endl;
-    cout << "BD is " << ((connectable(b,d))?"":"not ") << "connectable." << endl;
-    cout << "CA is " << ((connectable(c,a))?"":"not ") << "connectable." << endl;
-    cout << "CD is " << ((connectable(c,d))?"":"not ") << "connectable." << endl;
-    cout << "DA is " << ((connectable(d,a))?"":"not ") << "connectable." << endl;
-    cout << "DB is " << ((connectable(d,b))?"":"not ") << "connectable." << endl;
-    cout << "DC is " << ((connectable(d,c))?"":"not ") << "connectable." << endl;
-    cout << "DE is " << ((connectable(d,e))?"":"not ") << "connectable." << endl;
-    cout << "ED is " << ((connectable(e,d))?"":"not ") << "connectable." << endl;
 }
 
 int main()

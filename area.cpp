@@ -6,7 +6,7 @@ ostream& operator<<(ostream& os, const Area& a)
 
     for (int j = 0; j < a.size(); ++j)
     {
-        os << "Connection " << a[j]->line << ":" << *(a[j]->line);
+        os << "Con:" << *(a[j]->line);
 
         if (j+1 != a.size())
            os << ",";

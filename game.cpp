@@ -48,6 +48,7 @@ void Game::updateAreas()
         tempSets[1] = new Areaset();
 
         nodeConns = nodes[i]->getConnAddr();
+        tempLoci = nodes[i]->getLoci();
 
         /*
         * this if statement is only true if on a border, since conn 1
@@ -57,8 +58,6 @@ void Game::updateAreas()
         {
             if(nodes[i]->vertical())
             {
-                tempLoci = nodes[i]->getLoci();
-
                 for(int j=0;j<nAreas;j++)
                 {
                     tempLoci.x++;
@@ -78,8 +77,6 @@ void Game::updateAreas()
             }
             else
             {
-                tempLoci = nodes[i]->getLoci();
-
                 for(int j=0;j<nAreas;j++)
                 {
                     tempLoci.y++;
@@ -98,14 +95,19 @@ void Game::updateAreas()
                 }
             }
         }
-        else if(nodeConns[0].exists()) //this must be after the above code
+        else // A node with either one or no connections
         {
-            tempLoci = nodes[i]->getLoci();
-
             for(int j=0;j<nAreas;j++)
             {
                 if(isInArea(*areas[j],tempLoci))
+                {
+                    // In "both directions" we're in this area. If we don't do
+                    // this for both [0] and [1], we're always in the default
+                    // area and can connect to points outside of this area if
+                    // one of their areas is the default area.
                     tempSets[0]->push_back(areas[j]);
+                    tempSets[1]->push_back(areas[j]);
+                }
             }
         }
 
@@ -186,7 +188,11 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
             }
         }
     }
-    return lCount%2; // if it is in the area then lCount,the number of lines between it and the origin, will be odd, and thus return two
+
+    // If it is in the area then lCount, the number of lines between it and the
+    // origin, will be odd, and thus return true. However, if zero, we can't be
+    // in the area.
+    return lCount%2;
 }
 
 bool Game::connectable(const Node& nodea, const Node& nodeb) const
@@ -198,12 +204,15 @@ bool Game::connectable(const Node& nodea, const Node& nodeb) const
     if (&nodea == &nodeb)
         return !nodea.connections[1].exists() && !nodea.connections[2].exists();
 
-    // Otherwise, deal with it normally
-    return ((nodea.areasets[0]==nodeb.areasets[0] ||
-             nodea.areasets[0]==nodeb.areasets[1] ||
-             nodea.areasets[1]==nodeb.areasets[0] ||
-             nodea.areasets[1]==nodeb.areasets[1] )
-            && !nodea.dead() && !nodeb.dead());
+    // If either is dead, we can't connect
+    if (nodea.dead() || nodeb.dead())
+        return false;
+
+    // Otherwise, see if there's a shared areaset
+    return nodea.areasets[0] == nodeb.areasets[0] ||
+           nodea.areasets[0] == nodeb.areasets[1] ||
+           nodea.areasets[1] == nodeb.areasets[0] ||
+           nodea.areasets[1] == nodeb.areasets[1];
 }
 
 Node& Game::insertNode(Coord coord, Connection con1, Connection con2)
@@ -273,12 +282,12 @@ ostream& operator<<(ostream& os, const Game& g)
     {
         os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << " { U:"
             << g.nodes[i]->open[Up]   << ", R:" << g.nodes[i]->open[Right] << ", D:"
-            << g.nodes[i]->open[Down] << ", L:" << g.nodes[i]->open[Left]  << " }" << endl;
+            << g.nodes[i]->open[Down] << ", L:" << g.nodes[i]->open[Left]  << " } "
+            << "Areasets { " << g.nodes[i]->areasets[0] << ", "
+               << g.nodes[i]->areasets[1] << " } " << endl;
 
         for (int j = 0; j < 3; j++)
-        {
             os << "  Connection[" << j << "] " << g.nodes[i]->connections[j] << endl;
-        }
     }
 
     // Lines
