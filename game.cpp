@@ -159,11 +159,13 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
     #ifdef DEBUG
     cout << "is in area loci; " << position << endl;
     #endif
-    //if(!target) return false;
+
     int tSize=target.size(), lCount=0,lSize=0;
+
     for(int i=0;i<tSize;i++)
     {
         lSize=target[i]->line->size();
+
         for(int j=1;j<lSize;j++)
         {
             /*
@@ -190,8 +192,7 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
     }
 
     // If it is in the area then lCount, the number of lines between it and the
-    // origin, will be odd, and thus return true. However, if zero, we can't be
-    // in the area.
+    // origin, will be odd, and thus return true.
     return lCount%2;
 }
 

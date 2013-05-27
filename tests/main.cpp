@@ -166,6 +166,24 @@ TestSuite::TestSuite()
 
     test("3", passed);
     cout << "final game state:\n" << *this;
+
+    // Test 4, another point outside all areas
+    Node& f = insertNode(Coord(50,50));
+    updateAreas();
+
+    if (connectable(a,f) &&
+        connectable(b,f) &&
+        connectable(e,f) &&
+        connectable(f,a) &&
+        connectable(f,b) &&
+        connectable(f,e) &&
+        !connectable(d,f) &&
+        !connectable(c,f) &&
+        !connectable(f,d) &&
+        !connectable(f,c))
+        passed = true;
+
+    test("4", passed);
 }
 
 int main()
