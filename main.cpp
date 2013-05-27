@@ -33,10 +33,10 @@ int main(int argc,char *argv[])
 
     // What we draw on in memory since the algorithms are pixel-based
     // We'll use 16 bpp since 8 doesn't allow line-crossing detection for some reason.
-    SDL_Surface *buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
+    SDL_Surface* buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
 
     // What we draw on the screen
-    SDL_Surface *screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+    SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
     // Draw the background image
     //SDL_Surface *img = IMG_Load(background.c_str());
