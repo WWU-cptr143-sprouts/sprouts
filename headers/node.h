@@ -27,6 +27,23 @@ class LineFind
         }
 };
 
+// Similar to above but for comparing a vector to a vector pointer
+class AreaFind
+{
+    const Area& area;
+
+    public:
+        AreaFind(const Area& area) :area(area) { }
+
+        bool operator()(Area* search)
+        {
+            return area == *search;
+        }
+};
+
+// Used in std::min to sort, used to find unique areas
+bool LineCmp(Connection* a, Connection* b);
+
 // Thrown if the coordinate at the beginning or end of the line is not
 // the coordinate of the node.
 class InvalidLine { };
@@ -44,7 +61,9 @@ class Node
         bool open[4];
     public:
         Node(Coord, Connection = Connection(), Connection = Connection());
-        void walk(vector<Area*>& areas, Area history = Area(), Connection* connection = NULL);//Append new circuits/areas to this vector: be sure to check if exits
+        //Append new circuits/areas to this vector: be sure to check if exists
+        void walk(vector<Area*>&);
+        void walk(vector<Area*>&, Area, Connection*, Node*);
         Connection* getConnAddr(); //return array connection
         bool dead() const; //true if dead node
         bool vertical() const; // runs on assumption that there are two connections; if we implement exceptions should thrown one if it does NOT have two nodes

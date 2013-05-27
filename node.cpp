@@ -30,37 +30,36 @@ bool Node::vertical() const
     return !open[Up]; // if the node has a line coming in from the top then it is vertical
 }
 
-// Note: we could pass in history by reference if we delete added entries at the end of each
-// iteration
-void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
+// The initial call. There are two of these since we have to pass in the
+// original node's address so that we can later find if we have returned to
+// this.
+void Node::walk(vector<Area*>& areas)
 {
-    // Add this to the history if we're not already on the initial iteration
-    if (connection)
-        history.push_back(connection);
-    #ifdef DEBUG
-    cout << "Current origion Node(this):" << this << " by following:" << connection << endl
-        << "connection: " << connection ;
-        if(connection) cout << "\tconnection->dest:" << connection->dest;
-        cout //<< "\tthis:" << this
-        << "\tconnection && connection->dest == this:" << (int)(connection && (connection->dest == this)) << endl
-        << "history: "; // << history << endl;  maybe we should make an opperator for this
-        for(int i =0;i<history.size();i++)
-        {
-            cout << history[i] << " ";
-        }
-        cout << endl;
-    #endif
-    // We have a circuit/loop if we're back to the start node
-    if (connection && connection->dest == this)
+    // Walk each connection
+    for (int i = 0; i < 3; i++)
     {
-        #ifdef DEBUG
-        cout << "entered first if statment" << endl;
-        #endif
+        // If a connection is filled we have not already been to it since this
+        // is the initial function call, recurse. Note we pass in this nodes
+        // address so we'll know when we return to it.
+        if (connections[i].exists())
+            connections[i].dest->walk(areas, Area(), &connections[i], this);
+    }
+}
+
+// Note: we could pass in history by reference if we delete added entries at
+// the end of each iteration
+void Node::walk(vector<Area*>& areas, Area history, Connection* connection, Node* initial)
+{
+    history.push_back(connection);
+
+    // We have a circuit/loop if we're back to the start node
+    if (connection->dest == initial)
+    {
         //rotate the area to allow for uniqueness comparison
         Area::iterator iter;
         int oSize=history.size();
         Area rotatedHist(oSize);
-        iter = min(history.begin(),history.end());
+        iter = min_element(history.begin(),history.end(),LineCmp);
 
         if (iter==history.end()) //this should never happen
             throw "Node::walk() didn't find minimum";
@@ -68,44 +67,27 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection)
         for (int i=0;i<oSize;i++)
             rotatedHist[i]=history[(iter-history.begin()+i)%oSize];
 
-        // Add a copy of the rotated history to areas vector
-        Area* keep = new Area(rotatedHist);
-        areas.push_back(keep);
+        // Add a copy of the rotated history to areas vector if it isn't
+        // already there
+        if (find_if(areas.begin(), areas.end(), AreaFind(rotatedHist)) == areas.end())
+        {
+            Area* keep = new Area(rotatedHist);
+            areas.push_back(keep);
+        }
+
         return;
     }
-    #ifdef DEBUG
-    else
-    {
-        if (connection)
-            cout << connection->dest << " vs. " << this << endl;
-        else
-            cout << "no connection" << endl;
-    }
-    #endif
-    //walk each connection
+
+    // Walk each connection
     for (int i = 0; i < 3; i++)
     {
-        bool visited =false;
-        for(int j = 0,k=history.size()-1;j<k;j++)
-        {
-            if(!connection) break;
-            if(history[j]->line==connection->line)
-            {
-                #ifdef DEBUG
-                cout << "setting visited to true" << endl;
-                #endif
-                visited =true;
-
-                continue;
-            }
-        }
         // If a connection is filled and we have not already been to it, recurse
-        if (connections[i].exists() && !visited
-            /* find_if(history.begin(), history.end(),
-            LineFind(connections[i].line)) == history.end()*/ )
-        {
-            connections[i].dest->walk(areas, history, &connections[i]);
-        }
+        // Note we use the connection's node for the current node, not *this, which
+        // is where we started.
+        if (connections[i].exists() &&
+            find_if(history.begin(), history.end(),
+            LineFind(connections[i].line)) == history.end())
+            connections[i].dest->walk(areas, history, &connections[i], initial);
     }
 }
 
@@ -207,4 +189,9 @@ ostream& operator<<(ostream& os, const Connection& con)
         os << "default";
 
     return os;
+}
+
+bool LineCmp(Connection* a, Connection* b)
+{
+    return a->line < b->line;
 }

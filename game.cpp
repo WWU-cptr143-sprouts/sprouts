@@ -58,19 +58,19 @@ void Game::updateAreas()
             {
                 tempLoci = nodes[i]->getLoci();
 
-                for(int i=0;i<nAreas;i++)
+                for(int j=0;j<nAreas;j++)
                 {
                     tempLoci.x++;
                     //if its above added to the above area set
-                    if(isInArea(*areas[i],tempLoci))
-                        tempSets[0].push_back(areas[i]);
-                    //Need to make x -1 to origin
+                    if(isInArea(*areas[j],tempLoci))
+                        tempSets[0].push_back(areas[j]);
+                    // We incremented x once, so decrement twice
                     tempLoci.x--;
                     tempLoci.x--;
 
                     //if it is below then added to the below areas set
-                    if(isInArea(*areas[i],tempLoci))
-                        tempSets[1].push_back(areas[i]);
+                    if(isInArea(*areas[j],tempLoci))
+                        tempSets[1].push_back(areas[j]);
 
                     tempLoci.x++; //reset to original coordinates
                 }
@@ -79,20 +79,19 @@ void Game::updateAreas()
             {
                 tempLoci = nodes[i]->getLoci();
 
-                for(int i=0;i<nAreas;i++)
+                for(int j=0;j<nAreas;j++)
                 {
-
                     tempLoci.y++;
                     //if its right added to the right area set
-                    if(isInArea(*areas[i],tempLoci))
-                        tempSets[0].push_back(areas[i]);
-                    //Need to make x -1 to origin
+                    if(isInArea(*areas[j],tempLoci))
+                        tempSets[0].push_back(areas[j]);
+                    // We incremented x once, so decrement twice
                     tempLoci.y--;
                     tempLoci.y--;
 
                     //if it is left then added to the left areas set
-                    if(isInArea(*areas[i],tempLoci))
-                        tempSets[1].push_back(areas[i]);
+                    if(isInArea(*areas[j],tempLoci))
+                        tempSets[1].push_back(areas[j]);
 
                     tempLoci.y++; //reset to original coordinates
                 }
@@ -102,10 +101,10 @@ void Game::updateAreas()
         {
             tempLoci = nodes[i]->getLoci();
 
-            for(int i=0;i<nAreas;i++)
+            for(int j=0;j<nAreas;j++)
             {
-                if(isInArea(*areas[i],tempLoci))
-                    tempSets[0].push_back(areas[i]);
+                if(isInArea(*areas[j],tempLoci))
+                    tempSets[0].push_back(areas[j]);
             }
         }
 
@@ -246,15 +245,20 @@ ostream& operator<<(ostream& os, const Game& g)
     // Areas
     for (int i = 0; i < g.areas.size(); i++)
     {
-        os << "Area " << g.areas[i] << ": ";
+        os << "Area " << g.areas[i] << ": { ";
 
         for (int j = 0; j < g.areas[i]->size(); ++j)
         {
             const Area& area = *g.areas[i];
-            os << area[j] << " ";
+            os << "Connection " << *(area[j]->line);
+
+            if (j+1 != g.areas[i]->size())
+               os << ",";
+
+            os << " ";
         }
 
-        os << endl;
+        os << "}" << endl;
     }
 
     // Areasets
