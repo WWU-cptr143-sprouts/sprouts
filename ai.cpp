@@ -2,6 +2,11 @@
 *   implamentation of ai class goes here
 */
 #include "headers/gameai.h"
+GameAI::GameAI() : Game()
+{
+    // add more later maybe
+}
+
 bool GameAI::aiTurn()
 {
     //  This will go in our cpp file
@@ -20,10 +25,14 @@ bool GameAI::aiTurn()
         }
         mValues.push_back(sum);
     }
-    n=max(mValues.begin(),mValues.end());
+    n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
     *n
 
     delete tGame;
     return true;
 }
+ GameAI::~GameAI()
+ {
+     //more later
+ }

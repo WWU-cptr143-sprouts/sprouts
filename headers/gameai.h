@@ -18,7 +18,7 @@ class GameAI : public Game
         vector<Pmoves> possibleMoves;
         vector<vector<bool>> mTable;
     public:
-        GameAI();
+        GameAI(); //needs to call game constructor;
         int willMakeNEArea(const Node&,const Node&,const Connection&,const Connection&); //check if a given move will result in a non empty new area;
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
