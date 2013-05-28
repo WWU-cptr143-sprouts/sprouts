@@ -8,19 +8,20 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/sprouts" prefix_auto="1" extension_auto="1" />
-                <Option working_dir="../" />
+				<Option working_dir="../" />
 				<Option object_output="obj/Debug" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-g" />
-					<Add option="-Wall" />
 					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add directory="include/SDL" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/sprouts" prefix_auto="1" extension_auto="1" />
-                <Option working_dir="../" />
+				<Option working_dir="../" />
 				<Option object_output="obj/Release" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -36,20 +37,28 @@
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-            <Add library="mingw32" />
-            <Add library="SDLmain" />
-            <Add library="SDL" />
-            <Add library="SDL_gfx" />
+			<Add library="mingw32" />
+			<Add library="SDLmain" />
+			<Add library="SDL" />
+			<Add library="SDL_gfx" />
 			<Add library="lib\SDL_image.lib" />
 			<Add directory="lib" />
 		</Linker>
-        <Unit filename="../game.cpp" />
-        <Unit filename="../node.cpp" />
-        <Unit filename="../headers/area.h" />
-        <Unit filename="../headers/game.h" />
-        <Unit filename="../headers/node.h" />
-        <Unit filename="../headers/structs.h" />
-        <Unit filename="../main.cpp" />
+		<Unit filename="../area.cpp" />
+		<Unit filename="../draw.cpp" />
+		<Unit filename="../game.cpp" />
+		<Unit filename="../gamegui.cpp" />
+		<Unit filename="../headers/area.h" />
+		<Unit filename="../headers/draw.h" />
+		<Unit filename="../headers/game.h" />
+		<Unit filename="../headers/gamegui.h" />
+		<Unit filename="../headers/image.h" />
+		<Unit filename="../headers/node.h" />
+		<Unit filename="../headers/structs.h" />
+		<Unit filename="../image.cpp" />
+		<Unit filename="../main.cpp" />
+		<Unit filename="../node.cpp" />
+		<Unit filename="../structs.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
