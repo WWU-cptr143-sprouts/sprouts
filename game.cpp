@@ -228,7 +228,7 @@ Node& Game::insertNode(Coord coord, Connection con1, Connection con2)
 
 Line& Game::insertLine(const Line& line)
 {
-    // We've changed something, must update after this
+        // We've changed something, must update after this
     updated = false;
 
     Line* keep = new Line(line);
