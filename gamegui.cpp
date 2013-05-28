@@ -86,7 +86,14 @@ void GameGUI::click(Coord location)
     // Clicked on node to end
     if (selected && state == NodeClicked)
     {
-        // Select middle node
+        // Steps:
+        // 1. Select middle node
+        // 2. Split line into two lines, one going from first node to middle node,
+        //    one going from middle node to second node.
+        // 3. insertLine for each of the two lines
+        // 4. insertNode for the middle node
+        // 5. a.addConnection and b.addConnection for first and second nodes
+        // 6. updateAreas
     }
     // Clicked on node to start
     else if (selected)
