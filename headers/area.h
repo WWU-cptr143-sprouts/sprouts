@@ -16,4 +16,6 @@ static Areaset defaultAreaset; //create default/null vector
 
 ostream& operator<<(ostream& os, const Area& a);
 
+bool operator==(const Area& a,const Area& b);
+bool operator!=(const Area& a,const Area& b);
 #endif

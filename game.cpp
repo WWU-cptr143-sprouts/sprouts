@@ -297,3 +297,4 @@ ostream& operator<<(ostream& os, const Game& g)
 
     return os;
 }
+

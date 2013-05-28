@@ -67,31 +67,9 @@ void Node::walk(vector<Area*>& areas, Area history, Connection* connection, Node
         for (int i=0;i<oSize;i++)
             rotatedHist[i]=history[(iter-history.begin()+i)%oSize];
 
-        // Flipped. TODO: this is very slow, simplify and move into the above loop
-        Area reversed(history);
-        Area flippedHist(oSize);
-        reverse(reversed.begin(), reversed.end());
-        iter = min_element(reversed.begin(),reversed.end(),LineCmp);
-        for (int i=0;i<oSize;i++)
-            flippedHist[i]=reversed[(iter-history.begin()+i)%oSize];
-
-#ifdef DEBUG
-        cout << (*iter)->line << endl;
-        for (int i = 0; i < oSize; ++i)
-            cout << history[i]->line << ":" << *(history[i]->line) << " ";
-        cout << endl;
-        for (int i = 0; i < oSize; ++i)
-            cout << rotatedHist[i]->line << ":" << *(rotatedHist[i]->line) << " ";
-        cout << endl;
-        for (int i = 0; i < oSize; ++i)
-            cout << flippedHist[i]->line << ":" << *(flippedHist[i]->line) << " ";
-        cout << endl;
-#endif
-
         // Add a copy of the rotated history to areas vector if it isn't
         // already there
-        if (find_if(areas.begin(), areas.end(), AreaFind(rotatedHist)) == areas.end() &&
-            find_if(areas.begin(), areas.end(), AreaFind(flippedHist)) == areas.end())
+        if (find_if(areas.begin(), areas.end(), AreaFind(rotatedHist)) == areas.end())
         {
             Area* keep = new Area(rotatedHist);
             areas.push_back(keep);

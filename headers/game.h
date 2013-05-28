@@ -1,3 +1,19 @@
+/*
+*   TODO:
+*   need to add a game class copy constructer
+*   impliment tests of (in)equality opperator for Areas
+*   added a func to make a move (maybe called doMove(Line,Coord))
+*       use find to determin if the Coord is on a corner
+*       (is it in the Line vector)
+*       also this func needs to keep track of how many moves have been made
+*   add a move count func... maybe? if using doMove
+*   in a valid line func only check lines in the areasets of the start node
+*       in the process keep track of & of checked lines, dont recheck
+*
+*   TONEVERDO list (wish list)
+*   added a func to check validity of current game data state
+*/
+
 #ifndef H_Game
 #define H_Game
 
