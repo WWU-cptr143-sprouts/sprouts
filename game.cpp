@@ -342,3 +342,50 @@ ostream& operator<<(ostream& os, const Game& g)
     return os;
 }
 
+void Game::doMove(const Line& line, Coord middle)
+{
+    // Determine the end nodes
+    Node* a = NULL;
+    Node* b = NULL;
+
+    for (int i = 0; i < nodes.size(); i++)
+    {
+        if (nodes[i]->getLoci() == middle)
+        {
+            if (!a)
+                a = nodes[i];
+            else if (!b)
+                b = nodes[i];
+            // Instead of breaking out after finding both, throw error?
+            // Maybe only in debugging.
+            else
+                throw InvalidMove();
+        }
+    }
+
+    if (!a || !b)
+        throw InvalidMove();
+    
+    // Split the line using the middle coordinate
+    for (int i = 0; i < line.size(); i++)
+    {
+        // When between two points, split there
+    }
+
+    Line AC_line;
+    Line CB_line;
+
+    Line& AC = insertLine(AC_line);
+    Line& CB = insertLine(CB_line);
+    
+    // Insert middle node C between nodes A and B
+    Node& c = insertNode(middle,
+            Connection(&AC, a),
+            Connection(&CB, b));
+
+    // Likewise add the connection to the start and end nodes
+    a->addConnection(Connection(&AC, &c));
+    b->addConnection(Connection(&CB, &c));
+
+    updateAreas();
+}

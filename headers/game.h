@@ -44,6 +44,10 @@ template<class T> class PointerFind
 // We'll throw this when trying to use connectable() with outdated areasets
 class AreasOutdated { };
 
+// Thrown in doMove() if the center point isn't on the line or the line
+// doesn't end in two nodes (or runs through more than two).
+class InvalidMove { };
+
 class Game
 {
     // Vectors of addresses since addresses of an element in a vector will
@@ -59,8 +63,11 @@ class Game
         Game();
         Game(const Game&);
         void updateAreas(); //will call node.walk in its process
+        void doMove(const Line&, Coord middle); // This is the function you'll use a LOT.
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
+
+        // TODO: Make these private eventually? Use doMove() instead.
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
         Line& insertLine(const Line&);
 
