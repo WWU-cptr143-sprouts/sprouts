@@ -36,6 +36,7 @@ struct Connection
 
     Connection() :line(NULL), dest(NULL) { }
     Connection(Line* l, Node* d) :line(l), dest(d) { }
+    Connection(const Connection& c) :line(c.line), dest(c.dest) { }
     
     friend ostream& operator<<(ostream&,const Connection&);
 };

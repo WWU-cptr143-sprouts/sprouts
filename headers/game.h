@@ -9,6 +9,7 @@
 *   add a move count func... maybe? if using doMove
 *   in a valid line func only check lines in the areasets of the start node
 *       in the process keep track of & of checked lines, dont recheck
+*   end game function
 *
 *   TONEVERDO list (wish list)
 *   added a func to check validity of current game data state
@@ -17,6 +18,7 @@
 #ifndef H_Game
 #define H_Game
 
+#include <map>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -55,6 +57,7 @@ class Game
         vector<Line*> lines;
     public:
         Game();
+        Game(const Game&);
         void updateAreas(); //will call node.walk in its process
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;

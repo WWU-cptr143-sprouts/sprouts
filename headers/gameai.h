@@ -1,13 +1,15 @@
 #ifndef H_Gameai
-#include "headers/game.h"
+#define H_Gameai
 
+#include <vector>
+#include "game.h"
 
 class Pmove
 {
     public:
-    Connection aLink;
-    Node newNode;
-    Connection bLink;
+        Connection aLink;
+        Node newNode;
+        Connection bLink;
 };
 
 class GameAI : public Game
@@ -15,8 +17,8 @@ class GameAI : public Game
     protected:
         bool aiFirst, evenINodes;
         int startingNodes;
-        vector<Pmoves> possibleMoves;
-        vector<vector<bool>> mTable;
+        vector<Pmove> possibleMoves;
+        vector<vector<bool> > mTable;
     public:
         GameAI(); //needs to call game constructor;
         int willMakeNEArea(const Node&,const Node&,const Connection&,const Connection&); //check if a given move will result in a non empty new area;
@@ -26,4 +28,5 @@ class GameAI : public Game
 
         ~GameAI();
 };
+
 #endif

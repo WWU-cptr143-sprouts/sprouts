@@ -1,7 +1,8 @@
 /*
-*   implamentation of ai class goes here
+*   implementation of ai class goes here
 */
 #include "headers/gameai.h"
+
 GameAI::GameAI() : Game()
 {
     // add more later maybe
@@ -9,13 +10,12 @@ GameAI::GameAI() : Game()
 
 bool GameAI::aiTurn()
 {
-    //  This will go in our cpp file
-    vector<int> mValues;
-    tGame = new Game(game);
+    /*vector<int> mValues;
+    Game* tGame = new Game(*this);
     populateMList(); //will populate the possibleMoves vector
     populatemTable();
     //insert the move into the temp game
-    tGame->insertNode(new Node(~));
+    tGame->insertNode(new Node());
     for(int i=0;i <mTable.size();i++)
     {
         int sum=0
@@ -27,12 +27,12 @@ bool GameAI::aiTurn()
     }
     n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
-    *n
 
-    delete tGame;
+    delete tGame;*/
     return true;
 }
- GameAI::~GameAI()
- {
-     //more later
- }
+
+GameAI::~GameAI()
+{
+ //more later
+}
