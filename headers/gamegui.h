@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <SDL_gfxPrimitives.h>
 #include "game.h"
+#include "image.h"
 
 using namespace std;
 
@@ -22,6 +23,9 @@ class GameGUI : public Game
 {
     private:
         SDL_Surface* screen;
+
+        // The background image
+        //Image* bg;
 
         // Where we are currently in the game. E.g., we just clicked on a node.
         State state;

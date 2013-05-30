@@ -10,7 +10,6 @@ int main(int argc,char *argv[])
 {
     int width = 800;
     int height = 602;
-    std::string background = "images/background.jpg";
 
 	bool gameRunning = true;
 	SDL_Event event;	// dump event polls into this
