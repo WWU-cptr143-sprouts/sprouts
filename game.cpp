@@ -415,6 +415,10 @@ void Game::doMove(const Line& line, Coord middle)
     if (count != 1)
         throw InvalidMove();
 
+    // Note that if the middle point is on a corner, it will throw above because
+    // we check that x or y is less than one and greater than the other, meaning
+    // that it can't be equal to either.
+
     Line& AC = insertLine(AC_line);
     Line& CB = insertLine(CB_line);
     
