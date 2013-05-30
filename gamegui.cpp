@@ -82,10 +82,38 @@ void GameGUI::cancel()
 void GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
-
+    int tempx,tempy;
+    //Coord point = location;
+    //Coord last = currentLine.back();
     // Clicked on node to end
     if (selected && state == NodeClicked)
     {
+        //correct for last line to make it straight
+        if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
+            {//if(validLine(selected.x)) Check if valid
+           currentLine.back().x= selected->getLoci().x;
+           currentLine.push_back(straighten(currentLine.back(), location));
+            }
+        else
+        {
+            currentLine.back().y= selected->getLoci().y;
+           currentLine.push_back(straighten(currentLine.back(), location));
+        }
+        //Draw new node
+        if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
+        {
+            tempx=(currentLine[(currentLine.size())/2]).x;
+            tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vert.
+        }
+        else
+        {
+            tempy=(currentLine[(currentLine.size())/2]).y;
+            tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
+        }
+
+        insertNode(Coord(tempx,tempy));
+        state=Blank;
+        //cancel();
         // Steps:
         // 1. Select middle node
         // 2. Split line into two lines, one going from first node to middle node,
@@ -96,17 +124,19 @@ void GameGUI::click(Coord location)
         // 6. updateAreas
     }
     // Clicked on node to start
-    else if (selected)
-    {
-        currentLine.push_back(selected->getLoci());
-        state = NodeClicked;
-    }
+    else
+        if (selected)
+        {
+            currentLine.push_back(selected->getLoci());
+            state = NodeClicked;
+        }
     // Clicked to place a line
+
     else if ((state == NodeClicked || state == LineClicked) &&
-        validLine(currentLine.back(), location))
+        validLine(currentLine.back(), location))//Remove the second half of the || Statement
     {
         currentLine.push_back(straighten(currentLine.back(), location));
-        state = LineClicked;
+        //state = LineClicked; // Took this out otherwise the node would have to be clicked twice for the move to end.
     }
 
     redraw();
@@ -197,30 +227,22 @@ bool GameGUI::validLine(Coord last, Coord point) const
     int startY = last.y;
     int endX = point.x;
     int endY = point.y;
-    if (((point.y<=(last.y+(last.x-point.x)))&&(point.y<=(last.y-(last.x-point.x))))||((point.y>=(last.y+(last.x-point.x)))&&(point.y>=(last.y-(last.x-point.x)))))
+    if (((point.y<=(last.y+(last.x-point.x)))&&(point.y<=(last.y-(last.x-point.x))))||((point.y>=(last.y+(last.x-point.x)))&&(point.y>=(last.y-(last.x-point.x)))))//kyle's code to make the line go at right angles
     {
-        startX = last.x;
-        startY = last.y;
         endX = last.x;
         endY = point.y;
-        if(((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y)))
+        if(((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y)))//blake's modification in the event of user trying to backtrack on line
             {
-                startX = last.x;
-                startY = last.y;
                 endX = point.x;
                 endY = last.y;
             }
     }
     else
         {
-            startX = last.x;
-            startY = last.y;
             endX = point.x;
             endY = last.y;
             if(((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x)))
             {
-                startX = last.x;
-                startY = last.y;
                 endX = last.x;
                 endY = point.y;
             }
@@ -231,6 +253,7 @@ bool GameGUI::validLine(Coord last, Coord point) const
     // TODO: fix validLine() algorithm
     // http://www.onemoresoftwareblog.com/2011/11/two-line-segment-intersection-algorithm.html
 
+    //code for checking among the line currently being drawn
     for (int j = 0; j < currentLine.size(); j++)
     {
         //for (int j = 1; j < line[i]->size(); j++)
@@ -241,7 +264,7 @@ bool GameGUI::validLine(Coord last, Coord point) const
             const int A3 = currentLine[j].x;
             const int B3 = currentLine[j].y;
 
-            if (((point.y<=(last.y+(last.x-point.x)))&&(point.y<=(last.y-(last.x-point.x))))||((point.y>=(last.y+(last.x-point.x)))&&(point.y>=(last.y-(last.x-point.x)))))
+            if (endY == point.y)
             {
                 if(A2 != A3)
                     if(A2 > A3)
@@ -301,6 +324,79 @@ bool GameGUI::validLine(Coord last, Coord point) const
                 return false;*/
         }
     }
+
+    //code for already made lines, unsure of error
+    /*for (int i = 0; i < line.size(); i++)
+    {
+        for (int j = 1; j < line[i]->size(); j++)
+        {
+            const Line& line = *lines[i];
+            const int A2 = line[j-1].x;
+            const int B2 = line[j-1].y;
+            const int A3 = line[j].x;
+            const int B3 = line[j].y;
+
+            if (endY == point.y)
+            {
+                if(A2 != A3)
+                    if(A2 > A3)
+                    {
+                        if((startX > A3)&&(startX < A2))
+                            if(startY > endY)
+                            {
+                                if((B2 < startY)&&(B2 > endY))
+                                    return false;
+                            }
+                            else
+                                if((B2 > startY)&&(B2 < endY))
+                                    return false;
+                    }
+                    else
+                        if((startX < A3)&&(startX > A2))
+                            if(startY > endY)
+                            {
+                                if((B2 < startY)&&(B2 > endY))
+                                    return false;
+                            }
+                            else
+                                if((B2 > startY)&&(B2 < endY))
+                                    return false;
+            }
+            else
+            {
+                if(B2 != B3)
+                    if(B2 > B3)
+                    {
+                        if((startY < B2)&&(startY > B3))
+                            if(startX > endX)
+                            {
+                                if((A2 < startX)&&(A2 > endX))
+                                    return false;
+                            }
+                            else
+                                if((A2 > startX)&&(A2 < endX))
+                                    return false;
+                    }
+                    else
+                        if((startY > B2)&&(startY < B3))
+                            if(startX > endX)
+                            {
+                                if((A2 < startX)&&(A2 > endX))
+                                    return false;
+                            }
+                            else
+                                if((A2 > startX)&&(A2 < endX))
+                                    return false;
+
+            }
+
+                        // If A is on one side and B is on the other side, then it intersects
+            /*if (((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0)) < 0 &&
+                ((A0-A2)*(B3-B2) + (B0-B2)*(A3-A2)) * ((A1-A2)*(B3-B2) + (B1-B2)*(A3-A2)) < 0)
+                return false;*/
+        //}
+    //}
+
     // Line collision algorithm: http://stackoverflow.com/a/14177062
     /*for (int i = 0; i < lines.size(); i++)
     {
