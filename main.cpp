@@ -6,6 +6,11 @@
 #include "headers/gamegui.h"
 #include "headers/image.h"
 
+void error(const string& s)
+{
+    cout << "Error: " << s << endl;
+}
+
 int main(int argc,char *argv[])
 {
     int width = 800;
@@ -63,32 +68,55 @@ int main(int argc,char *argv[])
 	{
 		while (gameRunning && SDL_PollEvent(&event))
 		{
-			switch (event.type)
-			{
-				case SDL_QUIT: // Alt+F4, X, ...
-					gameRunning = false;
-					break;
-                case SDL_ACTIVEEVENT:
-                    // see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
-                    break;
-				case SDL_KEYDOWN:
-                    break;
-				case SDL_KEYUP:
-					if (event.key.keysym.sym == SDLK_ESCAPE)
-                        game.cancel();
-					break;
-                case SDL_MOUSEBUTTONDOWN:
-                    break;
-				case SDL_MOUSEBUTTONUP:
-					if (event.button.button == SDL_BUTTON_LEFT)
-                        game.click(Coord(event.button.x, event.button.y));
-					break;
-				case SDL_MOUSEMOTION:
-                    game.cursor(Coord(event.motion.x, event.motion.y));
-					break;
-				default:
-					break;
-			}
+            try
+            {
+                switch (event.type)
+                {
+                    case SDL_QUIT: // Alt+F4, X, ...
+                        gameRunning = false;
+                        break;
+                    case SDL_ACTIVEEVENT:
+                        // see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
+                        break;
+                    case SDL_KEYDOWN:
+                        break;
+                    case SDL_KEYUP:
+                        if (event.key.keysym.sym == SDLK_ESCAPE)
+                            game.cancel();
+                        break;
+                    case SDL_MOUSEBUTTONDOWN:
+                        break;
+                    case SDL_MOUSEBUTTONUP:
+                        if (event.button.button == SDL_BUTTON_LEFT)
+                            game.click(Coord(event.button.x, event.button.y));
+                        break;
+                    case SDL_MOUSEMOTION:
+                        game.cursor(Coord(event.motion.x, event.motion.y));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (const InvalidLine& e)
+            {
+                error("Tried to add an invalid line");
+            }
+            catch (const InvalidMove& e)
+            {
+                error("Tried to make an invalid move");
+            }
+            catch (const ImageNotLoaded& e)
+            {
+                error("Could not load image");
+            }
+            catch (const AreasOutdated& e)
+            {
+                error("Tried to find if connectable with outdated areas");
+            }
+            catch (const InvalidCorner& e)
+            {
+                error("Tried to add a middle node on a corner");
+            }
 		}
 	}
 
