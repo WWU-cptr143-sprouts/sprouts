@@ -54,6 +54,7 @@ class Game
     // change as it grows
     private:
         bool updated;
+        int moveCount;
         vector<Area*> areas;
         vector<Areaset*> areasets;
     protected:
@@ -64,11 +65,13 @@ class Game
         Game(const Game&);
         void updateAreas(); //will call node.walk in its process
         void doMove(const Line&, Coord middle); // This is the function you'll use a LOT.
+        int moves() const; // Returns how many times doMove has been called
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
-
-        // TODO: Make these private eventually? Use doMove() instead.
+        // Needed for initializing nodes on the screen
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
+        
+        // Make this private? Only thing that uses it is the test suite?
         Line& insertLine(const Line&);
 
         // Used for debugging

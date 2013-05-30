@@ -5,7 +5,7 @@
 #include "headers/game.h"
 
 Game::Game()
-    :updated(false)
+    :updated(false), moveCount(0)
 {
 
 }
@@ -427,5 +427,11 @@ void Game::doMove(const Line& line, Coord middle)
     a->addConnection(Connection(&AC, &c));
     b->addConnection(Connection(&CB, &c));
 
+    ++moveCount;
     updateAreas();
+}
+
+int Game::moves() const
+{
+    return moveCount;
 }
