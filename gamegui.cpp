@@ -97,8 +97,9 @@ void GameGUI::click(Coord location)
     {
         //correct for last line to make it straight
         if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
-            {//if(validLine(selected.x)) Check if valid
+            {
            currentLine.back().x= selected->getLoci().x;
+           if(validLine(currentLine.back(),Coord(selected->getLoci().x,selected->getLoci().y))) //Check if valid move
            currentLine.push_back(straighten(currentLine.back(), location));
             }
         else
