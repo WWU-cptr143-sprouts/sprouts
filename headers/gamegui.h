@@ -15,7 +15,6 @@ enum State
 {
     Blank,
     NodeClicked,
-    LineClicked
 };
 
 class GameGUI : public Game

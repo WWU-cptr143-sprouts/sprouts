@@ -86,14 +86,9 @@ void GameGUI::click(Coord location)
     // Clicked on node to end
     if (selected && state == NodeClicked)
     {
-        // Steps:
-        // 1. Select middle node
-        // 2. Split line into two lines, one going from first node to middle node,
-        //    one going from middle node to second node.
-        // 3. insertLine for each of the two lines
-        // 4. insertNode for the middle node
-        // 5. a.addConnection and b.addConnection for first and second nodes
-        // 6. updateAreas
+        Coord middle;
+        doMove(currentLine, middle);
+        cancel();
     }
     // Clicked on node to start
     else if (selected)
@@ -102,11 +97,9 @@ void GameGUI::click(Coord location)
         state = NodeClicked;
     }
     // Clicked to place a line
-    else if ((state == NodeClicked || state == LineClicked) &&
-        validLine(currentLine.back(), location))
+    else if (state == NodeClicked && validLine(currentLine.back(), location))
     {
         currentLine.push_back(straighten(currentLine.back(), location));
-        state = LineClicked;
     }
 
     redraw();
@@ -114,7 +107,7 @@ void GameGUI::click(Coord location)
 
 void GameGUI::cursor(Coord location)
 {
-    if (state == NodeClicked || state == LineClicked)
+    if (state == NodeClicked)
     {
         lock();
         redraw(false);
@@ -180,48 +173,7 @@ double GameGUI::distance(Coord a, Coord b) const
 
 bool GameGUI::validLine(Coord a, Coord b) const
 {
-    const int A0 = a.x;
-    const int B0 = a.y;
-    const int A1 = b.x;
-    const int B1 = b.y;
-
-    // TODO: fix validLine() algorithm
-    // http://www.onemoresoftwareblog.com/2011/11/two-line-segment-intersection-algorithm.html
-
-    // Line collision algorithm: http://stackoverflow.com/a/14177062
-    /*for (int i = 0; i < lines.size(); i++)
-    {
-        for (int j = 1; j < lines[i]->size(); j++)
-        {
-            const Line& line = *lines[i];
-            const int A2 = line[j-1].x;
-            const int B2 = line[j-1].y;
-            const int A3 = line[j].x;
-            const int B3 = line[j].y;
-
-            // If A is on one side and B is on the other side, then it intersects
-            if (((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0)) < 0 &&
-                ((A0-A2)*(B3-B2) + (B0-B2)*(A3-A2)) * ((A1-A2)*(B3-B2) + (B1-B2)*(A3-A2)) < 0)
-                return false;
-        }
-    }
-    
-    // Same but for current line
-    for (int j = 1; j < currentLine.size(); j++)
-    {
-        const int A2 = currentLine[j-1].x;
-        const int B2 = currentLine[j-1].y;
-        const int A3 = currentLine[j].x;
-        const int B3 = currentLine[j].y;
-
-        int sideOne = ((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0));
-        int sideTwo = ((A0-A2)*(B3-B2) + (B0-B2)*(A3-A2)) * ((A1-A2)*(B3-B2) + (B1-B2)*(A3-A2));
-
-        // If A is on one side and B is on the other side, then it intersects
-        if ((sideOne < 0 && sideTwo < 0) || (sideOne > 0 && sideTwo > 0))
-            return false;
-    }*/
-
+    // Put Blake's code here
     return true;
 }
 
