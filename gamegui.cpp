@@ -23,6 +23,10 @@ GameGUI::GameGUI(SDL_Surface* screen, int count)
         }
     }
 
+    // Load background
+    //std::string background = "images/background.jpg";
+    //bg = new Image(background);
+
     redraw();
 }
 
@@ -33,6 +37,9 @@ void GameGUI::redraw(bool lck)
 
     // Blank screen
     SDL_FillRect(screen, NULL, 0);
+
+    // Background, note can't be locked for this to run
+    //SDL_BlitSurface(bg->surface(), NULL, screen, NULL);
 
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
@@ -179,5 +186,5 @@ bool GameGUI::validLine(Coord a, Coord b) const
 
 GameGUI::~GameGUI()
 {
-
+    //delete bg;
 }

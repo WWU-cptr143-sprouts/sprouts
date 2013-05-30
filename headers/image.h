@@ -2,6 +2,8 @@
 #define H_IMAGE
 
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_gfxPrimitives.h>
 #include <string>
 
 using namespace std;
