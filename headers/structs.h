@@ -19,7 +19,7 @@ struct Coord
     int x;
     int y;
 
-    Coord() { }
+    Coord() :x(0), y(0) { }
     Coord(int x, int y) :x(x), y(y) { }
 
     friend ostream& operator<<(ostream&,const Coord&);

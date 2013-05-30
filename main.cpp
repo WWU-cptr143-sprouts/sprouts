@@ -81,10 +81,10 @@ int main(int argc,char *argv[])
                     break;
 				case SDL_MOUSEBUTTONUP:
 					if (event.button.button == SDL_BUTTON_LEFT)
-                        game.click(event.button.x, event.button.y);
+                        game.click(Coord(event.button.x, event.button.y));
 					break;
 				case SDL_MOUSEMOTION:
-                    game.cursor(event.motion.x, event.motion.y);
+                    game.cursor(Coord(event.motion.x, event.motion.y));
 					break;
 				default:
 					break;
