@@ -4,7 +4,6 @@
 *   implement tests of (in)equality operator for Areas
 *   in a valid line function only check lines in the areasets of the start node
 *       in the process keep track of & of checked lines, don't recheck
-*   end game function
 *
 *   TONEVERDO list (wish list)
 *   added a function to check validity of current game data state
@@ -63,6 +62,7 @@ class Game
         int moves() const; // Returns how many times doMove has been called
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;
+        bool gameEnded() const; // Can any nodes be connected still?
         // Needed for initializing nodes on the screen
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
         

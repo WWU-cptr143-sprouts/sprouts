@@ -439,3 +439,20 @@ int Game::moves() const
 {
     return moveCount;
 }
+
+bool Game::gameEnded() const
+{
+    // Loop through all nodes and return true if none of them can be connected
+    for (int i = 0; i < nodes.size(); i++)
+    {
+        for (int j = i+1; j < nodes.size(); j++)
+        {
+            if (connectable(*nodes[i], *nodes[j]))
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
