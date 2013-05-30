@@ -6,7 +6,7 @@
 #include <vector>
 #include <SDL.h>
 #include <SDL_gfxPrimitives.h>
-#include "game.h"
+#include "gameai.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ enum State
     NodeClicked,
 };
 
-class GameGUI : public Game
+class GameGUI : public GameAI
 {
     private:
         SDL_Surface* screen;
