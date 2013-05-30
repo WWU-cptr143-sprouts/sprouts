@@ -19,6 +19,7 @@ class Tests : public Game
         Tests() :Game() { }
 
         void game1();
+        void game1_doMove();
         void invalidCorner();
         void invalidLine();
         void imageNotLoaded();

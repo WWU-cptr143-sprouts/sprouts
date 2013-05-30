@@ -350,30 +350,70 @@ void Game::doMove(const Line& line, Coord middle)
 
     for (int i = 0; i < nodes.size(); i++)
     {
-        if (nodes[i]->getLoci() == middle)
+        if (nodes[i]->getLoci() == line.front())
         {
-            if (!a)
-                a = nodes[i];
-            else if (!b)
-                b = nodes[i];
-            // Instead of breaking out after finding both, throw error?
-            // Maybe only in debugging.
-            else
+            if (a)
                 throw InvalidMove();
+            else
+                a = nodes[i];
+        }
+        
+        if (nodes[i]->getLoci() == line.back())
+        {
+            if (b)
+                throw InvalidMove();
+            else
+                b = nodes[i];
         }
     }
 
+    // Couldn't find nodes
     if (!a || !b)
         throw InvalidMove();
-    
-    // Split the line using the middle coordinate
-    for (int i = 0; i < line.size(); i++)
-    {
-        // When between two points, split there
-    }
 
+    // The same coordinate
+    if (a->getLoci() == b->getLoci())
+        throw InvalidMove();
+
+    if (line.size() == 0)
+        throw InvalidLine();
+
+    // Split the line using the middle coordinate
+    int count = 0; // Add to first line when 0, second when 1
     Line AC_line;
     Line CB_line;
+
+    // First point since we start at the second point, looking at the first
+    // line segment
+    AC_line.push_back(line.front());
+
+    // When between two points, split there
+    for (int i = 1; i < line.size(); i++)
+    {
+        if ((line[i].y == line[i-1].y && // Horizontal
+                ((middle.x > line[i].x && middle.x < line[i-1].x)   ||
+                 (middle.x < line[i].x && middle.x > line[i-1].x))) ||
+            (line[i].x == line[i-1].x && // Vertical
+                ((middle.y > line[i].y && middle.y < line[i-1].y)   ||
+                 (middle.y < line[i].y && middle.y > line[i-1].y))))
+        {
+            ++count;
+            AC_line.push_back(middle);
+            CB_line.push_back(middle);
+            CB_line.push_back(line[i]);
+        }
+        else
+        {
+            if (count == 0)
+                AC_line.push_back(line[i]);
+            else
+                CB_line.push_back(line[i]);
+        }
+    }
+
+    // We should have found a place to put the middle point
+    if (count != 1)
+        throw InvalidMove();
 
     Line& AC = insertLine(AC_line);
     Line& CB = insertLine(CB_line);

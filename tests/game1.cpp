@@ -21,8 +21,7 @@ void Tests::game1()
         !connectable(c, b))
         passed = false;
 
-    test("1", passed);
-    cout << *this;
+    test("game1 1", passed);
 
     // Draw a line down 10 pixels and over 10 pixels from A to B
     /*Line l;
@@ -73,8 +72,7 @@ void Tests::game1()
         !connectable(d, c))
         passed = false;
 
-    test("2", passed);
-    cout << *this;
+    test("game1 2", passed);
 
     // Draw line around C, from D to B
     /*Line l;
@@ -146,12 +144,13 @@ void Tests::game1()
         !connectable(e,d))
         passed = true;
 
-    test("3", passed);
-    cout << "final game state:\n" << *this;
+    test("game1 3", passed);
 
     // Test 4, another point outside all areas
     Node& f = insertNode(Coord(50,50));
+
     updateAreas();
+    passed = false;
 
     if (connectable(a,f) &&
         connectable(b,f) &&
@@ -165,5 +164,96 @@ void Tests::game1()
         !connectable(f,c))
         passed = true;
 
-    test("4", passed);
+    test("game1 4", passed);
+}
+
+void Tests::game1_doMove()
+{
+    updateAreas();
+    bool passed = false;
+
+    Node& a = insertNode(Coord(0,0));
+    Node& b = insertNode(Coord(10,10));
+    Node& c = insertNode(Coord(20,20));
+
+    // Test 1, all original nodes connectable
+    updateAreas();
+    passed = true;
+
+    if (!connectable(a, b) ||
+        !connectable(a, c) ||
+        !connectable(b, a) ||
+        !connectable(b, c) ||
+        !connectable(c, a) ||
+        !connectable(c, b))
+        passed = false;
+
+    test("game1_doMove 1", passed);
+
+    // Draw a line down 10 pixels and over 10 pixels from A to B
+    Line l;
+    l.push_back(Coord(0,0));
+    l.push_back(Coord(0,10));
+    l.push_back(Coord(10,10));
+
+    doMove(l, Coord(5, 10));
+    Node& d = *nodes.back();
+
+    // Test 2
+    if (!connectable(a, b) ||
+        !connectable(a, c) ||
+        !connectable(a, d) ||
+        !connectable(b, a) ||
+        !connectable(b, c) ||
+        !connectable(b, d) ||
+        !connectable(c, a) ||
+        !connectable(c, b) ||
+        !connectable(c, d) ||
+        !connectable(d, a) ||
+        !connectable(d, b) ||
+        !connectable(d, c))
+        passed = false;
+
+    test("game1_doMove 2", passed);
+
+    // Draw line around C, from D to B
+    l.clear();
+    l.push_back(Coord(5,10));
+    l.push_back(Coord(5,30));
+    l.push_back(Coord(30,30));
+    l.push_back(Coord(30,10));
+    //l.push_back(Coord(30,5));
+    //l.push_back(Coord(10,5));
+    l.push_back(Coord(10,10));
+
+    doMove(l, Coord(10, 30));
+    Node& e = *nodes.back();
+
+    // Test 3, some non-connectable nodes
+    updateAreas();
+    passed = false;
+
+    if (connectable(a,b) &&
+        connectable(a,e) &&
+        connectable(b,a) &&
+        connectable(b,c) &&
+        connectable(b,e) &&
+        connectable(c,b) &&
+        connectable(c,e) &&
+        connectable(e,a) &&
+        connectable(e,b) &&
+        connectable(e,c) &&
+        !connectable(a,c) &&
+        !connectable(a,d) &&
+        !connectable(b,d) &&
+        !connectable(c,a) &&
+        !connectable(c,d) &&
+        !connectable(d,a) &&
+        !connectable(d,b) &&
+        !connectable(d,c) &&
+        !connectable(d,e) &&
+        !connectable(e,d))
+        passed = true;
+
+    test("game1_doMove 3", passed);
 }
