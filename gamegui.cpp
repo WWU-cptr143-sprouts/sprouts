@@ -98,7 +98,9 @@ void GameGUI::click(Coord location)
     {
         validfinish=false;
         //correct for last line to make it straight
-        if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
+        if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
+        {
+           if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
             {
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),Coord(selected->getLoci().x,selected->getLoci().y))) //If Vertical, does the line intersect another line.
                 {
@@ -133,10 +135,12 @@ void GameGUI::click(Coord location)
                 tempy=(currentLine[(currentLine.size())/2]).y;
                 tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
             }
-
+            //doMove()
             insertNode(Coord(tempx,tempy));
             state=Blank;
         }
+        }
+
 
         //cancel();
         // Steps:
@@ -158,7 +162,7 @@ void GameGUI::click(Coord location)
     // Clicked to place a line
 
     else if ((state == NodeClicked || state == LineClicked) &&
-        validLine(currentLine.back(), location))//Remove the second half of the || Statement
+        validLine(currentLine.back(),straighten(currentLine.back(), location)))//Remove the second half of the || Statement
     {
         currentLine.push_back(straighten(currentLine.back(), location));
         //state = LineClicked; // Took this out otherwise the node would have to be clicked twice for the move to end.
@@ -246,33 +250,12 @@ double GameGUI::distance(Coord a, Coord b) const
     return sqrt(pow(1.0*a.x-b.x,2)+pow(1.0*a.y-b.y,2));
 }
 
-bool GameGUI::validLine(Coord last, Coord point) const
+bool GameGUI::validLine(Coord start, Coord end) const
 {
-    int startX = last.x;
-    int startY = last.y;
-    int endX = point.x;
-    int endY = point.y;
-    if (((point.y<=(last.y+(last.x-point.x)))&&(point.y<=(last.y-(last.x-point.x))))||((point.y>=(last.y+(last.x-point.x)))&&(point.y>=(last.y-(last.x-point.x)))))//kyle's code to make the line go at right angles
-    {
-        endX = last.x;
-        endY = point.y;
-        if(((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y)))//blake's modification in the event of user trying to backtrack on line
-            {
-                endX = point.x;
-                endY = last.y;
-            }
-    }
-    else
-        {
-            endX = point.x;
-            endY = last.y;
-            if(((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x)))
-            {
-                endX = last.x;
-                endY = point.y;
-            }
-        }
-
+    int startX = start.x;
+    int startY = start.y;
+    int endX = end.x;
+    int endY = end.y;
 
 
     // TODO: fix validLine() algorithm
@@ -289,7 +272,7 @@ bool GameGUI::validLine(Coord last, Coord point) const
             const int A3 = currentLine[j].x;
             const int B3 = currentLine[j].y;
 
-            if (endY == point.y)
+            if (endX == startX)
             {
                 if(A2 != A3)
                     if(A2 > A3)
