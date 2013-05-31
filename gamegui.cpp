@@ -90,37 +90,54 @@ void GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
+    bool validfinish;
     //Coord point = location;
     //Coord last = currentLine.back();
     // Clicked on node to end
     if (selected && state == NodeClicked)
     {
+        validfinish=false;
         //correct for last line to make it straight
         if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
             {
-           currentLine.back().x= selected->getLoci().x;
-           if(validLine(currentLine.back(),Coord(selected->getLoci().x,selected->getLoci().y))) //Check if valid move
-           currentLine.push_back(straighten(currentLine.back(), location));
+                if(validLine(Coord(selected->getLoci().x,currentLine.back().y),Coord(selected->getLoci().x,selected->getLoci().y))) //If Vertical, does the line intersect another line.
+                {
+                    //cancel();
+                    validfinish=true; //If not, line becomes a valid move.
+                    currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
+                    currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
+                }
             }
         else
         {
-            currentLine.back().y= selected->getLoci().y;
-           currentLine.push_back(straighten(currentLine.back(), location));
+             {
+                if(validLine(Coord(currentLine.back().x,selected->getLoci().y),Coord(selected->getLoci().x,selected->getLoci().y))) //If Horizontal, does the line intersect another line? ALWAYS TRUE???
+                {
+                    //cancel();
+                    validfinish=true; //If not, line becomes a valid move.
+                    currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
+                    currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
+                }
+            }
         }
-        //Draw new node
-        if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
+        //Draw new node if the line can connect.
+        if(validfinish==true)
         {
-            tempx=(currentLine[(currentLine.size())/2]).x;
-            tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vert.
-        }
-        else
-        {
-            tempy=(currentLine[(currentLine.size())/2]).y;
-            tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
+            if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
+            {
+                tempx=(currentLine[(currentLine.size())/2]).x;
+                tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vert.
+            }
+            else
+            {
+                tempy=(currentLine[(currentLine.size())/2]).y;
+                tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
+            }
+
+            insertNode(Coord(tempx,tempy));
+            state=Blank;
         }
 
-        insertNode(Coord(tempx,tempy));
-        state=Blank;
         //cancel();
         // Steps:
         // 1. Select middle node
