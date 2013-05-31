@@ -97,6 +97,7 @@ void GameGUI::click(Coord location)
     if (selected && state == NodeClicked)
     {
         validfinish=false;
+
         //correct for last line to make it straight
         if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
         {
@@ -135,8 +136,9 @@ void GameGUI::click(Coord location)
                 tempy=(currentLine[(currentLine.size())/2]).y;
                 tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
             }
-            //doMove()
-            insertNode(Coord(tempx,tempy));
+            doMove(currentLine,Coord(tempx,tempy));
+           insertNode(Coord(tempx,tempy));
+           cancel();
             state=Blank;
         }
         }
