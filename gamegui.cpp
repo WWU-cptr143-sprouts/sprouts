@@ -351,9 +351,9 @@ bool GameGUI::validLine(Coord last, Coord point) const
     }
 
     //code for already made lines, unsure of error
-    /*for (int i = 0; i < line.size(); i++)
+    for (int i = 0; i < lines.size(); i++)
     {
-        for (int j = 1; j < line[i]->size(); j++)
+        for (int j = 1; j < lines[i]->size(); j++)
         {
             const Line& line = *lines[i];
             const int A2 = line[j-1].x;
@@ -419,8 +419,8 @@ bool GameGUI::validLine(Coord last, Coord point) const
             /*if (((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0)) < 0 &&
                 ((A0-A2)*(B3-B2) + (B0-B2)*(A3-A2)) * ((A1-A2)*(B3-B2) + (B1-B2)*(A3-A2)) < 0)
                 return false;*/
-        //}
-    //}
+        }
+    }
 
     // Line collision algorithm: http://stackoverflow.com/a/14177062
     /*for (int i = 0; i < lines.size(); i++)
