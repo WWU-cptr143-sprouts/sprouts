@@ -126,19 +126,23 @@ void GameGUI::click(Coord location)
         //Draw new node if the line can connect.
         if(validfinish==true)
         {
+           // cancel();
             if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
             {
+                //cancel();
                 tempx=(currentLine[(currentLine.size())/2]).x;
                 tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vert.
             }
             else
             {
+                //cancel();
                 tempy=(currentLine[(currentLine.size())/2]).y;
                 tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
             }
+            //cancel();
             doMove(currentLine,Coord(tempx,tempy));
-           insertNode(Coord(tempx,tempy));
-           cancel();
+            //insertNode(Coord(tempx,tempy));
+            cancel();
             state=Blank;
         }
         }
