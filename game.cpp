@@ -371,10 +371,6 @@ void Game::doMove(const Line& line, Coord middle)
     if (!a || !b)
         throw InvalidMove();
 
-    // The same coordinate
-    if (a->getLoci() == b->getLoci())
-        throw InvalidMove();
-
     if (line.size() == 0)
         throw InvalidLine();
 
