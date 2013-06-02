@@ -141,7 +141,7 @@ void GameGUI::click(Coord location)
             }
             //cancel();
             doMove(currentLine,Coord(tempx,tempy));
-            //insertNode(Coord(tempx,tempy));
+            insertNode(Coord(tempx,tempy));
             cancel();
             state=Blank;
         }
