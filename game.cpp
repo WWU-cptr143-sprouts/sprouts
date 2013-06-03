@@ -11,9 +11,6 @@ Game::Game()
 }
 
 // Copy constructor
-//
-// WARNING: THIS FUNCTION HAS NOT BEEN TESTED AT ALL! It probably doesn't work, but
-// it's a start.
 Game::Game(const Game& g)
     :updated(g.updated), nodes(g.nodes.size()), lines(g.lines.size())
 {
@@ -25,29 +22,32 @@ Game::Game(const Game& g)
     for (int i = 0; i < g.lines.size(); ++i)
     {
         Line* line = new Line(*g.lines[i]);
-        lines.push_back(line);
+        lines[i] = line;
         newLines[g.lines[i]] = line;
     }
 
     // Recreate nodes
     for (int i = 0; i < g.nodes.size(); ++i)
     {
-        Connection cons[3];
-
-        // Recreate connections
-        for (int j = 0; j < 2; ++j)
-            cons[j] = Connection(newLines[g.nodes[i]->connections[j].line],
-                newNodes[g.nodes[i]->connections[j].dest]);
-
-        Node* node = new Node(g.nodes[i]->loci,
-            cons[0], cons[1]);
-
-        // If there's a third node
-        if (g.nodes[i]->connections[2].exists())
-            node->addConnection(cons[3]);
-
-        nodes.push_back(node);
+        Node* node = new Node(g.nodes[i]->loci);
+        nodes[i] = node;
         newNodes[g.nodes[i]] = node;
+    }
+    
+    // Recreate node connections
+    for (int i = 0; i < g.nodes.size(); ++i)
+    {
+        Node* node = nodes[i];
+
+        for (int j = 0; j < 3; ++j)
+        {
+            if (g.nodes[i]->connections[j].exists())
+            {
+                node->addConnection(Connection(
+                    newLines[g.nodes[i]->connections[j].line],
+                    newNodes[g.nodes[i]->connections[j].dest]));
+            }
+        }
     }
 
     // Much simpler

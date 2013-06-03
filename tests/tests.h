@@ -23,7 +23,15 @@ class Tests : public Game
         void invalidCorner();
         void invalidLine();
         void imageNotLoaded();
+
+        // Initialize game for the copyConstructor test
+        void copyInitialize();
+        // See if the copy was successful (needs to access protected variables)
+        bool validateCopy() const;
 };
+
+// Test copying the game and see if it's still valid like it should be.
+void copyConstructor();
 
 // Print out test results
 void test(const string& s, bool passed);

@@ -7,6 +7,7 @@ int main()
     Tests().invalidCorner();
     Tests().invalidLine();
     Tests().imageNotLoaded();
+    copyConstructor();
 
     return 0;
 }

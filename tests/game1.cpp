@@ -169,15 +169,14 @@ void Tests::game1()
 
 void Tests::game1_doMove()
 {
-    updateAreas();
     bool passed = false;
 
     Node& a = insertNode(Coord(0,0));
     Node& b = insertNode(Coord(10,10));
     Node& c = insertNode(Coord(20,20));
+    updateAreas();
 
     // Test 1, all original nodes connectable
-    updateAreas();
     passed = true;
 
     if (!connectable(a, b) ||
@@ -230,7 +229,6 @@ void Tests::game1_doMove()
     Node& e = *nodes.back();
 
     // Test 3, some non-connectable nodes
-    updateAreas();
     passed = false;
 
     if (connectable(a,b) &&
@@ -256,4 +254,72 @@ void Tests::game1_doMove()
         passed = true;
 
     test("game1_doMove 3", passed);
+}
+
+void Tests::copyInitialize()
+{
+    Node& a = insertNode(Coord(0,0));
+    Node& b = insertNode(Coord(10,10));
+    Node& c = insertNode(Coord(20,20));
+
+    Line l;
+    l.push_back(Coord(0,0));
+    l.push_back(Coord(0,10));
+    l.push_back(Coord(10,10));
+
+    doMove(l, Coord(5, 10));
+    Node& d = *nodes.back();
+
+    l.clear();
+    l.push_back(Coord(5,10));
+    l.push_back(Coord(5,30));
+    l.push_back(Coord(30,30));
+    l.push_back(Coord(30,10));
+    l.push_back(Coord(10,10));
+
+    doMove(l, Coord(10, 30));
+    Node& e = *nodes.back();
+}
+
+bool Tests::validateCopy() const
+{
+    Node& a = *nodes[0];
+    Node& b = *nodes[1];
+    Node& c = *nodes[2];
+    Node& d = *nodes[3];
+    Node& e = *nodes[4];
+
+    if (connectable(a,b) &&
+        connectable(a,e) &&
+        connectable(b,a) &&
+        connectable(b,c) &&
+        connectable(b,e) &&
+        connectable(c,b) &&
+        connectable(c,e) &&
+        connectable(e,a) &&
+        connectable(e,b) &&
+        connectable(e,c) &&
+        !connectable(a,c) &&
+        !connectable(a,d) &&
+        !connectable(b,d) &&
+        !connectable(c,a) &&
+        !connectable(c,d) &&
+        !connectable(d,a) &&
+        !connectable(d,b) &&
+        !connectable(d,c) &&
+        !connectable(d,e) &&
+        !connectable(e,d))
+        return true;
+
+    return false;
+}
+
+void copyConstructor()
+{
+    Tests t;
+    t.copyInitialize();
+    test("copyConstructor 1", t.validateCopy());
+
+    Tests t2(t);
+    test("copyConstructor 2", t2.validateCopy());
 }
