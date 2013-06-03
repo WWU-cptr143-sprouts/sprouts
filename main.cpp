@@ -99,6 +99,7 @@ int main(int argc,char *argv[])
             catch (const InvalidLine& e)
             {
                 error("Tried to add an invalid line");
+                cout << e << endl;
             }
             catch (const InvalidMove& e)
             {

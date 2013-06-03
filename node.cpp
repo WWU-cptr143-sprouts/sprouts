@@ -133,18 +133,18 @@ void Node::updateOpen()
 
             // A line must be at least the beginning and ending node
             if (line.size() < 2)
-                throw InvalidLine();
+                throw InvalidLine(line);
 
             if (line.front() == loci) // At beginning
                 other = &line[1];
             else if (line.back() == loci) // At end
                 other = &line[line.size()-2];
             else // In the middle? It should be at the beginning or end!
-                throw InvalidLine();
+                throw InvalidLine(line);
 
             // It can't be the same point
             if (loci == *other)
-                throw InvalidLine();
+                throw InvalidLine(line);
 
             // Determine direction
             if (loci.x == other->x) // Vertical
@@ -163,7 +163,7 @@ void Node::updateOpen()
             }
             else // Neither, so invalid
             {
-                throw InvalidLine();
+                throw InvalidLine(line);
             }
         }
     }
@@ -187,6 +187,13 @@ ostream& operator<<(ostream& os, const Connection& con)
            << " via " << con.line << ":{ " << con.line << ":" << *con.line << " }";
     else
         os << "default";
+
+    return os;
+}
+
+ostream& operator<<(ostream& os, const InvalidLine& o)
+{
+    os << "Invalid line: " << o.line;
 
     return os;
 }

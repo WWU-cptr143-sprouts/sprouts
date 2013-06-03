@@ -373,7 +373,7 @@ void Game::doMove(const Line& line, Coord middle)
         throw InvalidMove();
 
     if (line.size() == 0)
-        throw InvalidLine();
+        throw InvalidLine(line);
 
     // Split the line using the middle coordinate
     int count = 0; // Add to first line when 0, second when 1

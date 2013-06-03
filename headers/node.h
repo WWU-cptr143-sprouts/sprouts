@@ -46,7 +46,14 @@ bool LineCmp(Connection* a, Connection* b);
 
 // Thrown if the coordinate at the beginning or end of the line is not
 // the coordinate of the node.
-class InvalidLine { };
+class InvalidLine
+{
+    const Line& line;
+
+    public:
+        InvalidLine(const Line& line) :line(line) { }
+        friend ostream& operator<<(ostream&,const InvalidLine&);
+};
 
 // Thrown if we try to have a 90 degree corner when only two connections
 // instead of coming in at 180 degrees like our design calls for.
