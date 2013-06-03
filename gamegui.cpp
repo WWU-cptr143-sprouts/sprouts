@@ -81,8 +81,9 @@ void GameGUI::unlock()
 
 void GameGUI::cancel()
 {
-    state = Blank;
+
     currentLine.clear();
+    state = Blank;
     redraw();
 }
 
@@ -94,7 +95,7 @@ void GameGUI::click(Coord location)
     //Coord point = location;
     //Coord last = currentLine.back();
     // Clicked on node to end
-    if (selected && state == NodeClicked)
+    if ((selected && state == NodeClicked)&&!selected->dead())
     {
         validfinish=false;
 
@@ -103,7 +104,7 @@ void GameGUI::click(Coord location)
         {
            if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&(location.y>=(currentLine.back().y-(currentLine.back().x-location.x))))) //Is the line coming vertically into node?
             {
-                if(validLine(Coord(selected->getLoci().x,currentLine.back().y),Coord(selected->getLoci().x,selected->getLoci().y))) //If Vertical, does the line intersect another line.
+                if(validLine(Coord(selected->getLoci().x,currentLine.back().y),Coord(selected->getLoci().x,selected->getLoci().y))) //If Vertical, does the line intersect another line. Adjusts Lines
                 {
                     //cancel();
                     validfinish=true; //If not, line becomes a valid move.
@@ -126,7 +127,9 @@ void GameGUI::click(Coord location)
         //Draw new node if the line can connect.
         if(validfinish==true)
         {
-           // cancel();
+           //cancel();
+           //state = Blank;
+           currentLine.push_back(selected->getLoci());
             if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
             {
                 //cancel();
@@ -143,7 +146,8 @@ void GameGUI::click(Coord location)
             doMove(currentLine,Coord(tempx,tempy));
             //insertNode(Coord(tempx,tempy));
             cancel();
-            state=Blank;
+            //cancel();
+            //state=Blank; //Sometimes this will fix the problem. But not reliably.
         }
         }
 
@@ -157,11 +161,19 @@ void GameGUI::click(Coord location)
         // 4. insertNode for the middle node
         // 5. a.addConnection and b.addConnection for first and second nodes
         // 6. updateAreas
+       // cancel();
+        //cancel();
+        //cancel();
     }
     // Clicked on node to start
     else
-        if (selected)
+        if (selected && !selected->dead())
         {
+           /* for(int i=0;i<=3;i++)
+            {
+                if(selected->open().[i])
+                    cancel();
+            }*/
             currentLine.push_back(selected->getLoci());
             state = NodeClicked;
         }

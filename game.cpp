@@ -358,7 +358,7 @@ void Game::doMove(const Line& line, Coord middle)
             else
                 a = nodes[i];
         }
-        
+
         if (nodes[i]->getLoci() == line.back())
         {
             if (b)
@@ -418,7 +418,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     Line& AC = insertLine(AC_line);
     Line& CB = insertLine(CB_line);
-    
+
     // Insert middle node C between nodes A and B
     Node& c = insertNode(middle,
             Connection(&AC, a),
