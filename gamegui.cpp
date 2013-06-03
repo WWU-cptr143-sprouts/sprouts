@@ -344,9 +344,9 @@ bool GameGUI::validLine(Coord start, Coord end) const
     }
 
     //code for already made lines, unsure of error
-    /*for (int i = 0; i < line.size(); i++)
+    /*for (int i = 0; i < lines.size(); i++)
     {
-        for (int j = 1; j < line[i]->size(); j++)
+        for (int j = 1; j < lines[i]->size(); j++)
         {
             const Line& line = *lines[i];
             const int A2 = line[j-1].x;
