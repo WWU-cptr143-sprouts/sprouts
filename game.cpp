@@ -10,7 +10,11 @@ Game::Game()
 
 }
 
-// Copy constructor
+// Copy constructor, can be used in AI. Note that this will not update the
+// areas. You shouldn't be copying this and then immediately calling
+// connectable() a whole bunch of times. Call those immediate connectable calls
+// on the object you copied from. After copying this and adding to it do you
+// want to update the areas and then check connectable() again.
 Game::Game(const Game& g)
     :updated(g.updated), nodes(g.nodes.size()), lines(g.lines.size())
 {
@@ -49,9 +53,6 @@ Game::Game(const Game& g)
             }
         }
     }
-
-    // Much simpler
-    updateAreas();
 }
 
 void Game::updateAreas()
