@@ -321,5 +321,7 @@ void copyConstructor()
     test("copyConstructor 1", t.validateCopy());
 
     Tests t2(t);
+    t2.updateAreas(); // Must update since copying ignores the areas (no point
+                      // in updating when you'll change something anyway)
     test("copyConstructor 2", t2.validateCopy());
 }
