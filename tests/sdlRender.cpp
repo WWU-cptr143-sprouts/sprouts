@@ -23,7 +23,7 @@ void Tests::sdlRenderGame() const
             lineColor(screen, (*lines[i])[j-1].x*scale, (*lines[i])[j-1].y*scale,
                               (*lines[i])[j].x*scale,   (*lines[i])[j].y*scale,
                               lineCol);
-    
+
     SDL_UnlockSurface(screen);
     SDL_Flip(screen);
 
