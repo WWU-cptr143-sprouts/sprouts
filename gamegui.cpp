@@ -25,6 +25,7 @@ GameGUI::GameGUI(SDL_Surface* screen, int count)
 
     // Load background
     //std::string background = "images/background.jpg";
+    //std::string background = "background.jpg";
     //bg = new Image(background);
 
     redraw();

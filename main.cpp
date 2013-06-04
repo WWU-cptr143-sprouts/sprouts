@@ -241,11 +241,19 @@ int main(int argc,char *argv[])
                     if ((event.button.y > 350) && (event.button.y < 400))
                     {
                         GameInstructions = true;
+                        Image background("images/Instructions.jpg");
+                        SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                        SDL_Flip( screen );
+                        check9 = true;
                     }
 
                     if ((event.button.y > 400) && (event.button.y < 450))
                     {
                         GameCredits = true;
+                        Image background("images/Credits.jpg");
+                        SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                        SDL_Flip( screen );
+                        check11 = true;
                     }
 
                     if ((event.button.y > 450) && (event.button.y < 500))
@@ -267,6 +275,10 @@ int main(int argc,char *argv[])
                     if (event.button.y > 500)
                     {
                         GameOptions = GameInstructions = GameCredits = false;
+                        Image background("images/SproutsMenu.jpg");
+                        SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                        SDL_Flip( screen );
+                        check1 = true;
                     }
                 }
             }
