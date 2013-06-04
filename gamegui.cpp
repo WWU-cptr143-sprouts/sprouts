@@ -92,29 +92,32 @@ void GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
-    bool validfinish;
+    bool validFinish; //Used to keep trach of whether or not the line can be drawn.
     //Coord point = location;
     //Coord last = currentLine.back();
     // Clicked on node to end
-    if ((selected && state == NodeClicked)&&!selected->dead())
+    if ((selected && state == NodeClicked)&&!selected->dead()) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
     {
-        validfinish=false;
+        validFinish=false; //Reset validFinish
 
         //correct for last line to make it straight
         if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
+           /*
            if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&
                 (location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||
                ((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&
                 (location.y>=(currentLine.back().y-(currentLine.back().x-location.x)))))
+                */
+            if (vertical(currentLine.back(),location))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              Coord(selected->getLoci().x,selected->getLoci().y)))
                 {
                     //cancel();
-                    validfinish=true; //If not, line becomes a valid move.
+                    validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
                     currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
                 }
@@ -126,18 +129,18 @@ void GameGUI::click(Coord location)
                              Coord(selected->getLoci().x,selected->getLoci().y)))
                 {
                     //cancel();
-                    validfinish=true; //If not, line becomes a valid move.
+                    validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
                     currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
                 }
             }
 
             //Draw new node if the line can connect.
-            if(validfinish==true)
+            if(validFinish==true)
             {
                //cancel();
                //state = Blank;
-               currentLine.push_back(selected->getLoci());
+               currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
                 if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
                 {
                     //cancel();
@@ -191,13 +194,26 @@ void GameGUI::cursor(Coord location)
     }
 }
 
-Coord GameGUI::straighten(Coord last, Coord point)
+bool GameGUI::vertical(Coord last, Coord point)
 {
-    // Determine to snap vertically or horizontally
     if (((point.y<=(last.y+(last.x-point.x)))&&
          (point.y<=(last.y-(last.x-point.x))))||
         ((point.y>=(last.y+(last.x-point.x)))&&
          (point.y>=(last.y-(last.x-point.x)))))
+         return true;
+    else
+        return false;
+}
+
+Coord GameGUI::straighten(Coord last, Coord point)
+{
+    // Determine to snap vertically or horizontally
+   /* if (((point.y<=(last.y+(last.x-point.x)))&&
+         (point.y<=(last.y-(last.x-point.x))))||
+        ((point.y>=(last.y+(last.x-point.x)))&&
+         (point.y>=(last.y-(last.x-point.x)))))
+         */
+        if (vertical(last, point))
     {
         //validLine(coord(last.x, last.y), coord(last.x, point.y))
 
