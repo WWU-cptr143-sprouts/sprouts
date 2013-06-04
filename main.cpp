@@ -311,7 +311,7 @@ int main(int argc,char *argv[]) //----------------------------------------------
                         break;
                     case SDL_KEYUP:
                         if (event.key.keysym.sym == SDLK_ESCAPE)
-                            menu(screen, event, gameRunning, NumberOfNodes, Player1Name, Player2Name);
+                            menu(screen, event, gameRunning, NumberOfNodes, Player1Name, Player2Name, PvP);
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;
