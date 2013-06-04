@@ -11,33 +11,8 @@ void error(const string& s)
     cout << "Error: " << s << endl;
 }
 
-int main(int argc,char *argv[])
+void menu(SDL_Surface* screen, SDL_Event event, bool &gameRunning, int &NumberOfNodes, string &Player1Name, string &Player2Name, bool PvP)
 {
-    int width = 800;
-    int height = 602;
-
-	bool gameRunning = true;
-	SDL_Event event;	// dump event polls into this
-
-    // Initialize everything
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-        fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-        return 1;
-	}
-
-    // Cleanup on exit
-    atexit(SDL_Quit);
-
-    // get current display information (for height, width, color depth, etc.)
-	//const SDL_VideoInfo* info = SDL_GetVideoInfo();
-    //int width  = info->current_w*2/3;
-    //int height = info->current_h*2/3;
-    int depth  = 0; // Set to current screen depth
-
-    // What we draw on the screen
-    SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
-
     Image instructions("images/Instructions.jpg");
     Image instructionsBackHover("images/InstructionsBackHover.jpg");
     Image credits("images/Credits.jpg");
@@ -49,20 +24,8 @@ int main(int argc,char *argv[])
     Image startHover("images/StartHover.jpg");
     Image sproutsMenu("images/SproutsMenu.jpg");
 
-    //SDL_Surface* chalkboard = NULL;
-    //chalkboard IMG_Load( "images/background.jpg" );
-    //SDL_BlitSurface(chalkboard, NULL, screen, NULL);
-
     SDL_BlitSurface(sproutsMenu.surface(), NULL, screen, NULL);
     SDL_Flip( screen );
-    //SDL_Delay( 2000 );
-
-    if (screen == NULL)
-    {
-        fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
-            width, height, depth, SDL_GetError());
-        return 1;
-    }
 
     bool GameStart = false;
     bool GameOptions = false;
@@ -83,13 +46,6 @@ int main(int argc,char *argv[])
     bool check11 = false;
     bool check12 = false;
 
-    // Window title and icon
-    /*Image icon("icon.bmp");
-    SDL_WM_SetIcon(icon.surface(), NULL);*/
-    SDL_WM_SetCaption("Sprouts", "Sprouts");
-
-    // Display the menu, and when starting the game, break out of this loop and
-    // start the game loop.
     while (!GameStart)
     {
         //While there's an event to handle
@@ -234,9 +190,9 @@ int main(int argc,char *argv[])
                     }
 
                     /*if ((event.button.y > 300) && (event.button.y < 350)) // Options page does not yet exist
-                    {
+                     {
                         GameOptions = true;
-                    }*/
+                     }*/
 
                     if ((event.button.y > 350) && (event.button.y < 400))
                     {
@@ -266,9 +222,9 @@ int main(int argc,char *argv[])
                     }
 
                     /*while (GameHighScore)
-                    {
+                     {
 
-                    }*/
+                     }*/
                 }
                 else
                 {
@@ -287,9 +243,55 @@ int main(int argc,char *argv[])
         // Don't use all the CPU
         SDL_Delay(20);
     }
+}
+
+int main(int argc,char *argv[]) //-------------------------------------------------------------------------------------
+{
+    int width = 800;
+    int height = 602;
+
+	bool gameRunning = true;
+	int NumberOfNodes = 3;
+	bool PvP = false;
+	string Player1Name = "Player1";
+	string Player2Name = "Player2";
+	SDL_Event event;	// dump event polls into this
+
+    // Initialize everything
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+        fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+        return 1;
+	}
+
+    // Cleanup on exit
+    atexit(SDL_Quit);
+
+    // get current display information (for height, width, color depth, etc.)
+	//const SDL_VideoInfo* info = SDL_GetVideoInfo();
+    //int width  = info->current_w*2/3;
+    //int height = info->current_h*2/3;
+    int depth  = 0; // Set to current screen depth
+
+    // What we draw on the screen
+    SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
+
+    if (screen == NULL)
+    {
+        fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
+            width, height, depth, SDL_GetError());
+        return 1;
+    }
+
+    // Window title and icon
+    /*Image icon("icon.bmp");
+    SDL_WM_SetIcon(icon.surface(), NULL);*/
+    SDL_WM_SetCaption("Sprouts", "Sprouts");
+
+    menu(screen, event, gameRunning, NumberOfNodes, Player1Name, Player2Name, PvP);
 
     // Game loop
-	GameGUI game(screen, 3);	// create new Sprout object with 3 nodes
+	GameGUI game(screen, NumberOfNodes);	// create new Sprout object with 3 nodes
 
 	while (gameRunning)
 	{
@@ -309,7 +311,7 @@ int main(int argc,char *argv[])
                         break;
                     case SDL_KEYUP:
                         if (event.key.keysym.sym == SDLK_ESCAPE)
-                            game.cancel();
+                            menu(screen, event, gameRunning, NumberOfNodes, Player1Name, Player2Name);
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;
