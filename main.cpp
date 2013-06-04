@@ -266,6 +266,9 @@ int main(int argc,char *argv[])
                 }
             }
         }
+
+        // Don't use all the CPU
+        SDL_Delay(20);
     }
 
 
@@ -331,6 +334,9 @@ int main(int argc,char *argv[])
                 error("Tried to add a middle node on a corner");
             }
 		}
+
+        // Don't use all the CPU
+        SDL_Delay(20);
 	}
 
     SDL_Quit();
