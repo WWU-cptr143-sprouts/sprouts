@@ -19,6 +19,7 @@ class Tests : public Game
         Tests() :Game() { }
 
         void game1();
+        void game2();
         void game1_doMove();
         void invalidCorner();
         void invalidLine();
@@ -28,6 +29,9 @@ class Tests : public Game
         void copyInitialize();
         // See if the copy was successful (needs to access protected variables)
         bool validateCopy() const;
+
+        // Show the game in a GUI for easier debugging
+        void sdlRenderGame() const;
 };
 
 // Test copying the game and see if it's still valid like it should be.

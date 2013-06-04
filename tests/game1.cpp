@@ -254,6 +254,7 @@ void Tests::game1_doMove()
         passed = true;
 
     test("game1_doMove 3", passed);
+    //sdlRenderGame();
 }
 
 void Tests::copyInitialize()
@@ -261,6 +262,7 @@ void Tests::copyInitialize()
     Node& a = insertNode(Coord(0,0));
     Node& b = insertNode(Coord(10,10));
     Node& c = insertNode(Coord(20,20));
+    updateAreas();
 
     Line l;
     l.push_back(Coord(0,0));

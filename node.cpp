@@ -156,10 +156,10 @@ void Node::updateOpen()
             }
             else if (loci.y == other->y) // Horizontal
             {
-                if (loci.x < other->x) // Left
-                    open[Left] = false;
-                else // Up
+                if (loci.x < other->x) // Right
                     open[Right] = false;
+                else // Left
+                    open[Left] = false;
             }
             else // Neither, so invalid
             {
@@ -172,11 +172,7 @@ void Node::updateOpen()
     if (count == 2 &&
         !((open[Left] == false && open[Right] == false) ||
          (open[Up]   == false && open[Down]  == false)))
-    // TODO: remove this
-    {
-        cout << loci << open[0] << " " << open[1] << " " << open[2] << " " << open[3] << endl;
         throw InvalidCorner();
-    }
 }
 
 Node::~Node()

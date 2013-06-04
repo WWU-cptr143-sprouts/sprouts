@@ -113,6 +113,10 @@ int main(int argc,char *argv[])
             {
                 error("Tried to add a middle node on a corner");
             }
+            catch (const NotConnectable& e)
+            {
+                error("Tried to connect two nodes that shouldn't be connectable");
+            }
 		}
 	}
 

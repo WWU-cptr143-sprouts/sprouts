@@ -27,6 +27,7 @@ GameGUI::GameGUI(SDL_Surface* screen, int count)
     //std::string background = "images/background.jpg";
     //bg = new Image(background);
 
+    updateAreas();
     redraw();
 }
 
@@ -227,8 +228,8 @@ Coord GameGUI::center() const
 
 void GameGUI::line(Coord a, Coord b, Uint32 color)
 {
-    for (int i = -lineThick; i <= lineThick; i++)
-        for (int j = -lineThick; j <= lineThick; j++)
+    for (int i = -lineThick; i < lineThick; i++)
+        for (int j = -lineThick; j < lineThick; j++)
             lineColor(screen, a.x+i, a.y+j, b.x+i, b.y+j, color);
 }
 

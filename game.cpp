@@ -5,7 +5,7 @@
 #include "headers/game.h"
 
 Game::Game()
-    :updated(false), moveCount(0)
+    :updated(true), moveCount(0)
 {
 
 }
@@ -16,7 +16,7 @@ Game::Game()
 // on the object you copied from. After copying this and adding to it do you
 // want to update the areas and then check connectable() again.
 Game::Game(const Game& g)
-    :updated(g.updated), nodes(g.nodes.size()), lines(g.lines.size())
+    :updated(false), nodes(g.nodes.size()), lines(g.lines.size())
 {
     // newLines[oldAddress] = newAddress
     map<Line*, Line*> newLines;
@@ -57,8 +57,6 @@ Game::Game(const Game& g)
 
 void Game::updateAreas()
 {
-    int nNodes = nodes.size(), nAreas=0;
-    Coord tempLoci;
     Connection* nodeConns;
 
     // We have once again updated the area
@@ -70,20 +68,11 @@ void Game::updateAreas()
     areasets.push_back(&defaultAreaset);
 
     // Find all Circuits/areas
-    for(int i=0;i<nNodes;i++)
-    {
+    for(int i=0;i<nodes.size();i++)
         nodes[i]->walk(areas);
-        #ifdef DEBUG
-        cout << "Walked node:" << i << endl << "game status:" << endl
-            << *this << "\nEnd Game status" << endl;
-        #endif
-    }
-
-    // This must be this late since Node::walk appends to it
-    nAreas=areas.size();
 
     //create and apply area sets to each node
-    for(int i=0;i<nNodes;i++)
+    for(int i=0;i<nodes.size();i++)
     {
         if(nodes[i]->dead())
             continue;
@@ -93,7 +82,7 @@ void Game::updateAreas()
         tempSets[1] = new Areaset();
 
         nodeConns = nodes[i]->getConnAddr();
-        tempLoci = nodes[i]->getLoci();
+        Coord original = nodes[i]->getLoci();
 
         /*
         * this if statement is only true if on a border, since conn 1
@@ -103,48 +92,45 @@ void Game::updateAreas()
         {
             if(nodes[i]->vertical())
             {
-                for(int j=0;j<nAreas;j++)
+                for(int j=0;j<areas.size();j++)
                 {
-                    tempLoci.x++;
-                    //if its above added to the above area set
-                    if(isInArea(*areas[j],tempLoci))
+                    // The y+1 and y-1 is a hack to get around when a node has
+                    // the same y coordinate as the start or end point in the
+                    // line. This is making the assumption that lines are at
+                    // least one unit away.
+
+                    // If its above added to the above area set
+                    if (isInArea(*areas[j],Coord(original.x-1, original.y+1)) &&
+                        isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                         tempSets[0]->push_back(areas[j]);
-                    // We incremented x once, so decrement twice
-                    tempLoci.x--;
-                    tempLoci.x--;
 
-                    //if it is below then added to the below areas set
-                    if(isInArea(*areas[j],tempLoci))
+                    // If it is below then added to the below area set
+                    if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
+                        isInArea(*areas[j],Coord(original.x+1, original.y-1)))
                         tempSets[1]->push_back(areas[j]);
-
-                    tempLoci.x++; //reset to original coordinates
                 }
             }
             else
             {
-                for(int j=0;j<nAreas;j++)
+                for(int j=0;j<areas.size();j++)
                 {
-                    tempLoci.y++;
-                    //if its right added to the right area set
-                    if(isInArea(*areas[j],tempLoci))
+                    // If its left added to the left area set
+                    if (isInArea(*areas[j],Coord(original.x+1, original.y-1)) &&
+                        isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                         tempSets[0]->push_back(areas[j]);
-                    // We incremented x once, so decrement twice
-                    tempLoci.y--;
-                    tempLoci.y--;
 
-                    //if it is left then added to the left areas set
-                    if(isInArea(*areas[j],tempLoci))
+                    // If it is right then added to the right area set
+                    if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
+                        isInArea(*areas[j],Coord(original.x-1, original.y+1)))
                         tempSets[1]->push_back(areas[j]);
-
-                    tempLoci.y++; //reset to original coordinates
                 }
             }
         }
         else // A node with either one or no connections
         {
-            for(int j=0;j<nAreas;j++)
+            for(int j=0;j<areas.size();j++)
             {
-                if(isInArea(*areas[j],tempLoci))
+                if(isInArea(*areas[j],original))
                 {
                     // In "both directions" we're in this area. If we don't do
                     // this for both [0] and [1], we're always in the default
@@ -201,37 +187,29 @@ void Game::updateAreas()
  */
 bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke for any problems here
 {
-    #ifdef DEBUG
-    cout << "is in area loci; " << position << endl;
-    #endif
-
-    int tSize=target.size(), lCount=0,lSize=0;
+    int tSize = target.size(), lCount = 0, lSize = 0;
 
     for(int i=0;i<tSize;i++)
     {
-        lSize=target[i]->line->size();
+        lSize = target[i]->line->size();
 
         for(int j=1;j<lSize;j++)
         {
             /*
-            * This code checks for vertical lines
-            * if this was change to y instead of x
-            * then it would find horizontal lines
+            * If this was change to y instead of x then it would find
+            * horizontal lines
             */
-            #ifdef DEBUG
-            cout << "target[i]:" << target[i] << endl;
-            cout << "(target[i]->line):" << (target[i]->line) << endl;
-            #endif
-            const Line& lRef= *(target[i]->line);
-            if((lRef[j-1].x==lRef[j].x && lRef[j].x < position.x))
+            const Line& lRef = *(target[i]->line);
+
+            // A Vertical line to the left of this point.
+            if (lRef[j-1].x == lRef[j].x && lRef[j].x < position.x)
             {
                 int minY,maxY;
                 minY=min(lRef[j].y,lRef[j-1].y);
                 maxY=max(lRef[j].y,lRef[j-1].y);
-                if(position.y <= maxY && position.y>=minY)
-                {
-                    lCount++;
-                }
+
+                if (position.y <= maxY && position.y >= minY)
+                    ++lCount;
             }
         }
     }
@@ -320,7 +298,7 @@ ostream& operator<<(ostream& os, const Game& g)
 
         for (int j = 0; j < areaset.size(); j++)
             if (areaset[j])
-                os << "  Area " << &areaset << ": " << *areaset[j] << endl;
+                os << "  Area " << areaset[j] << ": " << *areaset[j] << endl;
     }
 
     // Nodes
@@ -345,6 +323,8 @@ ostream& operator<<(ostream& os, const Game& g)
 
 void Game::doMove(const Line& line, Coord middle)
 {
+    //updated = false;
+
     // Determine the end nodes
     Node* a = NULL;
     Node* b = NULL;
@@ -374,6 +354,11 @@ void Game::doMove(const Line& line, Coord middle)
 
     if (line.size() == 0)
         throw InvalidLine(line);
+
+    updateAreas();
+
+    if (!connectable(*a, *b))
+        throw NotConnectable();
 
     // Split the line using the middle coordinate
     int count = 0; // Add to first line when 0, second when 1
@@ -419,27 +404,37 @@ void Game::doMove(const Line& line, Coord middle)
     Line& AC = insertLine(AC_line);
     Line& CB = insertLine(CB_line);
 
-    // Insert middle node C between nodes A and B
-    Node& c = insertNode(middle,
-            Connection(&AC, a),
-            Connection(&CB, b));
-
     try
     {
+        // Insert middle node C between nodes A and B
+        Node& c = insertNode(middle,
+                Connection(&AC, a),
+                Connection(&CB, b));
+
         // Likewise add the connection to the start and end nodes
         a->addConnection(Connection(&AC, &c));
         b->addConnection(Connection(&CB, &c));
+
+        ++moveCount;
     }
+    // Since it ran into problems, make sure we get rid of anything we added
     catch (...)
     {
-        // Since it ran into problems, make sure we get rid of it.
         cout << "Before" << endl << *this << endl;
+
+        // We definitely inserted lines, so get rid of them.
+        delete &AC;
+        delete &CB;
+        lines.pop_back();
+        lines.pop_back();
+
+        // Get rid of the node we just added
         deleteLastNode();
+
         cout << "After" << endl << *this << endl;
         throw;
     }
 
-    ++moveCount;
     updateAreas();
 }
 
@@ -481,20 +476,12 @@ void Game::deleteLastNode()
                 if (otherNode.connections[j].dest == &node)
                 {
                     otherNode.connections[j] = Connection();
+                    otherNode.updateOpen();
+                    break;
                 }
             }
 
-            otherNode.updateOpen();
-
-            // Delete line
-            vector<Line*>::iterator iter = find(lines.begin(), lines.end(),
-                node.connections[i].line);
-
-            if (iter != lines.end())
-                lines.erase(iter);
-
-            if (node.connections[i].line)
-                delete node.connections[i].line;
+            // Don't delete the lines since we have better access to it elsewhere
         }
     }
 

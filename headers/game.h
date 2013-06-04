@@ -42,6 +42,9 @@ class AreasOutdated { };
 // doesn't end in two nodes (or runs through more than two).
 class InvalidMove { };
 
+// Thrown when two nodes aren't connectable when put into doMove()
+class NotConnectable { };
+
 class Game
 {
     // Vectors of addresses since addresses of an element in a vector will
