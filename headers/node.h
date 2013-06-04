@@ -48,7 +48,7 @@ bool LineCmp(Connection* a, Connection* b);
 // the coordinate of the node.
 class InvalidLine
 {
-    const Line& line;
+    Line line;
 
     public:
         InvalidLine(const Line& line) :line(line) { }

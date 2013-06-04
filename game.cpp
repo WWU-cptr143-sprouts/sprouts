@@ -436,6 +436,7 @@ void Game::doMove(const Line& line, Coord middle)
         cout << "Before" << endl << *this << endl;
         deleteLastNode();
         cout << "After" << endl << *this << endl;
+        throw;
     }
 
     ++moveCount;
@@ -492,7 +493,8 @@ void Game::deleteLastNode()
             if (iter != lines.end())
                 lines.erase(iter);
 
-            delete node.connections[i].line;
+            if (node.connections[i].line)
+                delete node.connections[i].line;
         }
     }
 

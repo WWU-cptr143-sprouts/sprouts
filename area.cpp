@@ -19,13 +19,17 @@ ostream& operator<<(ostream& os, const Area& a)
     return os;
 }
 
-// TODO: we are using this, so test it
+/*
+ * Until we test this, we shouldn't define it since when we use the standard
+ * libraries it will call this equality operator.
+
 bool operator==(const Area& a,const Area& b)
 {
     int i=0;
     bool clockWise =true;
     bool countWise =true;
     if(a.size()!=b.size()) return false;
+    if(a.size()==0) return true;
     //find the point a common point between the two areas
     for(;(a[0]->line!=b[i]->line) && i<b.size();i++);
     //if we've reached the end and there are no matches
@@ -45,3 +49,4 @@ bool operator==(const Area& a,const Area& b)
 }
 
 bool operator!=(const Area& a,const Area& b) {return !(a==b);}
+*/
