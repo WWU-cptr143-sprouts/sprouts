@@ -101,7 +101,7 @@ void GameGUI::click(Coord location)
 
         //correct for last line to make it straight
         if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
-        {
+        { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
            if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&
                 (location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||
