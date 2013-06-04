@@ -83,6 +83,11 @@ int main(int argc,char *argv[])
     bool check11 = false;
     bool check12 = false;
 
+    // Window title and icon
+    /*Image icon("icon.bmp");
+    SDL_WM_SetIcon(icon.surface(), NULL);*/
+    SDL_WM_SetCaption("Sprouts", "Sprouts");
+
     // Display the menu, and when starting the game, break out of this loop and
     // start the game loop.
     while (!GameStart)
@@ -270,12 +275,6 @@ int main(int argc,char *argv[])
         // Don't use all the CPU
         SDL_Delay(20);
     }
-
-
-    // Window title and icon
-    /*Image icon("icon.bmp");
-    SDL_WM_SetIcon(icon.surface(), NULL);*/
-    SDL_WM_SetCaption("Sprouts", "Sprouts");
 
     // Game loop
 	GameGUI game(screen, 3);	// create new Sprout object with 3 nodes
