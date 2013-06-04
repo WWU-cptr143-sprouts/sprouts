@@ -201,8 +201,9 @@ Coord GameGUI::straighten(Coord last, Coord point)
         //validLine(coord(last.x, last.y), coord(last.x, point.y))
 
         //keeps line from backtracking on itself
-        if(((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||
-           ((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y)))
+        if(currentLine.size() > 2 &&
+           (((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||
+            ((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y))))
             return Coord(point.x,last.y);
 
         return Coord(last.x, point.y);
@@ -210,8 +211,9 @@ Coord GameGUI::straighten(Coord last, Coord point)
     else
     {
         //keeps line from backtracking on itself
-        if(((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||
-           ((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x)))
+        if(currentLine.size() > 2 &&
+           (((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||
+            ((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x))))
             return Coord(last.x,point.y);
 
         return Coord(point.x, last.y);
@@ -272,7 +274,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
     int endY = end.y;
 
     //code for checking among the line currently being drawn
-    for (int j = 0; j < currentLine.size(); j++)
+    for (int j = 1; j < currentLine.size(); j++)
     {
         //for (int j = 1; j < line[i]->size(); j++)
         {

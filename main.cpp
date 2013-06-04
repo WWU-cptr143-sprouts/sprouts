@@ -35,10 +35,6 @@ int main(int argc,char *argv[])
     //int height = info->current_h*2/3;
     int depth  = 0; // Set to current screen depth
 
-    // What we draw on in memory since the algorithms are pixel-based
-    // We'll use 16 bpp since 8 doesn't allow line-crossing detection for some reason.
-    SDL_Surface* buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
-
     // What we draw on the screen
     SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
@@ -48,7 +44,7 @@ int main(int argc,char *argv[])
     //SDL_FreeSurface(img);
     //SDL_BlitSurface(bg_img, NULL, screen, NULL);
 
-    if (screen == NULL || buffer == NULL)
+    if (screen == NULL)
     {
         fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
             width, height, depth, SDL_GetError());
@@ -120,6 +116,7 @@ int main(int argc,char *argv[])
 		}
 	}
 
+    SDL_FreeSurface(screen);
     SDL_Quit();
 
 	return 0;

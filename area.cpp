@@ -19,6 +19,7 @@ ostream& operator<<(ostream& os, const Area& a)
     return os;
 }
 
+// TODO: we are using this, so test it
 bool operator==(const Area& a,const Area& b)
 {
     int i=0;

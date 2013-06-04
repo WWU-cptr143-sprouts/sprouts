@@ -37,7 +37,7 @@ Game::Game(const Game& g)
         nodes[i] = node;
         newNodes[g.nodes[i]] = node;
     }
-    
+
     // Recreate node connections
     for (int i = 0; i < g.nodes.size(); ++i)
     {
@@ -424,9 +424,19 @@ void Game::doMove(const Line& line, Coord middle)
             Connection(&AC, a),
             Connection(&CB, b));
 
-    // Likewise add the connection to the start and end nodes
-    a->addConnection(Connection(&AC, &c));
-    b->addConnection(Connection(&CB, &c));
+    try
+    {
+        // Likewise add the connection to the start and end nodes
+        a->addConnection(Connection(&AC, &c));
+        b->addConnection(Connection(&CB, &c));
+    }
+    catch (...)
+    {
+        // Since it ran into problems, make sure we get rid of it.
+        cout << "Before" << endl << *this << endl;
+        deleteLastNode();
+        cout << "After" << endl << *this << endl;
+    }
 
     ++moveCount;
     updateAreas();
@@ -452,4 +462,40 @@ bool Game::gameEnded() const
     }
 
     return true;
+}
+
+void Game::deleteLastNode()
+{
+    Node& node = *nodes.back();
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (node.connections[i].exists())
+        {
+            Node& otherNode = *node.connections[i].dest;
+
+            // Delete any reciprocal connections pointing to this node
+            for (int j = 0; j < 3; j++)
+            {
+                if (otherNode.connections[j].dest == &node)
+                {
+                    otherNode.connections[j] = Connection();
+                }
+            }
+
+            otherNode.updateOpen();
+
+            // Delete line
+            vector<Line*>::iterator iter = find(lines.begin(), lines.end(),
+                node.connections[i].line);
+
+            if (iter != lines.end())
+                lines.erase(iter);
+
+            delete node.connections[i].line;
+        }
+    }
+
+    delete nodes.back();
+    nodes.pop_back();
 }
