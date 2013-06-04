@@ -35,31 +35,29 @@ int main(int argc,char *argv[])
     //int height = info->current_h*2/3;
     int depth  = 0; // Set to current screen depth
 
-    // What we draw on in memory since the algorithms are pixel-based
-    // We'll use 16 bpp since 8 doesn't allow line-crossing detection for some reason.
-    SDL_Surface* buffer = SDL_CreateRGBSurface(SDL_HWSURFACE, width, height, 16, 0, 0, 0, 0);
-
     // What we draw on the screen
     SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
-    // Draw the background image
-    //string background = "background.jpg";
-    //SDL_Surface *img = IMG_Load(background.c_str());
-    //SDL_Surface *img = IMG_Load( "background.jpg" );
-    //SDL_Surface *bg_img = SDL_DisplayFormat(img);
-    //SDL_FreeSurface(img);
-    //SDL_BlitSurface(bg_img, NULL, screen, NULL);
+    Image instructions("images/Instructions.jpg");
+    Image instructionsBackHover("images/InstructionsBackHover.jpg");
+    Image credits("images/Credits.jpg");
+    Image creditsBackHover("images/CreditsBackHover.jpg");
+    Image exitHover("images/ExitHover.jpg");
+    Image creditsHover("images/CreditsHover.jpg");
+    Image instructionsHover("images/InstructionsHover.jpg");
+    Image optionsHover("images/OptionsHover.jpg");
+    Image startHover("images/StartHover.jpg");
+    Image sproutsMenu("images/SproutsMenu.jpg");
 
     //SDL_Surface* chalkboard = NULL;
     //chalkboard IMG_Load( "images/background.jpg" );
     //SDL_BlitSurface(chalkboard, NULL, screen, NULL);
 
-    Image background("images/SproutsMenu.jpg");
-    SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+    SDL_BlitSurface(sproutsMenu.surface(), NULL, screen, NULL);
     SDL_Flip( screen );
     //SDL_Delay( 2000 );
 
-    if (screen == NULL || buffer == NULL)
+    if (screen == NULL)
     {
         fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
             width, height, depth, SDL_GetError());
@@ -85,6 +83,8 @@ int main(int argc,char *argv[])
     bool check11 = false;
     bool check12 = false;
 
+    // Display the menu, and when starting the game, break out of this loop and
+    // start the game loop.
     while (!GameStart)
     {
         //While there's an event to handle
@@ -98,8 +98,7 @@ int main(int argc,char *argv[])
                         check2 = check3 = check4 = check5 = check6 = false;
                         if (!check1)
                         {
-                            Image background("images/SproutsMenu.jpg");
-                            SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                            SDL_BlitSurface(sproutsMenu.surface(), NULL, screen, NULL);
                             SDL_Flip( screen );
                             check1 = true;
                         }
@@ -111,8 +110,7 @@ int main(int argc,char *argv[])
                         {
                             if (!check2)
                             {
-                                Image background("images/StartHover.jpg");
-                                SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                SDL_BlitSurface(startHover.surface(), NULL, screen, NULL);
                                 SDL_Flip( screen );
                                 check2 = true;
                             }
@@ -124,8 +122,7 @@ int main(int argc,char *argv[])
                             {
                                 if (!check3)
                                 {
-                                    Image background("images/OptionsHover.jpg");
-                                    SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                    SDL_BlitSurface(optionsHover.surface(), NULL, screen, NULL);
                                     SDL_Flip( screen );
                                     check3 = true;
                                 }
@@ -137,8 +134,7 @@ int main(int argc,char *argv[])
                                 {
                                     if (!check4)
                                     {
-                                        Image background("images/InstructionsHover.jpg");
-                                        SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                        SDL_BlitSurface(instructionsHover.surface(), NULL, screen, NULL);
                                         SDL_Flip( screen );
                                         check4 = true;
                                     }
@@ -150,8 +146,7 @@ int main(int argc,char *argv[])
                                     {
                                         if (!check5)
                                         {
-                                            Image background("images/CreditsHover.jpg");
-                                            SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                            SDL_BlitSurface(creditsHover.surface(), NULL, screen, NULL);
                                             SDL_Flip( screen );
                                             check5 = true;
                                         }
@@ -161,8 +156,7 @@ int main(int argc,char *argv[])
                                         check1 = check2 = check3 = check4 = check5 = false;
                                         if (!check6)
                                         {
-                                            Image background("images/ExitHover.jpg");
-                                            SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                            SDL_BlitSurface(exitHover.surface(), NULL, screen, NULL);
                                             SDL_Flip( screen );
                                             check6 = true;
                                         }
@@ -185,8 +179,7 @@ int main(int argc,char *argv[])
                             check10 = false;
                             if (!check9)
                             {
-                                Image background("images/Instructions.jpg");
-                                SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                SDL_BlitSurface(instructions.surface(), NULL, screen, NULL);
                                 SDL_Flip( screen );
                                 check9 = true;
                             }
@@ -196,8 +189,7 @@ int main(int argc,char *argv[])
                             check9 = false;
                             if (!check10)
                             {
-                                Image background("images/InstructionsBackHover.jpg");
-                                SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                SDL_BlitSurface(instructionsBackHover.surface(), NULL, screen, NULL);
                                 SDL_Flip( screen );
                                 check10 = true;
                             }
@@ -210,8 +202,7 @@ int main(int argc,char *argv[])
                             check12 = false;
                             if (!check11)
                             {
-                                Image background("images/Credits.jpg");
-                                SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                SDL_BlitSurface(credits.surface(), NULL, screen, NULL);
                                 SDL_Flip( screen );
                                 check11 = true;
                             }
@@ -221,8 +212,7 @@ int main(int argc,char *argv[])
                             check11 = false;
                             if (!check12)
                             {
-                                Image background("images/CreditsBackHover.jpg");
-                                SDL_BlitSurface(background.surface(), NULL, screen, NULL);
+                                SDL_BlitSurface(creditsBackHover.surface(), NULL, screen, NULL);
                                 SDL_Flip( screen );
                                 check12 = true;
                             }
@@ -255,7 +245,11 @@ int main(int argc,char *argv[])
 
                     if ((event.button.y > 450) && (event.button.y < 500))
                     {
-                        SDL_Quit();
+                        // "Start" the game, but set the game to not running so
+                        // we just exit the program
+                        GameStart = true;
+                        gameRunning = false;
+                        break;
                     }
 
                     /*while (GameHighScore)

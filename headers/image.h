@@ -16,7 +16,7 @@ class Image
         SDL_Surface *img;
 
     public:
-        Image(const string&);
+        Image(const string&, bool transparent = false);
         SDL_Surface* surface();
         ~Image();
 };
