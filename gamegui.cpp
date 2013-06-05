@@ -95,6 +95,7 @@ void GameGUI::click(Coord location)
     bool validFinish; //Used to keep trach of whether or not the line can be drawn.
     //Coord point = location;
     //Coord last = currentLine.back();
+
     // Clicked on node to end
     if ((selected && state == NodeClicked)&&!selected->dead()) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
     {
@@ -104,17 +105,11 @@ void GameGUI::click(Coord location)
         if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
-           /*
-           if (((location.y<=(currentLine.back().y+(currentLine.back().x-location.x)))&&
-                (location.y<=(currentLine.back().y-(currentLine.back().x-location.x))))||
-               ((location.y>=(currentLine.back().y+(currentLine.back().x-location.x)))&&
-                (location.y>=(currentLine.back().y-(currentLine.back().x-location.x)))))
-                */
             if (vertical(currentLine.back(),location))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
-                             Coord(selected->getLoci().x,selected->getLoci().y)))
+                             Coord(selected->getLoci().x,selected->getLoci().y))) //Checks if new line is valid
                 {
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
@@ -166,6 +161,7 @@ void GameGUI::click(Coord location)
             }
         }
     }
+
     // Clicked on node to start
     else if (selected && !selected->dead())
     {
@@ -177,6 +173,7 @@ void GameGUI::click(Coord location)
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
     }
+
     // Clicked to place a line
     else if (state == NodeClicked &&
         validLine(currentLine.back(),straighten(currentLine.back(), location)))
@@ -212,12 +209,7 @@ bool GameGUI::vertical(Coord last, Coord point)
 Coord GameGUI::straighten(Coord last, Coord point)
 {
     // Determine to snap vertically or horizontally
-   /* if (((point.y<=(last.y+(last.x-point.x)))&&
-         (point.y<=(last.y-(last.x-point.x))))||
-        ((point.y>=(last.y+(last.x-point.x)))&&
-         (point.y>=(last.y-(last.x-point.x)))))
-         */
-        if (vertical(last, point))
+    if (vertical(last, point))
     {
         //validLine(coord(last.x, last.y), coord(last.x, point.y))
 
