@@ -157,6 +157,10 @@ void GameGUI::click(Coord location)
                 doMove(currentLine,Coord(tempx,tempy));
                 //insertNode(Coord(tempx,tempy));
                 cancel();
+
+                if (gameEnded())
+                    cout << "Game has ended!" << endl;
+
                 //cancel();
                 //state=Blank; //Sometimes this will fix the problem. But not reliably.
             }

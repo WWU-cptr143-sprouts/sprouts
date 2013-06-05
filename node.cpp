@@ -116,6 +116,9 @@ void Node::updateOpen()
 {
     int count = 0;
 
+    // Blank it again
+    fill(&open[0], &open[0]+4, true); // By default every direction is open
+
     // For each of the connections, set open[dir] to false
     for (int i = 0; i < 3; i++)
     {

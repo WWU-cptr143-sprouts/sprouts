@@ -323,7 +323,8 @@ ostream& operator<<(ostream& os, const Game& g)
 
 void Game::doMove(const Line& line, Coord middle)
 {
-    //updated = false;
+    cout << "Before" << endl << *this << endl;
+    updated = false;
 
     // Determine the end nodes
     Node* a = NULL;
@@ -420,8 +421,6 @@ void Game::doMove(const Line& line, Coord middle)
     // Since it ran into problems, make sure we get rid of anything we added
     catch (...)
     {
-        cout << "Before" << endl << *this << endl;
-
         // We definitely inserted lines, so get rid of them.
         delete &AC;
         delete &CB;
