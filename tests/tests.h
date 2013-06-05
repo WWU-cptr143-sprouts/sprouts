@@ -40,4 +40,7 @@ void copyConstructor();
 // Print out test results
 void test(const string& s, bool passed);
 
+//test area eqlaity
+void eqtester();
+
 #endif
