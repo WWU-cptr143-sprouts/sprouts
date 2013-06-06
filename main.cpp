@@ -74,10 +74,19 @@ int main(int argc, char *argv[])
                     case SDL_KEYDOWN:
                         break;
                     case SDL_KEYUP:
-                        if (inMenu)
-                            menu.cancel();
+                        if (event.key.keysym.sym == SDLK_ESCAPE)
+                        {
+                            if (inMenu)
+                                menu.cancel();
+                            else
+                                game.cancel();
+                        }
                         else
-                            game.cancel();
+                            if (event.key.keysym.sym == SDLK_q && !inMenu)
+                            {
+                                inMenu = true;
+                                menu.init();
+                            }
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;

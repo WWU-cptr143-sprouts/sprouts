@@ -7,26 +7,28 @@ GameGUI::GameGUI(SDL_Surface* screen)
 
 void GameGUI::init(int count)
 {
-    double theta = 0;
-
-    // Create count nodes
-    if (count > 0)
+    if (nodes.size() == 0)
     {
-        // Place first node in center
-        insertNode(center());
+        double theta = 0;
 
-        // Place the rest of the initial nodes along an ellipse at the center
-        // of the screen
-        for (int i = 1; i < count; i++)
+        // Create count nodes
+        if (count > 0)
         {
-            insertNode(Coord(
-                screen->w/3 * cos(theta) + screen->w/2,
-                screen->h/3 * sin(theta) + screen->h/2));
+            // Place first node in center
+            insertNode(center());
 
-            theta += 2*3.14/count;
+            // Place the rest of the initial nodes along an ellipse at the center
+            // of the screen
+            for (int i = 1; i < count; i++)
+            {
+                insertNode(Coord(
+                    screen->w/3 * cos(theta) + screen->w/2,
+                    screen->h/3 * sin(theta) + screen->h/2));
+
+                theta += 2*3.14/count;
+            }
         }
     }
-
     updateAreas();
     redraw();
 }
