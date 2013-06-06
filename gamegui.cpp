@@ -148,9 +148,7 @@ void GameGUI::click(Coord location)
                     tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - horizontally.
                 }
 
-                cout << endl << endl << endl << endl;
                 cout << "Middle: " << Coord(tempx, tempy) << " Line: " << currentLine << endl;
-                cout << *this << endl;
                 doMove(currentLine,Coord(tempx,tempy));
                 cancel();
 

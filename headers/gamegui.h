@@ -36,7 +36,7 @@ class GameGUI : public GameAI
         // Assuming big-endian?
         static const int nodeRadius = 5; // Node radius
         static const int lineThick  = 1; // Line thickness
-        static const int selectRadius = 20; // Defines how close you must click to a node
+        static const int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
     public:
