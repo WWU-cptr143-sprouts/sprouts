@@ -84,7 +84,7 @@ void GameGUI::cancel()
     redraw();
 }
 
-void GameGUI::click(Coord location)
+State GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
@@ -153,10 +153,12 @@ void GameGUI::click(Coord location)
                 cancel();
 
                 if (gameEnded())
-                    cout << "Game has ended!" << endl;
+                    state = GameEnd;
+
 
                 //cancel();
                 //state=Blank; //Sometimes this will fix the problem. But not reliably.
+
             }
         }
     }
@@ -179,6 +181,7 @@ void GameGUI::click(Coord location)
     }
 
     redraw();
+    return state;
 }
 
 void GameGUI::cursor(Coord location)

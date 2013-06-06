@@ -107,7 +107,10 @@ int main(int argc, char *argv[])
                             }
                             else
                             {
-                                game.click(Coord(event.button.x, event.button.y));
+                                State state = game.click(Coord(event.button.x, event.button.y));
+                                if (state == GameEnd)
+                                      cout << "Game has ended!" << endl; //Add image here for end game
+
                             }
                         }
                         break;

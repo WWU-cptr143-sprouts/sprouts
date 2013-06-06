@@ -19,6 +19,7 @@ enum State
 {
     Blank,
     NodeClicked,
+    GameEnd
 };
 
 class GameGUI : public GameAI
@@ -45,7 +46,7 @@ class GameGUI : public GameAI
         void init(int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
-        void click(Coord); // Mouse clicked at (x,y)
+        State click(Coord); // Mouse clicked at (x,y)
         void cursor(Coord); // Cursor hovering at (x,y)
         ~GameGUI();
 
