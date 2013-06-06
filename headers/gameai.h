@@ -7,9 +7,9 @@
 class Pmove
 {
     public:
-        Connection aLink;
+        Line aLink;
         Node newNode;
-        Connection bLink;
+        Line bLink;
 };
 
 class GameAI : public Game
@@ -25,7 +25,7 @@ class GameAI : public Game
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
-
+        bool requiredAreas(bool, int);  //Calculates the number of nodes to put the ai in an advantageous position.
         ~GameAI();
 };
 
