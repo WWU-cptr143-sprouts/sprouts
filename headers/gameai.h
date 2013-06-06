@@ -26,16 +26,10 @@ class GameAI : public Game
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
-<<<<<<< HEAD
-<<<<<<< HEAD
         void doPMove(PMove); //Calls doMove from
         PMove createLine(Node&, Node&);
-=======
         bool requiredAreas(bool, int);  //Calculates the number of nodes to put the ai in an advantageous position.
->>>>>>> b65931d4c7e85a09cab4aaf42039fd8f0585e114
-=======
-        bool requiredAreas(bool, int);  //Calculates the number of nodes to put the ai in an advantageous position.
->>>>>>> b65931d4c7e85a09cab4aaf42039fd8f0585e114
+
         ~GameAI();
 };
 
