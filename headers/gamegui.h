@@ -4,7 +4,9 @@
 #include <cmath>
 #include <limits>
 #include <vector>
+#include <sstream>
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <SDL_gfxPrimitives.h>
 #include "gameai.h"
 #include "image.h"
@@ -64,6 +66,7 @@ class GameGUI : public GameAI
         Coord straighten(Coord last, Coord point); // Snap point to 90 degrees of last
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
+        void displayPosition(Coord); // Print to screen, for debugging
 };
 
 #endif
