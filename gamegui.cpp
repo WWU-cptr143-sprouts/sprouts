@@ -95,8 +95,12 @@ State GameGUI::click(Coord location)
     //Coord point = location;
     //Coord last = currentLine.back();
 
-    // Clicked on node to end
-    if ((selected && state == NodeClicked)&&!selected->dead()) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
+    // Don't do anything if it's dead
+    if (selected && selected->dead())
+        return state;
+
+    // Clicked on node to end, make sure this is at least the second line
+    if ((selected && state == NodeClicked) && currentLine.size() > 1) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
     {
         validFinish=false; //Reset validFinish
         //cancel();
@@ -165,8 +169,8 @@ State GameGUI::click(Coord location)
         }
     }
 
-    // Clicked on node to start
-    else if (selected && !selected->dead())
+    // Clicked on node to start, make sure this is the first node
+    else if (selected && currentLine.size() == 0)
     {
        //Checks to see if there is already 1 connection coming out of the node, if so, the next will be adjusted to only come out at 180.
       // if ((selected[Up]&&!selected[Down])||(!selected[Up]&&selected[Down]) //Checks to see if node has 1 line coming up or down out of it
