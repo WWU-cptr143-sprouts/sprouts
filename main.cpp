@@ -1,3 +1,4 @@
+#include <csignal>
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -7,11 +8,6 @@
 #include "headers/image.h"
 #include "headers/gamegui.h"
 
-void error(const string& s)
-{
-    cout << "Error: " << s << endl;
-}
-
 int main(int argc, char *argv[])
 {
     int width = 800;
@@ -20,18 +16,23 @@ int main(int argc, char *argv[])
 	bool gameRunning = true;
 	SDL_Event event;	// dump event polls into this
 
-    // Initialize everything
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    // Initialize SDL, NOPARACHUTE means SDL will handle fatal interrupts which
+    // we use to exit on Ctrl+C.
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0)
 	{
         fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
         return 1;
 	}
 
+    // Initialize SDL_ttf
     if (TTF_Init() < 0)
     {
         fprintf(stderr, "TTF_Init: %s\n", TTF_GetError());
         return 1;
     }
+
+    // Exit on Ctrl+C
+    signal(SIGINT, SIG_DFL);
 
     // Cleanup on exit
     atexit(SDL_Quit);
@@ -70,11 +71,11 @@ int main(int argc, char *argv[])
                         gameRunning = false;
                         break;
                     case SDL_ACTIVEEVENT:
-                        // see http://www.libsdl.org/cgi/docwiki.cgi/SDL_ActiveEvent
                         break;
                     case SDL_KEYDOWN:
                         break;
                     case SDL_KEYUP:
+                        // Escape cancels line and does nothing (at the moment) in the menu
                         if (event.key.keysym.sym == SDLK_ESCAPE)
                         {
                             if (inMenu)
@@ -82,12 +83,12 @@ int main(int argc, char *argv[])
                             else
                                 game.cancel();
                         }
-                        else
-                            if (event.key.keysym.sym == SDLK_q && !inMenu)
-                            {
-                                inMenu = true;
-                                menu.init();
-                            }
+                        // Q returns to menu
+                        else if (event.key.keysym.sym == SDLK_q && !inMenu)
+                        {
+                            inMenu = true;
+                            menu.init();
+                        }
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;
@@ -118,9 +119,9 @@ int main(int argc, char *argv[])
                             else
                             {
                                 State state = game.click(Coord(event.button.x, event.button.y));
+
                                 if (state == GameEnd)
                                       cout << "Game has ended!" << endl; //Add image here for end game
-
                             }
                         }
                         break;
@@ -134,35 +135,42 @@ int main(int argc, char *argv[])
                         break;
                 }
             }
+            // Catch all of the errors that might have occurred in the game. If
+            // these are thrown, there's a GUI problem since the GUI shouldn't
+            // allow invalid moves. That, or the A-Checker has a bug that saying
+            // a move is invalid when it shouldn't be.
             catch (const InvalidLine& e)
             {
-                error("Tried to add an invalid line");
-                cout << e << endl;
+                cout << "Error: Tried to add an invalid line. " << e << endl;
             }
             catch (const InvalidNode& e)
             {
-                error("Could not find start and/or end node in the line");
+                cout << "Error: Could not find start and/or end node in the line" << endl;
             }
             catch (const InvalidMiddle& e)
             {
-                error("Could not find where to place middle node in the line");
-                cout << e << endl;
+                cout << "Error: Could not find where to place middle node in the line. " << e << endl;
             }
             catch (const ImageNotLoaded& e)
             {
-                error("Could not load image");
+                cout << "Error: Could not load image" << endl;
             }
             catch (const AreasOutdated& e)
             {
-                error("Tried to find if connectable with outdated areas");
+                cout << "Error: Tried to find if connectable with outdated areas" << endl;
             }
             catch (const InvalidCorner& e)
             {
-                error("Tried to add a middle node on a corner");
+                cout << "Error: Tried to add a middle node on a corner" << endl;
             }
+            // Note that NotConnectable is only thrown when Game game(true), setting extraChecks to true
             catch (const NotConnectable& e)
             {
-                error("Tried to connect two nodes that shouldn't be connectable");
+                cout << "Error: Tried to connect two nodes that shouldn't be connectable" << endl;
+            }
+            catch (...)
+            {
+                cout << "Error: Unhandled Exception" << endl;
             }
 		}
 

@@ -1,7 +1,7 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen)
-    :screen(screen), state(Blank)
+    :GameAI(), screen(screen), state(Blank)
 {
 }
 
