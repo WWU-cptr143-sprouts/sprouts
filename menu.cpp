@@ -119,7 +119,7 @@ void Menu::cursor(Coord location)
         }
         if (GameInstructions == true)
         {
-            if ( location.y < 500 )
+            if ( location.y < 550 )
             {
                 check10 = false;
                 if (!check9)
@@ -142,7 +142,7 @@ void Menu::cursor(Coord location)
         }
         if (GameCredits == true)
         {
-            if ( location.y < 500 )
+            if ( location.y < 550 )
             {
                 check12 = false;
                 if (!check11)
@@ -214,7 +214,7 @@ ClickType Menu::click(Coord location)
     }
     else
     {
-        if (location.y > 500)
+        if (location.y > 550)
         {
             GameOptions = GameInstructions = GameCredits = false;
             SDL_BlitSurface(sproutsMenu.surface(), NULL, screen, NULL);
