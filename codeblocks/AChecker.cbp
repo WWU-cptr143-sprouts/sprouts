@@ -46,8 +46,11 @@
 		<Unit filename="../image.cpp" />
 		<Unit filename="../node.cpp" />
 		<Unit filename="../structs.cpp" />
+		<Unit filename="../tests/eqtester.cpp" />
+		<Unit filename="../tests/eqtester.h" />
 		<Unit filename="../tests/exceptions.cpp" />
 		<Unit filename="../tests/game1.cpp" />
+		<Unit filename="../tests/game2.cpp" />
 		<Unit filename="../tests/main.cpp" />
 		<Unit filename="../tests/tests.cpp" />
 		<Unit filename="../tests/tests.h" />
