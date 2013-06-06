@@ -100,12 +100,16 @@ void GameGUI::click(Coord location)
     if ((selected && state == NodeClicked)&&!selected->dead()) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
     {
         validFinish=false; //Reset validFinish
+        //cancel();
 
         //correct for last line to make it straight
-        if (validLine(currentLine.back(),straighten(currentLine.back(), location)))//Does the previous line cross before the line is drawn to connect to the node.
+        if (validLine(currentLine.back(),
+                      straighten(currentLine.back(), Coord(selected->getLoci().x,selected->getLoci().y))))//Does the previous line cross before the line is drawn to connect to the node.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
-            if (vertical(currentLine.back(),location))
+           //cancel();
+            if (vertical(currentLine.back(),
+                         Coord(selected->getLoci().x,selected->getLoci().y)))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
@@ -114,7 +118,8 @@ void GameGUI::click(Coord location)
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
-                    currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
+                    currentLine.push_back(straighten(currentLine.back(),
+                                            Coord(selected->getLoci().x,selected->getLoci().y))); //Add line to currentLine
                 }
             }
             else
@@ -126,7 +131,8 @@ void GameGUI::click(Coord location)
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                    currentLine.push_back(straighten(currentLine.back(), location)); //Add line to currentLine
+                    currentLine.push_back(straighten(currentLine.back(),
+                                                Coord(selected->getLoci().x,selected->getLoci().y))); //Add line to currentLine
                 }
             }
 
@@ -298,6 +304,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
             if (endX == startX)
             {
                 if(A2 != A3)
+                {
                     if(A2 > A3)
                     {
                         if((startX > A3)&&(startX < A2))
@@ -320,10 +327,43 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                }
+                else
+                    if(startX == A2)
+                    {
+                        if(B2 > B3)
+                        {
+                            if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2)))
+                                return false;
+                            if(startY < endY)
+                            {
+                                if((startY < B3)&&(endY > B3))
+                                    return false;
+                            }
+                            else
+                                if((startY > B2)&&(endY < B2))
+                                    return false;
+                        }
+                        else
+                        {
+                            if(((startY > B2)&&(startY < B3))||((endY > B2)&&(endY < B3)))
+                                return false;
+                            if(startY < endY)
+                            {
+                                if((startY < B2)&&(endY > B2))
+                                    return false;
+                            }
+                            else
+                                if((startY > B3)&&(endY < B3))
+                                    return false;
+                        }
+                    }
+
             }
             else
             {
                 if(B2 != B3)
+                {
                     if(B2 > B3)
                     {
                         if((startY < B2)&&(startY > B3))
@@ -346,6 +386,38 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                }
+                else
+                    if(startY == B2)
+                    {
+                        if(A2 > A3)
+                        {
+                            if(((startX > A3)&&(startX < A2))||((endX > A3)&&(endX < A2)))
+                                return false;
+                            if(startX < endX)
+                            {
+                                if((startX < A3)&&(endX > A3))
+                                    return false;
+                            }
+                            else
+                                if((startX > A2)&&(endX < A2))
+                                    return false;
+                        }
+                        else
+                        {
+                            if(((startX > A2)&&(startX < A3))||((endX > A2)&&(endX < A3)))
+                                return false;
+                            if(startX < endX)
+                            {
+                                if((startX < A2)&&(endX > A2))
+                                    return false;
+                            }
+                            else
+                                if((startX > A3)&&(endX < A3))
+                                    return false;
+                        }
+                    }
+
 
             }
 
@@ -357,7 +429,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
     }
 
     //code for already made lines, unsure of error
-    /*for (int i = 0; i < lines.size(); i++)
+    for (int i = 0; i < lines.size(); i++)
     {
         for (int j = 1; j < lines[i]->size(); j++)
         {
@@ -367,9 +439,10 @@ bool GameGUI::validLine(Coord start, Coord end) const
             const int A3 = line[j].x;
             const int B3 = line[j].y;
 
-            if (endY == point.y)
+            if (endX == startX)
             {
                 if(A2 != A3)
+                {
                     if(A2 > A3)
                     {
                         if((startX > A3)&&(startX < A2))
@@ -392,10 +465,12 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                }
             }
             else
             {
                 if(B2 != B3)
+                {
                     if(B2 > B3)
                     {
                         if((startY < B2)&&(startY > B3))
@@ -418,15 +493,77 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                }
+                else
+                    if(startX == A2)
+                    {
+                        if(B2 > B3)
+                        {
+                            if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2)))
+                                return false;
+                            if(startY < endY)
+                            {
+                                if((startY < B3)&&(endY > B3))
+                                    return false;
+                            }
+                            else
+                                if((startY > B2)&&(endY < B2))
+                                    return false;
+                        }
+                        else
+                        {
+                            if(((startY > B2)&&(startY < B3))||((endY > B2)&&(endY < B3)))
+                                return false;
+                            if(startY < endY)
+                            {
+                                if((startY < B2)&&(endY > B2))
+                                    return false;
+                            }
+                            else
+                                if((startY > B3)&&(endY < B3))
+                                    return false;
+                        }
+                    }
+                    else
+                    if(startY == B2)
+                    {
+                        if(A2 > A3)
+                        {
+                            if(((startX > A3)&&(startX < A2))||((endX > A3)&&(endX < A2)))
+                                return false;
+                            if(startX < endX)
+                            {
+                                if((startX < A3)&&(endX > A3))
+                                    return false;
+                            }
+                            else
+                                if((startX > A2)&&(endX < A2))
+                                    return false;
+                        }
+                        else
+                        {
+                            if(((startX > A2)&&(startX < A3))||((endX > A2)&&(endX < A3)))
+                                return false;
+                            if(startX < endX)
+                            {
+                                if((startX < A2)&&(endX > A2))
+                                    return false;
+                            }
+                            else
+                                if((startX > A3)&&(endX < A3))
+                                    return false;
+                        }
+                    }
+
 
             }
 
                         // If A is on one side and B is on the other side, then it intersects
-            if (((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0)) < 0 &&
+            /*if (((A2-A0)*(B1-B0) + (B2-B0)*(A1-A0)) * ((A3-A0)*(B1-B0) + (B3-B0)*(A1-A0)) < 0 &&
                 ((A0-A2)*(B3-B2) + (B0-B2)*(A3-A2)) * ((A1-A2)*(B3-B2) + (B1-B2)*(A3-A2)) < 0)
                 return false;*/
-        //}
-    //}
+        }
+    }
 
     return true;
 }
