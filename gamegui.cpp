@@ -99,8 +99,17 @@ State GameGUI::click(Coord location)
     if (selected && selected->dead())
         return state;
 
-    // Clicked on node to end, make sure this is at least the second line
-    if ((selected && state == NodeClicked) && currentLine.size() > 1) //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
+    // Used to determine if we can go straight to the second node if we clicked
+    // one or if we have to draw another line to get there.
+    Coord direct;
+    if (selected)
+        direct = straighten(location, selected->getLoci());
+
+    // Clicked on node to end, make sure this is at least the second line or
+    // that the line is perfectly straight between nodes
+    if (selected && state == NodeClicked && //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
+        // Either there's more than one line going from one node to another or the two nodes are perfectly in line horizontally or vertically
+        (currentLine.size() > 1 || (currentLine.size() == 1 && (direct.x == currentLine.back().x || direct.y == currentLine.back().y))))
     {
         validFinish=false; //Reset validFinish
         //cancel();
@@ -178,7 +187,6 @@ State GameGUI::click(Coord location)
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
     }
-
     // Clicked to place a line
     else if (state == NodeClicked &&
         validLine(currentLine.back(),straighten(currentLine.back(), location)))
