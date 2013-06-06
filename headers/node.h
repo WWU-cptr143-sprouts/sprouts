@@ -61,6 +61,11 @@ class InvalidCorner { };
 
 class Node
 {
+    enum Dir
+    {
+        Up=0, Right, Down, Left
+    };
+
     protected:
         Coord loci;
         Areaset* areasets[2];
@@ -77,17 +82,21 @@ class Node
         const Coord& getLoci() const { return loci; }
         void setAreasets(Areaset* sets[2]);
         bool addConnection(const Connection&); // adds connection to first available slot, returns false if all used already
+
+        // Determine which sides you can connect on. Note this assumes that x
+        // increases from left to right and y increases from top to bottom.
+        // (0,0) is the top left in most graphical toolkits.
+        bool openUp()    const { return open[Up];    }
+        bool openRight() const { return open[Right]; }
+        bool openDown()  const { return open[Down];  }
+        bool openLeft()  const { return open[Left];  }
+
         ~Node();
         friend class Game;
         friend ostream& operator<<(ostream&, const Game&);
         friend ostream& operator<<(ostream&, const Connection&);
     private:
         void updateOpen(); // update open array after adding a connection
-};
-
-enum Dir
-{
-    Up=0, Right, Down, Left
 };
 
 // This is here since we want to print out the coordinate of the Node

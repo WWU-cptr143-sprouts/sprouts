@@ -464,8 +464,8 @@ void GameGUI::displayPosition(Coord c)
     origin.y = 0;
 
     // Only update top left corner.
-    origin.w = 100;
-    origin.h = 50;
+    origin.w = 60;
+    origin.h = 20;
 
     SDL_Surface* hover = TTF_RenderText_Blended(font, s.str().c_str(), color);
 

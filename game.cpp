@@ -302,8 +302,8 @@ ostream& operator<<(ostream& os, const Game& g)
     for (int i = 0; i < g.nodes.size(); i++)
     {
         os << "Node " << g.nodes[i]  << " @ " << g.nodes[i]->loci << " { U:"
-            << g.nodes[i]->open[Up]   << ", R:" << g.nodes[i]->open[Right] << ", D:"
-            << g.nodes[i]->open[Down] << ", L:" << g.nodes[i]->open[Left]  << " } "
+            << g.nodes[i]->openUp()   << ", R:" << g.nodes[i]->openRight() << ", D:"
+            << g.nodes[i]->openDown() << ", L:" << g.nodes[i]->openLeft()  << " } "
             << "Areasets { " << g.nodes[i]->areasets[0] << ", "
                << g.nodes[i]->areasets[1] << " } " << endl;
 
