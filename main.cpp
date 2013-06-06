@@ -67,12 +67,21 @@ int main(int argc, char *argv[])
                     case SDL_KEYDOWN:
                         break;
                     case SDL_KEYUP:
+                        if (inMenu)
+                            menu.cancel();
+                        else
+                            game.cancel();
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;
                     case SDL_MOUSEBUTTONUP:
                         if (event.button.button == SDL_BUTTON_LEFT)
                         {
+                            // If it's in the menu, send the click event and
+                            // then see if they clicked to start the game. If
+                            // so, switch to game mode by setting inMenu to
+                            // false and draw the game with the specified
+                            // number of nodes to the screen.
                             if (inMenu)
                             {
                                 ClickType status = menu.click(Coord(event.button.x, event.button.y));
@@ -97,13 +106,9 @@ int main(int argc, char *argv[])
                         break;
                     case SDL_MOUSEMOTION:
                         if (inMenu)
-                        {
                             menu.cursor(Coord(event.motion.x, event.motion.y));
-                        }
                         else
-                        {
                             game.cursor(Coord(event.motion.x, event.motion.y));
-                        }
                         break;
                     default:
                         break;
