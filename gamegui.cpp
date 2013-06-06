@@ -113,9 +113,9 @@ void GameGUI::click(Coord location)
                 {
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
-                    //currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
-                    adjust = Coord (selected->getLoci().x,currentLine.back().y);
-                    currentLine.back() = straighten(adjust, location); //Add line to currentLine
+                    currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
+                    adjust = Coord(currentLine.back().x,currentLine.back().y);
+                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
             else
@@ -126,9 +126,9 @@ void GameGUI::click(Coord location)
                 {
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
-                    //currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                    adjust = Coord(currentLine.back().x,selected->getLoci().y);
-                    currentLine.back()=straighten(adjust, location); //Add line to currentLine
+                    currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
+                    adjust = Coord(currentLine.back().x,currentLine.back().y);
+                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
 
