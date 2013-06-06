@@ -331,7 +331,7 @@ void Game::doMove(const Line& line, Coord middle)
         if (nodes[i]->getLoci() == line.front())
         {
             if (a)
-                throw InvalidMove();
+                throw InvalidNode();
             else
                 a = nodes[i];
         }
@@ -339,7 +339,7 @@ void Game::doMove(const Line& line, Coord middle)
         if (nodes[i]->getLoci() == line.back())
         {
             if (b)
-                throw InvalidMove();
+                throw InvalidNode();
             else
                 b = nodes[i];
         }
@@ -347,7 +347,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     // Couldn't find nodes
     if (!a || !b)
-        throw InvalidMove();
+        throw InvalidNode();
 
     if (line.size() == 0)
         throw InvalidLine(line);
@@ -392,7 +392,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     // We should have found a place to put the middle point
     if (count != 1)
-        throw InvalidMove();
+        throw InvalidMiddle();
 
     // Note that if the middle point is on a corner, it will throw above because
     // we check that x or y is less than one and greater than the other, meaning

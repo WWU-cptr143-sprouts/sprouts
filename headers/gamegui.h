@@ -2,6 +2,7 @@
 #define H_GameGUI
 
 #include <cmath>
+#include <cstdlib> // Has abs(int)
 #include <limits>
 #include <vector>
 #include <sstream>

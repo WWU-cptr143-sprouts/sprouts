@@ -126,9 +126,13 @@ int main(int argc, char *argv[])
                 error("Tried to add an invalid line");
                 cout << e << endl;
             }
-            catch (const InvalidMove& e)
+            catch (const InvalidNode& e)
             {
-                error("Tried to make an invalid move");
+                error("Could not find start and/or end node in the line");
+            }
+            catch (const InvalidMiddle& e)
+            {
+                error("Could not find where to place middle node in the line");
             }
             catch (const ImageNotLoaded& e)
             {

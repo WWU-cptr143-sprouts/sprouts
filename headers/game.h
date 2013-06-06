@@ -32,9 +32,12 @@ template<class T> class PointerFind
 // We'll throw this when trying to use connectable() with outdated areasets
 class AreasOutdated { };
 
-// Thrown in doMove() if the center point isn't on the line or the line
-// doesn't end in two nodes (or runs through more than two).
-class InvalidMove { };
+// Thrown in doMove() if the center point isn't on the line
+class InvalidMiddle { };
+
+// Thrown in doMove() if the line doesn't end with two nodes (or runs more than
+// two)
+class InvalidNode { };
 
 // Thrown when two nodes aren't connectable when put into doMove()
 class NotConnectable { };
