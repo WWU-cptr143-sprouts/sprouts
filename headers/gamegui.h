@@ -62,7 +62,7 @@ class GameGUI : public GameAI
         void circle(Coord, int radius, Uint32 color); // Draw a circle
         bool validLine(Coord,Coord) const; // See if a pending line crosses another
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
-        bool vertical(Coord,Coord); //Checks two points and determins if line to be drawn should be vertical
+        bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point); // Snap point to 90 degrees of last
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL

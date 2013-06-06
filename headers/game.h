@@ -1,10 +1,4 @@
 /*
-*   TODO:
-*   need to add a game class copy constructor
-*   implement tests of (in)equality operator for Areas
-*   in a valid line function only check lines in the areasets of the start node
-*       in the process keep track of & of checked lines, don't recheck
-*
 *   TONEVERDO list (wish list)
 *   added a function to check validity of current game data state
 */

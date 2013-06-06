@@ -94,20 +94,11 @@ void Game::updateAreas()
             {
                 for(int j=0;j<areas.size();j++)
                 {
-                    // The y+1 and y-1 is a hack to get around when a node has
-                    // the same y coordinate as the start or end point in the
-                    // line. This is making the assumption that lines are at
-                    // least one unit away.
-
                     // If its above added to the above area set
-                    //if (isInArea(*areas[j],Coord(original.x-1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x-1, original.y)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is below then added to the below area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x+1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x+1, original.y)))
                         tempSets[1]->push_back(areas[j]);
                 }
@@ -116,20 +107,11 @@ void Game::updateAreas()
             {
                 for(int j=0;j<areas.size();j++)
                 {
-                    // TODO:
-                    // since equality check works, revise the find_if statement
-                    // test that removing the = in <= in isInArea makes the test suite work
-                    //
-
                     // If its left added to the left area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y-1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x, original.y-1)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is right then added to the right area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y+1)))
                     if (isInArea(*areas[j],Coord(original.x, original.y+1)))
                         tempSets[1]->push_back(areas[j]);
                 }
