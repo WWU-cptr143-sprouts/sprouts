@@ -10,6 +10,7 @@ GameAI::GameAI() : Game()
 
 bool GameAI::aiTurn()
 {
+
     /*vector<int> mValues;
     //Game& cGame= *this;
     Game* tGame = new Game(static_cast<Game> (*this));
@@ -29,7 +30,7 @@ bool GameAI::aiTurn()
     int n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
 
-    delete tGame;*/
+    delete tGame;
 
     //Finds whether we want an even or odd number of areas
     wantedAreas = requiredAreas();
@@ -48,6 +49,7 @@ bool GameAI::aiTurn()
     }
     //If an optimal move is not found, it does the first move in the possible moves vector
     doPMove(possibleMoves<0>);
+    */
     return true;
 }
 
@@ -55,7 +57,7 @@ GameAI::~GameAI()
 {
  //more later
 }
-
+/*
 bool GameAI::requiredAreas(bool player, int startingNodes)
 {
     //This method determines what number of nodes the ai requires to win
@@ -90,7 +92,7 @@ void GameAI::populateMList()
         {
             if(connectable(nodes<i>,nodes<j>))
             {
-                possibleMoves.push_back(/*put stuff in here*/);
+                possibleMoves.push_back();
             }
         }
     }
@@ -101,7 +103,6 @@ void GameAI::populateMList()
 
 
 
-
-
+*/
 
 

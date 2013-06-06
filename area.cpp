@@ -1,5 +1,4 @@
 #include "headers/area.h"
-#include <cmath>
 
 ostream& operator<<(ostream& os, const Area& a)
 {
@@ -44,7 +43,7 @@ bool operator==(const Area& a,const Area& b)
     for(int j=0;j<(a.size())&& countWise;j++)
     {
         if(a[j]->line!=b[
-           static_cast<unsigned int>(abs(i-j))%(a.size())]->line)  countWise =false;
+           static_cast<unsigned int>(abs(double(i)-j))%(a.size())]->line)  countWise =false;
     }
     // the areas match if at least one of the checks didnt find any differences
     return (clockWise || countWise);
