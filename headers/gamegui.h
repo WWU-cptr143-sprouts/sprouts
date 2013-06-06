@@ -37,8 +37,9 @@ class GameGUI : public GameAI
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
     public:
-        GameGUI(SDL_Surface*,int); // default constructor : feed it a surface for the screen
-                                   // and initial sprouts number
+        GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
+
+        void init(int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         void click(Coord); // Mouse clicked at (x,y)
