@@ -10,8 +10,9 @@ GameAI::GameAI() : Game()
 
 bool GameAI::aiTurn()
 {
-    /*vector<int> mValues;
-    Game* tGame = new Game(*this);
+    vector<int> mValues;
+    //Game& cGame= *this;
+    Game* tGame = new Game(static_cast<Game> (*this));
     populateMList(); //will populate the possibleMoves vector
     populatemTable();
     //insert the move into the temp game
@@ -28,7 +29,7 @@ bool GameAI::aiTurn()
     n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
 
-    delete tGame;*/
+    delete tGame;
     return true;
 }
 
