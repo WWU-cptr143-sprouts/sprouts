@@ -31,9 +31,25 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../ai.cpp" />
+		<Unit filename="../area.cpp" />
+		<Unit filename="../draw.cpp" />
+		<Unit filename="../game.cpp" />
+		<Unit filename="../headers/area.h" />
+		<Unit filename="../headers/draw.h" />
+		<Unit filename="../headers/game.h" />
+		<Unit filename="../headers/gameai.h" />
+		<Unit filename="../headers/image.h" />
+		<Unit filename="../headers/node.h" />
+		<Unit filename="../headers/structs.h" />
+		<Unit filename="../image.cpp" />
+		<Unit filename="../main.cpp" />
+		<Unit filename="../node.cpp" />
+		<Unit filename="../structs.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
