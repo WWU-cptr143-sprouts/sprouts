@@ -48,7 +48,8 @@ int main(int argc, char *argv[])
     }
 
     // Window title and icon
-    Image icon("images/icon.bmp", true);
+    Image icon("images/icon1.bmp", true);
+    //Image icon("images/icon2.bmp", true); // a second possible icon
     SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
