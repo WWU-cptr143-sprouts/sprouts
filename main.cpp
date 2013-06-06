@@ -48,8 +48,8 @@ int main(int argc, char *argv[])
     }
 
     // Window title and icon
-    /*Image icon("icon.bmp");
-    SDL_WM_SetIcon(icon.surface(), NULL);*/
+    Image icon("images/icon.bmp", true);
+    SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
     bool inMenu = true;
