@@ -369,10 +369,10 @@ void Game::doMove(const Line& line, Coord middle)
     // When between two points, split there
     for (int i = 1; i < line.size(); i++)
     {
-        if ((line[i].y == line[i-1].y && // Horizontal
+        if ((middle.y == line[i].y && line[i].y == line[i-1].y && // Horizontal
                 ((middle.x > line[i].x && middle.x < line[i-1].x)   ||
                  (middle.x < line[i].x && middle.x > line[i-1].x))) ||
-            (line[i].x == line[i-1].x && // Vertical
+            (middle.x == line[i].x && line[i].x == line[i-1].x && // Vertical
                 ((middle.y > line[i].y && middle.y < line[i-1].y)   ||
                  (middle.y < line[i].y && middle.y > line[i-1].y))))
         {
@@ -392,7 +392,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     // We should have found a place to put the middle point
     if (count != 1)
-        throw InvalidMiddle();
+        throw InvalidMiddle(count, middle);
 
     // Note that if the middle point is on a corner, it will throw above because
     // we check that x or y is less than one and greater than the other, meaning
@@ -487,4 +487,11 @@ void Game::deleteLastNode()
 
     delete nodes.back();
     nodes.pop_back();
+}
+
+ostream& operator<<(ostream& os, const InvalidMiddle& o)
+{
+    os << "Found " << o.count << " positions for invalid middle " << o.middle << ".";
+
+    return os;
 }

@@ -33,7 +33,15 @@ template<class T> class PointerFind
 class AreasOutdated { };
 
 // Thrown in doMove() if the center point isn't on the line
-class InvalidMiddle { };
+class InvalidMiddle
+{
+    const int count;
+    const Coord middle;
+
+    public:
+        InvalidMiddle(int count, Coord middle) :count(count), middle(middle) { }
+        friend ostream& operator<<(ostream& os, const InvalidMiddle&);
+};
 
 // Thrown in doMove() if the line doesn't end with two nodes (or runs more than
 // two)

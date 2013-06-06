@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
             catch (const InvalidMiddle& e)
             {
                 error("Could not find where to place middle node in the line");
+                cout << e << endl;
             }
             catch (const ImageNotLoaded& e)
             {
