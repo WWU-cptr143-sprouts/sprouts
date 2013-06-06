@@ -82,7 +82,6 @@ void GameGUI::unlock()
 
 void GameGUI::cancel()
 {
-
     currentLine.clear();
     state = Blank;
     redraw();
@@ -92,6 +91,7 @@ void GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
+    Coord adjust;
     bool validFinish; //Used to keep trach of whether or not the line can be drawn.
     //Coord point = location;
     //Coord last = currentLine.back();
@@ -118,8 +118,8 @@ void GameGUI::click(Coord location)
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
-                    currentLine.push_back(straighten(currentLine.back(),
-                                            Coord(selected->getLoci().x,selected->getLoci().y))); //Add line to currentLine
+                    adjust = Coord(currentLine.back().x,currentLine.back().y);
+                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
             else
@@ -131,8 +131,8 @@ void GameGUI::click(Coord location)
                     //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                    currentLine.push_back(straighten(currentLine.back(),
-                                                Coord(selected->getLoci().x,selected->getLoci().y))); //Add line to currentLine
+                    adjust = Coord(currentLine.back().x,currentLine.back().y);
+                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
 
@@ -155,6 +155,7 @@ void GameGUI::click(Coord location)
                     tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - horizontally.
                 }
                 //cancel();
+                cout << "Line: " << currentLine << endl;
                 doMove(currentLine,Coord(tempx,tempy));
                 //insertNode(Coord(tempx,tempy));
                 cancel();
@@ -197,6 +198,9 @@ void GameGUI::cursor(Coord location)
         line(currentLine.back(), straighten(currentLine.back(), location), lineCol);
         unlock();
     }
+
+    // Display cursor location on screen for debugging
+    displayPosition(location);
 }
 
 bool GameGUI::vertical(Coord last, Coord point)
@@ -566,6 +570,35 @@ bool GameGUI::validLine(Coord start, Coord end) const
     }
 
     return true;
+}
+
+void GameGUI::displayPosition(Coord c)
+{
+    ostringstream s;
+    s << c;
+
+    // Lazy man's way of only loading this debug code once, which interestingly
+    // enough prevents a SDL segfault
+    static TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
+
+    // Black
+    static SDL_Color color = { 255, 255, 255 };
+
+    // Top left
+    static SDL_Rect origin;
+    origin.x = 0;
+    origin.y = 0;
+
+    // Only update top left corner.
+    origin.w = 100;
+    origin.h = 50;
+
+    SDL_Surface* hover = TTF_RenderText_Blended(font, s.str().c_str(), color);
+
+    SDL_FillRect(screen, &origin, 0);
+    SDL_BlitSurface(hover, NULL, screen , &origin);
+    SDL_Flip(screen);
+    SDL_FreeSurface(hover);
 }
 
 GameGUI::~GameGUI()
