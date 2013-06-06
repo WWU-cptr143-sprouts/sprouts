@@ -1,7 +1,11 @@
 #include "headers/gamegui.h"
 
-GameGUI::GameGUI(SDL_Surface* screen, int count)
+GameGUI::GameGUI(SDL_Surface* screen)
     :screen(screen), state(Blank)
+{
+}
+
+void GameGUI::init(int count)
 {
     double theta = 0;
 
@@ -23,10 +27,6 @@ GameGUI::GameGUI(SDL_Surface* screen, int count)
         }
     }
 
-    // Load background
-    //std::string background = "images/background.jpg";
-    //bg = new Image(background);
-
     updateAreas();
     redraw();
 }
@@ -38,9 +38,6 @@ void GameGUI::redraw(bool lck)
 
     // Blank screen
     SDL_FillRect(screen, NULL, 0);
-
-    // Background, note can't be locked for this to run
-    //SDL_BlitSurface(bg->surface(), NULL, screen, NULL);
 
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
@@ -603,5 +600,5 @@ void GameGUI::displayPosition(Coord c)
 
 GameGUI::~GameGUI()
 {
-    //delete bg;
+
 }
