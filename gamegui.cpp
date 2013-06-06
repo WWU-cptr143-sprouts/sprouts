@@ -439,13 +439,15 @@ void GameGUI::displayPosition(Coord c)
     ostringstream s;
     s << c;
 
-    TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
+    // Lazy man's way of only loading this debug code once, which interestingly
+    // enough prevents a SDL segfault
+    static TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
 
     // Black
-    SDL_Color color = { 255, 255, 255 };
+    static SDL_Color color = { 255, 255, 255 };
     
     // Top left
-    SDL_Rect origin;
+    static SDL_Rect origin;
     origin.x = 0;
     origin.y = 0;
 
@@ -458,6 +460,7 @@ void GameGUI::displayPosition(Coord c)
     SDL_FillRect(screen, &origin, 0);
     SDL_BlitSurface(hover, NULL, screen , &origin);
     SDL_Flip(screen);
+    SDL_FreeSurface(hover);
 }
 
 GameGUI::~GameGUI()
