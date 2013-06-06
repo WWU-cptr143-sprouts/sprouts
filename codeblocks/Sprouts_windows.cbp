@@ -40,6 +40,7 @@
 			<Add library="mingw32" />
 			<Add library="SDLmain" />
 			<Add library="SDL" />
+			<Add library="SDL_ttf" />
 			<Add library="SDL_gfx" />
 			<Add library="lib\SDL_image.lib" />
 			<Add directory="lib" />
