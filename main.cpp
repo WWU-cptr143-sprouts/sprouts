@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL_gfxPrimitives.h>
 #include "headers/gamegui.h"
@@ -26,8 +27,15 @@ int main(int argc,char *argv[])
         return 1;
 	}
 
+    if (TTF_Init() < 0)
+    {
+        fprintf(stderr, "TTF_Init: %s\n", TTF_GetError());
+        return 1;
+    }
+
     // Cleanup on exit
     atexit(SDL_Quit);
+    atexit(TTF_Quit);
 
     // get current display information (for height, width, color depth, etc.)
 	//const SDL_VideoInfo* info = SDL_GetVideoInfo();
@@ -122,6 +130,7 @@ int main(int argc,char *argv[])
 
     SDL_FreeSurface(screen);
     SDL_Quit();
+    TTF_Quit();
 
 	return 0;
 }
