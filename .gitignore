@@ -8,6 +8,7 @@
 *.exe
 *.depend
 *.layout
+*.cbTemp
 windows/bin
 windows/obj
 bin
@@ -20,4 +21,3 @@ stderr.txt
 .cproject
 .project
 .DS_Store
-.cbTemp
