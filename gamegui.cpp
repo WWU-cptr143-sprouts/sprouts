@@ -135,18 +135,18 @@ void GameGUI::click(Coord location)
             {
                //cancel();
                //state = Blank;
-               currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
-                if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Is the line vertical?
+                currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
+                if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Finds the middle line in the connections and checks if it is vertical.
                 {
                     //cancel();
                     tempx=(currentLine[(currentLine.size())/2]).x;
-                    tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vert.
+                    tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vertically.
                 }
                 else
                 {
                     //cancel();
                     tempy=(currentLine[(currentLine.size())/2]).y;
-                    tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - hor.
+                    tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - horizontally.
                 }
                 //cancel();
                 doMove(currentLine,Coord(tempx,tempy));
@@ -165,11 +165,9 @@ void GameGUI::click(Coord location)
     // Clicked on node to start
     else if (selected && !selected->dead())
     {
-       /* for(int i=0;i<=3;i++)
-        {
-            if(selected->open().[i])
-                cancel();
-        }*/
+       //Checks to see if there is already 1 connection coming out of the node, if so, the next will be adjusted to only come out at 180.
+      // if ((selected[Up]&&!selected[Down])||(!selected[Up]&&selected[Down]) //Checks to see if node has 1 line coming up or down out of it
+       //else if (selected[Right]||selected[Left]) //Check left and right.
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
     }
