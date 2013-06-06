@@ -1,19 +1,20 @@
 /*
-*   implementation of ai class goes here
-*/
+ *   implementation of AI class goes here
+ */
 #include "headers/gameai.h"
 
-GameAI::GameAI() : Game()
+GameAI::GameAI()
+    :Game()
 {
-    // add more later maybe
+
 }
 
+/*
 bool GameAI::aiTurn()
 {
-
-    /*vector<int> mValues;
+    vector<int> mValues;
     //Game& cGame= *this;
-    Game* tGame = new Game(static_cast<Game> (*this));
+    Game* tGame = new Game(static_cast<Game>(*this));
     populateMList(); //will populate the possibleMoves vector
     populatemTable();
     //insert the move into the temp game
@@ -49,15 +50,9 @@ bool GameAI::aiTurn()
     }
     //If an optimal move is not found, it does the first move in the possible moves vector
     doPMove(possibleMoves<0>);
-    */
     return true;
 }
 
-GameAI::~GameAI()
-{
- //more later
-}
-/*
 bool GameAI::requiredAreas(bool player, int startingNodes)
 {
     //This method determines what number of nodes the ai requires to win
@@ -97,12 +92,9 @@ void GameAI::populateMList()
         }
     }
 }
-
-
-
-
-
-
 */
 
+GameAI::~GameAI()
+{
 
+}
