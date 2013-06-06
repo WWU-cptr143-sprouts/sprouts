@@ -195,6 +195,10 @@ State GameGUI::click(Coord location)
     }
 
     redraw();
+
+    // Display cursor location on screen for debugging
+    displayPosition(location);
+
     return state;
 }
 
