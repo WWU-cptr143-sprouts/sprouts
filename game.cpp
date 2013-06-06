@@ -338,7 +338,6 @@ ostream& operator<<(ostream& os, const Game& g)
 
 void Game::doMove(const Line& line, Coord middle)
 {
-    cout << "Before" << endl << *this << endl;
     updated = false;
 
     // Determine the end nodes
@@ -439,8 +438,6 @@ void Game::doMove(const Line& line, Coord middle)
         {
             // Get rid of the node we just added
             deleteLastNode();
-
-            cout << "After" << endl << *this << endl;
             throw;
         }
 

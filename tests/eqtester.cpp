@@ -1,9 +1,8 @@
 /*
-*
-*   Test the area eqality opperator
-*
+*   Test the area equality operator
 */
 #include "tests.h"
+
 void eqtester()
 {
     bool passOne = false;
@@ -40,7 +39,7 @@ void eqtester()
     areab.push_back(&otherb);
     areab.push_back(&othera);
     passOne = (areaa==areab);
-    cout << "forward test:" << passOne << endl;
+    test("forward Area equality", passOne);
 
     areab.clear();
 
@@ -50,5 +49,5 @@ void eqtester()
     areab.push_back(&otherd);
 
     passOne = (areaa==areab);
-    cout << "backward test:" << passOne << endl;
+    test("backward Area equality", passOne);
 }

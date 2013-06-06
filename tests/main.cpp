@@ -2,10 +2,6 @@
 
 int main()
 {
-    char dummy;
-    eqtester();
-    cout << "pause" << endl;
-    cin >> dummy;
     Tests().game1();
     Tests().game2();
     Tests().game1_doMove();
@@ -13,6 +9,7 @@ int main()
     Tests().invalidLine();
     Tests().imageNotLoaded();
     copyConstructor();
+    eqtester();
 
     return 0;
 }

@@ -581,8 +581,8 @@ void GameGUI::displayPosition(Coord c)
     // enough prevents a SDL segfault
     static TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
 
-    // Black
-    static SDL_Color color = { 255, 255, 255 };
+    // White
+    static SDL_Color color = { 255, 255, 255, 255 };
 
     // Top left
     static SDL_Rect origin;

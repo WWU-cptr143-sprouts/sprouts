@@ -259,9 +259,9 @@ void Tests::game1_doMove()
 
 void Tests::copyInitialize()
 {
-    Node& a = insertNode(Coord(0,0));
-    Node& b = insertNode(Coord(10,10));
-    Node& c = insertNode(Coord(20,20));
+    insertNode(Coord(0,0));
+    insertNode(Coord(10,10));
+    insertNode(Coord(20,20));
     updateAreas();
 
     Line l;
@@ -270,7 +270,6 @@ void Tests::copyInitialize()
     l.push_back(Coord(10,10));
 
     doMove(l, Coord(5, 10));
-    Node& d = *nodes.back();
 
     l.clear();
     l.push_back(Coord(5,10));
@@ -280,7 +279,6 @@ void Tests::copyInitialize()
     l.push_back(Coord(10,10));
 
     doMove(l, Coord(10, 30));
-    Node& e = *nodes.back();
 }
 
 bool Tests::validateCopy() const

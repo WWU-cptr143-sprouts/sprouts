@@ -2,6 +2,7 @@
 #define H_AREA
 
 #include <cmath>
+#include <cstdlib> // Apparently abs(int) is here
 #include <vector>
 #include <iostream>
 #include "structs.h"
@@ -18,6 +19,6 @@ static Areaset defaultAreaset; //create default/null vector
 ostream& operator<<(ostream& os, const Area& a);
 
 // We need to write tests before using this.
-//bool operator==(const Area& a,const Area& b);
-//bool operator!=(const Area& a,const Area& b);
+bool operator==(const Area& a,const Area& b);
+bool operator!=(const Area& a,const Area& b);
 #endif
