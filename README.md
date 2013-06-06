@@ -50,5 +50,13 @@ tests with ``make tests; ./tests/tests``.
 
 Project Files
 -------------
+To provide easy access to all of the files, they are stored in two places. The
+code can be accessed from the GitHub link below. If future years decide to use
+this code as a basis, they can easily either fork it or clone and push to their
+own repository on GitHub or elsewhere. A few key documents are in the *docs/*
+folder, but the rest of the documentation is on the wiki linked to below. All
+of the classes have a page documenting what they consist of for easy reference
+and searchability.
+
 [Github Code](https://github.com/floft/sprouts)  
 [Sprouts Wiki](http://sprouts.kingscastle.co/index.php/Main_Page)
