@@ -100,13 +100,15 @@ void Game::updateAreas()
                     // least one unit away.
 
                     // If its above added to the above area set
-                    if (isInArea(*areas[j],Coord(original.x-1, original.y+1)) &&
-                        isInArea(*areas[j],Coord(original.x-1, original.y-1)))
+                    //if (isInArea(*areas[j],Coord(original.x-1, original.y+1)) &&
+                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
+                    if (isInArea(*areas[j],Coord(original.x-1, original.y)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is below then added to the below area set
-                    if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                        isInArea(*areas[j],Coord(original.x+1, original.y-1)))
+                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
+                    //    isInArea(*areas[j],Coord(original.x+1, original.y-1)))
+                    if (isInArea(*areas[j],Coord(original.x+1, original.y)))
                         tempSets[1]->push_back(areas[j]);
                 }
             }
@@ -114,14 +116,21 @@ void Game::updateAreas()
             {
                 for(int j=0;j<areas.size();j++)
                 {
+                    // TODO:
+                    // since equality check works, revise the find_if statement
+                    // test that removing the = in <= in isInArea makes the test suite work
+                    //
+
                     // If its left added to the left area set
-                    if (isInArea(*areas[j],Coord(original.x+1, original.y-1)) &&
-                        isInArea(*areas[j],Coord(original.x-1, original.y-1)))
+                    //if (isInArea(*areas[j],Coord(original.x+1, original.y-1)) &&
+                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
+                    if (isInArea(*areas[j],Coord(original.x, original.y-1)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is right then added to the right area set
-                    if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                        isInArea(*areas[j],Coord(original.x-1, original.y+1)))
+                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
+                    //    isInArea(*areas[j],Coord(original.x-1, original.y+1)))
+                    if (isInArea(*areas[j],Coord(original.x, original.y+1)))
                         tempSets[1]->push_back(areas[j]);
                 }
             }
@@ -193,6 +202,8 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
     {
         lSize = target[i]->line->size();
 
+        // We are starting from 1 since a line is two between two coordinates.
+        // We'll use the index and index-1 for those two.
         for(int j=1;j<lSize;j++)
         {
             /*
@@ -208,7 +219,11 @@ bool Game::isInArea(const Area& target, Coord position) const    //Blame Luke fo
                 minY=min(lRef[j].y,lRef[j-1].y);
                 maxY=max(lRef[j].y,lRef[j-1].y);
 
-                if (position.y <= maxY && position.y >= minY)
+                // Only one of these can have a equal sign. If a node is on the
+                // start/end of a line. We only want to detect one of these since
+                // otherwise it'll cross the other (odd/even) lines the wrong
+                // number of times.
+                if (position.y <= maxY && position.y > minY)
                     ++lCount;
             }
         }
@@ -411,12 +426,24 @@ void Game::doMove(const Line& line, Coord middle)
         Node& c = insertNode(middle,
                 Connection(&AC, a),
                 Connection(&CB, b));
+        try
+        {
 
-        // Likewise add the connection to the start and end nodes
-        a->addConnection(Connection(&AC, &c));
-        b->addConnection(Connection(&CB, &c));
+            // Likewise add the connection to the start and end nodes
+            a->addConnection(Connection(&AC, &c));
+            b->addConnection(Connection(&CB, &c));
 
-        ++moveCount;
+            ++moveCount;
+        }
+        catch (...)
+        {
+            // Get rid of the node we just added
+            deleteLastNode();
+
+            cout << "After" << endl << *this << endl;
+            throw;
+        }
+
     }
     // Since it ran into problems, make sure we get rid of anything we added
     catch (...)
@@ -426,11 +453,6 @@ void Game::doMove(const Line& line, Coord middle)
         delete &CB;
         lines.pop_back();
         lines.pop_back();
-
-        // Get rid of the node we just added
-        deleteLastNode();
-
-        cout << "After" << endl << *this << endl;
         throw;
     }
 
