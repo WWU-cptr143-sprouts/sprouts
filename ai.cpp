@@ -29,6 +29,24 @@ bool GameAI::aiTurn()
     //n=mValue.begin();
 
     delete tGame;*/
+
+    //Finds whether we want an even or odd number of areas
+    wantedAreas = requiredAreas();
+
+    for(int i = 0; i < possibleMoves.length(); i++)
+    {
+        //create new game
+            doPMove(possibleMoves<i>);
+            testMoveAreas = currentAreas();
+        //delete game
+        if (testMoveAreas%2 == wantedAreas)
+        {
+            doPMove(possibleMoves<i>)
+            return true;
+        }
+    }
+    //If an optimal move is not found, it does the first move in the possible moves vector
+    doPMove(possibleMoves<0>);
     return true;
 }
 

@@ -7,25 +7,27 @@
 class Pmove
 {
     public:
-        Connection aLink;
+        Line aLink;
         Node newNode;
-        Connection bLink;
+        Line bLink;
 };
 
 class GameAI : public Game
 {
     protected:
-        bool aiFirst, evenINodes;
+        bool aiFirst;
         int startingNodes;
         vector<Pmove> possibleMoves;
         vector<vector<bool> > mTable;
+        int testMoveAreas, wantedAreas;
     public:
         GameAI(); //needs to call game constructor;
-        int willMakeNEArea(const Node&,const Node&,const Connection&,const Connection&); //check if a given move will result in a non empty new area;
+        int currentAreas(); //check how many areas the current game has
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
-
+        void doPMove(PMove); //Calls doMove from
+        PMove createLine(Node&, Node&);
         ~GameAI();
 };
 
