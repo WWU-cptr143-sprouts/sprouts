@@ -1,6 +1,6 @@
 #include "headers/image.h"
 
-Image::Image(const string& s)
+Image::Image(const string& s, bool transparent)
 {
     SDL_Surface* tmpImg = IMG_Load(s.c_str());
 
@@ -15,8 +15,11 @@ Image::Image(const string& s)
         throw ImageNotLoaded();
 
     // Enable transparency
-    Uint32 colorkey = SDL_MapRGB(img->format, 255, 255, 255);
-    SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    if (transparent)
+    {
+        Uint32 colorkey = SDL_MapRGB(img->format, 255, 255, 255);
+        SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    }
 }
 
 SDL_Surface* Image::surface()

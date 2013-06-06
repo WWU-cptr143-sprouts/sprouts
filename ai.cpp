@@ -1,18 +1,20 @@
 /*
-*   implementation of ai class goes here
-*/
+ *   implementation of AI class goes here
+ */
 #include "headers/gameai.h"
 
-GameAI::GameAI() : Game()
+GameAI::GameAI()
+    :Game()
 {
-    // add more later maybe
+
 }
 
+/*
 bool GameAI::aiTurn()
 {
-    /*vector<int> mValues;
+    vector<int> mValues;
     //Game& cGame= *this;
-    Game* tGame = new Game(static_cast<Game> (*this));
+    Game* tGame = new Game(static_cast<Game>(*this));
     populateMList(); //will populate the possibleMoves vector
     populatemTable();
     //insert the move into the temp game
@@ -29,7 +31,7 @@ bool GameAI::aiTurn()
     int n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
 
-    delete tGame;*/
+    delete tGame;
 
     //Finds whether we want an even or odd number of areas
     wantedAreas = requiredAreas();
@@ -49,11 +51,6 @@ bool GameAI::aiTurn()
     //If an optimal move is not found, it does the first move in the possible moves vector
     doPMove(possibleMoves<0>);
     return true;
-}
-
-GameAI::~GameAI()
-{
- //more later
 }
 
 bool GameAI::requiredAreas(bool player, int startingNodes)
@@ -90,18 +87,14 @@ void GameAI::populateMList()
         {
             if(connectable(nodes<i>,nodes<j>))
             {
-                possibleMoves.push_back(/*put stuff in here*/);
+                possibleMoves.push_back();
             }
         }
     }
 }
+*/
 
+GameAI::~GameAI()
+{
 
-
-
-
-
-
-
-
-
+}

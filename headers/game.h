@@ -1,10 +1,4 @@
 /*
-*   TODO:
-*   need to add a game class copy constructor
-*   implement tests of (in)equality operator for Areas
-*   in a valid line function only check lines in the areasets of the start node
-*       in the process keep track of & of checked lines, don't recheck
-*
 *   TONEVERDO list (wish list)
 *   added a function to check validity of current game data state
 */
@@ -38,9 +32,20 @@ template<class T> class PointerFind
 // We'll throw this when trying to use connectable() with outdated areasets
 class AreasOutdated { };
 
-// Thrown in doMove() if the center point isn't on the line or the line
-// doesn't end in two nodes (or runs through more than two).
-class InvalidMove { };
+// Thrown in doMove() if the center point isn't on the line
+class InvalidMiddle
+{
+    const int count;
+    const Coord middle;
+
+    public:
+        InvalidMiddle(int count, Coord middle) :count(count), middle(middle) { }
+        friend ostream& operator<<(ostream& os, const InvalidMiddle&);
+};
+
+// Thrown in doMove() if the line doesn't end with two nodes (or runs more than
+// two)
+class InvalidNode { };
 
 // Thrown when two nodes aren't connectable when put into doMove()
 class NotConnectable { };

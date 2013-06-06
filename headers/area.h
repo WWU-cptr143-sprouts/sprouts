@@ -1,6 +1,8 @@
 #ifndef H_AREA
 #define H_AREA
 
+#include <cmath>
+#include <cstdlib> // Apparently abs(int) is here
 #include <vector>
 #include <iostream>
 #include "structs.h"
