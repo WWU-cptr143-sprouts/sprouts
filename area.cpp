@@ -23,6 +23,7 @@ ostream& operator<<(ostream& os, const Area& a)
  * Until we test this, we shouldn't define it since when we use the standard
  * libraries it will call this equality operator.
 */
+/*
 bool operator==(const Area& a,const Area& b)
 {
     int i=0;
@@ -50,3 +51,4 @@ bool operator==(const Area& a,const Area& b)
 }
 
 bool operator!=(const Area& a,const Area& b) {return !(a==b);}
+*/
