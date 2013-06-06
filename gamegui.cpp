@@ -187,9 +187,6 @@ void GameGUI::click(Coord location)
 
 void GameGUI::cursor(Coord location)
 {
-    // Display cursor location on screen for debugging
-    displayPosition(location);
-
     if (state == NodeClicked)
     {
         lock();
@@ -197,6 +194,9 @@ void GameGUI::cursor(Coord location)
         line(currentLine.back(), straighten(currentLine.back(), location), lineCol);
         unlock();
     }
+
+    // Display cursor location on screen for debugging
+    displayPosition(location);
 }
 
 bool GameGUI::vertical(Coord last, Coord point)
