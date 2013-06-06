@@ -30,8 +30,10 @@ build the project ``codeblocks/AChecker.cbp``.
 have to open ``stdout.txt`` to see the output.
 
 ### Mac ###
-If you have MacPorts, you can run ``port install libsdl libsdl-framework
-libsdl_gfx libsdl_image libsdl_ttf`` to install the necessary SDL libraries.
+To install the libraries, you can use any package manager, for example:  
+**Fink** *(untested)*: ``fink install sdl sdl-image sdl-gfx13 sdl-ttf``  
+**Macports** *(tested)*: ``port install libsdl libsdl-framework libsdl_gfx libsdl_image libsdl_ttf``  
+
 After this, you can either setup a CodeBlocks file or run ``make`` to compile
 and ``./sprouts`` to run. To run the tests, ``make tests; ./tests/tests``.
 
