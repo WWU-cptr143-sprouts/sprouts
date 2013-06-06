@@ -38,7 +38,7 @@ bool GameAI::aiTurn()
 
     for(int i = 0; i < possibleMoves.length(); i++)
     {
-        //create new game
+        //create new dummy game
             doPMove(possibleMoves<i>);
             testMoveAreas = currentAreas();
         //delete game
