@@ -309,6 +309,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                     if(A2 > A3)
                     {
                         if((startX > A3)&&(startX < A2))
+                        {
                             if(startY > endY)
                             {
                                 if((B2 < startY)&&(B2 > endY))
@@ -317,9 +318,11 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                        }
                     }
                     else
                         if((startX < A3)&&(startX > A2))
+                        {
                             if(startY > endY)
                             {
                                 if((B2 < startY)&&(B2 > endY))
@@ -328,6 +331,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                        }
                 }
                 else
                     if(startX == A2)
@@ -368,6 +372,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                     if(B2 > B3)
                     {
                         if((startY < B2)&&(startY > B3))
+                        {
                             if(startX > endX)
                             {
                                 if((A2 < startX)&&(A2 > endX))
@@ -376,9 +381,11 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                        }
                     }
                     else
                         if((startY > B2)&&(startY < B3))
+                        {
                             if(startX > endX)
                             {
                                 if((A2 < startX)&&(A2 > endX))
@@ -387,6 +394,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                        }
                 }
                 else
                     if(startY == B2)
@@ -447,6 +455,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                     if(A2 > A3)
                     {
                         if((startX > A3)&&(startX < A2))
+                        {
                             if(startY > endY)
                             {
                                 if((B2 < startY)&&(B2 > endY))
@@ -455,9 +464,11 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                        }
                     }
                     else
                         if((startX < A3)&&(startX > A2))
+                        {
                             if(startY > endY)
                             {
                                 if((B2 < startY)&&(B2 > endY))
@@ -466,6 +477,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((B2 > startY)&&(B2 < endY))
                                     return false;
+                        }
                 }
             }
             else
@@ -475,6 +487,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                     if(B2 > B3)
                     {
                         if((startY < B2)&&(startY > B3))
+                        {
                             if(startX > endX)
                             {
                                 if((A2 < startX)&&(A2 > endX))
@@ -483,9 +496,11 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                        }
                     }
                     else
                         if((startY > B2)&&(startY < B3))
+                        {
                             if(startX > endX)
                             {
                                 if((A2 < startX)&&(A2 > endX))
@@ -494,6 +509,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
                             else
                                 if((A2 > startX)&&(A2 < endX))
                                     return false;
+                        }
                 }
                 else
                     if(startX == A2)
