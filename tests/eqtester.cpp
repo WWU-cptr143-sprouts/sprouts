@@ -6,6 +6,13 @@
 #include "tests.h"
 void eqtester()
 {
+    bool passOne = false;
+    vector<int> dumby;
+    dumby.push_back(2);
+    dumby.push_back(1);
+    dumby.push_back(3);
+
+    dumby.push_back(5);
     Line linea,lineb,linec,lined,linee;
     Connection cona,conb,conc,cond,cone;
     Connection othera,otherb,otherc,otherd,othere;
@@ -28,10 +35,20 @@ void eqtester()
     areaa.push_back(&conc);
     areaa.push_back(&cond);
     //setup area b
+    areab.push_back(&otherd);
+    areab.push_back(&otherc);
+    areab.push_back(&otherb);
+    areab.push_back(&othera);
+    passOne = (areaa==areab);
+    cout << "forward test:" << passOne << endl;
+
+    areab.clear();
+
     areab.push_back(&othera);
     areab.push_back(&otherb);
     areab.push_back(&otherc);
     areab.push_back(&otherd);
-    bool passOne = (areaa==areab);
-    cout << passOne << endl;
+
+    passOne = (areaa==areab);
+    cout << "backward test:" << passOne << endl;
 }

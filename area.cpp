@@ -23,6 +23,7 @@ ostream& operator<<(ostream& os, const Area& a)
  * Until we test this, we shouldn't define it since when we use the standard
  * libraries it will call this equality operator.
 */
+/*
 bool operator==(const Area& a,const Area& b)
 {
     int i=0;
@@ -40,12 +41,14 @@ bool operator==(const Area& a,const Area& b)
     {
         if(a[j]->line!=b[(i+j)%a.size()]->line)  clockWise =false;
     }
-    for(int j=a.size()-1;j>=0&& countWise;j--)
+    for(int j=0;j<(a.size())&& countWise;j++)
     {
-        if(a[j]->line!=b[(i+j)%a.size()]->line)  countWise =false;
+        if(a[j]->line!=b[
+           static_cast<unsigned int>(abs(double(i)-j))%(a.size())]->line)  countWise =false;
     }
     // the areas match if at least one of the checks didnt find any differences
     return (clockWise || countWise);
 }
 
 bool operator!=(const Area& a,const Area& b) {return !(a==b);}
+*/
