@@ -121,7 +121,12 @@ int main(int argc, char *argv[])
                                 State state = game.click(Coord(event.button.x, event.button.y));
 
                                 if (state == GameEnd)
-                                      cout << "Game has ended!" << endl; //Add image here for end game
+                                {
+                                    cout << "Game has ended!" << endl; //Add image here for end game
+                                    game = GameGUI(screen);
+                                    inMenu = true;
+                                    menu.init();
+                                }
                             }
                         }
                         break;
