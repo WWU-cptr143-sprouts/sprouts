@@ -10,6 +10,7 @@ GameGUI::GameGUI(SDL_Surface* screen)
 
 void GameGUI::init(int count)
 {
+    player1 = true;
     if (nodes.size() == 0)
     {
         double theta = 0;
@@ -47,7 +48,7 @@ void GameGUI::redraw(bool lck)
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
     {
-        circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
+            circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
     }
 
     // Draw lines
@@ -62,7 +63,10 @@ void GameGUI::redraw(bool lck)
     // Draw temporary line
     for (int i = 1; i < currentLine.size(); i++)
     {
-        line(currentLine[i-1], currentLine[i], lineCol);
+        if(player1)
+            line(currentLine[i-1], currentLine[i], player1Col);
+        else
+            line(currentLine[i-1], currentLine[i], player2Col);
     }
 
     if (lck)
@@ -162,6 +166,10 @@ State GameGUI::click(Coord location)
 
                 cout << "Middle: " << Coord(tempx, tempy) << " Line: " << currentLine << endl;
                 doMove(currentLine,Coord(tempx,tempy));
+                if(player1)
+                    player1 = false;
+                else
+                    player1 = true;
                 cancel();
 
                 if (gameEnded())
@@ -229,11 +237,17 @@ void GameGUI::cursor(Coord location)
                     selected = nodes[i];
                 }
             }
-            line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), lineCol);
+            if(player1)
+                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player1Col);
+            else
+                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player2Col);
         }
 
         else
-            line(currentLine.back(), straighten(currentLine.back(), location), lineCol);
+            if(player1)
+                line(currentLine.back(), straighten(currentLine.back(), location), player1Col);
+            else
+                line(currentLine.back(), straighten(currentLine.back(), location), player2Col);
         unlock();
     }
 

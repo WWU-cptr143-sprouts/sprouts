@@ -43,9 +43,13 @@ class GameGUI : public GameAI
         static const int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
+        static const Uint32 player1Col = 0xFE0208FF;
+        static const Uint32 player2Col = 0x069DD6FF;
 
     public:
         GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
+
+        bool player1; // keeps track of what players turn it is
 
         void init(int); // Draw to screen with a certain number of nodes
 
