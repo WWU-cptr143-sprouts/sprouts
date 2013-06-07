@@ -238,10 +238,9 @@ State GameGUI::click(Coord location)
     redraw();
 
     // Display cursor location on screen for debugging
-    displayPosition(location);
+    //displayPosition(location);
     if (error)
         displayError("Error: 180.");
-
 
     return state;
 }
@@ -280,7 +279,7 @@ void GameGUI::cursor(Coord location)
     }
 
     // Display cursor location on screen for debugging
-    displayPosition(location);
+    //displayPosition(location);
     if (error)
         displayError("Error: 180.");
 }
@@ -545,20 +544,20 @@ bool GameGUI::validLine(Coord start, Coord end) const
 void GameGUI::displayError(const string& msg)
 {
     // Top left
-    static SDL_Rect origin;
-    origin.x = 70;
-    origin.y = 0;
+    static SDL_Rect location;
+    location.x = 0;
+    location.y = 0;
 
     // Only update top left corner.
-    origin.w = 130;
-    origin.h = 20;
+    location.w = 130;
+    location.h = 20;
 
-    SDL_Surface* hover = TTF_RenderText_Blended(font, msg.c_str(), textCol);
+    SDL_Surface* error = TTF_RenderText_Blended(font, msg.c_str(), textCol);
 
-    SDL_FillRect(screen, &origin, 0);
-    SDL_BlitSurface(hover, NULL, screen , &origin);
+    SDL_FillRect(screen, &location, 0);
+    SDL_BlitSurface(error, NULL, screen , &location);
     SDL_Flip(screen);
-    SDL_FreeSurface(hover);
+    SDL_FreeSurface(error);
 }
 
 void GameGUI::displayPosition(Coord c)
@@ -566,14 +565,14 @@ void GameGUI::displayPosition(Coord c)
     ostringstream s;
     s << c;
 
-    // Top left
+    // Bottom left
     static SDL_Rect origin;
+    origin.w = 60; // Approximate width and height
+    origin.h = 20;
     origin.x = 0;
-    origin.y = 0;
+    origin.y = screen->h - origin.h;
 
     // Only update top left corner.
-    origin.w = 60;
-    origin.h = 20;
 
     SDL_Surface* hover = TTF_RenderText_Blended(font, s.str().c_str(), textCol);
 
