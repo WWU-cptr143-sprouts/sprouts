@@ -4,7 +4,7 @@
 #include "headers/gameai.h"
 
 GameAI::GameAI()
-    :Game()
+    :Game(), startingNodes(-1)
 {
 
 }
@@ -34,16 +34,14 @@ bool GameAI::aiTurn()
 
     delete tGame;*/
 
-    //this is a hack
-    static int runs=0;
-    ++runs;
-    if(runs == 0)
+    // Set start nodes on first AI turn
+    if(startingNodes == -1)
     {
-        if(moves()%2)//Second player
+        if(moves()%2) //Second player, one move has been made
         {
             startingNodes = nodes.size()  - 1;
         }
-        else
+        else // First player, no moves have been made yet
         {
             startingNodes = nodes.size();
         }
@@ -56,13 +54,13 @@ bool GameAI::aiTurn()
 
     for(int i = 0; i < possibleMoves.size(); i++)
     {
-        //create new dummy game
+        // Create new dummy game. This is GameAI since we have to access data
+        // that only something inheriting from it can access.
+        GameAI* tGame = new GameAI(*this);
 
-        Game* tGame = new Game(static_cast<Game>(*this));
         //insert the move into the temp game
-
-        doMove(possibleMoves[i], midNode(possibleMoves[i]));
-        testMoveAreas = currentAreas();
+        tGame->doMove(possibleMoves[i], midNode(possibleMoves[i]));
+        testMoveAreas = tGame->notConnectableNodes();
 
         delete tGame;
 
@@ -77,7 +75,7 @@ bool GameAI::aiTurn()
     return true;
 }
 
-bool GameAI::requiredAreas(bool player, int startingNodes)
+bool GameAI::requiredAreas(bool player, int startingNodes) const
 {
     //This method determines what number of nodes the ai requires to win
     if((player == 0)&&(startingNodes == 1))
@@ -100,6 +98,8 @@ bool GameAI::requiredAreas(bool player, int startingNodes)
     {
         return 0;
     }
+
+    throw "end of requiredAreas without returning anything";
 }
 
 void GameAI::populateMList()
@@ -134,6 +134,16 @@ int GameAI::notConnectableNodes() const
     }
 
     return count;
+}
+
+Line GameAI::createLine(Node* a, Node* b) const
+{
+    throw "createLine not implemented";
+}
+
+Coord GameAI::midNode(const Line& line) const
+{
+    throw "midNode not implemented";
 }
 
 GameAI::~GameAI()

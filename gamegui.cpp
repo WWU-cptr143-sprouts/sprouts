@@ -155,6 +155,10 @@ void GameGUI::click(Coord location)
                 if (gameEnded())
                     cout << "Game has ended!" << endl;
 
+                // Computer plays. When we merge, we'll have to fix this up to
+                // deal with PvP and PvAI from the menu.
+                aiTurn();
+
                 //cancel();
                 //state=Blank; //Sometimes this will fix the problem. But not reliably.
             }
