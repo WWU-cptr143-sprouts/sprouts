@@ -26,8 +26,8 @@ class GameAI : public Game
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
-        Node midNode(Line); //Creates a new node on the line.
-        Line createLine(Node&, Node&); //Finds a path between two nodes
+        Coord midNode(Line); //Creates a new node on the line.
+        Line createLine(Node*, Node*); //Finds a path between two nodes
         bool requiredAreas(bool, int);  //Calculates the number of nodes to put the ai in an advantageous position.
 
         ~GameAI();

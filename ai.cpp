@@ -12,7 +12,8 @@ GameAI::GameAI()
 
 bool GameAI::aiTurn()
 {
-    vector<int> mValues;
+    // Johnathan's original dummy game code
+    /*vector<int> mValues;
     //Game& cGame= *this;
     Game* tGame = new Game(static_cast<Game>(*this));
     populateMList(); //will populate the possibleMoves vector
@@ -31,32 +32,55 @@ bool GameAI::aiTurn()
     int n=max_element(mValues.begin(),mValues.end());
     //n=mValue.begin();
 
-    delete tGame;
+    delete tGame;*/
+
+    //this is a hack
+    static int runs=0;
+    ++runs;
+    if(runs == 0)
+    {
+        if(moves()%2)//Second player
+        {
+            startingNodes = nodes.size()  - 1;
+        }
+        else
+        {
+            startingNodes = nodes.size();
+        }
+    }
 
     //Finds whether we want an even or odd number of areas
-    wantedAreas = requiredAreas();
+    //Moves%2 returns true if the ai is second player
+    wantedAreas = requiredAreas(moves()%2 ,startingNodes);
+    populateMList();
 
-    for(int i = 0; i < possibleMoves.length(); i++)
+    for(int i = 0; i < possibleMoves.size(); i++)
     {
         //create new dummy game
-            doMove(possibleMoves<i>, midNode(possibleMoves<i>));
-            testMoveAreas = currentAreas();
-        //delete game
+
+        Game* tGame = new Game(static_cast<Game>(*this));
+        //insert the move into the temp game
+
+        doMove(possibleMoves[i], midNode(possibleMoves[i]));
+        testMoveAreas = currentAreas();
+
+        delete tGame;
+
         if (testMoveAreas%2 == wantedAreas)
         {
-            doMove(possibleMoves<i>, midNode(possibleMoves<i>));
+            doMove(possibleMoves[i], midNode(possibleMoves[i]));
             return true;
         }
     }
     //If an optimal move is not found, it does the first move in the possible moves vector
-    doPMove(possibleMoves<0>);
+    doMove(possibleMoves[0], midNode(possibleMoves[0]));
     return true;
 }
 
 bool GameAI::requiredAreas(bool player, int startingNodes)
 {
     //This method determines what number of nodes the ai requires to win
-    if((player == 0)&&(startingNodes == 1)
+    if((player == 0)&&(startingNodes == 1))
     {
        return 1;
     }
@@ -81,18 +105,17 @@ bool GameAI::requiredAreas(bool player, int startingNodes)
 void GameAI::populateMList()
 {
     possibleMoves.clear();
-    for(int i = 0; i < nodes.size-1; i++)
+    for(int i = 0; i < nodes.size()-1; i++)
     {
-        for int j = 0; j < nodes.size-1; j++)
+        for (int j = 0; j < nodes.size()-1; j++)
         {
-            if(connectable(nodes<i>,nodes<j>))
+            if(connectable(*nodes[i],*nodes[j]))
             {
-                possibleMoves.push_back();
+                possibleMoves.push_back(createLine(nodes[i],nodes[j]));
             }
         }
     }
 }
-
 
 GameAI::~GameAI()
 {
