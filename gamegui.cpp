@@ -93,10 +93,7 @@ State GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
-    Coord adjust;
     bool validFinish; //Used to keep trach of whether or not the line can be drawn.
-    //Coord point = location;
-    //Coord last = currentLine.back();
 
     // Don't do anything if it's dead
     if (selected && selected->dead())
@@ -104,9 +101,14 @@ State GameGUI::click(Coord location)
 
     // Used to determine if we can go straight to the second node if we clicked
     // one or if we have to draw another line to get there.
-    Coord direct;
+    Coord direct, selectedLoci;
     if (selected)
+    {
         direct = straighten(location, selected->getLoci());
+        selectedLoci = selected->getLoci(); //Location of node stored as a coord.
+    }
+
+
 
     // Clicked on node to end, make sure this is at least the second line or
     // that the line is perfectly straight between nodes
@@ -115,43 +117,35 @@ State GameGUI::click(Coord location)
         (currentLine.size() > 1 || (currentLine.size() == 1 && (direct.x == currentLine.back().x || direct.y == currentLine.back().y))))
     {
         validFinish=false; //Reset validFinish
-        //cancel();
 
         //correct for last line to make it straight
         if (validLine(currentLine.back(),
                       straighten(currentLine.back(), Coord(selected->getLoci().x,selected->getLoci().y))))//Does the previous line cross before the line is drawn to connect to the node.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
-           //cancel();
             if (vertical(currentLine.back(),
-                         Coord(selected->getLoci().x,selected->getLoci().y)))
+                         selected->getLoci()))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
-                             Coord(selected->getLoci().x,selected->getLoci().y))) //Checks if new line is valid
+                             selected->getLoci())) //Checks if new line is valid
                 {
-                    //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
-                    adjust = Coord(currentLine.back().x,currentLine.back().y);
-                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
             else
             {
                 //If Horizontal, does the line intersect another line? ALWAYS TRUE???
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
-                             Coord(selected->getLoci().x,selected->getLoci().y)))
+                             selected->getLoci()))
                 {
-                    //cancel();
                     validFinish=true; //If not, line becomes a valid move.
                     currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                    adjust = Coord(currentLine.back().x,currentLine.back().y);
-                    //currentLine.back() = straighten(adjust, location); //Add line to currentLine
                 }
             }
 
-            //Draw new node if the line can connect.
+            //Calculate location of node to be added
             if(validFinish==true)
             {
                 currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
@@ -172,11 +166,6 @@ State GameGUI::click(Coord location)
 
                 if (gameEnded())
                     state = GameEnd;
-
-
-                //cancel();
-                //state=Blank; //Sometimes this will fix the problem. But not reliably.
-
             }
         }
     }
@@ -185,13 +174,8 @@ State GameGUI::click(Coord location)
     else if (selected && currentLine.size() == 0)
     {
        //Checks to see if there is already 1 connection coming out of the node, if so, the next will be adjusted to only come out at 180.
-      // if ((selected[Up]&&!selected[Down])||(!selected[Up]&&selected[Down]) //Checks to see if node has 1 line coming up or down out of it
-       //else if (selected[Right]||selected[Left]) //Check left and right.
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
-        //validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
-        //currentLine.push_back(firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
-
     }
     // Clicked to place a line
     else if (state == NodeClicked)
@@ -207,7 +191,9 @@ State GameGUI::click(Coord location)
                     }
                 }
               if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
-                currentLine.push_back(firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
+                currentLine.push_back(firststraighten(selected->getLoci(), location,
+                  selected->openUp(),    selected->openDown(),
+                  selected->openRight(), selected->openLeft()));
             }
         else
             {
