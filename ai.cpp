@@ -96,9 +96,6 @@ void GameAI::populateMList()
 
 int GameAI::notConnectableNodes() const
 {
-    // caleb pope is working on this function
-
-
     int count = 0;
 
     // Loop through all nodes and return the number of not connectable nodes
@@ -114,12 +111,6 @@ int GameAI::notConnectableNodes() const
     }
 
     return count;
-
-
-
-
-    //return areasets.size(); // this returns the number of areasets, it might work but i dont think i understand the problem well enough yet
-    // if someone else thinks they can figure this out, feel free. But leave comments so that i can understand what you have done. :)
 }
 
 GameAI::~GameAI()
