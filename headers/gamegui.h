@@ -50,6 +50,8 @@ class GameGUI : public GameAI
         GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
 
         bool player1; // keeps track of what players turn it is
+        bool error; //180 Connection Error - For text output
+
 
         void init(int); // Draw to screen with a certain number of nodes
 
@@ -80,6 +82,7 @@ class GameGUI : public GameAI
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
+        void displayError(char *); //Print to screen, for 180 degree rule violation
 };
 
 #endif
