@@ -1,18 +1,18 @@
-#include <string>
 #include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <SDL_gfxPrimitives.h>
-#include "headers/gamegui.h"
+#include "headers/menu.h"
 #include "headers/image.h"
+#include "headers/gamegui.h"
 
 void error(const string& s)
 {
     cout << "Error: " << s << endl;
 }
 
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
     int width = 800;
     int height = 602;
@@ -37,25 +37,13 @@ int main(int argc,char *argv[])
     atexit(SDL_Quit);
     atexit(TTF_Quit);
 
-    // get current display information (for height, width, color depth, etc.)
-	//const SDL_VideoInfo* info = SDL_GetVideoInfo();
-    //int width  = info->current_w*2/3;
-    //int height = info->current_h*2/3;
-    int depth  = 0; // Set to current screen depth
-
     // What we draw on the screen
     SDL_Surface* screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE|SDL_DOUBLEBUF);
 
-    // Draw the background image
-    //SDL_Surface *img = IMG_Load(background.c_str());
-    //SDL_Surface *bg_img = SDL_DisplayFormat(img);
-    //SDL_FreeSurface(img);
-    //SDL_BlitSurface(bg_img, NULL, screen, NULL);
-
     if (screen == NULL)
     {
-        fprintf(stderr, "Couldn't set %dx%dx%d video mode: %s\n",
-            width, height, depth, SDL_GetError());
+        fprintf(stderr, "Couldn't set %dx%d video mode: %s\n",
+            width, height, SDL_GetError());
         return 1;
     }
 
@@ -64,8 +52,10 @@ int main(int argc,char *argv[])
     SDL_WM_SetIcon(icon.surface(), NULL);*/
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
-    // Game loop
-	GameGUI game(screen, 3);	// create new Sprout object with 3 nodes
+    bool inMenu = true;
+    Menu menu(screen);
+    menu.init();
+	GameGUI game(screen);
 
 	while (gameRunning)
 	{
@@ -84,17 +74,48 @@ int main(int argc,char *argv[])
                     case SDL_KEYDOWN:
                         break;
                     case SDL_KEYUP:
-                        if (event.key.keysym.sym == SDLK_ESCAPE)
+                        if (inMenu)
+                            menu.cancel();
+                        else
                             game.cancel();
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         break;
                     case SDL_MOUSEBUTTONUP:
                         if (event.button.button == SDL_BUTTON_LEFT)
-                            game.click(Coord(event.button.x, event.button.y));
+                        {
+                            // If it's in the menu, send the click event and
+                            // then see if they clicked to start the game. If
+                            // so, switch to game mode by setting inMenu to
+                            // false and draw the game with the specified
+                            // number of nodes to the screen.
+                            if (inMenu)
+                            {
+                                ClickType status = menu.click(Coord(event.button.x, event.button.y));
+
+                                // Exit the program.
+                                if (status == EXIT)
+                                {
+                                    gameRunning = false;
+                                }
+                                // Start the game with the specified number of nodes
+                                else if (status == GAME)
+                                {
+                                    inMenu = false;
+                                    game.init(menu.nodes());
+                                }
+                            }
+                            else
+                            {
+                                game.click(Coord(event.button.x, event.button.y));
+                            }
+                        }
                         break;
                     case SDL_MOUSEMOTION:
-                        game.cursor(Coord(event.motion.x, event.motion.y));
+                        if (inMenu)
+                            menu.cursor(Coord(event.motion.x, event.motion.y));
+                        else
+                            game.cursor(Coord(event.motion.x, event.motion.y));
                         break;
                     default:
                         break;
@@ -105,9 +126,14 @@ int main(int argc,char *argv[])
                 error("Tried to add an invalid line");
                 cout << e << endl;
             }
-            catch (const InvalidMove& e)
+            catch (const InvalidNode& e)
             {
-                error("Tried to make an invalid move");
+                error("Could not find start and/or end node in the line");
+            }
+            catch (const InvalidMiddle& e)
+            {
+                error("Could not find where to place middle node in the line");
+                cout << e << endl;
             }
             catch (const ImageNotLoaded& e)
             {
@@ -126,6 +152,9 @@ int main(int argc,char *argv[])
                 error("Tried to connect two nodes that shouldn't be connectable");
             }
 		}
+
+        // Don't use all the CPU
+        SDL_Delay(20);
 	}
 
     SDL_FreeSurface(screen);

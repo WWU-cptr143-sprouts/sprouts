@@ -47,7 +47,7 @@
 		<Unit filename="../node.cpp" />
 		<Unit filename="../structs.cpp" />
 		<Unit filename="../tests/eqtester.cpp" />
-		<Unit filename="../tests/eqtester.h" />
+		<Unit filename="../tests/jagged.cpp" />
 		<Unit filename="../tests/exceptions.cpp" />
 		<Unit filename="../tests/game1.cpp" />
 		<Unit filename="../tests/game2.cpp" />

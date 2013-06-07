@@ -2,6 +2,7 @@
 #define H_GameGUI
 
 #include <cmath>
+#include <cstdlib> // Has abs(int)
 #include <limits>
 #include <vector>
 #include <sstream>
@@ -35,12 +36,13 @@ class GameGUI : public GameAI
         // Assuming big-endian?
         static const int nodeRadius = 5; // Node radius
         static const int lineThick  = 1; // Line thickness
-        static const int selectRadius = 20; // Defines how close you must click to a node
+        static const int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
     public:
-        GameGUI(SDL_Surface*,int); // default constructor : feed it a surface for the screen
-                                   // and initial sprouts number
+        GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
+
+        void init(int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         void click(Coord); // Mouse clicked at (x,y)
@@ -61,8 +63,9 @@ class GameGUI : public GameAI
         void line(Coord, Coord, Uint32 color);        // Draw a line
         void circle(Coord, int radius, Uint32 color); // Draw a circle
         bool validLine(Coord,Coord) const; // See if a pending line crosses another
+        bool validSingleLine(const Line&,Coord,Coord) const; // Used in validLine() for each of the lines, removes duplicate code
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
-        bool vertical(Coord,Coord); //Checks two points and determins if line to be drawn should be vertical
+        bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point); // Snap point to 90 degrees of last
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL

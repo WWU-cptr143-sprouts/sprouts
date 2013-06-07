@@ -94,20 +94,11 @@ void Game::updateAreas()
             {
                 for(int j=0;j<areas.size();j++)
                 {
-                    // The y+1 and y-1 is a hack to get around when a node has
-                    // the same y coordinate as the start or end point in the
-                    // line. This is making the assumption that lines are at
-                    // least one unit away.
-
                     // If its above added to the above area set
-                    //if (isInArea(*areas[j],Coord(original.x-1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x-1, original.y)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is below then added to the below area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x+1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x+1, original.y)))
                         tempSets[1]->push_back(areas[j]);
                 }
@@ -116,20 +107,11 @@ void Game::updateAreas()
             {
                 for(int j=0;j<areas.size();j++)
                 {
-                    // TODO:
-                    // since equality check works, revise the find_if statement
-                    // test that removing the = in <= in isInArea makes the test suite work
-                    //
-
                     // If its left added to the left area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y-1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y-1)))
                     if (isInArea(*areas[j],Coord(original.x, original.y-1)))
                         tempSets[0]->push_back(areas[j]);
 
                     // If it is right then added to the right area set
-                    //if (isInArea(*areas[j],Coord(original.x+1, original.y+1)) &&
-                    //    isInArea(*areas[j],Coord(original.x-1, original.y+1)))
                     if (isInArea(*areas[j],Coord(original.x, original.y+1)))
                         tempSets[1]->push_back(areas[j]);
                 }
@@ -349,7 +331,7 @@ void Game::doMove(const Line& line, Coord middle)
         if (nodes[i]->getLoci() == line.front())
         {
             if (a)
-                throw InvalidMove();
+                throw InvalidNode();
             else
                 a = nodes[i];
         }
@@ -357,7 +339,7 @@ void Game::doMove(const Line& line, Coord middle)
         if (nodes[i]->getLoci() == line.back())
         {
             if (b)
-                throw InvalidMove();
+                throw InvalidNode();
             else
                 b = nodes[i];
         }
@@ -365,7 +347,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     // Couldn't find nodes
     if (!a || !b)
-        throw InvalidMove();
+        throw InvalidNode();
 
     if (line.size() == 0)
         throw InvalidLine(line);
@@ -387,10 +369,10 @@ void Game::doMove(const Line& line, Coord middle)
     // When between two points, split there
     for (int i = 1; i < line.size(); i++)
     {
-        if ((line[i].y == line[i-1].y && // Horizontal
+        if ((middle.y == line[i].y && line[i].y == line[i-1].y && // Horizontal
                 ((middle.x > line[i].x && middle.x < line[i-1].x)   ||
                  (middle.x < line[i].x && middle.x > line[i-1].x))) ||
-            (line[i].x == line[i-1].x && // Vertical
+            (middle.x == line[i].x && line[i].x == line[i-1].x && // Vertical
                 ((middle.y > line[i].y && middle.y < line[i-1].y)   ||
                  (middle.y < line[i].y && middle.y > line[i-1].y))))
         {
@@ -410,7 +392,7 @@ void Game::doMove(const Line& line, Coord middle)
 
     // We should have found a place to put the middle point
     if (count != 1)
-        throw InvalidMove();
+        throw InvalidMiddle(count, middle);
 
     // Note that if the middle point is on a corner, it will throw above because
     // we check that x or y is less than one and greater than the other, meaning
@@ -505,4 +487,11 @@ void Game::deleteLastNode()
 
     delete nodes.back();
     nodes.pop_back();
+}
+
+ostream& operator<<(ostream& os, const InvalidMiddle& o)
+{
+    os << "Found " << o.count << " positions for invalid middle " << o.middle << ".";
+
+    return os;
 }

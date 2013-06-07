@@ -20,6 +20,7 @@ class Tests : public Game
 
         void game1();
         void game2();
+        void jaggedLine();
         void game1_doMove();
         void invalidCorner();
         void invalidLine();
