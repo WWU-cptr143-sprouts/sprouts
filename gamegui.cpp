@@ -1,7 +1,7 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen)
-    :screen(screen), font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)), state(Blank)
+    :GameAI(), screen(screen), font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)), state(Blank)
 {
     textCol.r = 255;
     textCol.g = 255;

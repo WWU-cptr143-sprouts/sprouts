@@ -65,8 +65,14 @@ class Game
     public:
         Game();
         Game(const Game&);
+
+        // This is the function you'll use a LOT. Set extraChecks to true if
+        // you want the A-Checker to verify two nodes should be connectable.
+        // This is useful when line-crossing code doesn't work, but it's twice
+        // as slow, which is noticeable near the end of a 10+ node game.
+        void doMove(const Line&, Coord middle, bool extraChecks = false);
+
         void updateAreas(); //will call node.walk in its process
-        void doMove(const Line&, Coord middle); // This is the function you'll use a LOT.
         int moves() const; // Returns how many times doMove has been called
         bool connectable(const Node&,const Node&) const;
         bool isInArea(const Area&,Coord) const;

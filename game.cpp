@@ -318,7 +318,7 @@ ostream& operator<<(ostream& os, const Game& g)
     return os;
 }
 
-void Game::doMove(const Line& line, Coord middle)
+void Game::doMove(const Line& line, Coord middle, bool extraChecks)
 {
     updated = false;
 
@@ -352,10 +352,17 @@ void Game::doMove(const Line& line, Coord middle)
     if (line.size() == 0)
         throw InvalidLine(line);
 
-    updateAreas();
+    // Now that line crossings work, we don't really need to do this. In games
+    // with 10 nodes or so, it starts taking a while. We'll specify when
+    // creating the game whether we want extra checks (like this) to be
+    // performed.
+    if (extraChecks)
+    {
+        updateAreas();
 
-    if (!connectable(*a, *b))
-        throw NotConnectable();
+        if (!connectable(*a, *b))
+            throw NotConnectable();
+    }
 
     // Split the line using the middle coordinate
     int count = 0; // Add to first line when 0, second when 1
