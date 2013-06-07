@@ -117,6 +117,13 @@ void GameAI::populateMList()
     }
 }
 
+int GameAI::currentAreas()
+{
+    // caleb pope is working on this function
+
+    return areasets.size(); // this returns the number of areasets, it might work but i dont think i understand the problem well enough yet
+}
+
 GameAI::~GameAI()
 {
 
