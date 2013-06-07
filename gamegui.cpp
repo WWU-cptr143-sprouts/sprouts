@@ -51,7 +51,7 @@ void GameGUI::redraw(bool lck)
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
     {
-            circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
+        circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
     }
 
     // Draw lines
