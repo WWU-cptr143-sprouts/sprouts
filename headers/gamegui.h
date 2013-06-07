@@ -5,6 +5,7 @@
 #include <cstdlib> // Has abs(int)
 #include <limits>
 #include <vector>
+#include <string>
 #include <sstream>
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -82,7 +83,7 @@ class GameGUI : public GameAI
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
-        void displayError(char *); //Print to screen, for 180 degree rule violation
+        void displayError(const string&); //Print to screen, for 180 degree rule violation
 };
 
 #endif

@@ -1,7 +1,9 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen)
-    :GameAI(), screen(screen), font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)), state(Blank)
+    :GameAI(), screen(screen),
+    font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)),
+    state(Blank), player1(true), error(false)
 {
     textCol.r = 255;
     textCol.g = 255;
@@ -135,6 +137,7 @@ State GameGUI::click(Coord location)
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              selected->getLoci()))
+                {
                     if ((selected->openRight() && selected->openLeft()) || (!selected->openRight() && !selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
                         {
                             validFinish=true; //If not, line becomes a valid move.
@@ -142,17 +145,20 @@ State GameGUI::click(Coord location)
                         }
                     else
                         error = true;
+                }
             }
             else
             {
                 //If Horizontal, does the line intersect another line?
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
                              selected->getLoci()))
+                {
                     if ((selected->openUp() && selected->openDown()) || (!selected->openUp() && !selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
                         {
                             validFinish=true; //If not, line becomes a valid move.
                             currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
                         }
+                }
                     else
                         error = true;
             }
@@ -197,7 +203,7 @@ State GameGUI::click(Coord location)
     else if (state == NodeClicked)
     {
         if (currentLine.size()==1) //If first line, ensure 180.
-            {
+        {
               //Recreate selected
                for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
                 {
@@ -210,21 +216,23 @@ State GameGUI::click(Coord location)
                 currentLine.push_back(firststraighten(selected->getLoci(), location,
                   selected->openUp(),    selected->openDown(),
                   selected->openRight(), selected->openLeft()));
-            }
+        }
         else
-            {
-                //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
+        {
+            //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
             if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
+            {
                 if (vertical(currentLine.back(),straighten(currentLine.back(), location)) && vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both vertical
-                    {
-                        currentLine.back() = Coord(currentLine.back().x, location.y);// last coord is changed to the extended line.
-                    }
+                {
+                    currentLine.back() = Coord(currentLine.back().x, location.y);// last coord is changed to the extended line.
+                }
                     //currentLine.push_back(straighten(currentLine.back(), location));
                 else if (!vertical(currentLine.back(),straighten(currentLine.back(), location)) && !vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both horizontal
                     currentLine.back() = Coord(location.x, currentLine.back().y);// last coord is changed to the extended line.
-                    else
-                        currentLine.push_back(straighten(currentLine.back(), location));
+                else
+                    currentLine.push_back(straighten(currentLine.back(), location));
             }
+        }
     }
 
     redraw();
@@ -240,7 +248,7 @@ State GameGUI::click(Coord location)
 
 void GameGUI::cursor(Coord location)
 {
-    Node* selected;
+    Node* selected = NULL;
     //if (state == NodeClicked && currentLine.size() == 1)
 
 
@@ -534,12 +542,8 @@ bool GameGUI::validLine(Coord start, Coord end) const
     return true;
 }
 
-void GameGUI::displayError(char *msg)
-
+void GameGUI::displayError(const string& msg)
 {
-    //ostringstream s;
-    //s << c;
-
     // Top left
     static SDL_Rect origin;
     origin.x = 70;
@@ -549,7 +553,7 @@ void GameGUI::displayError(char *msg)
     origin.w = 130;
     origin.h = 20;
 
-    SDL_Surface* hover = TTF_RenderText_Blended(font, msg, textCol);
+    SDL_Surface* hover = TTF_RenderText_Blended(font, msg.c_str(), textCol);
 
     SDL_FillRect(screen, &origin, 0);
     SDL_BlitSurface(hover, NULL, screen , &origin);
