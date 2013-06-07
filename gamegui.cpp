@@ -72,6 +72,7 @@ void GameGUI::redraw(bool lck)
             line(currentLine[i-1], currentLine[i], player2Col);
     }
 
+
     if (lck)
         unlock();
 }
@@ -86,6 +87,8 @@ void GameGUI::lock()
 void GameGUI::unlock()
 {
     SDL_UnlockSurface(screen);
+    if (error) //This is a hack. It is terrible coding and this function was not meant to
+        displayError("Error: 180."); //display text. However it works perfectly.
     SDL_Flip(screen);
 }
 
@@ -116,8 +119,6 @@ State GameGUI::click(Coord location)
         selectedLoci = selected->getLoci(); //Location of node stored as a coord.
     }
 
-
-
     // Clicked on node to end, make sure this is at least the second line or
     // that the line is perfectly straight between nodes
     if (selected && state == NodeClicked && //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
@@ -127,6 +128,7 @@ State GameGUI::click(Coord location)
         validFinish=false; //Reset validFinish
 
         //correct for last line to make it straight
+        //combineLines(location);
         if (validLine(currentLine.back(),
                       straighten(currentLine.back(), Coord(selected->getLoci().x,selected->getLoci().y))))//Does extending previous line cross any lines.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
@@ -135,13 +137,19 @@ State GameGUI::click(Coord location)
                          selected->getLoci()))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
+                //combineLines(location);
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              selected->getLoci()))
                 {
+                    //combineLines(location);
                     if ((selected->openRight() && selected->openLeft()) || (!selected->openRight() && !selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
                         {
                             validFinish=true; //If not, line becomes a valid move.
+                            //combineLines(location);
+                            if(vertical(currentLine.back(),location)) //If last line coming in is vertical as well, delete last point.
+                                currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                             currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
+
                         }
                     else
                         error = true;
@@ -150,17 +158,22 @@ State GameGUI::click(Coord location)
             else
             {
                 //If Horizontal, does the line intersect another line?
+                //combineLines(location);
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
                              selected->getLoci()))
                 {
+                    //combineLines(location);
                     if ((selected->openUp() && selected->openDown()) || (!selected->openUp() && !selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
                         {
                             validFinish=true; //If not, line becomes a valid move.
+                            //combineLines(location);
+                            if(!vertical(currentLine.back(),location)) //If last line coming in is horizontal as well, delete last point.
+                                currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                             currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
                         }
-                }
                     else
                         error = true;
+                }
             }
 
             //Calculate location of node to be added
@@ -219,28 +232,11 @@ State GameGUI::click(Coord location)
         }
         else
         {
-            //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
-            if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
-            {
-                if (vertical(currentLine.back(),straighten(currentLine.back(), location)) && vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both vertical
-                {
-                    currentLine.back() = Coord(currentLine.back().x, location.y);// last coord is changed to the extended line.
-                }
-                    //currentLine.push_back(straighten(currentLine.back(), location));
-                else if (!vertical(currentLine.back(),straighten(currentLine.back(), location)) && !vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both horizontal
-                    currentLine.back() = Coord(location.x, currentLine.back().y);// last coord is changed to the extended line.
-                else
-                    currentLine.push_back(straighten(currentLine.back(), location));
-            }
+            combineLines(location);
         }
     }
 
     redraw();
-
-    // Display cursor location on screen for debugging
-    //displayPosition(location);
-    if (error)
-        displayError("Error: 180.");
 
     return state;
 }
@@ -248,8 +244,6 @@ State GameGUI::click(Coord location)
 void GameGUI::cursor(Coord location)
 {
     Node* selected = NULL;
-    //if (state == NodeClicked && currentLine.size() == 1)
-
 
     if (state == NodeClicked)
     {
@@ -278,10 +272,7 @@ void GameGUI::cursor(Coord location)
         unlock();
     }
 
-    // Display cursor location on screen for debugging
-    //displayPosition(location);
-    if (error)
-        displayError("Error: 180.");
+
 }
 
 bool GameGUI::vertical(Coord last, Coord point)
@@ -304,6 +295,23 @@ Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, boo
              return Coord (cursor.x, node.y);
         else
             return straighten(node, cursor);
+}
+
+Coord GameGUI::combineLines(Coord location)
+{
+    //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
+    if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
+    {
+        if (vertical(currentLine.back(),straighten(currentLine.back(), location)) && vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both vertical
+        {
+            currentLine.back() = Coord(currentLine.back().x, location.y);// last coord is changed to the extended line.
+        }
+            //currentLine.push_back(straighten(currentLine.back(), location));
+        else if (!vertical(currentLine.back(),straighten(currentLine.back(), location)) && !vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both horizontal
+            currentLine.back() = Coord(location.x, currentLine.back().y);// last coord is changed to the extended line.
+        else
+            currentLine.push_back(straighten(currentLine.back(), location));
+    }
 }
 
 Coord GameGUI::straighten(Coord last, Coord point)
@@ -556,7 +564,7 @@ void GameGUI::displayError(const string& msg)
 
     SDL_FillRect(screen, &location, 0);
     SDL_BlitSurface(error, NULL, screen , &location);
-    SDL_Flip(screen);
+    //SDL_Flip(screen);
     SDL_FreeSurface(error);
 }
 
@@ -578,7 +586,7 @@ void GameGUI::displayPosition(Coord c)
 
     SDL_FillRect(screen, &origin, 0);
     SDL_BlitSurface(hover, NULL, screen , &origin);
-    SDL_Flip(screen);
+    //SDL_Flip(screen);
     SDL_FreeSurface(hover);
 }
 

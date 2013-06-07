@@ -44,8 +44,8 @@ class GameGUI : public GameAI
         static const int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
-        static const Uint32 player1Col = 0xFE0208FF;
-        static const Uint32 player2Col = 0x069DD6FF;
+        static const Uint32 player1Col = 0x069DD6FF; //Blue
+        static const Uint32 player2Col = 0xFE0208FF; //Red
 
     public:
         GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
@@ -80,6 +80,7 @@ class GameGUI : public GameAI
         bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point); // Snap point at 90 degrees angles to last
         Coord firststraighten (Coord, Coord, bool, bool, bool, bool); //Snaps point to 180 deg from a preexisting line connectiing to node if only 1 exists.
+        Coord combineLines (Coord); //Combines two lines that are both horizontal or vertical
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
