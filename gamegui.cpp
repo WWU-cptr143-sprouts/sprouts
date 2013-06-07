@@ -1,8 +1,11 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen)
-    :screen(screen), state(Blank)
+    :screen(screen), font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)), state(Blank)
 {
+    textCol.r = 255;
+    textCol.g = 255;
+    textCol.b = 255;
 }
 
 void GameGUI::init(int count)
@@ -186,12 +189,31 @@ State GameGUI::click(Coord location)
        //else if (selected[Right]||selected[Left]) //Check left and right.
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
+        //validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
+        //currentLine.push_back(firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
+
     }
     // Clicked to place a line
-    else if (state == NodeClicked &&
-        validLine(currentLine.back(),straighten(currentLine.back(), location)))
+    else if (state == NodeClicked)
     {
-        currentLine.push_back(straighten(currentLine.back(), location));
+        if (currentLine.size()==1) //If first line, ensure 180.
+            {
+              //Recreate selected
+               for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
+                {
+                    if (nodes[i]->getLoci() == currentLine.front())
+                    {
+                        selected = nodes[i];
+                    }
+                }
+              if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
+                currentLine.push_back(firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft()));
+            }
+        else
+            {
+            if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
+                currentLine.push_back(straighten(currentLine.back(), location));
+            }
     }
 
     redraw();
@@ -204,11 +226,28 @@ State GameGUI::click(Coord location)
 
 void GameGUI::cursor(Coord location)
 {
+    Node* selected;
+    //if (state == NodeClicked && currentLine.size() == 1)
+
+
     if (state == NodeClicked)
     {
         lock();
         redraw(false);
-        line(currentLine.back(), straighten(currentLine.back(), location), lineCol);
+        if (currentLine.size() == 1) //If it is the first line drawn out of node
+        {
+            for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
+            {
+                if (nodes[i]->getLoci() == currentLine.front())
+                {
+                    selected = nodes[i];
+                }
+            }
+            line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), lineCol);
+        }
+
+        else
+            line(currentLine.back(), straighten(currentLine.back(), location), lineCol);
         unlock();
     }
 
@@ -225,6 +264,17 @@ bool GameGUI::vertical(Coord last, Coord point)
          return true;
     else
         return false;
+}
+
+Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, bool right, bool left)
+{
+    if ((up&&!down)||(!up&&down)) //Checks to see if node has 1 line coming up or down out of it
+        return Coord(node.x,cursor.y);
+    else
+        if ((right&&!left)||(!right&&left)) //Check left and right.
+             return Coord (cursor.x, node.y);
+        else
+            return straighten(node, cursor);
 }
 
 Coord GameGUI::straighten(Coord last, Coord point)
@@ -467,13 +517,6 @@ void GameGUI::displayPosition(Coord c)
     ostringstream s;
     s << c;
 
-    // Lazy man's way of only loading this debug code once, which interestingly
-    // enough prevents a SDL segfault
-    static TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
-
-    // White
-    static SDL_Color color = { 255, 255, 255, 255 };
-
     // Top left
     static SDL_Rect origin;
     origin.x = 0;
@@ -483,7 +526,7 @@ void GameGUI::displayPosition(Coord c)
     origin.w = 60;
     origin.h = 20;
 
-    SDL_Surface* hover = TTF_RenderText_Blended(font, s.str().c_str(), color);
+    SDL_Surface* hover = TTF_RenderText_Blended(font, s.str().c_str(), textCol);
 
     SDL_FillRect(screen, &origin, 0);
     SDL_BlitSurface(hover, NULL, screen , &origin);
