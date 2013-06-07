@@ -9,7 +9,7 @@ GameAI::GameAI()
 
 }
 
-/*
+
 bool GameAI::aiTurn()
 {
     vector<int> mValues;
@@ -39,12 +39,12 @@ bool GameAI::aiTurn()
     for(int i = 0; i < possibleMoves.length(); i++)
     {
         //create new dummy game
-            doPMove(possibleMoves<i>);
+            doMove(possibleMoves<i>, midNode(possibleMoves<i>));
             testMoveAreas = currentAreas();
         //delete game
         if (testMoveAreas%2 == wantedAreas)
         {
-            doPMove(possibleMoves<i>)
+            doMove(possibleMoves<i>, midNode(possibleMoves<i>));
             return true;
         }
     }
@@ -92,7 +92,7 @@ void GameAI::populateMList()
         }
     }
 }
-*/
+
 
 GameAI::~GameAI()
 {
