@@ -85,7 +85,6 @@ class Game
 
         // Used for debugging
         friend ostream& operator<<(ostream&, const Game&);
-        friend class TestSuite;
     private:
         void clearAreas(); // empty areas/areasets and delete items pointed to
         void deleteLastNode(); // Undo last add, used in doMove

@@ -143,14 +143,14 @@ State GameGUI::click(Coord location)
                 {
                     //combineLines(location);
                     if ((selected->openRight() && selected->openLeft()) || (!selected->openRight() && !selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
-                        {
-                            validFinish=true; //If not, line becomes a valid move.
-                            //combineLines(location);
-                            if(vertical(currentLine.back(),location)) //If last line coming in is vertical as well, delete last point.
-                                currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
-                            currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
+                    {
+                        validFinish=true; //If not, line becomes a valid move.
+                        //combineLines(location);
+                        if(vertical(currentLine.back(),location)) //If last line coming in is vertical as well, delete last point.
+                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
+                        currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
 
-                        }
+                    }
                     else
                         error = true;
                 }
@@ -164,13 +164,20 @@ State GameGUI::click(Coord location)
                 {
                     //combineLines(location);
                     if ((selected->openUp() && selected->openDown()) || (!selected->openUp() && !selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
-                        {
-                            validFinish=true; //If not, line becomes a valid move.
-                            //combineLines(location);
-                            if(!vertical(currentLine.back(),location)) //If last line coming in is horizontal as well, delete last point.
-                                currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
-                            currentLine.back().y= selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                        }
+                    {
+                        validFinish=true; //If not, line becomes a valid move.
+                        //combineLines(location);
+
+                        // MESSAGE AND HUMONGOUS WARNING FOR KYLE:
+                        //  I added the currentLine.size() > 1. This makes it
+                        //  so that it won't seg fault with clicking one to
+                        //  another nodes directly. However, I don't know if it
+                        //  caused any other problems.
+
+                        if(!vertical(currentLine.back(),location) && currentLine.size() > 1) //If last line coming in is horizontal as well, delete last point.
+                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
+                        currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
+                    }
                     else
                         error = true;
                 }
@@ -297,7 +304,7 @@ Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, boo
             return straighten(node, cursor);
 }
 
-Coord GameGUI::combineLines(Coord location)
+void GameGUI::combineLines(Coord location)
 {
     //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
     if (validLine(currentLine.back(),straighten(currentLine.back(), location)))

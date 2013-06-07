@@ -67,7 +67,7 @@ class GameGUI : public GameAI
 
         // SDL interface
         void lock();
-        void unlock();
+        void unlock(); // Also draws error message(s) to screen
 
         // Redraw the background, lines, etc. Set lock to false when you draw multiple
         // things to the screen at the same time.
@@ -79,8 +79,8 @@ class GameGUI : public GameAI
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
         bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point); // Snap point at 90 degrees angles to last
-        Coord firststraighten (Coord, Coord, bool, bool, bool, bool); //Snaps point to 180 deg from a preexisting line connectiing to node if only 1 exists.
-        Coord combineLines (Coord); //Combines two lines that are both horizontal or vertical
+        Coord firststraighten (Coord, Coord, bool, bool, bool, bool); //Snaps point to 180 deg from a preexisting line connecting to node if only 1 exists.
+        void combineLines (Coord); //Combines two lines that are both horizontal or vertical
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
