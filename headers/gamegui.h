@@ -11,6 +11,7 @@
 #include <SDL_gfxPrimitives.h>
 #include "gameai.h"
 #include "image.h"
+#include "node.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ class GameGUI : public GameAI
 {
     private:
         SDL_Surface* screen;
+        TTF_Font* font;
 
         // The background image
         //Image* bg;
@@ -33,6 +35,7 @@ class GameGUI : public GameAI
         // Where we are currently in the game. E.g., we just clicked on a node.
         State state;
         Line currentLine;
+        SDL_Color textCol;
 
         // Assuming big-endian?
         static const int nodeRadius = 5; // Node radius
@@ -40,6 +43,7 @@ class GameGUI : public GameAI
         static const int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
+
     public:
         GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
 
@@ -67,7 +71,8 @@ class GameGUI : public GameAI
         bool validSingleLine(const Line&,Coord,Coord) const; // Used in validLine() for each of the lines, removes duplicate code
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
         bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
-        Coord straighten(Coord last, Coord point); // Snap point to 90 degrees of last
+        Coord straighten(Coord last, Coord point); // Snap point at 90 degrees angles to last
+        Coord firststraighten (Coord, Coord, bool, bool, bool, bool); //Snaps point to 180 deg from a preexisting line connectiing to node if only 1 exists.
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
