@@ -22,7 +22,7 @@ class GameAI : public Game
         int testMoveAreas, wantedAreas;
     public:
         GameAI(); //needs to call game constructor;
-        int currentAreas(); //check how many areas the current game has
+        int notConnectableNodes() const; //check how many nodes are not connectable
         void populateMList(); //will populate the possibleMoves vector
         void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
