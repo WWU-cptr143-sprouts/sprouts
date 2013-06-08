@@ -102,145 +102,55 @@ void GameGUI::cancel()
 State GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
-    int tempx,tempy;
-    bool validFinish; //Used to keep trach of whether or not the line can be drawn.
     error = false; //Initialize as false every click
 
     // Don't do anything if it's dead
     if (selected && selected->dead())
         return state;
 
-    // Used to determine if we can go straight to the second node if we clicked
-    // one or if we have to draw another line to get there.
-    Coord direct, selectedLoci;
-    if (selected)
-    {
-        direct = straighten(location, selected->getLoci());
-        selectedLoci = selected->getLoci(); //Location of node stored as a coord.
-    }
-
-    // Clicked on node to end, make sure this is at least the second line or
-    // that the line is perfectly straight between nodes
-    if (selected && state == NodeClicked && //If node is selected, a line has already been drawn, and if the node doesn't have 3 connections.
-        // Either there's more than one line going from one node to another or the two nodes are perfectly in line horizontally or vertically
-        (currentLine.size() > 1 || (currentLine.size() == 1 && (direct.x == currentLine.back().x || direct.y == currentLine.back().y))))
-    {
-        validFinish=false; //Reset validFinish
-
-        //correct for last line to make it straight
-        //combineLines(location);
-        if (validLine(currentLine.back(),
-                      straighten(currentLine.back(), Coord(selected->getLoci().x,selected->getLoci().y))))//Does extending previous line cross any lines.
-        { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
-           //Is the line coming vertically into node?
-            if (vertical(currentLine.back(),
-                         selected->getLoci()))
-            {
-                //If Vertical, does the line intersect another line. Adjusts Lines
-                //combineLines(location);
-                if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
-                             selected->getLoci()))
-                {
-                    //combineLines(location);
-                    if ((selected->openRight() && selected->openLeft()) || (!selected->openRight() && !selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
-                    {
-                        validFinish=true; //If not, line becomes a valid move.
-                        //combineLines(location);
-                        if(vertical(currentLine.back(),location)) //If last line coming in is vertical as well, delete last point.
-                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
-                        currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
-
-                    }
-                    else
-                        error = true;
-                }
-            }
-            else
-            {
-                //If Horizontal, does the line intersect another line?
-                //combineLines(location);
-                if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
-                             selected->getLoci()))
-                {
-                    //combineLines(location);
-                    if ((selected->openUp() && selected->openDown()) || (!selected->openUp() && !selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
-                    {
-                        validFinish=true; //If not, line becomes a valid move.
-                        //combineLines(location);
-
-                        // MESSAGE AND HUMONGOUS WARNING FOR KYLE:
-                        //  I added the currentLine.size() > 1. This makes it
-                        //  so that it won't seg fault with clicking one to
-                        //  another nodes directly. However, I don't know if it
-                        //  caused any other problems.
-
-                        if(!vertical(currentLine.back(),location) && currentLine.size() > 1) //If last line coming in is horizontal as well, delete last point.
-                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
-                        currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
-                    }
-                    else
-                        error = true;
-                }
-            }
-
-            //Calculate location of node to be added
-            if(validFinish==true)
-            {
-                currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
-                if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Finds the middle line in the connections and checks if it is vertical.
-                {
-                    tempx=(currentLine[(currentLine.size())/2]).x;
-                    tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vertically.
-                }
-                else
-                {
-                    tempy=(currentLine[(currentLine.size())/2]).y;
-                    tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - horizontally.
-                }
-
-                cout << "Middle: " << Coord(tempx, tempy) << " Line: " << currentLine << endl;
-                doMove(currentLine,Coord(tempx,tempy));
-                if(player1)
-                    player1 = false;
-                else
-                    player1 = true;
-                cancel();
-
-                if (gameEnded())
-                    state = GameEnd;
-            }
-        }
-    }
-
     // Clicked on node to start, make sure this is the first node
-    else if (selected && currentLine.size() == 0)
+    if (selected && currentLine.size() == 0)
     {
-       //Checks to see if there is already 1 connection coming out of the node, if so, the next will be adjusted to only come out at 180.
         currentLine.push_back(selected->getLoci());
         state = NodeClicked;
+    }
+    // Clicked on node to end, make sure this is at least the second line or
+    // that the line is perfectly straight between nodes
+    else if (selected && state == NodeClicked)
+    {
+        currentLine.push_back(selected->getLoci());
+
+        // Only end here if we can come into the new node correctly
+        if (fixEndpoints())
+        {
+            // Put the node in the middle somewhere
+            int half = currentLine.size()/2;
+            Coord middle((currentLine[half].x+currentLine[half+1].x)/2,
+                         (currentLine[half].y+currentLine[half+1].y)/2);
+
+            cout << "Middle: " << middle << " Line: " << currentLine << endl;
+
+            doMove(currentLine, middle);
+            player1 = !player1;
+            cancel();
+
+            if (gameEnded())
+                state = GameEnd;
+        }
+        else
+        {
+            currentLine.pop_back();
+        }
     }
     // Clicked to place a line
     else if (state == NodeClicked)
     {
-        if (currentLine.size()==1) //If first line, ensure 180.
-        {
-              //Recreate selected
-               for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
-                {
-                    if (nodes[i]->getLoci() == currentLine.front())
-                    {
-                        selected = nodes[i];
-                    }
-                }
-              if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
-                currentLine.push_back(firststraighten(selected->getLoci(), location,
-                  selected->openUp(),    selected->openDown(),
-                  selected->openRight(), selected->openLeft()));
-        }
-        else
-        {
-            combineLines(location);
-        }
+        Coord straightened = straighten(currentLine.back(), location);
+        currentLine.push_back(straightened);
+
+        // Avoid objects as possible and then delete anything that can't be
+        // made valid.  Return the line to a valid state.
+        objectAvoidance();
     }
 
     redraw();
@@ -250,36 +160,14 @@ State GameGUI::click(Coord location)
 
 void GameGUI::cursor(Coord location)
 {
-    Node* selected = NULL;
-
     if (state == NodeClicked)
     {
         lock();
         redraw(false);
-        if (currentLine.size() == 1) //If it is the first line drawn out of node
-        {
-            for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
-            {
-                if (nodes[i]->getLoci() == currentLine.front())
-                {
-                    selected = nodes[i];
-                }
-            }
-            if(player1)
-                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player1Col);
-            else
-                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player2Col);
-        }
-
-        else
-            if(player1)
-                line(currentLine.back(), straighten(currentLine.back(), location), player1Col);
-            else
-                line(currentLine.back(), straighten(currentLine.back(), location), player2Col);
+        line(currentLine.back(), straighten(currentLine.back(), location),
+            (player1)?player1Col:player2Col);
         unlock();
     }
-
-
 }
 
 bool GameGUI::vertical(Coord last, Coord point)
@@ -293,59 +181,13 @@ bool GameGUI::vertical(Coord last, Coord point)
         return false;
 }
 
-Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, bool right, bool left)
-{
-    if ((up&&!down)||(!up&&down)) //Checks to see if node has 1 line coming up or down out of it
-        return Coord(node.x,cursor.y);
-    else
-        if ((right&&!left)||(!right&&left)) //Check left and right.
-             return Coord (cursor.x, node.y);
-        else
-            return straighten(node, cursor);
-}
-
-void GameGUI::combineLines(Coord location)
-{
-    //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
-    if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
-    {
-        if (vertical(currentLine.back(),straighten(currentLine.back(), location)) && vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both vertical
-        {
-            currentLine.back() = Coord(currentLine.back().x, location.y);// last coord is changed to the extended line.
-        }
-            //currentLine.push_back(straighten(currentLine.back(), location));
-        else if (!vertical(currentLine.back(),straighten(currentLine.back(), location)) && !vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both horizontal
-            currentLine.back() = Coord(location.x, currentLine.back().y);// last coord is changed to the extended line.
-        else
-            currentLine.push_back(straighten(currentLine.back(), location));
-    }
-}
-
 Coord GameGUI::straighten(Coord last, Coord point)
 {
     // Determine to snap vertically or horizontally
     if (vertical(last, point))
-    {
-        //validLine(coord(last.x, last.y), coord(last.x, point.y))
-
-        //keeps line from backtracking on itself
-        if(currentLine.size() > 2 &&
-           (((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||
-            ((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y))))
-            return Coord(point.x,last.y);
-
         return Coord(last.x, point.y);
-    }
     else
-    {
-        //keeps line from backtracking on itself
-        if(currentLine.size() > 2 &&
-           (((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||
-            ((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x))))
-            return Coord(last.x,point.y);
-
         return Coord(point.x, last.y);
-    }
 }
 
 Coord GameGUI::center() const
@@ -543,8 +385,6 @@ bool GameGUI::validLine(Coord start, Coord end) const
     if (!validSingleLine(currentLine, start, end))
         return false;
 
-    //code for checking among the line currently being drawn
-    //code for already made lines, unsure of error
     for (int i = 0; i < lines.size(); i++)
     {
         const Line& line = *lines[i];
@@ -571,7 +411,6 @@ void GameGUI::displayError(const string& msg)
 
     SDL_FillRect(screen, &location, 0);
     SDL_BlitSurface(error, NULL, screen , &location);
-    //SDL_Flip(screen);
     SDL_FreeSurface(error);
 }
 
@@ -593,13 +432,37 @@ void GameGUI::displayPosition(Coord c)
 
     SDL_FillRect(screen, &origin, 0);
     SDL_BlitSurface(hover, NULL, screen , &origin);
-    //SDL_Flip(screen);
     SDL_FreeSurface(hover);
 }
 
-bool GameGUI::playerTurn()
+bool GameGUI::playerTurn() const
 {
     return player1;
+}
+
+bool GameGUI::fixEndpoints()
+{
+    const Coord back = currentLine.back();
+    currentLine.pop_back();
+    currentLine.push_back(straighten(currentLine.back(), back));
+    currentLine.push_back(back);
+
+    return true;
+}
+
+bool GameGUI::objectAvoidance()
+{
+    // Don't call this if there's less than 2 coordinates. Nothing to fix.
+    if (currentLine.size() < 2)
+        throw "call objectAvoidance with at least two coordinates";
+
+    // It's already fine.
+    if (validLine(currentLine[currentLine.size()-2], currentLine.back()))
+        return true;
+
+    // Try to dodge any objects in the way.
+
+    return false;
 }
 
 GameGUI::~GameGUI()

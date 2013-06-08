@@ -123,9 +123,7 @@ int main(int argc, char *argv[])
 
                                 if (state == GameEnd)
                                 {
-                                    cout << "Game has ended!" << endl; //Add image here for end game
                                     inMenu = true;
-                                    //menu.init();
                                     menu.over(game.playerTurn());
                                     game = GameGUI(screen);
                                 }

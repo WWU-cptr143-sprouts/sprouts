@@ -59,7 +59,7 @@ class GameGUI : public GameAI
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)
         void cursor(Coord); // Cursor hovering at (x,y)
-        bool playerTurn(); // Returns the player1 variable
+        bool playerTurn() const; // Returns the player1 variable
         ~GameGUI();
 
     private:
@@ -80,12 +80,14 @@ class GameGUI : public GameAI
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
         bool vertical(Coord,Coord); //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point); // Snap point at 90 degrees angles to last
-        Coord firststraighten (Coord, Coord, bool, bool, bool, bool); //Snaps point to 180 deg from a preexisting line connecting to node if only 1 exists.
-        void combineLines (Coord); //Combines two lines that are both horizontal or vertical
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
         void displayError(const string&); //Print to screen, for 180 degree rule violation
+
+        // Cleanup the line. Return true if successful.
+        bool objectAvoidance(); // Redraw the line in an attempt to make it valid
+        bool fixEndpoints();    // Redraw the end portions of the line
 };
 
 #endif
