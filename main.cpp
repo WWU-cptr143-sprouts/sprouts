@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
                         // Q returns to menu
                         else if (event.key.keysym.sym == SDLK_q && !inMenu)
                         {
+                            game = GameGUI(screen);
                             inMenu = true;
                             menu.init();
                         }
