@@ -599,9 +599,7 @@ void GameGUI::displayPosition(Coord c)
 
 bool GameGUI::playerTurn()
 {
-    if (player1)
-        return true;
-    return false;
+    return player1;
 }
 
 GameGUI::~GameGUI()

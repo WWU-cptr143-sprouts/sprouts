@@ -218,7 +218,7 @@ void Menu::cursor(Coord location)
     {
         if (p1Wins == true)
         {
-            if ( (location.y < 250) || (location.y > 350) )
+            if ( (location.y < 390) || (location.y > 490) )
             {
                 check14 = check15 = false;
                 if (!check13)
@@ -231,7 +231,7 @@ void Menu::cursor(Coord location)
             else
             {
                 check13 = check15 = false;
-                if ( location.y < 300 )
+                if ( location.y < 440 )
                 {
                     if (!check14)
                     {
@@ -243,7 +243,7 @@ void Menu::cursor(Coord location)
                 else
                 {
                     check13 = check14 = false;
-                    if ( location.y < 350 )
+                    if ( location.y < 490 )
                     {
                         if (!check15)
                         {
@@ -257,7 +257,7 @@ void Menu::cursor(Coord location)
         }
         if (p2Wins == true)
         {
-            if ( (location.y < 250) || (location.y > 350) )
+            if ( (location.y < 390) || (location.y > 490) )
             {
                 check17 = check18 = false;
                 if (!check16)
@@ -270,7 +270,7 @@ void Menu::cursor(Coord location)
             else
             {
                 check16 = check18 = false;
-                if ( location.y < 300 )
+                if ( location.y < 440 )
                 {
                     if (!check17)
                     {
@@ -282,7 +282,7 @@ void Menu::cursor(Coord location)
                 else
                 {
                     check16 = check17 = false;
-                    if ( location.y < 350 )
+                    if ( location.y < 490 )
                     {
                         if (!check18)
                         {
@@ -296,7 +296,7 @@ void Menu::cursor(Coord location)
         }
         if (aiWins == true)
         {
-            if ( (location.y < 250) || (location.y > 350) )
+            if ( (location.y < 390) || (location.y > 490) )
             {
                 check20 = check21 = false;
                 if (!check19)
@@ -309,7 +309,7 @@ void Menu::cursor(Coord location)
             else
             {
                 check19 = check21 = false;
-                if ( location.y < 300 )
+                if ( location.y < 440 )
                 {
                     if (!check20)
                     {
@@ -321,7 +321,7 @@ void Menu::cursor(Coord location)
                 else
                 {
                     check19 = check20 = false;
-                    if ( location.y < 350 )
+                    if ( location.y < 490 )
                     {
                         if (!check21)
                         {
@@ -397,12 +397,12 @@ ClickType Menu::click(Coord location)
     }
     else
     {
-        if ( (location.y > 250) && (location.y < 300) )
+        if ( (location.y > 390) && (location.y < 440) )
         {
             GameOver = false;
             init();
         }
-        if ( (location.y > 300) && (location.y < 350) )
+        if ( (location.y > 440) && (location.y < 490) )
         {
             // "Start" the game, but set the game to not running so
                 // we just exit the program
