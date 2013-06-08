@@ -36,19 +36,39 @@ class Menu
         Image optionsHover;
         Image startHover;
         Image sproutsMenu;
+
+        Image computerWins;
+        Image computerWinsExitHover;
+        Image computerWinsMenuHover;
+        Image playerOneWins;
+        Image playerOneWinsExitHover;
+        Image playerOneWinsMenuHover;
+        Image playerTwoWins;
+        Image playerTwoWinsExitHover;
+        Image playerTwoWinsMenuHover;
+
         bool GameStart;
         bool GameOptions;
         bool GameInstructions;
         bool GameCredits;
         bool GameExit;
+        bool GameOver;
+        bool p1Wins;
+        bool p2Wins;
+        bool aiWins;
+
         bool check1, check2,  check3,  check4,
              check5, check6,  check7,  check8,
-             check9, check10, check11, check12;
+             check9, check10, check11, check12,
+             check13, check14, check15, check16,
+             check17, check18, check19, check20,
+             check21;
 
     public:
         Menu(SDL_Surface*);
 
         void init(); // Show the menu the first time
+        void over(bool); // Tell menu that the game is over
         void cancel(); // Esc pressed
         void cursor(Coord); // Cursor moved
         ClickType click(Coord); // Return EXIT when clicking exit

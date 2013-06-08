@@ -125,7 +125,8 @@ int main(int argc, char *argv[])
                                     cout << "Game has ended!" << endl; //Add image here for end game
                                     game = GameGUI(screen);
                                     inMenu = true;
-                                    menu.init();
+                                    //menu.init();
+                                    menu.over(game.playerTurn());
                                 }
                             }
                         }
