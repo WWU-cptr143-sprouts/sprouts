@@ -67,11 +67,16 @@ class Menu
     public:
         Menu(SDL_Surface*);
 
+        void menuFlip(SDL_Surface*, bool&);
         void init(); // Show the menu the first time
         void over(bool); // Tell menu that the game is over
         void cancel(); // Esc pressed
         void cursor(Coord); // Cursor moved
+        void cursorGameOver(Coord);
+        void cursorMenu(Coord);
         ClickType click(Coord); // Return EXIT when clicking exit
+        ClickType clickGameOver(Coord);
+        ClickType clickMenu(Coord);
 
         int nodes() const { return numberOfNodes; }
         Mode mode() const { return playerMode; }
