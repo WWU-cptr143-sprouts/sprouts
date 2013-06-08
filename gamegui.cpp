@@ -597,6 +597,13 @@ void GameGUI::displayPosition(Coord c)
     SDL_FreeSurface(hover);
 }
 
+bool GameGUI::playerTurn()
+{
+    if (player1)
+        return true;
+    return false;
+}
+
 GameGUI::~GameGUI()
 {
 

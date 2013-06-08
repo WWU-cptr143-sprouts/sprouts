@@ -59,6 +59,7 @@ class GameGUI : public GameAI
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)
         void cursor(Coord); // Cursor hovering at (x,y)
+        bool playerTurn();
         ~GameGUI();
 
     private:
