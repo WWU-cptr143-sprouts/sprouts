@@ -81,6 +81,7 @@ class GameGUI : public GameAI
         void combineLines (Coord); //Combines two lines that are both horizontal or vertical
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord) const; // Return node near cursor; if none, NULL
+        Coord findMiddle() const; // Put middle node on longest segment
         void displayPosition(Coord); // Print to screen, for debugging
         void displayError(const string&); //Print to screen, for 180 degree rule violation
 };

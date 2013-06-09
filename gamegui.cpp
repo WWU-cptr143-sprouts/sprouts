@@ -99,7 +99,6 @@ void GameGUI::cancel()
 State GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
-    int tempx,tempy;
     bool validFinish; //Used to keep track of whether or not the line can be drawn.
     error = false; //Initialize as false every click
 
@@ -178,19 +177,10 @@ State GameGUI::click(Coord location)
             if(validFinish==true)
             {
                 currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
-                if (currentLine[(currentLine.size())/2].x==currentLine[(currentLine.size())/2-1].x) //Finds the middle line in the connections and checks if it is vertical.
-                {
-                    tempx=(currentLine[(currentLine.size())/2]).x;
-                    tempy=(currentLine[(currentLine.size())/2].y+currentLine[(currentLine.size())/2-1].y)/2;//put new node halfway between points - vertically.
-                }
-                else
-                {
-                    tempy=(currentLine[(currentLine.size())/2]).y;
-                    tempx=(currentLine[(currentLine.size())/2].x+currentLine[(currentLine.size())/2-1].x)/2;//put new node halfway between points - horizontally.
-                }
+                Coord middle = findMiddle();
 
-                cout << "Middle: " << Coord(tempx, tempy) << " Line: " << currentLine << endl;
-                doMove(currentLine,Coord(tempx,tempy));
+                cout << "Middle: " << middle << " Line: " << currentLine << endl;
+                doMove(currentLine, middle);
                 player1 = !player1;
 
                 currentLine.clear();
@@ -583,6 +573,30 @@ void GameGUI::displayPosition(Coord c)
 bool GameGUI::playerTurn()
 {
     return player1;
+}
+
+Coord GameGUI::findMiddle() const
+{
+    int longestIndex = -1;
+    double greatestDist = 0;
+
+    for (int i = 1; i < currentLine.size(); i++)
+    {
+        double currentDist = distance(currentLine[i], currentLine[i-1]);
+
+        if (currentDist > greatestDist)
+        {
+            greatestDist = currentDist;
+            longestIndex = i;
+        }
+    }
+
+    // Something went wrong, just pick the middle
+    if (longestIndex == -1)
+        longestIndex = currentLine.size()/2;
+
+    return Coord((currentLine[longestIndex-1].x+currentLine[longestIndex].x)/2,
+                 (currentLine[longestIndex-1].y+currentLine[longestIndex].y)/2);
 }
 
 GameGUI::~GameGUI()
