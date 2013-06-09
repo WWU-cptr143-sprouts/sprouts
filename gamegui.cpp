@@ -126,11 +126,10 @@ State GameGUI::click(Coord location)
         //correct for last line to make it straight
         //combineLines(location);
         if (validLine(currentLine.back(),
-                      straighten(currentLine.back(), Coord(selected->getLoci().x,selected->getLoci().y))))//Does extending previous line cross any lines.
+                      straighten(currentLine.back(), selected->getLoci())))//Does extending previous line cross any lines.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
-            if (vertical(currentLine.back(),
-                         selected->getLoci()))
+            if (vertical(currentLine.back(), selected->getLoci()))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 //combineLines(location);
@@ -193,7 +192,7 @@ State GameGUI::click(Coord location)
     }
 
     // Clicked on node to start, make sure this is the first node
-    else if (selected && currentLine.size() == 0)
+    else if (selected && currentLine.size() == 0 && state != GameEnd)
     {
        //Checks to see if there is already 1 connection coming out of the node, if so, the next will be adjusted to only come out at 180.
         currentLine.push_back(selected->getLoci());
@@ -204,18 +203,17 @@ State GameGUI::click(Coord location)
     {
         if (currentLine.size()==1) //If first line, ensure 180.
         {
-            //Recreate selected
-            for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
+            selected = findNode(currentLine.front()); // Finds which node was used to start currentLine
+
+            if (selected)
             {
-                if (nodes[i]->getLoci() == currentLine.front())
-                {
-                    selected = nodes[i];
-                }
-            }
-            if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
-                currentLine.push_back(firststraighten(selected->getLoci(), location,
+                Coord straightened = firststraighten(currentLine.back(), location,
                     selected->openUp(),    selected->openDown(),
-                    selected->openRight(), selected->openLeft()));
+                    selected->openRight(), selected->openLeft());
+
+                if (validLine(currentLine.back(), straightened)
+                    currentLine.push_back(straightened);
+            }
         }
         else
         {
@@ -242,7 +240,8 @@ void GameGUI::cursor(Coord location)
             // Which node was used to start currentLine
             selected = findNode(currentLine.front());
 
-            line(selected->getLoci(), firststraighten(selected->getLoci(), location,
+            if (selected)
+                line(selected->getLoci(), firststraighten(selected->getLoci(), location,
                     selected->openUp(),    selected->openDown(),
                     selected->openRight(), selected->openLeft()), (player1)?player1Col:player2Col);
         }
@@ -367,6 +366,8 @@ double GameGUI::distance(Coord a, Coord b) const
     return sqrt(pow(1.0*a.x-b.x,2)+pow(1.0*a.y-b.y,2));
 }
 
+// Determine if the line from the coordinates start to end would cross any line
+// segments in the passed in Line.
 bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
 {
     const int startX = start.x;
@@ -517,7 +518,6 @@ bool GameGUI::validLine(Coord start, Coord end) const
         return false;
 
     //code for checking among the line currently being drawn
-    //code for already made lines, unsure of error
     for (int i = 0; i < lines.size(); i++)
     {
         const Line& line = *lines[i];
