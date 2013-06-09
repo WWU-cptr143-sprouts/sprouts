@@ -84,6 +84,7 @@ class GameGUI : public GameAI
         Node* selectedNode(Coord); // Return node near cursor; if none, NULL
         void displayPosition(Coord); // Print to screen, for debugging
         void displayError(const string&); //Print to screen, for 180 degree rule violation
+        Coord findMiddle() const; // Place middle node on the longest line segment
 
         // Cleanup the line. Return true if successful.
         bool objectAvoidance(); // Redraw the line in an attempt to make it valid

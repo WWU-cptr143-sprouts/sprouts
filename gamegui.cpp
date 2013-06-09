@@ -123,16 +123,11 @@ State GameGUI::click(Coord location)
         // Only end here if we can come into the new node correctly
         if (fixEndpoints())
         {
-            // Put the node in the middle somewhere
-            int half = currentLine.size()/2;
-            Coord middle((currentLine[half].x+currentLine[half+1].x)/2,
-                         (currentLine[half].y+currentLine[half+1].y)/2);
-
-            cout << "Middle: " << middle << " Line: " << currentLine << endl;
-
+            Coord middle = findMiddle();
             doMove(currentLine, middle);
             player1 = !player1;
-            cancel();
+            currentLine.clear();
+            state = Blank;
 
             if (gameEnded())
                 state = GameEnd;
@@ -463,6 +458,30 @@ bool GameGUI::objectAvoidance()
     // Try to dodge any objects in the way.
 
     return false;
+}
+
+Coord GameGUI::findMiddle() const
+{
+    int longestIndex = -1;
+    double greatestDist = 0;
+
+    for (int i = 1; i < currentLine.size(); i++)
+    {
+        double currentDist = distance(currentLine[i], currentLine[i-1]);
+
+        if (currentDist > greatestDist)
+        {
+            greatestDist = currentDist;
+            longestIndex = i;
+        }
+    }
+
+    // Something went wrong, just pick the middle
+    if (longestIndex == -1)
+        longestIndex = currentLine.size()/2;
+
+    return Coord((currentLine[longestIndex-1].x+currentLine[longestIndex].x)/2,
+                 (currentLine[longestIndex-1].y+currentLine[longestIndex].y)/2);
 }
 
 GameGUI::~GameGUI()
