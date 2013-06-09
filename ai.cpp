@@ -143,7 +143,6 @@ Line GameAI::createLine(Node* a, Node* b) const
     throw "createLine not implemented";
 }
 
-
 Coord GameAI::midNode(const Line& line) const
 {
     throw "midNode not implemented";
