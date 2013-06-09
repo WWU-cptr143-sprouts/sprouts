@@ -123,7 +123,7 @@ int GameAI::notConnectableNodes() const
 {
     int a = -1;
     vector<int> n;
-    vector<int> count;
+
 
     // Loop through all nodes and return the number of not connectable nodes
     for (int i = 0; i < nodes.size(); i++)
@@ -148,14 +148,16 @@ int GameAI::notConnectableNodes() const
                 n.erase(n.begin()+i);
         }
     }
-    while(a != n.back());
+    while(n.size() > 0 && a != n.back());
+
+    vector<int> count(n.size());
 
     //cycle through n vector and count how many other nodes in the n vector each node can connect to
-    for (int i = 0; i < nodes.size(); i++)
+    for (int i = 0; i < n.size(); i++)
     {
-        for (int j = i+1; j < nodes.size(); j++)
+        for (int j = i+1; j < n.size(); j++)
         {
-            if (connectable(*nodes[i], *nodes[j]))
+            if (connectable(*nodes[n[i]], *nodes[n[j]]))
             {
                 count[i]++;
             }
@@ -177,7 +179,14 @@ int GameAI::notConnectableNodes() const
 Line GameAI::createLine(Node* a, Node* b) const
 {
     Line line;
+    Coord temp;
     line.push_back(a->getLoci());
+    if(a->getLoci().y != b->getLoci().y)
+    {
+        temp.x = a->getLoci().x;
+        temp.y = b->getLoci().y;
+        line.push_back(temp);
+    }
     line.push_back(b->getLoci());
 
     return line;
