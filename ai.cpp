@@ -109,7 +109,7 @@ void GameAI::populateMList()
     possibleMoves.clear();
     for(int i = 0; i < nodes.size()-1; i++)
     {
-        for (int j = 0; j < nodes.size()-1; j++)
+        for (int j = i+1; j < nodes.size()-1; j++)
         {
             if(connectable(*nodes[i],*nodes[j]))
             {
@@ -121,26 +121,66 @@ void GameAI::populateMList()
 
 int GameAI::notConnectableNodes() const
 {
-    int count = 0;
+    int a = -1;
+    vector<int> n;
+    vector<int> count;
 
     // Loop through all nodes and return the number of not connectable nodes
     for (int i = 0; i < nodes.size(); i++)
     {
         for (int j = i+1; j < nodes.size(); j++)
         {
-            if (!connectable(*nodes[i], *nodes[j]))
+            if (!connectable(*nodes[i], *nodes[j]) && !nodes[i]->dead() && !nodes[j]->dead())
             {
-                count++;
+                n.push_back(i);
+                break;
             }
         }
     }
 
-    return count;
+    //cycle through n vector and remove all nodes that have identical area sets to a previous node
+    do
+    {
+        a++;
+        for(int i = a+1; i < n.size(); i++)
+        {
+            if(nodes[n[a]]->areasets == nodes[n[i]]->areasets)
+                n.erase(n.begin()+i);
+        }
+    }
+    while(a != n.back());
+
+    //cycle through n vector and count how many other nodes in the n vector each node can connect to
+    for (int i = 0; i < nodes.size(); i++)
+    {
+        for (int j = i+1; j < nodes.size(); j++)
+        {
+            if (connectable(*nodes[i], *nodes[j]))
+            {
+                count[i]++;
+            }
+        }
+    }
+
+    //deletes nodes with more than 1 connection
+    for(int i = n.size()-1; i > 0; i--)
+    {
+        if(count[i] > 1)
+        {
+            n.erase(n.begin() + i);
+        }
+    }
+
+    return n.size();
 }
 
 Line GameAI::createLine(Node* a, Node* b) const
 {
-    throw "createLine not implemented";
+    Line line;
+    line.push_back(a->getLoci());
+    line.push_back(b->getLoci());
+
+    return line;
 }
 
 Coord GameAI::midNode(const Line& line) const

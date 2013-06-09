@@ -63,10 +63,13 @@ class Node
 {
     protected:
         Coord loci;
-        Areaset* areasets[2];
+        //Areaset* areasets[2];
         Connection connections[3];
         bool open[4];
     public:
+        //TODO moved from protected
+        Areaset* areasets[2];
+
         Node(Coord, Connection = Connection(), Connection = Connection());
         //Append new circuits/areas to this vector: be sure to check if exists
         void walk(vector<Area*>&);
