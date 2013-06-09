@@ -145,7 +145,11 @@ Line GameAI::createLine(Node* a, Node* b) const
 
 Coord GameAI::midNode(const Line& line) const
 {
-    throw "midNode not implemented";
+    int half = line.size()/2;
+    //TODO: Merge with gui function
+    return Coord ((line[half-1].x+line[half].x)/2,
+                  (line[half-1].y+line[half].y)/2);
+
 }
 
 GameAI::~GameAI()
