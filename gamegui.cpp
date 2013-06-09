@@ -50,28 +50,16 @@ void GameGUI::redraw(bool lck)
 
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
-    {
         circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
-    }
 
     // Draw lines
     for (int i = 0; i < lines.size(); i++)
-    {
         for (int j = 1; j < lines[i]->size(); j++)
-        {
             line((*lines[i])[j-1], (*lines[i])[j], lineCol);
-        }
-    }
 
     // Draw temporary line
     for (int i = 1; i < currentLine.size(); i++)
-    {
-        if(player1)
-            line(currentLine[i-1], currentLine[i], player1Col);
-        else
-            line(currentLine[i-1], currentLine[i], player2Col);
-    }
-
+        line(currentLine[i-1], currentLine[i], (player1)?player1Col:player2Col);
 
     if (lck)
         unlock();
@@ -87,8 +75,10 @@ void GameGUI::lock()
 void GameGUI::unlock()
 {
     SDL_UnlockSurface(screen);
+
     if (error) //This is a hack. It is terrible coding and this function was not meant to
-        displayError("Error: 180."); //display text. However it works perfectly.
+        displayError("Error: need to connect at 180 degrees."); //display text. However it works perfectly.
+
     SDL_Flip(screen);
 }
 
@@ -132,9 +122,13 @@ State GameGUI::click(Coord location)
             if (gameEnded())
                 state = GameEnd;
         }
-        else
+        // Reset state if the line got deleted in fixEndpoints due to a messed
+        // up starting line.
+        else if (currentLine.size() == 0)
         {
-            currentLine.pop_back();
+            redraw();
+            state = Blank;
+            return state;
         }
     }
     // Clicked to place a line
@@ -142,6 +136,17 @@ State GameGUI::click(Coord location)
     {
         Coord straightened = straighten(currentLine.back(), location);
         currentLine.push_back(straightened);
+
+        // Check start line on first line
+        if (currentLine.size() == 2)
+        {
+            if (!fixEndpoints())
+            {
+                redraw();
+                state = Blank;
+                return state;
+            }
+        }
 
         // Avoid objects as possible and then delete anything that can't be
         // made valid.  Return the line to a valid state.
@@ -224,6 +229,15 @@ Node* GameGUI::selectedNode(Coord point)
         return nodes[closestIndex];
     else
         return NULL;
+}
+
+Node* GameGUI::findNode(Coord point) const
+{
+    for (int i = 0; i < nodes.size(); i++)
+        if (nodes[i]->getLoci() == point)
+            return nodes[i];
+
+    return NULL;
 }
 
 double GameGUI::distance(Coord a, Coord b) const
@@ -398,8 +412,8 @@ void GameGUI::displayError(const string& msg)
     location.x = 0;
     location.y = 0;
 
-    // Only update top left corner.
-    location.w = 130;
+    // Only update top left corner. size*10 works with the current font size.
+    location.w = msg.size()*10;
     location.h = 20;
 
     SDL_Surface* error = TTF_RenderText_Blended(font, msg.c_str(), textCol);
@@ -437,10 +451,54 @@ bool GameGUI::playerTurn() const
 
 bool GameGUI::fixEndpoints()
 {
-    const Coord back = currentLine.back();
-    currentLine.pop_back();
-    currentLine.push_back(straighten(currentLine.back(), back));
-    currentLine.push_back(back);
+    // Don't call this if there's less than 2 coordinates. Nothing to fix.
+    if (currentLine.size() < 2)
+        throw "call fixEndpoints with at least two coordinates";
+
+    const Coord startCoord = currentLine.front();
+    const Coord startNext  = currentLine[1];
+    const Coord endCoord   = currentLine.back();
+    const Coord endPrev    = currentLine[currentLine.size()-2];
+    const Node* startNode  = findNode(startCoord);
+    const Node* endNode    = findNode(endCoord);
+
+    // If this is run when the final node is clicked, fix the last line segment.
+    if (endNode)
+    {
+        currentLine.back() = straighten(endPrev, endCoord);
+        currentLine.push_back(endCoord);
+    }
+
+    // Force 180 degrees with 2 connections
+    if (startNode && startNode->conCount() == 1)
+    {
+        // Determine direction
+        if (!((!startNode->openUp()  && startNext.x == startCoord.x && startNext.y > startCoord.y) ||
+            (!startNode->openDown()  && startNext.x == startCoord.x && startNext.y < startCoord.y) ||
+            (!startNode->openLeft()  && startNext.y == startCoord.y && startNext.x > startCoord.x) ||
+            (!startNode->openRight() && startNext.y == startCoord.y && startNext.x < startCoord.x)))
+        {
+            currentLine.clear();
+            error = true;
+            return false;
+        }
+    }
+
+    // If the last point is the end Node
+    if (endNode && endNode->conCount() == 1)
+    {
+        // All greater/less-than signs are flipped from startNode because we're
+        // comparing it to the previous instead of the next coordinate.
+        if (!((!endNode->openUp()  && endPrev.x == endCoord.x && endPrev.y < endCoord.y) ||
+            (!endNode->openDown()  && endPrev.x == endCoord.x && endPrev.y > endCoord.y) ||
+            (!endNode->openLeft()  && endPrev.y == endCoord.y && endPrev.x < endCoord.x) ||
+            (!endNode->openRight() && endPrev.y == endCoord.y && endPrev.x > endCoord.x)))
+        {
+            currentLine.pop_back();
+            error = true;
+            return false;
+        }
+    }
 
     return true;
 }
@@ -455,7 +513,9 @@ bool GameGUI::objectAvoidance()
     if (validLine(currentLine[currentLine.size()-2], currentLine.back()))
         return true;
 
-    // Try to dodge any objects in the way.
+    // Try to dodge any objects in the way. Currently just get rid of the
+    // last invalid point.
+    currentLine.pop_back();
 
     return false;
 }

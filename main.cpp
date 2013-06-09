@@ -168,6 +168,10 @@ int main(int argc, char *argv[])
             {
                 cout << "Error: Tried to add a middle node on a corner" << endl;
             }
+            catch (const NodeEntryCollision& e)
+            {
+                cout << "Error: Tried to enter a node twice from the same direction" << endl;
+            }
             // Note that NotConnectable is only thrown when Game game(true), setting extraChecks to true
             catch (const NotConnectable& e)
             {
