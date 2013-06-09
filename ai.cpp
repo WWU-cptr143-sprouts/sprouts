@@ -4,7 +4,7 @@
 #include "headers/gameai.h"
 
 GameAI::GameAI()
-    :Game()
+    :Game(), startingNodes(-1)
 {
 
 }
@@ -34,39 +34,40 @@ bool GameAI::aiTurn()
 
     delete tGame;*/
 
-    //this is a hack
-    static int runs=0;
-    ++runs;
-    if(runs == 0)
+
+    // Set start nodes  and aiFirst on first AI turn
+    if(startingNodes == -1)
     {
-        if(moves()%2)//Second player
+        if(moves()%2) //Second player, one move has been made
         {
+            aiFirst = true;
             startingNodes = nodes.size()  - 1;
         }
-        else
+        else // First player, no moves have been made yet
         {
+            aiFirst = false;
             startingNodes = nodes.size();
         }
     }
 
     //Finds whether we want an even or odd number of areas
     //Moves%2 returns true if the ai is second player
-    wantedAreas = requiredAreas(moves()%2 ,startingNodes);
+    wantedAreas = requiredAreas(aiFirst ,startingNodes);
     populateMList();
 
     for(int i = 0; i < possibleMoves.size(); i++)
     {
-        //create new dummy game
+        // Create new dummy game. This is GameAI since we have to access data
+        // that only something inheriting from it can access.
+        GameAI* tGame = new GameAI(*this);
 
-        Game* tGame = new Game(static_cast<Game>(*this));
         //insert the move into the temp game
-
-        doMove(possibleMoves[i], midNode(possibleMoves[i]));
-        testMoveAreas = currentAreas();
+        tGame->doMove(possibleMoves[i], midNode(possibleMoves[i]));
+        testUnuseableNodes = tGame->notConnectableNodes();
 
         delete tGame;
 
-        if (testMoveAreas%2 == wantedAreas)
+        if (testUnuseableNodes%2 == wantedAreas)
         {
             doMove(possibleMoves[i], midNode(possibleMoves[i]));
             return true;
@@ -77,7 +78,7 @@ bool GameAI::aiTurn()
     return true;
 }
 
-bool GameAI::requiredAreas(bool player, int startingNodes)
+bool GameAI::requiredAreas(bool player, int startingNodes) const
 {
     //This method determines what number of nodes the ai requires to win
     if((player == 0)&&(startingNodes == 1))
@@ -100,6 +101,8 @@ bool GameAI::requiredAreas(bool player, int startingNodes)
     {
         return 0;
     }
+
+    throw "end of requiredAreas without returning anything";
 }
 
 void GameAI::populateMList()
@@ -117,11 +120,33 @@ void GameAI::populateMList()
     }
 }
 
-int GameAI::currentAreas()
+int GameAI::notConnectableNodes() const
 {
-    // caleb pope is working on this function
+    int count = 0;
 
-    return areasets.size(); // this returns the number of areasets, it might work but i dont think i understand the problem well enough yet
+    // Loop through all nodes and return the number of not connectable nodes
+    for (int i = 0; i < nodes.size(); i++)
+    {
+        for (int j = i+1; j < nodes.size(); j++)
+        {
+            if (!connectable(*nodes[i], *nodes[j]))
+            {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+Line GameAI::createLine(Node* a, Node* b) const
+{
+    throw "createLine not implemented";
+}
+
+Coord GameAI::midNode(const Line& line) const
+{
+    throw "midNode not implemented";
 }
 
 GameAI::~GameAI()
