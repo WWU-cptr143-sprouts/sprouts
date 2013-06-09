@@ -211,7 +211,7 @@ State GameGUI::click(Coord location)
                     selected->openUp(),    selected->openDown(),
                     selected->openRight(), selected->openLeft());
 
-                if (validLine(currentLine.back(), straightened)
+                if (validLine(currentLine.back(), straightened))
                     currentLine.push_back(straightened);
             }
         }
