@@ -372,15 +372,6 @@ Node* GameGUI::selectedNode(Coord point) const
         return NULL;
 }
 
-Node* GameGUI::findNode(Coord point) const
-{
-    for (int i = 0; i < nodes.size(); i++)
-        if (nodes[i]->getLoci() == point)
-            return nodes[i];
-
-    return NULL;
-}
-
 double GameGUI::distance(Coord a, Coord b) const
 {
     return sqrt(pow(1.0*a.x-b.x,2)+pow(1.0*a.y-b.y,2));

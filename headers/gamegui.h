@@ -81,7 +81,6 @@ class GameGUI : public GameAI
         void combineLines (Coord); //Combines two lines that are both horizontal or vertical
         double distance(Coord, Coord) const;
         Node* selectedNode(Coord) const; // Return node near cursor; if none, NULL
-        Node* findNode(Coord) const; // Find node exactly at a coordinate
         void displayPosition(Coord); // Print to screen, for debugging
         void displayError(const string&); //Print to screen, for 180 degree rule violation
 };

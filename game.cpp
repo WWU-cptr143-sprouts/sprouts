@@ -496,6 +496,16 @@ void Game::deleteLastNode()
     nodes.pop_back();
 }
 
+Node* Game::findNode(Coord point) const
+{
+    for (int i = 0; i < nodes.size(); i++)
+        if (nodes[i]->getLoci() == point)
+            return nodes[i];
+
+    return NULL;
+}
+
+
 ostream& operator<<(ostream& os, const InvalidMiddle& o)
 {
     os << "Found " << o.count << " positions for invalid middle " << o.middle << ".";
