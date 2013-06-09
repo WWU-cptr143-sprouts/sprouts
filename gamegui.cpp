@@ -137,7 +137,8 @@ State GameGUI::click(Coord location)
                              selected->getLoci()))
                 {
                     //combineLines(location);
-                    if ((selected->openRight() && selected->openLeft()) || (!selected->openRight() && !selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
+                    // ^ = both true or both false
+                    if (selected->openRight() ^ selected->openLeft()) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
                     {
                         validFinish=true; //If not, line becomes a valid move.
                         //combineLines(location);
@@ -158,7 +159,7 @@ State GameGUI::click(Coord location)
                              selected->getLoci()))
                 {
                     //combineLines(location);
-                    if ((selected->openUp() && selected->openDown()) || (!selected->openUp() && !selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
+                    if (selected->openUp() ^ selected->openDown()) //Checks if new line is valid, and ensures that line is at 180
                     {
                         validFinish=true; //If not, line becomes a valid move.
                         //combineLines(location);
