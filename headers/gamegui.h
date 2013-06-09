@@ -39,9 +39,9 @@ class GameGUI : public GameAI
         SDL_Color textCol;
 
         // Assuming big-endian?
-        static const int nodeRadius = 5; // Node radius
-        static const int lineThick  = 1; // Line thickness
-        static const int selectRadius = 10; // Defines how close you must click to a node
+        /*static const*/ int nodeRadius = 5; // Node radius
+        /*static const*/ int lineThick  = 1; // Line thickness
+        /*static const*/ int selectRadius = 10; // Defines how close you must click to a node
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
         static const Uint32 player1Col = 0x069DD6FF; //Blue
@@ -54,7 +54,7 @@ class GameGUI : public GameAI
         bool error; //180 Connection Error - For text output
 
 
-        void init(int); // Draw to screen with a certain number of nodes
+        void init(int, int, int, int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)

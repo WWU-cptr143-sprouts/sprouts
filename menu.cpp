@@ -1,11 +1,13 @@
 #include "headers/menu.h"
-#include "headers/gamegui.h"
 
 Menu::Menu(SDL_Surface* screen)
 : screen(screen),
-player1Name("Player 1"),
-player2Name("Player 2"),
-playerMode(PvP),
+//player1Name("Player 1"),
+//player2Name("Player 2"),
+optionsNodeRadius(5),
+optionsSelectRadius(10),
+optionsLineThick(1),
+playerMode(PvAI),
 numberOfNodes(3),
 instructions("images/Instructions.jpg"),
 instructionsBackHover("images/InstructionsBackHover.jpg"),

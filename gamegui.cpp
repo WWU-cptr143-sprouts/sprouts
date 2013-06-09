@@ -10,8 +10,11 @@ GameGUI::GameGUI(SDL_Surface* screen)
     textCol.b = 255;
 }
 
-void GameGUI::init(int count)
+void GameGUI::init(int count, int radius1, int radius2, int thick)
 {
+    nodeRadius = radius1;
+    selectRadius = radius2;
+    lineThick = thick;
     player1 = true;
     error = false;
     if (nodes.size() == 0)
