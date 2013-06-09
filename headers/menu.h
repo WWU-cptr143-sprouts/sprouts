@@ -60,6 +60,7 @@ class Menu
         bool p2Wins;
         bool aiWins;
 
+        bool check[37] = {false};
         bool check1, check2,  check3,  check4,
              check5, check6,  check7,  check8,
              check9, check10, check11, check12,
@@ -80,6 +81,8 @@ class Menu
         ClickType click(Coord); // Return EXIT when clicking exit
         ClickType clickGameOver(Coord);
         ClickType clickMenu(Coord);
+        void optionsPageCursor(Coord);
+        void optionsPageClick(Coord);
 
         int nodes() const { return numberOfNodes; }
         Mode mode() const { return playerMode; }
