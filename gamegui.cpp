@@ -132,16 +132,13 @@ State GameGUI::click(Coord location)
             if (vertical(currentLine.back(), selected->getLoci()))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
-                //combineLines(location);
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              selected->getLoci()))
                 {
-                    //combineLines(location);
                     // !^ = both true or both false
-                    if (!(selected->openRight() ^ selected->openLeft())) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
+                    if (((selected->conCount()==1)&&(selected->getLoci()==currentLine.front())) || (!(selected->openRight() ^ selected->openLeft()))) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
                     {
                         validFinish=true; //If not, line becomes a valid move.
-                        //combineLines(location);
                         if(currentLine.size() > 1 && vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well, delete last point.
                             currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
@@ -154,16 +151,12 @@ State GameGUI::click(Coord location)
             else
             {
                 //If Horizontal, does the line intersect another line?
-                //combineLines(location);
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
                              selected->getLoci()))
                 {
-                    //combineLines(location);
-                    if (!(selected->openUp() ^ selected->openDown())) //Checks if new line is valid, and ensures that line is at 180
+                    if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))||(!(selected->openUp() ^ selected->openDown()))) //Checks if new line is valid, and ensures that line is at 180
                     {
                         validFinish=true; //If not, line becomes a valid move.
-                        //combineLines(location);
-
                         if(currentLine.size() > 1 && !vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is horizontal as well, delete last point.
                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
