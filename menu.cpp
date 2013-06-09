@@ -45,7 +45,7 @@ check13(false), check14(false), check15(false), check16(false),
 check17(false), check18(false), check19(false), check20(false),
 check21(false)*/
 {
-
+    fill(&check[0], &check[0]+37, false);
 }
 
 void Menu::menuFlip(SDL_Surface* img, bool& check)
