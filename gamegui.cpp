@@ -3,7 +3,8 @@
 GameGUI::GameGUI(SDL_Surface* screen)
     :GameAI(), screen(screen),
     font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)),
-    state(Blank), player1(true), error(false)
+    state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
+    player1(true), error(false)
 {
     textCol.r = 255;
     textCol.g = 255;
@@ -53,28 +54,16 @@ void GameGUI::redraw(bool lck)
 
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
-    {
         circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
-    }
 
     // Draw lines
     for (int i = 0; i < lines.size(); i++)
-    {
         for (int j = 1; j < lines[i]->size(); j++)
-        {
             line((*lines[i])[j-1], (*lines[i])[j], lineCol);
-        }
-    }
 
     // Draw temporary line
     for (int i = 1; i < currentLine.size(); i++)
-    {
-        if(player1)
-            line(currentLine[i-1], currentLine[i], player1Col);
-        else
-            line(currentLine[i-1], currentLine[i], player2Col);
-    }
-
+        line(currentLine[i-1], currentLine[i], (player1)?player1Col:player2Col);
 
     if (lck)
         unlock();
@@ -90,8 +79,13 @@ void GameGUI::lock()
 void GameGUI::unlock()
 {
     SDL_UnlockSurface(screen);
-    if (error) //This is a hack. It is terrible coding and this function was not meant to
-        displayError("Error: 180."); //display text. However it works perfectly.
+
+    // This really should not be here since this function is to unlock the
+    // screen and not display text. However, it was easy to put it here and it
+    // works.
+    if (error)
+        displayError("Error: need to connect at 180 degrees.");
+
     SDL_Flip(screen);
 }
 
@@ -106,7 +100,7 @@ State GameGUI::click(Coord location)
 {
     Node* selected = selectedNode(location);
     int tempx,tempy;
-    bool validFinish; //Used to keep trach of whether or not the line can be drawn.
+    bool validFinish; //Used to keep track of whether or not the line can be drawn.
     error = false; //Initialize as false every click
 
     // Don't do anything if it's dead
@@ -171,12 +165,6 @@ State GameGUI::click(Coord location)
                         validFinish=true; //If not, line becomes a valid move.
                         //combineLines(location);
 
-                        // MESSAGE AND HUMONGOUS WARNING FOR KYLE:
-                        //  I added the currentLine.size() > 1. This makes it
-                        //  so that it won't seg fault with clicking one to
-                        //  another nodes directly. However, I don't know if it
-                        //  caused any other problems.
-
                         if(!vertical(currentLine.back(),location) && currentLine.size() > 1) //If last line coming in is horizontal as well, delete last point.
                             currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
@@ -203,11 +191,10 @@ State GameGUI::click(Coord location)
 
                 cout << "Middle: " << Coord(tempx, tempy) << " Line: " << currentLine << endl;
                 doMove(currentLine,Coord(tempx,tempy));
-                if(player1)
-                    player1 = false;
-                else
-                    player1 = true;
-                cancel();
+                player1 = !player1;
+
+                currentLine.clear();
+                state = Blank;
 
                 if (gameEnded())
                     state = GameEnd;
@@ -227,18 +214,18 @@ State GameGUI::click(Coord location)
     {
         if (currentLine.size()==1) //If first line, ensure 180.
         {
-              //Recreate selected
-               for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
+            //Recreate selected
+            for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
+            {
+                if (nodes[i]->getLoci() == currentLine.front())
                 {
-                    if (nodes[i]->getLoci() == currentLine.front())
-                    {
-                        selected = nodes[i];
-                    }
+                    selected = nodes[i];
                 }
-              if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
+            }
+            if (validLine(currentLine.back(), firststraighten(currentLine.back(), location, selected->openUp(), selected->openDown(),selected->openRight(),selected->openLeft())))
                 currentLine.push_back(firststraighten(selected->getLoci(), location,
-                  selected->openUp(),    selected->openDown(),
-                  selected->openRight(), selected->openLeft()));
+                    selected->openUp(),    selected->openDown(),
+                    selected->openRight(), selected->openLeft()));
         }
         else
         {
@@ -259,26 +246,19 @@ void GameGUI::cursor(Coord location)
     {
         lock();
         redraw(false);
+
         if (currentLine.size() == 1) //If it is the first line drawn out of node
         {
-            for (int i = 0; i < nodes.size(); i++) //Finds which node was used to start currentLine.
-            {
-                if (nodes[i]->getLoci() == currentLine.front())
-                {
-                    selected = nodes[i];
-                }
-            }
-            if(player1)
-                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player1Col);
-            else
-                line(selected->getLoci(), firststraighten(selected->getLoci(), location, selected->openUp(), selected->openDown(), selected->openRight(), selected->openLeft()), player2Col);
-        }
+            // Which node was used to start currentLine
+            selected = findNode(currentLine.front());
 
+            line(selected->getLoci(), firststraighten(selected->getLoci(), location,
+                    selected->openUp(),    selected->openDown(),
+                    selected->openRight(), selected->openLeft()), (player1)?player1Col:player2Col);
+        }
         else
-            if(player1)
-                line(currentLine.back(), straighten(currentLine.back(), location), player1Col);
-            else
-                line(currentLine.back(), straighten(currentLine.back(), location), player2Col);
+            line(currentLine.back(), straighten(currentLine.back(), location), (player1)?player1Col:player2Col);
+
         unlock();
     }
 
@@ -370,7 +350,7 @@ void GameGUI::circle(Coord p, int radius, Uint32 color)
 
 // Select the closest node to the point if within the selectRadius, otherwise
 // return NULL
-Node* GameGUI::selectedNode(Coord point)
+Node* GameGUI::selectedNode(Coord point) const
 {
     int closestIndex = -1;
     double minDist = numeric_limits<double>::infinity();
@@ -390,6 +370,15 @@ Node* GameGUI::selectedNode(Coord point)
         return nodes[closestIndex];
     else
         return NULL;
+}
+
+Node* GameGUI::findNode(Coord point) const
+{
+    for (int i = 0; i < nodes.size(); i++)
+        if (nodes[i]->getLoci() == point)
+            return nodes[i];
+
+    return NULL;
 }
 
 double GameGUI::distance(Coord a, Coord b) const

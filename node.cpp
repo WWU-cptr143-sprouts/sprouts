@@ -153,16 +153,36 @@ void Node::updateOpen()
             if (loci.x == other->x) // Vertical
             {
                 if (loci.y < other->y) // Down
-                    open[Down] = false;
+                {
+                    if (open[Down])
+                        open[Down] = false;
+                    else
+                        throw NodeEntryCollision();
+                }
                 else // Up
-                    open[Up] = false;
+                {
+                    if (open[Up])
+                        open[Up] = false;
+                    else
+                        throw NodeEntryCollision();
+                }
             }
             else if (loci.y == other->y) // Horizontal
             {
                 if (loci.x < other->x) // Right
-                    open[Right] = false;
+                {
+                    if (open[Right])
+                        open[Right] = false;
+                    else
+                        throw NodeEntryCollision();
+                }
                 else // Left
-                    open[Left] = false;
+                {
+                    if (open[Left])
+                        open[Left] = false;
+                    else
+                        throw NodeEntryCollision();
+                }
             }
             else // Neither, so invalid
             {
@@ -176,6 +196,17 @@ void Node::updateOpen()
         !((open[Left] == false && open[Right] == false) ||
          (open[Up]   == false && open[Down]  == false)))
         throw InvalidCorner();
+}
+
+int Node::conCount() const
+{
+    int count = 0;
+
+    for (int i = 0; i < 3; i++)
+        if (connections[i].exists())
+            ++count;
+
+    return count;
 }
 
 Node::~Node()

@@ -59,6 +59,10 @@ class InvalidLine
 // instead of coming in at 180 degrees like our design calls for.
 class InvalidCorner { };
 
+// Tried entering a node twice from the same direction. This means that
+// somewhere line collision detection is not quite functioning.
+class NodeEntryCollision { };
+
 class Node
 {
     enum Dir
@@ -82,6 +86,7 @@ class Node
         const Coord& getLoci() const { return loci; }
         void setAreasets(Areaset* sets[2]);
         bool addConnection(const Connection&); // adds connection to first available slot, returns false if all used already
+        int conCount() const; // The number of connections
 
         // Determine which sides you can connect on. Note this assumes that x
         // increases from left to right and y increases from top to bottom.

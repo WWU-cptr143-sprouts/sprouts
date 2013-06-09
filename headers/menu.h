@@ -21,13 +21,12 @@ enum ClickType
 class Menu
 {
     private:
-        int optionsNodeRadius = 5; // Node radius
-        int optionsLineThick  = 1; // Line thickness
-        int optionsSelectRadius = 10; // Defines how close you must click to a node
-
         SDL_Surface* screen;
-        //string player1Name;
-        //string player2Name;
+
+        int optionsNodeRadius; // Node radius
+        int optionsLineThick; // Line thickness
+        int optionsSelectRadius; // Defines how close you must click to a node
+
         Mode playerMode;
         int numberOfNodes;
         Image instructions;
@@ -87,8 +86,6 @@ class Menu
         int nodeRadius() const { return optionsNodeRadius; }
         int selectRadius() const { return optionsSelectRadius; }
         int lineThick() const { return optionsLineThick; }
-        //const string& player1() const { return player1Name; }
-        //const string& player2() const { return player2Name; }
 
         ~Menu();
 };

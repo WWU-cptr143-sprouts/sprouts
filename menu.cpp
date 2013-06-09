@@ -2,11 +2,9 @@
 
 Menu::Menu(SDL_Surface* screen)
 : screen(screen),
-//player1Name("Player 1"),
-//player2Name("Player 2"),
 optionsNodeRadius(5),
-optionsSelectRadius(10),
 optionsLineThick(1),
+optionsSelectRadius(10),
 playerMode(PvAI),
 numberOfNodes(3),
 instructions("images/Instructions.jpg"),
