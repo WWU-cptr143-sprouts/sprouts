@@ -142,7 +142,7 @@ State GameGUI::click(Coord location)
                     {
                         validFinish=true; //If not, line becomes a valid move.
                         //combineLines(location);
-                        if(vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well, delete last point.
+                        if(currentLine.size() > 1 && vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well, delete last point.
                             currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
 
@@ -164,7 +164,7 @@ State GameGUI::click(Coord location)
                         validFinish=true; //If not, line becomes a valid move.
                         //combineLines(location);
 
-                        if(!vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is horizontal as well, delete last point.
+                        if(currentLine.size() > 1 && !vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is horizontal as well, delete last point.
                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
                     }
