@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_gfxPrimitives.h>
 #include <string>
+#include <algorithm>
 #include "image.h"
 #include "structs.h"
 
@@ -60,7 +61,7 @@ class Menu
         bool p2Wins;
         bool aiWins;
 
-        bool check[37] = {false};
+        bool check[37];
         bool check1, check2,  check3,  check4,
              check5, check6,  check7,  check8,
              check9, check10, check11, check12,
