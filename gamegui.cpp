@@ -3,15 +3,19 @@
 GameGUI::GameGUI(SDL_Surface* screen)
     :GameAI(), screen(screen),
     font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)),
-    state(Blank), player1(true), error(false)
+    state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
+    player1(true), error(false)
 {
     textCol.r = 255;
     textCol.g = 255;
     textCol.b = 255;
 }
 
-void GameGUI::init(int count)
+void GameGUI::init(int count, int radius1, int radius2, int thick)
 {
+    nodeRadius = radius1;
+    selectRadius = radius2;
+    lineThick = thick;
     player1 = true;
     error = false;
     if (nodes.size() == 0)
@@ -76,8 +80,11 @@ void GameGUI::unlock()
 {
     SDL_UnlockSurface(screen);
 
-    if (error) //This is a hack. It is terrible coding and this function was not meant to
-        displayError("Error: need to connect at 180 degrees."); //display text. However it works perfectly.
+    // This really should not be here since this function is to unlock the
+    // screen and not display text. However, it was easy to put it here and it
+    // works.
+    if (error)
+        displayError("Error: need to connect at 180 degrees.");
 
     SDL_Flip(screen);
 }
@@ -170,7 +177,7 @@ void GameGUI::cursor(Coord location)
     }
 }
 
-bool GameGUI::vertical(Coord last, Coord point)
+bool GameGUI::vertical(Coord last, Coord point) const
 {
     if (((point.y<=(last.y+(last.x-point.x)))&&
          (point.y<=(last.y-(last.x-point.x))))||
@@ -209,7 +216,7 @@ void GameGUI::circle(Coord p, int radius, Uint32 color)
 
 // Select the closest node to the point if within the selectRadius, otherwise
 // return NULL
-Node* GameGUI::selectedNode(Coord point)
+Node* GameGUI::selectedNode(Coord point) const
 {
     int closestIndex = -1;
     double minDist = numeric_limits<double>::infinity();

@@ -79,7 +79,8 @@ class Game
         bool gameEnded() const; // Can any nodes be connected still?
         // Needed for initializing nodes on the screen
         Node& insertNode(Coord, Connection = Connection(), Connection = Connection());
-        
+        Node* findNode(Coord) const; // Find node exactly at Coord, NULL if not found
+
         // Make this private? Only thing that uses it is the test suite?
         Line& insertLine(const Line&);
 

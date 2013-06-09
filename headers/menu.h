@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_gfxPrimitives.h>
 #include <string>
+#include <algorithm>
 #include "image.h"
 #include "structs.h"
 
@@ -22,8 +23,11 @@ class Menu
 {
     private:
         SDL_Surface* screen;
-        string player1Name;
-        string player2Name;
+
+        int optionsNodeRadius; // Node radius
+        int optionsLineThick; // Line thickness
+        int optionsSelectRadius; // Defines how close you must click to a node
+
         Mode playerMode;
         int numberOfNodes;
         Image instructions;
@@ -57,6 +61,7 @@ class Menu
         bool p2Wins;
         bool aiWins;
 
+        bool check[37];
         bool check1, check2,  check3,  check4,
              check5, check6,  check7,  check8,
              check9, check10, check11, check12,
@@ -67,16 +72,24 @@ class Menu
     public:
         Menu(SDL_Surface*);
 
+        void menuFlip(SDL_Surface*, bool&);
         void init(); // Show the menu the first time
         void over(bool); // Tell menu that the game is over
         void cancel(); // Esc pressed
         void cursor(Coord); // Cursor moved
+        void cursorGameOver(Coord);
+        void cursorMenu(Coord);
         ClickType click(Coord); // Return EXIT when clicking exit
+        ClickType clickGameOver(Coord);
+        ClickType clickMenu(Coord);
+        void optionsPageCursor(Coord);
+        void optionsPageClick(Coord);
 
         int nodes() const { return numberOfNodes; }
         Mode mode() const { return playerMode; }
-        const string& player1() const { return player1Name; }
-        const string& player2() const { return player2Name; }
+        int nodeRadius() const { return optionsNodeRadius; }
+        int selectRadius() const { return optionsSelectRadius; }
+        int lineThick() const { return optionsLineThick; }
 
         ~Menu();
 };
