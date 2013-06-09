@@ -255,7 +255,7 @@ void GameGUI::cursor(Coord location)
 
 }
 
-bool GameGUI::vertical(Coord last, Coord point)
+bool GameGUI::vertical(Coord last, Coord point) const
 {
     if (((point.y<=(last.y+(last.x-point.x)))&&
          (point.y<=(last.y-(last.x-point.x))))||
@@ -266,7 +266,7 @@ bool GameGUI::vertical(Coord last, Coord point)
         return false;
 }
 
-Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, bool right, bool left)
+Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, bool right, bool left) const
 {
     if ((up&&!down)||(!up&&down)) //Checks to see if node has 1 line coming up or down out of it
         return Coord(node.x,cursor.y);
@@ -294,7 +294,7 @@ void GameGUI::combineLines(Coord location)
     }
 }
 
-Coord GameGUI::straighten(Coord last, Coord point)
+Coord GameGUI::straighten(Coord last, Coord point) const
 {
     // Determine to snap vertically or horizontally
     if (vertical(last, point))
@@ -570,7 +570,7 @@ void GameGUI::displayPosition(Coord c)
     SDL_FreeSurface(hover);
 }
 
-bool GameGUI::playerTurn()
+bool GameGUI::playerTurn() const
 {
     return player1;
 }
