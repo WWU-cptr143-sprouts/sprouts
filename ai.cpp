@@ -34,11 +34,7 @@ bool GameAI::aiTurn()
 
     delete tGame;*/
 
-<<<<<<< HEAD
     // Set start nodes and aiFirst on first AI turn
-=======
-    // Set start nodes on first AI turn
->>>>>>> df8b5ff0c6f2d2e73ed36a120f7143db973b370b
     if(startingNodes == -1)
     {
         if(moves()%2) //Second player, one move has been made
@@ -66,11 +62,7 @@ bool GameAI::aiTurn()
 
         //insert the move into the temp game
         tGame->doMove(possibleMoves[i], midNode(possibleMoves[i]));
-<<<<<<< HEAD
         testUnuseableNodes = tGame->notConnectableNodes();
-=======
-        testMoveAreas = tGame->notConnectableNodes();
->>>>>>> df8b5ff0c6f2d2e73ed36a120f7143db973b370b
 
         delete tGame;
 
