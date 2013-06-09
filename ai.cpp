@@ -34,8 +34,7 @@ bool GameAI::aiTurn()
 
     delete tGame;*/
 
-
-    // Set start nodes  and aiFirst on first AI turn
+    // Set start nodes and aiFirst on first AI turn
     if(startingNodes == -1)
     {
         if(moves()%2) //Second player, one move has been made
@@ -143,6 +142,7 @@ Line GameAI::createLine(Node* a, Node* b) const
 {
     throw "createLine not implemented";
 }
+
 
 Coord GameAI::midNode(const Line& line) const
 {
