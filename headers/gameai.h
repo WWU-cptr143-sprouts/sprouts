@@ -28,6 +28,8 @@ class GameAI : public Game
         Coord midNode(const Line&) const; //Creates a new node on the line.
         Line createLine(Node*, Node*) const; //Finds a path between two nodes
         bool requiredAreas(bool, int) const;  //Calculates the number of nodes to put the ai in an advantageous position.
+        bool validSingleLine(const Line&,Coord,Coord) const; //copy/pasted from GUI
+        bool validLine(Coord,Coord) const; // copy/pasted from GUI
 
         ~GameAI();
 };

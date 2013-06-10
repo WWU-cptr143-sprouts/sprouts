@@ -181,13 +181,38 @@ Line GameAI::createLine(Node* a, Node* b) const
     Line line;
     Coord temp;
     line.push_back(a->getLoci());
-    if(a->getLoci().y != b->getLoci().y)
+    // Checks to see if a straight line is available
+    if(a->getLoci().y != b->getLoci().y || a->getLoci().x != b->getLoci().x)
     {
+        line.push_back(b->getLoci());
+    }
+    else
+    {
+        //creates a temp loci for going up first
         temp.x = a->getLoci().x;
         temp.y = b->getLoci().y;
-        line.push_back(temp);
+        //Tests if the lines are valid
+        if(validLine(a->getLoci(), temp) && validLine(temp, b->getLoci()))
+        {
+            line.push_back(temp);
+            line.push_back(b->getLoci());
+        }
+        else
+        {
+            //creats temp loci for going over first
+            temp.x = b->getLoci().x;
+            temp.y = a->getLoci().y;
+            if(validLine(a->getLoci(), temp) && validLine(temp, b->getLoci()))
+            {
+                line.push_back(temp);
+                line.push_back(b->getLoci());
+            }
+            else
+            {
+                //Neither move worked
+            }
+        }
     }
-    line.push_back(b->getLoci());
 
     return line;
 }
@@ -199,6 +224,163 @@ Coord GameAI::midNode(const Line& line) const
     return Coord ((line[half-1].x+line[half].x)/2,
                   (line[half-1].y+line[half].y)/2);
 
+}
+
+bool GameAI::validSingleLine(const Line& line, Coord start, Coord end) const
+{
+    const int startX = start.x;
+    const int startY = start.y;
+    const int endX = end.x;
+    const int endY = end.y;
+
+    for (int j = 1; j < line.size(); j++)
+    {
+        const int A2 = line[j-1].x;
+        const int B2 = line[j-1].y;
+        const int A3 = line[j].x;
+        const int B3 = line[j].y;
+
+        if (endX == startX)
+        {
+            if(A2 != A3)
+            {
+                if(A2 > A3)
+                {
+                    if((startX > A3)&&(startX < A2))
+                    {
+                        if(startY > endY)
+                        {
+                            if((B2 < startY)&&(B2 > endY))
+                                return false;
+                        }
+                        else
+                            if((B2 > startY)&&(B2 < endY))
+                                return false;
+                    }
+                }
+                else
+                    if((startX < A3)&&(startX > A2))
+                    {
+                        if(startY > endY)
+                        {
+                            if((B2 < startY)&&(B2 > endY))
+                                return false;
+                        }
+                        else
+                            if((B2 > startY)&&(B2 < endY))
+                                return false;
+                    }
+            }
+            else
+                if(startX == A2)
+                {
+                    if(B2 > B3)
+                    {
+                        if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2)))
+                            return false;
+                        if(startY < endY)
+                        {
+                            if((startY < B3)&&(endY > B3))
+                                return false;
+                        }
+                        else
+                            if((startY > B2)&&(endY < B2))
+                                return false;
+                    }
+                    else
+                    {
+                        if(((startY > B2)&&(startY < B3))||((endY > B2)&&(endY < B3)))
+                            return false;
+                        if(startY < endY)
+                        {
+                            if((startY < B2)&&(endY > B2))
+                                return false;
+                        }
+                        else
+                            if((startY > B3)&&(endY < B3))
+                                return false;
+                    }
+                }
+
+        }
+        else
+        {
+            if(B2 != B3)
+            {
+                if(B2 > B3)
+                {
+                    if((startY < B2)&&(startY > B3))
+                    {
+                        if(startX > endX)
+                        {
+                            if((A2 < startX)&&(A2 > endX))
+                                return false;
+                        }
+                        else
+                            if((A2 > startX)&&(A2 < endX))
+                                return false;
+                    }
+                }
+                else
+                    if((startY > B2)&&(startY < B3))
+                    {
+                        if(startX > endX)
+                        {
+                            if((A2 < startX)&&(A2 > endX))
+                                return false;
+                        }
+                        else
+                            if((A2 > startX)&&(A2 < endX))
+                                return false;
+                    }
+            }
+            else
+                if(startY == B2)
+                {
+                    if(A2 > A3)
+                    {
+                        if(((startX > A3)&&(startX < A2))||((endX > A3)&&(endX < A2)))
+                            return false;
+                        if(startX < endX)
+                        {
+                            if((startX < A3)&&(endX > A3))
+                                return false;
+                        }
+                        else
+                            if((startX > A2)&&(endX < A2))
+                                return false;
+                    }
+                    else
+                    {
+                        if(((startX > A2)&&(startX < A3))||((endX > A2)&&(endX < A3)))
+                            return false;
+                        if(startX < endX)
+                        {
+                            if((startX < A2)&&(endX > A2))
+                                return false;
+                        }
+                        else
+                            if((startX > A3)&&(endX < A3))
+                                return false;
+                    }
+                }
+        }
+    }
+
+    return true;
+}
+
+bool GameAI::validLine(Coord start, Coord end) const
+{
+    for (int i = 0; i < lines.size(); i++)
+    {
+        const Line& line = *lines[i];
+
+        if (!validSingleLine(line, start, end))
+            return false;
+    }
+
+    return true;
 }
 
 GameAI::~GameAI()
