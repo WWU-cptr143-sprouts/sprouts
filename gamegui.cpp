@@ -530,15 +530,15 @@ bool GameGUI::validLine(Coord start, Coord end) const
     //check for if line is going directly through node
     if(start.x==end.x)  //vertical line being drawn
     {
-        for (int i = 0; i < nodes.size(); i++)
-            if((start.x-5 <= nodes[i]->getLoci().x)&&(nodes[i]->getLoci().x <= start.x+5))
-                if(start.y < end.y)
+        for (int i = 0; i < nodes.size(); i++)//calls to each node
+            if((start.x-5 <= nodes[i]->getLoci().x)&&(nodes[i]->getLoci().x <= start.x+5)) //gives a boundry so lines cant pass through any part of circle
+                if(start.y < end.y) //defines the line being drawn
                 {
-                    if((nodes[i]->getLoci().y > start.y)&&(nodes[i]->getLoci().y < end.y))
+                    if((nodes[i]->getLoci().y > start.y)&&(nodes[i]->getLoci().y < end.y)) //checkschecks for if node is between the line on the y values
                         return false;
                 }
                 else
-                    if((nodes[i]->getLoci().y < start.y)&&(nodes[i]->getLoci().y > end.y))
+                    if((nodes[i]->getLoci().y < start.y)&&(nodes[i]->getLoci().y > end.y)) //same as above just for the line being oriented the other direction
                         return false;
     }
     else
