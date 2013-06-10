@@ -18,7 +18,7 @@ instructionsHover("images/InstructionsHover.jpg"),
 optionsHover("images/OptionsHover.jpg"),
 startHover("images/StartHover.jpg"),
 sproutsMenu("images/SproutsMenu.jpg"),
-options("images/options.jpg"),
+options("images/Options.jpg"),
 
 optionsSmallNodeHover("images/optionsSmallNodeHover.jpg"),
 optionsMediumNodeHover("images/optionsMediumNodeHover.jpg"),

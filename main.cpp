@@ -54,141 +54,144 @@ int main(int argc, char *argv[])
     SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
-    bool inMenu = true;
-    Menu menu(screen);
-    menu.init();
-	GameGUI game(screen);
+    try
+    {
+        bool inMenu = true;
+        Menu menu(screen);
+        menu.init();
+        GameGUI game(screen);
 
-	while (gameRunning)
-	{
-		while (gameRunning && SDL_PollEvent(&event))
-		{
-            try
+        while (gameRunning)
+        {
+            while (gameRunning && SDL_PollEvent(&event))
             {
-                switch (event.type)
+                try
                 {
-                    case SDL_QUIT: // Alt+F4, X, ...
-                        gameRunning = false;
-                        break;
-                    case SDL_ACTIVEEVENT:
-                        break;
-                    case SDL_KEYDOWN:
-                        break;
-                    case SDL_KEYUP:
-                        // Escape cancels line and does nothing (at the moment) in the menu
-                        if (event.key.keysym.sym == SDLK_ESCAPE)
-                        {
-                            if (inMenu)
-                                menu.cancel();
-                            else
-                                game.cancel();
-                        }
-                        // Q returns to menu
-                        else if (event.key.keysym.sym == SDLK_q && !inMenu)
-                        {
-                            game = GameGUI(screen);
-                            inMenu = true;
-                            menu.init();
-                        }
-                        break;
-                    case SDL_MOUSEBUTTONDOWN:
-                        break;
-                    case SDL_MOUSEBUTTONUP:
-                        if (event.button.button == SDL_BUTTON_LEFT)
-                        {
-                            // If it's in the menu, send the click event and
-                            // then see if they clicked to start the game. If
-                            // so, switch to game mode by setting inMenu to
-                            // false and draw the game with the specified
-                            // number of nodes to the screen.
-                            if (inMenu)
+                    switch (event.type)
+                    {
+                        case SDL_QUIT: // Alt+F4, X, ...
+                            gameRunning = false;
+                            break;
+                        case SDL_ACTIVEEVENT:
+                            break;
+                        case SDL_KEYDOWN:
+                            break;
+                        case SDL_KEYUP:
+                            // Escape cancels line and does nothing (at the moment) in the menu
+                            if (event.key.keysym.sym == SDLK_ESCAPE)
                             {
-                                ClickType status = menu.click(Coord(event.button.x, event.button.y));
+                                if (inMenu)
+                                    menu.cancel();
+                                else
+                                    game.cancel();
+                            }
+                            // Q returns to menu
+                            else if (event.key.keysym.sym == SDLK_q && !inMenu)
+                            {
+                                game = GameGUI(screen);
+                                inMenu = true;
+                                menu.init();
+                            }
+                            break;
+                        case SDL_MOUSEBUTTONDOWN:
+                            break;
+                        case SDL_MOUSEBUTTONUP:
+                            if (event.button.button == SDL_BUTTON_LEFT)
+                            {
+                                // If it's in the menu, send the click event and
+                                // then see if they clicked to start the game. If
+                                // so, switch to game mode by setting inMenu to
+                                // false and draw the game with the specified
+                                // number of nodes to the screen.
+                                if (inMenu)
+                                {
+                                    ClickType status = menu.click(Coord(event.button.x, event.button.y));
 
-                                // Exit the program.
-                                if (status == EXIT)
-                                {
-                                    gameRunning = false;
+                                    // Exit the program.
+                                    if (status == EXIT)
+                                    {
+                                        gameRunning = false;
+                                    }
+                                    // Start the game with the specified number of nodes
+                                    else if (status == GAME)
+                                    {
+                                        inMenu = false;
+                                        game.init(menu.mode(), menu.nodes(), menu.nodeRadius(), menu.selectRadius(), menu.lineThick());
+                                    }
                                 }
-                                // Start the game with the specified number of nodes
-                                else if (status == GAME)
+                                else
                                 {
-                                    inMenu = false;
-                                    game.init(menu.mode(), menu.nodes(), menu.nodeRadius(), menu.selectRadius(), menu.lineThick());
+                                    State state = game.click(Coord(event.button.x, event.button.y));
+
+                                    if (state == GameEnd)
+                                    {
+                                        cout << "Game has ended!" << endl; //Add image here for end game
+                                        SDL_Delay(200);
+                                        inMenu = true;
+                                        //menu.init();
+                                        menu.over(game.playerTurn());
+                                        game = GameGUI(screen);
+                                    }
                                 }
                             }
+                            break;
+                        case SDL_MOUSEMOTION:
+                            if (inMenu)
+                                menu.cursor(Coord(event.motion.x, event.motion.y));
                             else
-                            {
-                                State state = game.click(Coord(event.button.x, event.button.y));
-
-                                if (state == GameEnd)
-                                {
-                                    cout << "Game has ended!" << endl; //Add image here for end game
-                                    SDL_Delay(200);
-                                    inMenu = true;
-                                    //menu.init();
-                                    menu.over(game.playerTurn());
-                                    game = GameGUI(screen);
-                                }
-                            }
-                        }
-                        break;
-                    case SDL_MOUSEMOTION:
-                        if (inMenu)
-                            menu.cursor(Coord(event.motion.x, event.motion.y));
-                        else
-                            game.cursor(Coord(event.motion.x, event.motion.y));
-                        break;
-                    default:
-                        break;
+                                game.cursor(Coord(event.motion.x, event.motion.y));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                // Catch all of the errors that might have occurred in the game. If
+                // these are thrown, there's a GUI problem since the GUI shouldn't
+                // allow invalid moves. That, or the A-Checker has a bug that saying
+                // a move is invalid when it shouldn't be.
+                catch (const InvalidLine& e)
+                {
+                    cout << "Error: Tried to add an invalid line. " << e << endl;
+                }
+                catch (const InvalidNode& e)
+                {
+                    cout << "Error: Could not find start and/or end node in the line" << endl;
+                }
+                catch (const InvalidMiddle& e)
+                {
+                    cout << "Error: Could not find where to place middle node in the line. " << e << endl;
+                }
+                catch (const AreasOutdated& e)
+                {
+                    cout << "Error: Tried to find if connectable with outdated areas" << endl;
+                }
+                catch (const InvalidCorner& e)
+                {
+                    cout << "Error: Tried to add a middle node on a corner" << endl;
+                }
+                catch (const NodeEntryCollision& e)
+                {
+                    cout << "Error: Tried to enter a node twice from the same direction" << endl;
+                }
+                // Note that NotConnectable is only thrown when Game game(true), setting extraChecks to true
+                catch (const NotConnectable& e)
+                {
+                    cout << "Error: Tried to connect two nodes that shouldn't be connectable" << endl;
                 }
             }
-            // Catch all of the errors that might have occurred in the game. If
-            // these are thrown, there's a GUI problem since the GUI shouldn't
-            // allow invalid moves. That, or the A-Checker has a bug that saying
-            // a move is invalid when it shouldn't be.
-            catch (const InvalidLine& e)
-            {
-                cout << "Error: Tried to add an invalid line. " << e << endl;
-            }
-            catch (const InvalidNode& e)
-            {
-                cout << "Error: Could not find start and/or end node in the line" << endl;
-            }
-            catch (const InvalidMiddle& e)
-            {
-                cout << "Error: Could not find where to place middle node in the line. " << e << endl;
-            }
-            catch (const ImageNotLoaded& e)
-            {
-                cout << "Error: Could not load image" << endl;
-            }
-            catch (const AreasOutdated& e)
-            {
-                cout << "Error: Tried to find if connectable with outdated areas" << endl;
-            }
-            catch (const InvalidCorner& e)
-            {
-                cout << "Error: Tried to add a middle node on a corner" << endl;
-            }
-            catch (const NodeEntryCollision& e)
-            {
-                cout << "Error: Tried to enter a node twice from the same direction" << endl;
-            }
-            // Note that NotConnectable is only thrown when Game game(true), setting extraChecks to true
-            catch (const NotConnectable& e)
-            {
-                cout << "Error: Tried to connect two nodes that shouldn't be connectable" << endl;
-            }
-            catch (...)
-            {
-                cout << "Error: Unhandled Exception" << endl;
-            }
-		}
 
-        // Don't use all the CPU
-        SDL_Delay(20);
-	}
+            // Don't use all the CPU
+            SDL_Delay(20);
+        }
+    }
+    catch (const ImageNotLoaded& e)
+    {
+        cout << "Error: could not load image: " << e << endl;
+    }
+    catch (...)
+    {
+        cout << "Error: Unhandled Exception" << endl;
+    }
 
     SDL_FreeSurface(screen);
     SDL_Quit();

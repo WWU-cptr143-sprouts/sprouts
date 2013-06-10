@@ -227,9 +227,7 @@ ostream& operator<<(ostream& os, const Connection& con)
 
 ostream& operator<<(ostream& os, const InvalidLine& o)
 {
-    os << "Invalid line: " << o.line;
-
-    return os;
+    return os << "Invalid line: " << o.line;
 }
 
 bool LineCmp(Connection* a, Connection* b)

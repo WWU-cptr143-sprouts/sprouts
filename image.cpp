@@ -5,14 +5,14 @@ Image::Image(const string& s, bool transparent)
     SDL_Surface* tmpImg = IMG_Load(s.c_str());
 
     if (!tmpImg)
-        throw ImageNotLoaded();
+        throw ImageNotLoaded(s);
 
     // Optimize image for depth of screen
     img = SDL_DisplayFormat(tmpImg);
     SDL_FreeSurface(tmpImg);
 
     if (!img)
-        throw ImageNotLoaded();
+        throw ImageNotLoaded(s);
 
     // Enable transparency
     if (transparent)
@@ -30,4 +30,9 @@ SDL_Surface* Image::surface()
 Image::~Image()
 {
     SDL_FreeSurface(img);
+}
+
+ostream& operator<<(ostream& os, const ImageNotLoaded& o)
+{
+    return os << o.s;
 }
