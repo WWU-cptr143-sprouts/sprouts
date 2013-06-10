@@ -147,7 +147,7 @@ State GameGUI::click(Coord location)
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              selected->getLoci(),true))
                 {
-                    if ((selected->conCount()==0) && (!vertical(currentLine.front(), currentLine[1])))
+                    if (currentLine.front() == selected->getLoci() && (selected->conCount()==0) && (!vertical(currentLine.front(), currentLine[1])))
                         error = true;
                         //If connecting back to the same node and it is coming at 90 degrees, don't allow
 
@@ -178,7 +178,7 @@ State GameGUI::click(Coord location)
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
                              selected->getLoci(),true))
                 {
-                   if ((selected->conCount()==0) && (vertical(currentLine.front(), currentLine[1])))
+                   if (currentLine.front() == selected->getLoci() && (selected->conCount()==0) && (vertical(currentLine.front(), currentLine[1])))
                         error = true;
                         //If connecting back to the same node and it is coming at 90 degrees, don't allow
                     else if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))|| //If 1 existing connection and it is connecting to itself
