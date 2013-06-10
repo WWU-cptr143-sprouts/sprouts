@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 
                                     if (state == GameEnd)
                                     {
-                                        cout << "Game has ended!" << endl; //Add image here for end game
+                                        //cout << "Game has ended!" << endl;
                                         SDL_Delay(200);
                                         inMenu = true;
                                         menu.over(game.playerTurn());
