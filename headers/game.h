@@ -58,8 +58,8 @@ class Game
         bool updated;
         int moveCount;
         vector<Area*> areas;
-        vector<Areaset*> areasets;
     protected:
+        vector<Areaset*> areasets;  // now protected instead of private for use in currentAreas() function
         vector<Node*> nodes;
         vector<Line*> lines;
     public:

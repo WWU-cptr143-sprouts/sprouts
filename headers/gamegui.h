@@ -10,9 +10,10 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_gfxPrimitives.h>
-#include "gameai.h"
-#include "image.h"
+#include "menu.h"
 #include "node.h"
+#include "image.h"
+#include "gameai.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class GameGUI : public GameAI
         TTF_Font* font;
 
         // Where we are currently in the game. E.g., we just clicked on a node.
+        Mode playerMode;
         State state;
         Line currentLine;
         SDL_Color textCol;
@@ -51,7 +53,7 @@ class GameGUI : public GameAI
         bool error; //180 Connection Error - For text output
 
 
-        void init(int, int, int, int); // Draw to screen with a certain number of nodes
+        void init(Mode, int, int, int, int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)

@@ -1,9 +1,9 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen)
-    :GameAI(), screen(screen),
+    : GameAI(), screen(screen),
     font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)),
-    state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
+    playerMode(PvP), state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
     player1(true), error(false)
 {
     textCol.r = 255;
@@ -11,8 +11,9 @@ GameGUI::GameGUI(SDL_Surface* screen)
     textCol.b = 255;
 }
 
-void GameGUI::init(int count, int radius1, int radius2, int thick)
+void GameGUI::init(Mode mode, int count, int radius1, int radius2, int thick)
 {
+    playerMode = mode;
     nodeRadius = radius1;
     selectRadius = radius2;
     lineThick = thick;
@@ -181,6 +182,13 @@ State GameGUI::click(Coord location)
 
                 if (gameEnded())
                     state = GameEnd;
+
+                if (playerMode == PvAI)
+                {
+                    // Computer plays. When we merge, we'll have to fix this up to
+                    // deal with PvP and PvAI from the menu.
+                    aiTurn();
+                }
             }
         }
     }

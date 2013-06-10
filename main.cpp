@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
                                 else if (status == GAME)
                                 {
                                     inMenu = false;
-                                    game.init(menu.nodes(), menu.nodeRadius(), menu.selectRadius(), menu.lineThick());
+                                    game.init(menu.mode(), menu.nodes(), menu.nodeRadius(), menu.selectRadius(), menu.lineThick());
                                 }
                             }
                             else
