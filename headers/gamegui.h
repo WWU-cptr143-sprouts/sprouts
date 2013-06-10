@@ -45,7 +45,7 @@ class GameGUI : public GameAI
         static const Uint32 player2Col = 0xFE0208FF; //Red
 
     public:
-        GameGUI(SDL_Surface*); // default constructor : feed it a surface for the screen
+        GameGUI(SDL_Surface*, TTF_Font*); // default constructor : feed it a surface for the screen
 
         bool player1; // keeps track of what players turn it is
         bool error; //180 Connection Error - For text output

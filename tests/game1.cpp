@@ -324,4 +324,13 @@ void copyConstructor()
     t2.updateAreas(); // Must update since copying ignores the areas (no point
                       // in updating when you'll change something anyway)
     test("copyConstructor 2", t2.validateCopy());
+
+    Tests t3 = t;
+    t3.updateAreas();
+    test("copyAssignment 1", t3.validateCopy());
+
+    Tests t4;
+    t4 = t;
+    t4.updateAreas();
+    test("copyAssignment 2", t4.validateCopy());
 }

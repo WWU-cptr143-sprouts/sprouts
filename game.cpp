@@ -18,6 +18,24 @@ Game::Game()
 Game::Game(const Game& g)
     :updated(false), nodes(g.nodes.size()), lines(g.lines.size())
 {
+    copy(g);
+}
+
+Game& Game::operator=(const Game& g)
+{
+    cleanup();
+
+    updated = false;
+    nodes = vector<Node*>(g.nodes.size());
+    lines = vector<Line*>(g.lines.size());
+
+    copy(g);
+
+    return *this;
+}
+
+void Game::copy(const Game& g)
+{
     // newLines[oldAddress] = newAddress
     map<Line*, Line*> newLines;
     map<Node*, Node*> newNodes;
@@ -270,7 +288,7 @@ void Game::clearAreas()
     areasets.clear();
 }
 
-Game::~Game()
+void Game::cleanup()
 {
     clearAreas();
 
@@ -279,6 +297,14 @@ Game::~Game()
 
     for (int i = 0; i < lines.size(); ++i)
         delete lines[i];
+
+    nodes.clear();
+    lines.clear();
+}
+
+Game::~Game()
+{
+    cleanup();
 }
 
 ostream& operator<<(ostream& os, const Game& g)

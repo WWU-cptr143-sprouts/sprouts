@@ -54,10 +54,12 @@ int main(int argc, char *argv[])
     SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
+    TTF_Font* font = TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14);
+
     bool inMenu = true;
     Menu menu(screen);
     menu.init();
-	GameGUI game(screen);
+	GameGUI game(screen, font);
 
 	while (gameRunning)
 	{
@@ -86,7 +88,7 @@ int main(int argc, char *argv[])
                         // Q returns to menu
                         else if (event.key.keysym.sym == SDLK_q && !inMenu)
                         {
-                            game = GameGUI(screen);
+                            game = GameGUI(screen, font);
                             inMenu = true;
                             menu.init();
                         }
@@ -126,9 +128,8 @@ int main(int argc, char *argv[])
                                     cout << "Game has ended!" << endl; //Add image here for end game
                                     SDL_Delay(200);
                                     inMenu = true;
-                                    //menu.init();
                                     menu.over(game.playerTurn());
-                                    game = GameGUI(screen);
+                                    game = GameGUI(screen, font);
                                 }
                             }
                         }
@@ -190,6 +191,7 @@ int main(int argc, char *argv[])
         SDL_Delay(20);
 	}
 
+    TTF_CloseFont(font);
     SDL_FreeSurface(screen);
     SDL_Quit();
     TTF_Quit();

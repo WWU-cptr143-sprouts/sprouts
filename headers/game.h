@@ -64,7 +64,10 @@ class Game
         vector<Line*> lines;
     public:
         Game();
+
+        // Copy constructor and assignment
         Game(const Game&);
+        Game& operator=(const Game&);
 
         // This is the function you'll use a LOT. Set extraChecks to true if
         // you want the A-Checker to verify two nodes should be connectable.
@@ -87,10 +90,12 @@ class Game
         // Used for debugging
         friend ostream& operator<<(ostream&, const Game&);
     private:
+        void cleanup();
+        void copy(const Game&);
         void clearAreas(); // empty areas/areasets and delete items pointed to
         void deleteLastNode(); // Undo last add, used in doMove
     public:
-        ~Game();
+        virtual ~Game();
 };
 
 ostream& operator<<(ostream&, const Game&);

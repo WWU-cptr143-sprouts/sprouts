@@ -1,8 +1,7 @@
 #include "headers/gamegui.h"
 
-GameGUI::GameGUI(SDL_Surface* screen)
-    :GameAI(), screen(screen),
-    font(TTF_OpenFont("images/LiberationSerif-Bold.ttf", 14)),
+GameGUI::GameGUI(SDL_Surface* screen, TTF_Font* font)
+    :GameAI(), screen(screen), font(font),
     state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
     player1(true), error(false)
 {
