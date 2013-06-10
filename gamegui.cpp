@@ -376,26 +376,32 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
         const int A3 = line[j].x;
         const int B3 = line[j].y;
 
+        //horizontal line being drawn
         if (endX == startX)
         {
+            //pre existing vertical line
             if(A2 != A3)
             {
+                //determines existing line
                 if(A2 > A3)
                 {
+                    //checks if our new line crosses the vertical line on the x axis
                     if((startX > A3)&&(startX < A2))
                     {
+                        //determines our current line
                         if(startY > endY)
                         {
+                            //checks if our current line corsses on the y axis
                             if((B2 < startY)&&(B2 > endY))
                                 return false;
                         }
                         else
-                            if((B2 > startY)&&(B2 < endY))
+                            if((B2 > startY)&&(B2 < endY)) //only difference from above is direction line was drawn
                                 return false;
                     }
                 }
                 else
-                    if((startX < A3)&&(startX > A2))
+                    if((startX < A3)&&(startX > A2)) //only difference from above is direction line was drawn
                     {
                         if(startY > endY)
                         {
@@ -408,9 +414,9 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                     }
             }
             else
-                if(startX == A2)
+                if(startX == A2) //check for line horizontal line being drawn against other horizontal lines
                 {
-                    if(B2 > B3)
+                    if(B2 > B3) //need to finish commenting
                     {
                         if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2)))
                             return false;
@@ -505,6 +511,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
 
     return true;
 }
+
 
 bool GameGUI::validLine(Coord start, Coord end) const
 {
