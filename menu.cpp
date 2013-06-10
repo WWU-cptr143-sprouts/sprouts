@@ -5,6 +5,7 @@ Menu::Menu(SDL_Surface* screen)
 optionsNodeRadius(5),
 optionsLineThick(1),
 optionsSelectRadius(10),
+//playerMode(PvAI),
 playerMode(PvP),
 numberOfNodes(3),
 instructions("images/Instructions.jpg"),
