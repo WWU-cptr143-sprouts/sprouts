@@ -144,6 +144,9 @@ State GameGUI::click(Coord location)
                             currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
 
+                        // Blocks correction of last coordinate to the end coordinate
+                        if (currentLine.back() == selected->getLoci())
+                            currentLine.pop_back();
                     }
                     else
                         error = true;
@@ -161,14 +164,18 @@ State GameGUI::click(Coord location)
                         if(currentLine.size() > 1 && !vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is horizontal as well, delete last point.
                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
                         currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
+
+                        if (currentLine.back() == selected->getLoci())
+                            currentLine.pop_back();
                     }
                     else
                         error = true;
                 }
             }
 
-            //Calculate location of node to be added
-            if(validFinish==true)
+            //Calculate location of node to be added. Verify that in our correction it didn't
+            //go through any other lines.
+            if(validFinish==true && validLine(currentLine.back(), selected->getLoci(), true))
             {
                 currentLine.push_back(selected->getLoci()); //Push the final node onto the vector.
                 Coord middle = findMiddle();
