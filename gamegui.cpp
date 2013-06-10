@@ -223,7 +223,8 @@ State GameGUI::click(Coord location)
                     cout << "AI playing." << endl;
 
                     // Computer plays.
-                    aiTurn();
+                    if(aiTurn())
+                        player1 = !player1;
                 }
             }
         }

@@ -31,6 +31,7 @@ class GameAI : public Game
         bool validSingleLine(const Line&,Coord,Coord) const; //copy/pasted from GUI
         bool validLine(Coord,Coord) const; // copy/pasted from GUI
         bool validLine(Coord,Coord, bool) const; // edited for right angle lines, either up first or side first
+        double distance(Coord a, Coord b) const;
         ~GameAI();
 };
 
