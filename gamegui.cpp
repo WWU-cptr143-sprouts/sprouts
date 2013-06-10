@@ -55,7 +55,19 @@ void GameGUI::redraw(bool lck)
 
     // Draw nodes
     for (int i = 0; i < nodes.size(); i++)
-        circle(nodes[i]->getLoci(), nodeRadius, nodeCol);
+    {
+        Uint32 color = 0;
+        int connections = nodes[i]->conCount();
+        if (connections == 0)
+            color = 0xFFFFFFFF;
+        else if (connections == 1)
+            color = 0x069DD6FF;
+        else if (connections == 2)
+            color = 0xFE0208FF;
+        else if (connections == 3)
+            color = 0x000000FF;
+        circle(nodes[i]->getLoci(), nodeRadius, color);
+    }
 
     // Draw lines
     for (int i = 0; i < lines.size(); i++)
@@ -128,7 +140,7 @@ State GameGUI::click(Coord location)
         //combineLines(location);
         if (validLine(currentLine.back(),
                       straighten(currentLine.back(), selected->getLoci()),true))//Does extending previous line cross any lines.
-        { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
+        {
            //Is the line coming vertically into node?
             if (vertical(currentLine.back(), selected->getLoci()))
             {
@@ -140,12 +152,17 @@ State GameGUI::click(Coord location)
                     if (((selected->conCount()==1)&&(selected->getLoci()==currentLine.front())) || (!(selected->openRight() ^ selected->openLeft()))) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
                     {
                         validFinish=true; //If not, line becomes a valid move.
-                        if(currentLine.size() > 1 && vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well, delete last point.
-                            currentLine.pop_back(); //It isn't necessary and it will create diagonal lines.
+                          validFinish=true; //Line becomes a valid move
+                        if(currentLine.size() > 1 && vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well
+                            currentLine.pop_back(); //delete last point
                         currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
 
                         // Blocks correction of last coordinate to the end coordinate
                         if (currentLine.back() == selected->getLoci())
+                            currentLine.pop_back();
+
+                        // Blocks correction of first coordinate from becoming the first node Coord
+                        if(currentLine.back()==currentLine.front()&&currentLine.size()>1) //Don't know how to explain.
                             currentLine.pop_back();
                     }
                     else
@@ -166,6 +183,9 @@ State GameGUI::click(Coord location)
                         currentLine.back().y = selected->getLoci().y; //Change the y value to the one of the node so that it will correct and make a straight line
 
                         if (currentLine.back() == selected->getLoci())
+                            currentLine.pop_back();
+
+                        if(currentLine.back()==currentLine.front()&&currentLine.size()>1) //Don't know how to explain.
                             currentLine.pop_back();
                     }
                     else
@@ -275,15 +295,49 @@ bool GameGUI::vertical(Coord last, Coord point) const
         return false;
 }
 
-Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, bool right, bool left) const
+Coord GameGUI::firststraighten(Coord node, Coord location, bool up, bool down, bool right, bool left) const
 {
-    if ((up&&!down)||(!up&&down)) //Checks to see if node has 1 line coming up or down out of it
-        return Coord(node.x,cursor.y);
-    else
-        if ((right&&!left)||(!right&&left)) //Check left and right.
-             return Coord (cursor.x, node.y);
+    int buffer = 10;
+
+    //If two lines are coming out of a node, the new line is restricted to a 90 degree move
+    if (!right&&!left)
+        return Coord(node.x,location.y);
+    else if (!up&&!down)
+        return Coord(location.x,node.y);
+
+    //If a line already exists out of a node, new line is limited to the opposite dirrection
+    else if (up&&!down)
+    {
+        if (location.y < node.y)
+            return Coord(node.x,location.y-buffer);
         else
-            return straighten(node, cursor);
+            return Coord(node.x,node.y-buffer);
+    }
+    else if(!up&&down)
+    {
+        if (location.y > node.y)
+            return Coord(node.x,location.y+buffer);
+        else
+            return Coord(node.x,node.y+buffer);
+    }
+    else if (!right&&left)
+    {
+        if (location.x < node.x)
+            return Coord(location.x-buffer,node.y);
+        else
+            return Coord(node.x-buffer,node.y);
+    }
+    else if (right&&!left)
+    {
+        if (location.x > node.x)
+            return Coord(location.x+buffer,node.y);
+        else
+            return Coord(node.x+buffer,node.y);
+    }
+
+    //If there are no connections, line is not limited
+    else
+        return straighten(node, location);
 }
 
 void GameGUI::combineLines(Coord location)
@@ -311,7 +365,7 @@ Coord GameGUI::straighten(Coord last, Coord point) const
         //validLine(coord(last.x, last.y), coord(last.x, point.y))
 
         //keeps line from backtracking on itself
-        if(currentLine.size() > 2 &&
+        if(currentLine.size() > 1 &&
            (((point.y < last.y)&&(currentLine[currentLine.size()-2].y < last.y))||
             ((point.y > last.y)&&(currentLine[currentLine.size()-2].y > last.y))))
             return Coord(point.x,last.y);
@@ -321,7 +375,7 @@ Coord GameGUI::straighten(Coord last, Coord point) const
     else
     {
         //keeps line from backtracking on itself
-        if(currentLine.size() > 2 &&
+        if(currentLine.size() > 1 &&
            (((point.x < last.x)&&(currentLine[currentLine.size()-2].x < last.x))||
             ((point.x > last.x)&&(currentLine[currentLine.size()-2].x > last.x))))
             return Coord(last.x,point.y);
@@ -344,7 +398,7 @@ void GameGUI::line(Coord a, Coord b, Uint32 color)
 
 void GameGUI::circle(Coord p, int radius, Uint32 color)
 {
-    circleColor(screen, p.x, p.y, radius, color);
+    filledCircleColor(screen, p.x, p.y, radius, color);
 }
 
 // Select the closest node to the point if within the selectRadius, otherwise
