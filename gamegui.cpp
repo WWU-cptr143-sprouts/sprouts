@@ -416,20 +416,20 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
             else
                 if(startX == A2) //check for line horizontal line being drawn against other horizontal lines
                 {
-                    if(B2 > B3) //need to finish commenting
+                    if(B2 > B3) //defines the pre existing line
                     {
-                        if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2)))
+                        if(((startY > B3)&&(startY <B2))||((endY > B3)&&(endY < B2))) //checks if our line shares similar y values intersect
                             return false;
                         if(startY < endY)
                         {
-                            if((startY < B3)&&(endY > B3))
+                            if((startY < B3)&&(endY > B3)) //also needed to check if y intercepts intersect
                                 return false;
                         }
                         else
-                            if((startY > B2)&&(endY < B2))
+                            if((startY > B2)&&(endY < B2))//same as above comment only our current line is oriented in the other direction
                                 return false;
                     }
-                    else
+                    else//same as above only for existing line in other direction
                     {
                         if(((startY > B2)&&(startY < B3))||((endY > B2)&&(endY < B3)))
                             return false;
@@ -445,7 +445,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                 }
 
         }
-        else
+        else//same as above only for verticle lines not horrizontal lines
         {
             if(B2 != B3)
             {
@@ -513,7 +513,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
 }
 
 
-bool GameGUI::validLine(Coord start, Coord end, bool node) const
+bool GameGUI::validLine(Coord start, Coord end, bool node) const //send in true if where the click happened was a node or false if it was not a node
 {
     if (!validSingleLine(currentLine, start, end))
         return false;
@@ -527,7 +527,7 @@ bool GameGUI::validLine(Coord start, Coord end, bool node) const
             return false;
     }
 
-    //for if line trys to end in node but node isn't clicked
+    //for if line trys to end in node but node isn't clicked, minor problem fix
     for (int i = 0; i < nodes.size(); i++)//calls to each node
     {
             if(((end.x > nodes[i]->getLoci().x-nodeRadius)&&(end.x < nodes[i]->getLoci().x+nodeRadius))&&((end.y > nodes[i]->getLoci().y-nodeRadius)&&(end.y < nodes[i]->getLoci().y+nodeRadius)))
