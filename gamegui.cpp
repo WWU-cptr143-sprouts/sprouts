@@ -292,6 +292,8 @@ void GameGUI::cursor(Coord location)
 
 bool GameGUI::vertical(Coord last, Coord point) const
 {
+    //Returns true is point is between pi/4 & 3pi/4 || 5pi/4 && 7pi/4
+    //in respect to the last last coord.
     if (((point.y<=(last.y+(last.x-point.x)))&&
          (point.y<=(last.y-(last.x-point.x))))||
         ((point.y>=(last.y+(last.x-point.x)))&&
