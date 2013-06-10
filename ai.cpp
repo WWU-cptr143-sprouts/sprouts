@@ -113,7 +113,10 @@ void GameAI::populateMList()
         {
             if(connectable(*nodes[i],*nodes[j]))
             {
-                possibleMoves.push_back(createLine(nodes[i],nodes[j]));
+                if(validLine(nodes[i]->getLoci(),nodes[j]->getLoci(),true) || validLine(nodes[i]->getLoci(),nodes[j]->getLoci(),false))
+                {
+                    possibleMoves.push_back(createLine(nodes[i],nodes[j]));
+                }
             }
         }
     }
