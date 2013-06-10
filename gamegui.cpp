@@ -1,20 +1,18 @@
 #include "headers/gamegui.h"
 
 GameGUI::GameGUI(SDL_Surface* screen, TTF_Font* font)
-    :GameAI(), screen(screen), font(font), playerMode(PvP),
-    state(Blank), nodeRadius(5), lineThick(1), selectRadius(10),
-    player1(true), error(false)
+    :GameAI(), screen(screen), font(font), playerMode(PvP), state(Blank),
+    nodeRadius(5), lineThick(1), player1(true), error(false)
 {
     textCol.r = 255;
     textCol.g = 255;
     textCol.b = 255;
 }
 
-void GameGUI::init(Mode mode, int count, int radius1, int radius2, int thick)
+void GameGUI::init(Mode mode, int count, int radius, int thick)
 {
     playerMode = mode;
-    nodeRadius = radius1;
-    selectRadius = radius2;
+    nodeRadius = radius;
     lineThick = thick;
     player1 = true;
     error = false;
@@ -409,7 +407,7 @@ void GameGUI::circle(Coord p, int radius, Uint32 color)
     filledCircleColor(screen, p.x, p.y, radius, color);
 }
 
-// Select the closest node to the point if within the selectRadius, otherwise
+// Select the closest node to the point if within the nodeRadius, otherwise
 // return NULL
 Node* GameGUI::selectedNode(Coord point) const
 {
@@ -427,7 +425,7 @@ Node* GameGUI::selectedNode(Coord point) const
         }
     }
 
-    if (closestIndex != -1 && minDist <= selectRadius)
+    if (closestIndex != -1 && minDist <= nodeRadius)
         return nodes[closestIndex];
     else
         return NULL;

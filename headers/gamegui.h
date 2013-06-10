@@ -39,7 +39,6 @@ class GameGUI : public GameAI
 
         int nodeRadius; // Node radius
         int lineThick; // Line thickness
-        int selectRadius; // Defines how close you must click to a node
         // Assuming big-endian?
         static const Uint32 nodeCol = 0xFF4500FF;
         static const Uint32 lineCol = 0xFFFFFFFF;
@@ -53,7 +52,7 @@ class GameGUI : public GameAI
         bool error; //180 Connection Error - For text output
 
 
-        void init(Mode, int, int, int, int); // Draw to screen with a certain number of nodes
+        void init(Mode, int, int, int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)

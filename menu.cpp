@@ -6,7 +6,6 @@ Menu::Menu(SDL_Surface* screen)
 : screen(screen),
 optionsNodeRadius(5), // the drawn node radius is set to 5 by default
 optionsLineThick(1), // the line thickness is set to 1 by default
-optionsSelectRadius(10), // the radius within which you have to click select a node
 //playerMode(PvAI),
 playerMode(PvP), // the player moe is set to two player by default
 numberOfNodes(3), // the number of nodes is set to 3 by default
@@ -700,21 +699,18 @@ void Menu::optionsPageClick(Coord location) // the following function changes ch
             if (location.x < 460) // the small node radius button is pressed
             {
                 optionsNodeRadius = 5;
-                optionsSelectRadius = 10;
             }
             else
             {
                 if (location.x < 600) // the medium node radius button is pressed
                 {
                     optionsNodeRadius = 10;
-                    optionsSelectRadius = 10;
                 }
                 else
                 {
                     if (location.x < 700) // the large node radius button is pressed
                     {
                         optionsNodeRadius = 15;
-                        optionsSelectRadius = 15;
                     }
                 }
             }

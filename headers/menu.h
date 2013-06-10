@@ -26,7 +26,6 @@ class Menu
 
         int optionsNodeRadius; // Node radius
         int optionsLineThick; // Line thickness
-        int optionsSelectRadius; // Defines how close you must click to a node
 
         Mode playerMode; // One player or two
         int numberOfNodes; // can be anything but the menu only allows for 3 to 7
@@ -107,7 +106,6 @@ class Menu
         int nodes() const { return numberOfNodes; }
         Mode mode() const { return playerMode; }
         int nodeRadius() const { return optionsNodeRadius; }
-        int selectRadius() const { return optionsSelectRadius; }
         int lineThick() const { return optionsLineThick; }
 
         ~Menu();
