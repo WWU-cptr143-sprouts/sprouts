@@ -97,7 +97,7 @@ void GameGUI::unlock()
     // screen and not display text. However, it was easy to put it here and it
     // works.
     if (error)
-        displayError("Error: need to connect at 180 degrees.");
+        displayError("Error: Please connect at 180 degrees.");
 
     SDL_Flip(screen);
 }
@@ -148,11 +148,15 @@ State GameGUI::click(Coord location)
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
                              selected->getLoci(),true))
                 {
+                    if ((selected->conCount()==0) && (!vertical(currentLine.front(), currentLine[1])))
+                        error = true;
+                        //If connecting back to the same node and it is coming at 90 degrees, don't allow
+
                     // !^ = both true or both false
-                    if (((selected->conCount()==1)&&(selected->getLoci()==currentLine.front())) || (!(selected->openRight() ^ selected->openLeft()))) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
+                    else if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))|| //If 1 existing connection and it is connecting to itself
+                            (!(selected->openRight() ^ selected->openLeft()))) //Checks if new line is valid, and ensures that line is at 180
                     {
                         validFinish=true; //If not, line becomes a valid move.
-                          validFinish=true; //Line becomes a valid move
                         if(currentLine.size() > 1 && vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is vertical as well
                             currentLine.pop_back(); //delete last point
                         currentLine.back().x= selected->getLoci().x; //Change the x value to the one of the node so that it will correct and make a straight line
@@ -175,7 +179,11 @@ State GameGUI::click(Coord location)
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
                              selected->getLoci(),true))
                 {
-                    if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))||(!(selected->openUp() ^ selected->openDown()))) //Checks if new line is valid, and ensures that line is at 180
+                   if ((selected->conCount()==0) && (vertical(currentLine.front(), currentLine[1])))
+                        error = true;
+                        //If connecting back to the same node and it is coming at 90 degrees, don't allow
+                    else if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))|| //If 1 existing connection and it is connecting to itself
+                            (!(selected->openUp() ^ selected->openDown()))) //Checks if new line is valid, and ensures that line is at 180
                     {
                         validFinish=true; //If not, line becomes a valid move.
                         if(currentLine.size() > 1 && !vertical(currentLine[currentLine.size()-2],currentLine.back())) //If last line coming in is horizontal as well, delete last point.
