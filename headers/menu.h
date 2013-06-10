@@ -8,13 +8,13 @@
 #include "image.h"
 #include "structs.h"
 
-enum Mode
+enum Mode // values attached to the playerMode variable. They represent "player vs player" and "player vs AI"
 {
     PvP,
     PvAI
 };
 
-enum ClickType
+enum ClickType // values return from the click functions. They are used to determine what to do next.
 {
     CONTINUE, GAME, EXIT
 };
@@ -22,24 +22,22 @@ enum ClickType
 class Menu
 {
     private:
-        SDL_Surface* screen;
+        SDL_Surface* screen; // The background
 
         int optionsNodeRadius; // Node radius
         int optionsLineThick; // Line thickness
         int optionsSelectRadius; // Defines how close you must click to a node
 
-        Mode playerMode;
-        int numberOfNodes;
-        Image instructions;
-        Image instructionsBackHover;
-        Image credits;
-        Image creditsBackHover;
-        Image exitHover;
-        Image creditsHover;
-        Image instructionsHover;
-        Image optionsHover;
-        Image startHover;
+        Mode playerMode; // One player or two
+        int numberOfNodes; // can be anything but the menu only allows for 3 to 7
+        // All of the different pages and buttons in the menu are different images blitted onto the background
+        // The following variables are loaded with the different images in the menu.cpp file
         Image sproutsMenu;
+        Image startHover;
+        Image optionsHover;
+        Image instructionsHover;
+        Image creditsHover;
+        Image exitHover;
 
         Image options;
         Image optionsSmallNodeHover;
@@ -57,6 +55,12 @@ class Menu
         Image optionsPvAIHover;
         Image optionsBackHover;
 
+        Image instructions;
+        Image instructionsBackHover;
+
+        Image credits;
+        Image creditsBackHover;
+
         Image computerWins;
         Image computerWinsExitHover;
         Image computerWinsMenuHover;
@@ -67,6 +71,7 @@ class Menu
         Image playerTwoWinsExitHover;
         Image playerTwoWinsMenuHover;
 
+        // the following variables are used to direct the menu and tell which page to show and which buttons to use
         bool GameStart;
         bool GameOptions;
         bool GameInstructions;
@@ -77,18 +82,15 @@ class Menu
         bool p2Wins;
         bool aiWins;
 
+        // the following variables are used to prevent the code from attempting to upload the same background twice in a row
         bool check[37];
-        bool check1, check2,  check3,  check4,
-             check5, check6,  check7,  check8,
-             check9, check10, check11, check12,
-             check13, check14, check15, check16,
-             check17, check18, check19, check20,
-             check21;
 
     public:
+        // the constructor function
         Menu(SDL_Surface*);
 
-        void menuFlip(SDL_Surface*, bool&);
+        // the nonconstructor functions
+        void menuFlip(SDL_Surface*, bool&); // This function makes the background in the menu look like the contents of one of the Image clss variables
         void init(); // Show the menu the first time
         void over(bool); // Tell menu that the game is over
         void cancel(); // Esc pressed
@@ -98,9 +100,10 @@ class Menu
         ClickType click(Coord); // Return EXIT when clicking exit
         ClickType clickGameOver(Coord);
         ClickType clickMenu(Coord);
-        void optionsPageCursor(Coord);
+        void optionsPageCursor(Coord); // A separate page for all of the possible options
         void optionsPageClick(Coord);
 
+        // the following functions return the values of the following five variables from the menu class
         int nodes() const { return numberOfNodes; }
         Mode mode() const { return playerMode; }
         int nodeRadius() const { return optionsNodeRadius; }
