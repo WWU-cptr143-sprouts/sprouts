@@ -527,6 +527,33 @@ bool GameGUI::validLine(Coord start, Coord end) const
             return false;
     }
 
+    //check for if line is going directly through node
+    if(start.x==end.x)  //vertical line being drawn
+    {
+        for (int i = 0; i < nodes.size(); i++)
+            if(nodes[i]->getLoci().x == start.x)
+                if(start.y < end.y)
+                {
+                    if((nodes[i]->getLoci().y > start.y)&&(nodes[i]->getLoci().y < end.y))
+                        return false;
+                }
+                else
+                    if((nodes[i]->getLoci().y < start.y)&&(nodes[i]->getLoci().y > end.y))
+                        return false;
+    }
+    else
+        for (int i = 0; i < nodes.size(); i++)
+            if(nodes[i]->getLoci().y == start.y)
+                if(start.x < end.x)
+                {
+                    if((nodes[i]->getLoci().x > start.x)&&(nodes[i]->getLoci().x < end.x))
+                        return false;
+                }
+                else
+                    if((nodes[i]->getLoci().x < start.x)&&(nodes[i]->getLoci().x > end.x))
+                        return false;
+
+
     return true;
 }
 
