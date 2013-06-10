@@ -378,41 +378,41 @@ double GameGUI::distance(Coord a, Coord b) const
 
 // Determine if the line from the coordinates start to end would cross any line
 // segments in the passed in Line.
-bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
+bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end,int lineSize) const
 {
     const int startX = start.x;
     const int startY = start.y;
     const int endX = end.x;
     const int endY = end.y;
 
-    for (int j = 1; j < line.size(); j++)
+    for (int j = 1; j < lineSize; j++)
     {
         const int A2 = line[j-1].x;
         const int B2 = line[j-1].y;
         const int A3 = line[j].x;
         const int B3 = line[j].y;
 
-        //horizontal line being drawn
+        //verticle line being drawn
         if (endX == startX)
         {
-            //pre existing vertical line
+            //pre existing horizontal
             if(A2 != A3)
             {
                 //determines existing line
                 if(A2 > A3)
                 {
-                    //checks if our new line crosses the vertical line on the x axis
+                    //checks if our new line crosses the horizontal line on the x axis
                     if((startX > A3)&&(startX < A2))
                     {
                         //determines our current line
                         if(startY > endY)
                         {
                             //checks if our current line corsses on the y axis
-                            if((B2 < startY)&&(B2 > endY))
+                            if((B2 <= startY)&&(B2 > endY))
                                 return false;
                         }
                         else
-                            if((B2 > startY)&&(B2 < endY)) //only difference from above is direction line was drawn
+                            if((B2 >= startY)&&(B2 < endY)) //only difference from above is direction line was drawn
                                 return false;
                     }
                 }
@@ -421,16 +421,16 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                     {
                         if(startY > endY)
                         {
-                            if((B2 < startY)&&(B2 > endY))
+                            if((B2 <= startY)&&(B2 > endY))
                                 return false;
                         }
                         else
-                            if((B2 > startY)&&(B2 < endY))
+                            if((B2 >= startY)&&(B2 < endY))
                                 return false;
                     }
             }
             else
-                if(startX == A2) //check for line horizontal line being drawn against other horizontal lines
+                if(startX == A2) //check for line horizontal line being drawn against other verticle lines
                 {
                     if(B2 > B3) //defines the pre existing line
                     {
@@ -461,7 +461,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                 }
 
         }
-        else//same as above only for verticle lines not horrizontal lines
+        else//same as above only for horizontal lines not horrizontal lines
         {
             if(B2 != B3)
             {
@@ -471,11 +471,11 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                     {
                         if(startX > endX)
                         {
-                            if((A2 < startX)&&(A2 > endX))
+                            if((A2 <= startX)&&(A2 > endX))
                                 return false;
                         }
                         else
-                            if((A2 > startX)&&(A2 < endX))
+                            if((A2 >= startX)&&(A2 < endX))
                                 return false;
                     }
                 }
@@ -484,11 +484,11 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
                     {
                         if(startX > endX)
                         {
-                            if((A2 < startX)&&(A2 > endX))
+                            if((A2 <= startX)&&(A2 > endX))
                                 return false;
                         }
                         else
-                            if((A2 > startX)&&(A2 < endX))
+                            if((A2 >= startX)&&(A2 < endX))
                                 return false;
                     }
             }
@@ -531,7 +531,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
 
 bool GameGUI::validLine(Coord start, Coord end, bool node) const //send in true if where the click happened was a node or false if it was not a node
 {
-    if (!validSingleLine(currentLine, start, end))
+    if (!validSingleLine(currentLine, start, end,currentLine.size()-1))
         return false;
 
     //code for checking among the line currently being drawn
@@ -539,7 +539,7 @@ bool GameGUI::validLine(Coord start, Coord end, bool node) const //send in true 
     {
         const Line& line = *lines[i];
 
-        if (!validSingleLine(line, start, end))
+        if (!validSingleLine(line, start, end,line.size()))
             return false;
     }
 
