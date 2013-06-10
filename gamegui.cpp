@@ -586,7 +586,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end,int lineS
                         }
                         else
                             if(!node){
-                                if((A2 >= startX)&&(A2 < endX))
+                                if((A2 >= startX)&&(A2 <= endX))
                                     return false;
                             }
                             else
