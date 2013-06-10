@@ -35,7 +35,7 @@ bool GameAI::aiTurn()
     delete tGame;*/
 
     // Set start nodes and aiFirst on first AI turn
-    if(startingNodes == -1)
+    /*if(startingNodes == -1)
     {
         if(moves()%2) //Second player, one move has been made
         {
@@ -71,10 +71,26 @@ bool GameAI::aiTurn()
             doMove(possibleMoves[i], midNode(possibleMoves[i]));
             return true;
         }
-    }
+    }*/
     //If an optimal move is not found, it does the first move in the possible moves vector
-    doMove(possibleMoves[0], midNode(possibleMoves[0]));
-    return true;
+    populateMList();
+
+    for (int i = 0; i < possibleMoves.size(); i++)
+    {
+        try
+        {
+            cout << possibleMoves[i] << endl;
+            cout << midNode(possibleMoves[i]) << endl;
+            doMove(possibleMoves[i], midNode(possibleMoves[i]));
+            return true;
+        }
+        catch (...)
+        {
+
+        }
+    }
+
+    return false;
 }
 
 bool GameAI::requiredAreas(bool player, int startingNodes) const
@@ -183,38 +199,165 @@ Line GameAI::createLine(Node* a, Node* b) const
 {
     Line line;
     Coord temp;
-    // Checks to see if a straight line is available
-    if(a->getLoci().y != b->getLoci().y || a->getLoci().x != b->getLoci().x)
+    Coord extenda;
+    Coord extendb;
+
+    line.push_back(a->getLoci());
+
+    //Accounts for 90 degree angles
+    if(a->conCount() == 1)
     {
-        line.push_back(a->getLoci());
-        line.push_back(b->getLoci());
+        if(!a->openUp())
+        {
+            extenda.y = a->getLoci().y + 20;
+            extenda.x = a->getLoci().x;
+        }
+        else if((!a->openDown()))
+        {
+            extenda.y = a->getLoci().y - 20;
+            extenda.x = a->getLoci().x;
+        }
+        else if((!a->openRight()))
+        {
+            extenda.y = a->getLoci().y;
+            extenda.x = a->getLoci().x - 20;
+        }
+        else if((!a->openLeft()))
+        {
+            extenda.y = a->getLoci().y;
+            extenda.x = a->getLoci().x + 20;
+        }
+    }
+    if(b->conCount() == 1)
+    {
+        if(!b->openUp())
+        {
+            extendb.y = b->getLoci().y + 20;
+            extendb.x = b->getLoci().x;
+        }
+        else if((!b->openDown()))
+        {
+            extendb.y = b->getLoci().y - 20;
+            extendb.x = b->getLoci().x;
+        }
+        else if((!b->openRight()))
+        {
+            extendb.y = b->getLoci().y;
+            extendb.x = b->getLoci().x - 20;
+        }
+        else if((!b->openLeft()))
+        {
+            extendb.y = b->getLoci().y;
+            extendb.x = b->getLoci().x + 20;
+        }
+    }
+    if(a->getLoci().y == b->getLoci().y || a->getLoci().x == b->getLoci().x)
+    {
+        if(a->conCount() == 1)
+        {
+            line.push_back(extenda);
+        }
+        if(b->conCount() == 1)
+        {
+            line.push_back(extendb);
+        }
     }
     else if(validLine(a->getLoci(), b->getLoci(), true))
     {
-        temp.x = a->getLoci().x;
-        temp.y = b->getLoci().y;
-        line.push_back(a->getLoci());
-        line.push_back(temp);
-        line.push_back(b->getLoci());
+        if(a->conCount() == 1)
+        {
+            if(b->conCount() == 1)
+            {
+                line.push_back(extenda);
+                temp.x = extenda.x;
+                temp.y = extendb.y;
+                line.push_back(temp);
+                line.push_back(extendb);
+            }
+            else
+            {
+                line.push_back(extenda);
+                temp.x = extenda.x;
+                temp.y = b->getLoci().y;
+                line.push_back(temp);
+            }
+        }
+        else if(b->conCount() == 1)
+        {
+            temp.x = a->getLoci().x;
+            temp.y = extendb.y;
+            line.push_back(temp);
+            line.push_back(extendb);
+        }
+        else
+        {
+            temp.x = a->getLoci().x;
+            temp.y = b->getLoci().y;
+            line.push_back(temp);
+        }
     }
     else if(validLine(a->getLoci(), b->getLoci(), false))
     {
-        temp.x = b->getLoci().x;
-        temp.y = a->getLoci().y;
-        line.push_back(a->getLoci());
-        line.push_back(temp);
-        line.push_back(b->getLoci());
+        if(a->conCount() == 1)
+        {
+            if(b->conCount() == 2)
+            {
+                line.push_back(extenda);
+                temp.x = extendb.x;
+                temp.y = extenda.y;
+                line.push_back(temp);
+                line.push_back(extendb);
+            }
+            else
+            {
+                line.push_back(extenda);
+                temp.x = extendb.x;
+                temp.y = a->getLoci().y;
+                line.push_back(temp);
+            }
+        }
+        else if(b->conCount() == 1)
+        {
+            temp.x = extendb.x;
+            temp.y = a->getLoci().y;
+            line.push_back(temp);
+            line.push_back(extendb);
+        }
+        else
+        {
+            temp.x = b->getLoci().x;
+            temp.y = a->getLoci().y;
+            line.push_back(temp);
+        }
     }
+
+    line.push_back(b->getLoci());
 
     return line;
 }
 
-Coord GameAI::midNode(const Line& line) const
+Coord GameAI::midNode(const Line& currentLine) const
 {
-    int half = line.size()/2;
-    //TODO: Merge with gui function
-    return Coord ((line[half-1].x+line[half].x)/2,
-                  (line[half-1].y+line[half].y)/2);
+    int longestIndex = -1;
+    double greatestDist = 0;
+
+    for (int i = 1; i < currentLine.size(); i++)
+    {
+        double currentDist = distance(currentLine[i], currentLine[i-1]);
+
+        if (currentDist > greatestDist)
+        {
+            greatestDist = currentDist;
+            longestIndex = i;
+        }
+    }
+
+    // Something went wrong, just pick the middle
+    if (longestIndex == -1)
+        longestIndex = currentLine.size()/2;
+
+    return Coord((currentLine[longestIndex-1].x+currentLine[longestIndex].x)/2,
+                 (currentLine[longestIndex-1].y+currentLine[longestIndex].y)/2);
 
 }
 
@@ -418,6 +561,11 @@ bool GameAI::validLine(Coord a, Coord b, bool up) const
     }
 
     return true;
+}
+
+double GameAI::distance(Coord a, Coord b) const
+{
+    return sqrt(pow(1.0*a.x-b.x,2)+pow(1.0*a.y-b.y,2));
 }
 
 GameAI::~GameAI()
