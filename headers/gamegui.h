@@ -10,9 +10,10 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_gfxPrimitives.h>
-#include "gameai.h"
-#include "image.h"
+#include "menu.h"
 #include "node.h"
+#include "image.h"
+#include "gameai.h"
 
 using namespace std;
 
@@ -31,6 +32,7 @@ class GameGUI : public GameAI
         TTF_Font* font;
 
         // Where we are currently in the game. E.g., we just clicked on a node.
+        Mode playerMode;
         State state;
         Line currentLine;
         SDL_Color textCol;
@@ -51,7 +53,7 @@ class GameGUI : public GameAI
         bool error; //180 Connection Error - For text output
 
 
-        void init(int, int, int, int); // Draw to screen with a certain number of nodes
+        void init(Mode, int, int, int, int); // Draw to screen with a certain number of nodes
 
         void cancel(); // Escape pressed
         State click(Coord); // Mouse clicked at (x,y)
@@ -72,8 +74,8 @@ class GameGUI : public GameAI
         void redraw(bool lock_screen = true);
         void line(Coord, Coord, Uint32 color);        // Draw a line
         void circle(Coord, int radius, Uint32 color); // Draw a circle
-        bool validLine(Coord,Coord) const; // See if a pending line crosses another
-        bool validSingleLine(const Line&,Coord,Coord) const; // Used in validLine() for each of the lines, removes duplicate code
+        bool validLine(Coord,Coord,bool) const; // See if a pending line crosses another
+        bool validSingleLine(const Line&,Coord,Coord,int,bool) const; // Used in validLine() for each of the lines, removes duplicate code
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
         bool vertical(Coord,Coord) const; //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point) const; // Snap point at 90 degrees angles to last

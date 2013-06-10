@@ -4,32 +4,34 @@
 #include <vector>
 #include "game.h"
 
-class Pmove
+/*class Pmove
 {
     public:
         Line aLink;
         Node newNode;
         Line bLink;
-};
+};*/
 
 class GameAI : public Game
 {
     protected:
-        bool aiFirst;
         int startingNodes;
-        vector<Pmove> possibleMoves;
-        vector<vector<bool> > mTable;
-        int testMoveAreas, wantedAreas;
+        vector<Line> possibleMoves;
+        int testUnuseableNodes;
+        int wantedAreas;
+        bool aiFirst;
     public:
         GameAI(); //needs to call game constructor;
-        int currentAreas(); //check how many areas the current game has
+        int notConnectableNodes() const; //check how many nodes are not connectable
         void populateMList(); //will populate the possibleMoves vector
-        void populatemTable(); // populate the mtable table;
         bool aiTurn(); //master function for making the AI have a turn
-        void doPmove(Pmove); //Calls doMove from
-        Pmove createLine(Node&, Node&);
-        bool requiredAreas(bool, int);  //Calculates the number of nodes to put the ai in an advantageous position.
-
+        Coord midNode(const Line&) const; //Creates a new node on the line.
+        Line createLine(Node*, Node*) const; //Finds a path between two nodes
+        bool requiredAreas(bool, int) const;  //Calculates the number of nodes to put the ai in an advantageous position.
+        bool validSingleLine(const Line&,Coord,Coord) const; //copy/pasted from GUI
+        bool validLine(Coord,Coord) const; // copy/pasted from GUI
+        bool validLine(Coord,Coord, bool) const; // edited for right angle lines, either up first or side first
+        double distance(Coord a, Coord b) const;
         ~GameAI();
 };
 
