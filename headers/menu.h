@@ -41,6 +41,22 @@ class Menu
         Image startHover;
         Image sproutsMenu;
 
+        Image options;
+        Image optionsSmallNodeHover;
+        Image optionsMediumNodeHover;
+        Image optionsLargeNodeHover;
+        Image optionsSmallLineHover;
+        Image optionsMediumLineHover;
+        Image optionsLargeLineHover;
+        Image optionsThreeNodesHover;
+        Image optionsFourNodesHover;
+        Image optionsFiveNodesHover;
+        Image optionsSixNodesHover;
+        Image optionsSevenNodesHover;
+        Image optionsPvPHover;
+        Image optionsPvAIHover;
+        Image optionsBackHover;
+
         Image computerWins;
         Image computerWinsExitHover;
         Image computerWinsMenuHover;

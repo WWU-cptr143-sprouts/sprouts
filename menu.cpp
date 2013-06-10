@@ -18,6 +18,22 @@ instructionsHover("images/InstructionsHover.jpg"),
 optionsHover("images/OptionsHover.jpg"),
 startHover("images/StartHover.jpg"),
 sproutsMenu("images/SproutsMenu.jpg"),
+options("images/options.jpg"),
+
+optionsSmallNodeHover("images/optionsSmallNodeHover.jpg"),
+optionsMediumNodeHover("images/optionsMediumNodeHover.jpg"),
+optionsLargeNodeHover("images/optionsLargeNodeHover.jpg"),
+optionsSmallLineHover("images/optionsSmallLineHover.jpg"),
+optionsMediumLineHover("images/optionsMediumLineHover.jpg"),
+optionsLargeLineHover("images/optionsLargeLineHover.jpg"),
+optionsThreeNodesHover("images/optionsThreeNodesHover.jpg"),
+optionsFourNodesHover("images/optionsFourNodesHover.jpg"),
+optionsFiveNodesHover("images/optionsFiveNodesHover.jpg"),
+optionsSixNodesHover("images/optionsSixNodesHover.jpg"),
+optionsSevenNodesHover("images/optionsSevenNodesHover.jpg"),
+optionsPvPHover("images/optionsPvPHover.jpg"),
+optionsPvAIHover("images/optionsPvAIHover.jpg"),
+optionsBackHover("images/optionsBackHover.jpg"),
 
 computerWins("images/ComputerWins.jpg"),
 computerWinsExitHover("images/ComputerWinsExitHover.jpg"),
@@ -308,7 +324,7 @@ void Menu::cursorGameOver(Coord location)
                 }
                 else
                 {
-                    if ( location.y < 490 )
+                    if ( location.y < 500 )
                     {
                         if (!check[21])
                         {
@@ -324,7 +340,7 @@ void Menu::cursorGameOver(Coord location)
 
 void Menu::optionsPageCursor(Coord location)
 {
-    /*if ( (location.y < 250) || (location.y > 500) || (location.x < 100) || (location.x > 600))
+    if ( (location.y < 200) || (location.y > 575) || (location.x < 345) || (location.x > 700))
     {
         if (!check[22])
         {
@@ -332,14 +348,14 @@ void Menu::optionsPageCursor(Coord location)
             {
                 check[i] = false;
             }
-            //menuFlip(options.surface(), check[22]);
+            menuFlip(options.surface(), check[22]);
         }
     }
     else
     {
-        if ( location.y < 300 )
+        if ( location.y < 260 )
         {
-            if (location.x < 200)
+            if (location.x < 460)
             {
                 if (!check[23])
                 {
@@ -347,12 +363,12 @@ void Menu::optionsPageCursor(Coord location)
                     {
                         check[i] = false;
                     }
-                    //menuFlip(optionsSmallNodeHover.surface(), check[23]);
+                    menuFlip(optionsSmallNodeHover.surface(), check[23]);
                 }
             }
             else
             {
-                if (location.x < 300)
+                if (location.x < 600)
                 {
                     if (!check[24])
                     {
@@ -360,12 +376,12 @@ void Menu::optionsPageCursor(Coord location)
                         {
                             check[i] = false;
                         }
-                        //menuFlip(optionsMediumNodeHover.surface(), check[24]);
+                        menuFlip(optionsMediumNodeHover.surface(), check[24]);
                     }
                 }
                 else
                 {
-                    if (location.x < 400)
+                    if (location.x < 700)
                     {
                         if (!check[25])
                         {
@@ -373,7 +389,7 @@ void Menu::optionsPageCursor(Coord location)
                             {
                                 check[i] = false;
                             }
-                            //menuFlip(optionsLargeNodeHover.surface(), check[25]);
+                            menuFlip(optionsLargeNodeHover.surface(), check[25]);
                         }
                     }
                 }
@@ -381,9 +397,9 @@ void Menu::optionsPageCursor(Coord location)
         }
         else
         {
-            if ( location.y < 350 )
+            if ( location.y < 330 )
             {
-                if (location.x < 200)
+                if (location.x < 460)
                 {
                     if (!check[26])
                     {
@@ -391,12 +407,12 @@ void Menu::optionsPageCursor(Coord location)
                         {
                             check[i] = false;
                         }
-                        //menuFlip(optionsSmallLineHover.surface(), check[26]);
+                        menuFlip(optionsSmallLineHover.surface(), check[26]);
                     }
                 }
                 else
                 {
-                    if (location.x < 300)
+                    if (location.x < 600)
                     {
                         if (!check[27])
                         {
@@ -404,12 +420,12 @@ void Menu::optionsPageCursor(Coord location)
                             {
                                 check[i] = false;
                             }
-                            //menuFlip(optionsMediumLineHover.surface(), check[27]);
+                            menuFlip(optionsMediumLineHover.surface(), check[27]);
                         }
                     }
                     else
                     {
-                        if (location.x < 400)
+                        if (location.x < 700)
                         {
                             if (!check[28])
                             {
@@ -417,7 +433,7 @@ void Menu::optionsPageCursor(Coord location)
                                 {
                                     check[i] = false;
                                 }
-                                //menuFlip(optionsLargeLineHover.surface(), check[28]);
+                                menuFlip(optionsLargeLineHover.surface(), check[28]);
                             }
                         }
                     }
@@ -427,7 +443,7 @@ void Menu::optionsPageCursor(Coord location)
             {
                 if ( location.y < 400 )
                 {
-                    if (location.x < 200)
+                    if (location.x < 395)
                     {
                         if (!check[29])
                         {
@@ -435,12 +451,12 @@ void Menu::optionsPageCursor(Coord location)
                             {
                                 check[i] = false;
                             }
-                            //menuFlip(optionsThreeNodesHover.surface(), check[29]);
+                            menuFlip(optionsThreeNodesHover.surface(), check[29]);
                         }
                     }
                     else
                     {
-                        if (location.x < 300)
+                        if (location.x < 440)
                         {
                             if (!check[30])
                             {
@@ -448,12 +464,12 @@ void Menu::optionsPageCursor(Coord location)
                                 {
                                     check[i] = false;
                                 }
-                                //menuFlip(optionsFourNodesHover.surface(), check[30]);
+                                menuFlip(optionsFourNodesHover.surface(), check[30]);
                             }
                         }
                         else
                         {
-                            if (location.x < 400)
+                            if (location.x < 485)
                             {
                                 if (!check[31])
                                 {
@@ -461,12 +477,12 @@ void Menu::optionsPageCursor(Coord location)
                                     {
                                         check[i] = false;
                                     }
-                                    //menuFlip(optionsFiveNodesHover.surface(), check[31]);
+                                    menuFlip(optionsFiveNodesHover.surface(), check[31]);
                                 }
                             }
                             else
                             {
-                                if (location.x < 500)
+                                if (location.x < 520)
                                 {
                                     if (!check[32])
                                     {
@@ -474,12 +490,12 @@ void Menu::optionsPageCursor(Coord location)
                                         {
                                             check[i] = false;
                                         }
-                                        //menuFlip(optionsSixNodesHover.surface(), check[32]);
+                                        menuFlip(optionsSixNodesHover.surface(), check[32]);
                                     }
                                 }
                                 else
                                 {
-                                    if (location.x < 600)
+                                    if (location.x < 565)
                                     {
                                         if (!check[33])
                                         {
@@ -487,7 +503,18 @@ void Menu::optionsPageCursor(Coord location)
                                             {
                                                 check[i] = false;
                                             }
-                                            //menuFlip(optionsSevenNodesHover.surface(), check[33]);
+                                            menuFlip(optionsSevenNodesHover.surface(), check[33]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!check[22])
+                                        {
+                                            for (int i=22; i<=36; i++)
+                                            {
+                                                check[i] = false;
+                                            }
+                                            menuFlip(options.surface(), check[22]);
                                         }
                                     }
                                 }
@@ -497,9 +524,9 @@ void Menu::optionsPageCursor(Coord location)
                 }
                 else
                 {
-                    if ( location.y < 450 )
+                    if (location.y < 450)
                     {
-                        if (location.x < 200)
+                        if (location.x < 540)
                         {
                             if (!check[34])
                             {
@@ -507,7 +534,7 @@ void Menu::optionsPageCursor(Coord location)
                                 {
                                     check[i] = false;
                                 }
-                                //menuFlip(optionsPvPHover.surface(), check[34]);
+                                menuFlip(optionsPvPHover.surface(), check[34]);
                             }
                         }
                         else
@@ -518,25 +545,53 @@ void Menu::optionsPageCursor(Coord location)
                                 {
                                     check[i] = false;
                                 }
-                                //menuFlip(optionsPvAIHover.surface(), check[35]);
+                                menuFlip(optionsPvAIHover.surface(), check[35]);
                             }
                         }
                     }
                     else
                     {
-                        if (!check[36])
+                        if (location.y < 510)
                         {
-                            for (int i=22; i<=36; i++)
+                            if (!check[22])
                             {
-                                check[i] = false;
+                                for (int i=22; i<=36; i++)
+                                {
+                                    check[i] = false;
+                                }
+                                    menuFlip(options.surface(), check[22]);
                             }
-                            //menuFlip(optionsExitHover.surface(), check[36]);
+                        }
+                        else
+                        {
+                            if (location.x < 450)
+                            {
+                                if (!check[36])
+                                {
+                                    for (int i=22; i<=36; i++)
+                                    {
+                                        check[i] = false;
+                                    }
+                                    menuFlip(optionsBackHover.surface(), check[36]);
+                                }
+                            }
+                            else
+                            {
+                                if (!check[22])
+                                {
+                                    for (int i=22; i<=36; i++)
+                                    {
+                                        check[i] = false;
+                                    }
+                                        menuFlip(options.surface(), check[22]);
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-    }*/
+    }
 }
 
 ClickType Menu::click(Coord location)
@@ -563,7 +618,7 @@ ClickType Menu::clickMenu(Coord location)
                 if (location.y < 350)
                 {
                     GameOptions = true;
-                    //menuFlip(options.surface(), GameOptions);
+                    menuFlip(options.surface(), GameOptions);
                 }
                 else
                 {
@@ -632,25 +687,25 @@ ClickType Menu::clickGameOver(Coord location)
 
 void Menu::optionsPageClick(Coord location)
 {
-    /*if ((location.y > 250) || (location.y < 500) || (location.x > 100) || (location.x < 600))
+    if ((location.y > 200) && (location.y < 575) && (location.x > 345) && (location.x < 700))
     {
-        if ( location.y < 300 )
+        if ( location.y < 260 )
         {
-            if (location.x < 200)
+            if (location.x < 460)
             {
                 optionsNodeRadius = 5;
                 optionsSelectRadius = 10;
             }
             else
             {
-                if (location.x < 300)
+                if (location.x < 600)
                 {
                     optionsNodeRadius = 10;
                     optionsSelectRadius = 10;
                 }
                 else
                 {
-                    if (location.x < 400)
+                    if (location.x < 700)
                     {
                         optionsNodeRadius = 15;
                         optionsSelectRadius = 15;
@@ -660,21 +715,21 @@ void Menu::optionsPageClick(Coord location)
         }
         else
         {
-            if ( location.y < 350 )
+            if ( location.y < 330 )
             {
-                if (location.x < 200)
+                if (location.x < 460)
                 {
                     optionsLineThick = 1;
                 }
                 else
                 {
-                    if (location.x < 300)
+                    if (location.x < 600)
                     {
                         optionsLineThick = 2;
                     }
                     else
                     {
-                        if (location.x < 400)
+                        if (location.x < 700)
                         {
                             optionsLineThick = 3;
                         }
@@ -685,31 +740,31 @@ void Menu::optionsPageClick(Coord location)
             {
                 if ( location.y < 400 )
                 {
-                    if (location.x < 200)
+                    if (location.x < 395)
                     {
                         numberOfNodes = 3;
                     }
                     else
                     {
-                        if (location.x < 300)
+                        if (location.x < 440)
                         {
                             numberOfNodes = 4;
                         }
                         else
                         {
-                            if (location.x < 400)
+                            if (location.x < 485)
                             {
                                 numberOfNodes = 5;
                             }
                             else
                             {
-                                if (location.x < 500)
+                                if (location.x < 520)
                                 {
                                     numberOfNodes = 6;
                                 }
                                 else
                                 {
-                                    if (location.x < 600)
+                                    if (location.x < 565)
                                     {
                                         numberOfNodes = 7;
                                     }
@@ -722,7 +777,7 @@ void Menu::optionsPageClick(Coord location)
                 {
                     if ( location.y < 450 )
                     {
-                        if (location.x < 200)
+                        if (location.x < 540)
                         {
                             playerMode = PvP;
                         }
@@ -733,13 +788,16 @@ void Menu::optionsPageClick(Coord location)
                     }
                     else
                     {
-                        GameOptions = false;
-                        menuFlip(sproutsMenu.surface(), check[1]);
+                        if ((location.y > 510) && (location.x < 450))
+                        {
+                            GameOptions = false;
+                            menuFlip(sproutsMenu.surface(), check[1]);
+                        }
                     }
                 }
             }
         }
-    }*/
+    }
 }
 
 void Menu::cancel()
