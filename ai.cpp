@@ -180,38 +180,27 @@ Line GameAI::createLine(Node* a, Node* b) const
 {
     Line line;
     Coord temp;
-    line.push_back(a->getLoci());
     // Checks to see if a straight line is available
     if(a->getLoci().y != b->getLoci().y || a->getLoci().x != b->getLoci().x)
     {
+        line.push_back(a->getLoci());
         line.push_back(b->getLoci());
     }
-    else
+    else if(validLine(a->getLoci(), b->getLoci(), true))
     {
-        //creates a temp loci for going up first
         temp.x = a->getLoci().x;
         temp.y = b->getLoci().y;
-        //Tests if the lines are valid
-        if(validLine(a->getLoci(), temp) && validLine(temp, b->getLoci()))
-        {
-            line.push_back(temp);
-            line.push_back(b->getLoci());
-        }
-        else
-        {
-            //creats temp loci for going over first
-            temp.x = b->getLoci().x;
-            temp.y = a->getLoci().y;
-            if(validLine(a->getLoci(), temp) && validLine(temp, b->getLoci()))
-            {
-                line.push_back(temp);
-                line.push_back(b->getLoci());
-            }
-            else
-            {
-                //Neither move worked
-            }
-        }
+        line.push_back(a->getLoci());
+        line.push_back(temp);
+        line.push_back(b->getLoci());
+    }
+    else if(validLine(a->getLoci(), b->getLoci(), false))
+    {
+        temp.x = b->getLoci().x;
+        temp.y = a->getLoci().y;
+        line.push_back(a->getLoci());
+        line.push_back(temp);
+        line.push_back(b->getLoci());
     }
 
     return line;
@@ -378,6 +367,51 @@ bool GameAI::validLine(Coord start, Coord end) const
 
         if (!validSingleLine(line, start, end))
             return false;
+    }
+
+    return true;
+}
+
+bool GameAI::validLine(Coord a, Coord b, bool up) const
+{
+    Coord temp;
+    if(up)
+    {
+        temp.x = a.x;
+        temp.y = b.y;
+        for (int i = 0; i < lines.size(); i++)
+        {
+            const Line& line = *lines[i];
+
+            if (!validSingleLine(line, a, temp))
+                return false;
+        }
+        for (int i = 0; i < lines.size(); i++)
+        {
+            const Line& line = *lines[i];
+
+            if (!validSingleLine(line, temp, b))
+                return false;
+        }
+    }
+    else
+    {
+        temp.x = b.x;
+        temp.y = a.y;
+        for (int i = 0; i < lines.size(); i++)
+        {
+            const Line& line = *lines[i];
+
+            if (!validSingleLine(line, a, temp))
+                return false;
+        }
+        for (int i = 0; i < lines.size(); i++)
+        {
+            const Line& line = *lines[i];
+
+            if (!validSingleLine(line, temp, b))
+                return false;
+        }
     }
 
     return true;

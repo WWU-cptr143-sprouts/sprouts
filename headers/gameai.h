@@ -30,7 +30,7 @@ class GameAI : public Game
         bool requiredAreas(bool, int) const;  //Calculates the number of nodes to put the ai in an advantageous position.
         bool validSingleLine(const Line&,Coord,Coord) const; //copy/pasted from GUI
         bool validLine(Coord,Coord) const; // copy/pasted from GUI
-
+        bool validLine(Coord,Coord, bool) const; // edited for right angle lines, either up first or side first
         ~GameAI();
 };
 
