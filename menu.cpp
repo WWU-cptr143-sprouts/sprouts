@@ -777,7 +777,7 @@ void Menu::optionsPageClick(Coord location)
                 {
                     if ( location.y < 450 )
                     {
-                        if (location.x < 540)
+                        if (location.x > 540)
                         {
                             playerMode = PvP;
                         }

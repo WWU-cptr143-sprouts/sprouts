@@ -192,8 +192,9 @@ State GameGUI::click(Coord location)
 
                 if (playerMode == PvAI)
                 {
-                    // Computer plays. When we merge, we'll have to fix this up to
-                    // deal with PvP and PvAI from the menu.
+                    cout << "AI playing." << endl;
+
+                    // Computer plays.
                     aiTurn();
                 }
             }
