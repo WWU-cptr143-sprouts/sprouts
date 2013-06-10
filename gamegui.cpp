@@ -531,7 +531,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
     if(start.x==end.x)  //vertical line being drawn
     {
         for (int i = 0; i < nodes.size(); i++)
-            if(nodes[i]->getLoci().x == start.x)
+            if((start.x-5 <= nodes[i]->getLoci().x)&&(nodes[i]->getLoci().x <= start.x+5))
                 if(start.y < end.y)
                 {
                     if((nodes[i]->getLoci().y > start.y)&&(nodes[i]->getLoci().y < end.y))
@@ -543,7 +543,7 @@ bool GameGUI::validLine(Coord start, Coord end) const
     }
     else
         for (int i = 0; i < nodes.size(); i++)
-            if(nodes[i]->getLoci().y == start.y)
+            if((start.y-5 <= nodes[i]->getLoci().y)&&(nodes[i]->getLoci().y <= start.y+5))
                 if(start.x < end.x)
                 {
                     if((nodes[i]->getLoci().x > start.x)&&(nodes[i]->getLoci().x < end.x))
