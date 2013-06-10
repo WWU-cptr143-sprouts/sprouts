@@ -6,8 +6,7 @@ Menu::Menu(SDL_Surface* screen)
 : screen(screen),
 optionsNodeRadius(5), // the drawn node radius is set to 5 by default
 optionsLineThick(1), // the line thickness is set to 1 by default
-//playerMode(PvAI),
-playerMode(PvP), // the player moe is set to two player by default
+playerMode(PvP), // the player mode is set to two player by default
 numberOfNodes(3), // the number of nodes is set to 3 by default
 
 // the following lines of code load the images to the appropriate Image class variables
