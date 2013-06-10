@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
     }
 
     // Window title and icon
-    Image icon("images/icon1.bmp", true);
-    //Image icon("images/icon2.bmp", true); // a second possible icon found at http://www.merchantcircle.com/static/imgs/answers_homeTopicThumb.png
+    //Image icon("images/icon1.bmp", true);
+    Image icon("images/icon2.bmp", true); // a second possible icon found at http://www.merchantcircle.com/static/imgs/answers_homeTopicThumb.png
     SDL_WM_SetIcon(icon.surface(), NULL);
     SDL_WM_SetCaption("Sprouts", "Sprouts");
 
