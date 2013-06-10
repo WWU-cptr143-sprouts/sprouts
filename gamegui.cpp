@@ -126,14 +126,14 @@ State GameGUI::click(Coord location)
         //correct for last line to make it straight
         //combineLines(location);
         if (validLine(currentLine.back(),
-                      straighten(currentLine.back(), selected->getLoci())))//Does extending previous line cross any lines.
+                      straighten(currentLine.back(), selected->getLoci()),true))//Does extending previous line cross any lines.
         { //TODO Add statement here to ensure that connections come at 180 degrees when there is already one connection
            //Is the line coming vertically into node?
             if (vertical(currentLine.back(), selected->getLoci()))
             {
                 //If Vertical, does the line intersect another line. Adjusts Lines
                 if(validLine(Coord(selected->getLoci().x,currentLine.back().y),
-                             selected->getLoci()))
+                             selected->getLoci(),true))
                 {
                     // !^ = both true or both false
                     if (((selected->conCount()==1)&&(selected->getLoci()==currentLine.front())) || (!(selected->openRight() ^ selected->openLeft()))) //Checks if new line is valid, and ensures that line is at 180 if 1 connection exists
@@ -152,7 +152,7 @@ State GameGUI::click(Coord location)
             {
                 //If Horizontal, does the line intersect another line?
                 if(validLine(Coord(currentLine.back().x,selected->getLoci().y),
-                             selected->getLoci()))
+                             selected->getLoci(),true))
                 {
                     if (((selected->conCount()==1) && (selected->getLoci() == currentLine.front()))||(!(selected->openUp() ^ selected->openDown()))) //Checks if new line is valid, and ensures that line is at 180
                     {
@@ -205,7 +205,7 @@ State GameGUI::click(Coord location)
                     selected->openUp(),    selected->openDown(),
                     selected->openRight(), selected->openLeft());
 
-                if (validLine(currentLine.back(), straightened))
+                if (validLine(currentLine.back(), straightened,true))
                     currentLine.push_back(straightened);
             }
         }
@@ -273,7 +273,7 @@ Coord GameGUI::firststraighten(Coord node, Coord cursor, bool up, bool down, boo
 void GameGUI::combineLines(Coord location)
 {
     //Combine last two lines if they go in the same direction. This is necessary to prevent error in the straightening functinon.
-    if (validLine(currentLine.back(),straighten(currentLine.back(), location)))
+    if (validLine(currentLine.back(),straighten(currentLine.back(), location),false))
     {
         if (vertical(currentLine.back(),straighten(currentLine.back(), location)) && vertical(currentLine[currentLine.size()-2], currentLine.back())) //If last line and line to add are both vertical
         {
@@ -513,7 +513,7 @@ bool GameGUI::validSingleLine(const Line& line, Coord start, Coord end) const
 }
 
 
-bool GameGUI::validLine(Coord start, Coord end) const
+bool GameGUI::validLine(Coord start, Coord end, bool node) const
 {
     if (!validSingleLine(currentLine, start, end))
         return false;
@@ -526,6 +526,15 @@ bool GameGUI::validLine(Coord start, Coord end) const
         if (!validSingleLine(line, start, end))
             return false;
     }
+
+    //for if line trys to end in node but node isn't clicked
+    for (int i = 0; i < nodes.size(); i++)//calls to each node
+    {
+            if(((end.x > nodes[i]->getLoci().x-nodeRadius)&&(end.x < nodes[i]->getLoci().x+nodeRadius))&&((end.y > nodes[i]->getLoci().y-nodeRadius)&&(end.y < nodes[i]->getLoci().y+nodeRadius)))
+                if(!node)
+                    return false;
+    }
+
 
     //check for if line is going directly through node
     if(start.x==end.x)  //vertical line being drawn
