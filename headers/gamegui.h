@@ -75,7 +75,7 @@ class GameGUI : public GameAI
         void line(Coord, Coord, Uint32 color);        // Draw a line
         void circle(Coord, int radius, Uint32 color); // Draw a circle
         bool validLine(Coord,Coord,bool) const; // See if a pending line crosses another
-        bool validSingleLine(const Line&,Coord,Coord) const; // Used in validLine() for each of the lines, removes duplicate code
+        bool validSingleLine(const Line&,Coord,Coord,int) const; // Used in validLine() for each of the lines, removes duplicate code
         //bool validConnection; //Checks to see if connection to the last node in a line is valid. TODO: Implement if needed
         bool vertical(Coord,Coord) const; //Checks two points and determines if line to be drawn should be vertical
         Coord straighten(Coord last, Coord point) const; // Snap point at 90 degrees angles to last
