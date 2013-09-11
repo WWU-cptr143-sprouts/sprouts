@@ -24,5 +24,5 @@ depends: ${DEPENDS}
 clean:
 	${RM} ${OUT} ${OBJ}
 
-include ${DEPENDS}
+-include ${DEPENDS}
 .PHONY: all depends clean
