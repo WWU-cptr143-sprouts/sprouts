@@ -45,7 +45,7 @@
 			<Add library="lib\SDL_image.lib" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="../ai.cpp" />
+		<Unit filename="../gameai.cpp" />
 		<Unit filename="../area.cpp" />
 		<Unit filename="../draw.cpp" />
 		<Unit filename="../game.cpp" />
