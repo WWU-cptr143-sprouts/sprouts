@@ -59,4 +59,4 @@ of the classes have a page documenting what they consist of for easy reference
 and searchability.
 
 [Github Code](https://github.com/floft/sprouts)  
-[Sprouts Wiki](http://sprouts.kingscastle.co/index.php/Main_Page)
+[Sprouts Wiki](http://sprouts.kingscastle.co/index.php/Main_Page) (dead link)
