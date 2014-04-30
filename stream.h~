@@ -303,6 +303,10 @@ public:
     {
         return limitAfterRead(readFiniteF64(), min, max);
     }
+    Dimension readDimension()
+    {
+        return (Dimension)readLimitedU8(0, (uint8_t)Dimension::Last - 1);
+    }
 };
 
 class Writer
@@ -415,6 +419,10 @@ public:
             }
         }
         writeU8(0);
+    }
+    void writeDimension(Dimension v)
+    {
+        writeU8((uint8_t)v);
     }
 };
 
