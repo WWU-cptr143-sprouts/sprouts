@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -48,6 +50,7 @@
 		</Unit>
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
+		<Unit filename="include/cubicspline.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="matrix.cpp" />
 		<Unit filename="matrix.h" />
@@ -61,6 +64,7 @@
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
+		<Unit filename="src/cubicspline.cpp" />
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
 		<Unit filename="structs.cpp" />
