@@ -38,6 +38,8 @@
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
+		<Unit filename="cubicspline.cpp" />
+		<Unit filename="cubicspline.h" />
 		<Unit filename="draw.cpp" />
 		<Unit filename="event.h" />
 		<Unit filename="game.cpp" />
@@ -50,7 +52,6 @@
 		</Unit>
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
-		<Unit filename="include/cubicspline.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="matrix.cpp" />
 		<Unit filename="matrix.h" />
@@ -64,7 +65,6 @@
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
-		<Unit filename="src/cubicspline.cpp" />
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
 		<Unit filename="structs.cpp" />
@@ -80,6 +80,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
