@@ -28,7 +28,9 @@ public:
     {
         return TextureDescriptor(texture, (float)left / textureXRes, (float)(left + width) / textureXRes, 1 - (float)(top + height) / textureYRes, 1 - (float)top / textureYRes);
     }
-    static const TextureAtlas Font8x8;
+    static const TextureAtlas Font8x8,
+    Line,
+    Point;
 };
 
 #endif // TEXTURE_ATLAS_H_INCLUDED

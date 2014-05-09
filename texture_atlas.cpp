@@ -22,4 +22,6 @@ Image loadImage()
 
 const Image TextureAtlas::texture = loadImage();
 
-const TextureAtlas TextureAtlas::Font8x8(0, 0, 128, 128);
+const TextureAtlas TextureAtlas::Font8x8(0, 0, 128, 128),
+TextureAtlas::Line(128, 0, 1, 1),
+TextureAtlas::Point(128, 1, 1, 1);

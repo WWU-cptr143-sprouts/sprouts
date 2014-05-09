@@ -1129,10 +1129,8 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
     return os;
 }
 
-#error TODO : finish converting
-
 template <typename NT, typename ET>
-graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infinity = (ET)-1)
+inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infinity = (ET)-1)
 {
     vector<vector<ET> > dist;
     dist.resize(g.nodeCount());
