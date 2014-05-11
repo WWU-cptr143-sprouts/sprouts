@@ -41,6 +41,7 @@
 		<Unit filename="cubicspline.cpp" />
 		<Unit filename="cubicspline.h" />
 		<Unit filename="draw.cpp" />
+		<Unit filename="edge.h" />
 		<Unit filename="event.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="gameai.cpp" />
