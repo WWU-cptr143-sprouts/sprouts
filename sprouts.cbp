@@ -61,6 +61,7 @@
 		<Unit filename="network.cpp" />
 		<Unit filename="network.h" />
 		<Unit filename="node.cpp" />
+		<Unit filename="node.h" />
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
