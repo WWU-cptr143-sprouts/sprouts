@@ -9,7 +9,6 @@
 #include <memory>
 #include "color.h"
 #include "stream.h"
-#include "client.h"
 
 using namespace std;
 
@@ -62,8 +61,8 @@ public:
     {
         return l.data != r.data;
     }
-    void write(Writer &writer, Client &client) const;
-    static Image read(Reader &reader, Client &client);
+    /*void write(Writer &writer, Client &client) const;
+    static Image read(Reader &reader, Client &client);*/
 private:
     enum RowOrder
     {

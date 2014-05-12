@@ -3,7 +3,6 @@
 #include <GL/gl.h>
 #include "matrix.h"
 #include "vector.h"
-#include "game_version.h"
 #include <cwchar>
 #include <string>
 #include <iostream>
@@ -176,16 +175,8 @@ void startGraphics()
             xResInternal /= 2;
     }
 #else
-    if(GameVersion::DEBUG)
-    {
-        xResInternal = 800;
-        yResInternal = 600;
-    }
-    else
-    {
-        xResInternal = 1280;
-        yResInternal = 1024;
-    }
+    xResInternal = 800;
+    yResInternal = 600;
 #endif
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);

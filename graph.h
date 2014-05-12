@@ -908,6 +908,7 @@ inline void drawTextBlock(ostream &os, const vector<vector<string> > &textBlock,
 template <typename NT, typename ET>
 inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 {
+    using namespace GraphingInternals;
     vector<string> nodeText;
 
     for(const NT &nv : g)

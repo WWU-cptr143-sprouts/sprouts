@@ -194,7 +194,7 @@ void Image::copyOnWrite()
     data->lock.lock();
 }
 
-void Image::write(Writer &writer, Client &client) const
+/*void Image::write(Writer &writer, Client &client) const
 {
     if(!*this)
     {
@@ -268,4 +268,4 @@ Image Image::read(Reader &reader, Client &client)
     client.setPtr(retval.data, id, Client::DataType::Image);
     return retval;
 }
-
+*/

@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/sprouts" prefix_auto="1" extension_auto="1" />
+				<Option output="sprouts-debug" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/sprouts" prefix_auto="1" extension_auto="1" />
+				<Option output="sprouts" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -29,45 +29,108 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Graphics Test">
+				<Option output="sprouts-graphics-test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/GraphicsTest/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=gnu++0x" />
 		</Compiler>
-		<Unit filename="area.cpp" />
+		<Linker>
+			<Add library="GL" />
+			<Add library="png" />
+			<Add library="SDL2" />
+		</Linker>
+		<Unit filename="area.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
-		<Unit filename="cubicspline.cpp" />
-		<Unit filename="cubicspline.h" />
-		<Unit filename="draw.cpp" />
-		<Unit filename="event.h" />
-		<Unit filename="game.cpp" />
-		<Unit filename="gameai.cpp" />
-		<Unit filename="gamegui.cpp" />
-		<Unit filename="generate.h" />
-		<Unit filename="graph.h">
-			<Option compile="1" />
-			<Option link="1" />
+		<Unit filename="cubicspline.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
 		</Unit>
+		<Unit filename="cubicspline.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="draw.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="event.h" />
+		<Unit filename="game.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="game_state.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="game_state.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="gameai.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="gamegui.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="generate.h" />
+		<Unit filename="graph.h" />
+		<Unit filename="graphics_test.cpp" />
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="main.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="matrix.cpp" />
 		<Unit filename="matrix.h" />
-		<Unit filename="menu.cpp" />
+		<Unit filename="menu.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
 		<Unit filename="network.cpp" />
 		<Unit filename="network.h" />
-		<Unit filename="node.cpp" />
+		<Unit filename="node.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
+		<Unit filename="region.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="region.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
-		<Unit filename="structs.cpp" />
+		<Unit filename="structs.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="text.cpp" />
 		<Unit filename="text.h" />
 		<Unit filename="texture_atlas.cpp" />

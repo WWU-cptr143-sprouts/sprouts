@@ -10,7 +10,6 @@
 #include <memory>
 #include <list>
 #include "util.h"
-#include "dimension.h"
 #ifdef DEBUG_STREAM
 #include <iostream>
 #define DUMP_V(fn, v) do {cerr << #fn << ": read " << v << endl;} while(false)

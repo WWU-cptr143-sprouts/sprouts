@@ -10,7 +10,6 @@
 #include "image.h"
 #include "texture_descriptor.h"
 #include "stream.h"
-#include "client.h"
 
 class Mesh_t;
 
@@ -124,7 +123,7 @@ private:
                             floatsPerColor = 4, colorsPerTriangle = 3,
                             floatsPerTextureCoord = 2, textureCoordsPerTriangle = 3;
     friend class Renderer;
-    Mesh_t(Reader &reader, Client &client)
+/*    Mesh_t(Reader &reader, Client &client)
     {
         DUMP_V(Mesh_t::Mesh_t, "reading mesh");
         length = reader.readU32();
@@ -148,7 +147,7 @@ private:
             v = reader.readFiniteF32();
         }
         DUMP_V(Mesh_t::Mesh_t, "reading mesh : read colors");
-    }
+    }*/
 public:
     Mesh_t()
     {
@@ -469,9 +468,9 @@ public:
         add(m2);
     }
 
-    friend void writeMesh(Mesh mesh, Writer &writer, Client &client);
+    /*friend void writeMesh(Mesh mesh, Writer &writer, Client &client);
 
-    friend Mesh readMesh(Reader &reader, Client &client);
+    friend Mesh readMesh(Reader &reader, Client &client);*/
     friend Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ);
     friend Mesh interpolateColors(Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ);
     friend Mesh lightColors(Mesh dest, Mesh mesh, VectorF lightDir, float ambient, float diffuse);
@@ -569,7 +568,7 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
     return Mesh(new Mesh_t(mesh->texture(), triangles));
 }
 
-inline void writeMesh(Mesh mesh, Writer &writer, Client &client)
+/*inline void writeMesh(Mesh mesh, Writer &writer, Client &client)
 {
     assert(mesh && (uint32_t)mesh->size() == mesh->size());
     writer.writeU32(mesh->size());
@@ -591,7 +590,7 @@ inline void writeMesh(Mesh mesh, Writer &writer, Client &client)
 inline Mesh readMesh(Reader &reader, Client &client)
 {
     return Mesh(new Mesh_t(reader, client));
-}
+}*/
 
 inline TransformedMesh::operator Mesh() const
 {
