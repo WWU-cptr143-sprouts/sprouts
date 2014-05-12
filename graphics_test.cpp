@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "generate.h"
 #include "text.h"
+#include "texture_atlas.h"
 #include <cwchar>
 #include <sstream>
 #include <iostream>
@@ -16,12 +17,16 @@ int main()
 {
     startGraphics();
     Renderer renderer;
+    Image background(L"background.png");
     while(true)
     {
         Display::handleEvents(nullptr);
         Display::initFrame();
-        glClearColor(0, 0, 0, 0);
+        glClearColor(1, 0, 0, 0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        TextureDescriptor td = TextureDescriptor(background, 0, Display::width() / background.width(), 0, Display::height() / background.height());
+        Mesh backgroundmesh=Generate::quadrilateral(td, VectorF(-Display::scaleX(), -Display::scaleY(), -1), Color(1), VectorF(Display::scaleX(), -Display::scaleY(), -1), Color(1), VectorF(Display::scaleX(), Display::scaleY(), -1), Color(1), VectorF(-Display::scaleX(), Display::scaleY(), -1), Color(1));
+        renderer<<backgroundmesh;
         Display::initOverlay();
         wostringstream os;
         os << L"FPS : " << Display::averageFPS();
