@@ -46,15 +46,13 @@
 			<Add option="-Wall" />
 			<Add option="-std=gnu++0x" />
 			<Add directory="SDL2-2.0.3/i686-w64-mingw32/include" />
-			<Add directory="C:/Program Files (x86)/GnuWin32/include/libpng12" />
-			<Add directory="C:/Program Files (x86)/GnuWin32/include" />
+			<Add directory="." />
 		</Compiler>
 		<Linker>
 			<Add library="opengl32" />
 			<Add library="SDL2" />
-			<Add library="C:\Program Files (x86)\GnuWin32\lib\libpng.dll.a" />
+			<Add library="./libpng.dll.a" />
 			<Add directory="SDL2-2.0.3/i686-w64-mingw32/lib" />
-			<Add directory="C:/Program Files (x86)/GnuWin32/lib" />
 		</Linker>
 		<Unit filename="area.cpp">
 			<Option target="Debug" />
