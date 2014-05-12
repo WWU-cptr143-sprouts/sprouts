@@ -21,3 +21,6 @@ stderr.txt
 .cproject
 .project
 .DS_Store
+sprouts-debug
+sprouts-graphics-test
+
