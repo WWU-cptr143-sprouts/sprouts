@@ -59,7 +59,62 @@ static void startSDL();
 #ifdef _WIN64
 #error implement getResourceReader for Win64
 #elif _WIN32
-#error implement getResourceReader for Win32
+#include <cstring>
+#include <cwchar>
+#include <windows.h>
+static wchar_t * ResourcePrefix = nullptr;
+static wstring getExecutablePath();
+
+static void initfn();
+
+static wstring getResourceFileName(wstring resource)
+{
+    initfn();
+    return wstring(ResourcePrefix) + resource;
+}
+
+static wstring getExecutablePath()
+{
+    wchar_t buf[PATH_MAX + 1];
+    DWORD rv = GetModuleFileNameW(NULL, &buf[0], PATH_MAX + 1);
+    if(rv >= PATH_MAX + 1)
+    {
+        throw runtime_error(string("can't get executable path"));
+    }
+    buf[rv] = '\0';
+    return wstring(&buf[0]);
+}
+
+static void initfn()
+{
+    static bool ran = false;
+    if(ran)
+        return;
+    ran = true;
+    wstring p = getExecutablePath();
+    size_t pos = p.find_last_of(L"/\\");
+    if(pos == wstring::npos)
+        p = L"";
+    else
+        p = p.substr(0, pos + 1);
+    p = p + wstring(L"res/");
+    ResourcePrefix = new wchar_t[p.size() + 1];
+    for(size_t i = 0; i < p.size(); i++)
+        ResourcePrefix[i] = p[i];
+    ResourcePrefix[p.size()] = L'\0';
+}
+
+initializer initializer1([]()
+{
+    initfn();
+});
+
+shared_ptr<Reader> getResourceReader(wstring resource)
+{
+    startSDL();
+    string fname = wcsrtombs(getResourceFileName(resource));
+    return make_shared<RWOpsReader>(SDL_RWFromFile(fname.c_str(), "rb"));
+}
 #elif __ANDROID
 #error implement getResourceReader for Android
 #elif __APPLE__

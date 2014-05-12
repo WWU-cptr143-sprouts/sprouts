@@ -42,13 +42,19 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-std=gnu++0x" />
+			<Add directory="SDL2-2.0.3/i686-w64-mingw32/include" />
+			<Add directory="C:/Program Files (x86)/GnuWin32/include/libpng12" />
+			<Add directory="C:/Program Files (x86)/GnuWin32/include" />
 		</Compiler>
 		<Linker>
-			<Add library="GL" />
-			<Add library="png" />
+			<Add library="opengl32" />
 			<Add library="SDL2" />
+			<Add library="C:\Program Files (x86)\GnuWin32\lib\libpng.dll.a" />
+			<Add directory="SDL2-2.0.3/i686-w64-mingw32/lib" />
+			<Add directory="C:/Program Files (x86)/GnuWin32/lib" />
 		</Linker>
 		<Unit filename="area.cpp">
 			<Option target="Debug" />
@@ -57,7 +63,6 @@
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
-<<<<<<< HEAD
 		<Unit filename="cubicspline.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -70,12 +75,10 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-=======
-		<Unit filename="cubicspline.cpp" />
-		<Unit filename="cubicspline.h" />
-		<Unit filename="draw.cpp" />
-		<Unit filename="edge.h" />
->>>>>>> 475bb96616516a792d6abcc5cb8481bd95f823d4
+		<Unit filename="edge.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="event.h" />
 		<Unit filename="game.cpp">
 			<Option target="Debug" />
@@ -98,8 +101,13 @@
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="generate.h" />
-		<Unit filename="graph.h" />
-		<Unit filename="graphics_test.cpp" />
+		<Unit filename="graph.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="graphics_test.cpp">
+			<Option target="Graphics Test" />
+		</Unit>
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
 		<Unit filename="main.cpp">
@@ -114,17 +122,22 @@
 		</Unit>
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
-		<Unit filename="network.cpp" />
-		<Unit filename="network.h" />
-<<<<<<< HEAD
-		<Unit filename="node.cpp">
+		<Unit filename="network.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-=======
-		<Unit filename="node.cpp" />
-		<Unit filename="node.h" />
->>>>>>> 475bb96616516a792d6abcc5cb8481bd95f823d4
+		<Unit filename="network.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="node.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="oldnode.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
@@ -154,8 +167,8 @@
 		<Unit filename="vector.h" />
 		<Extensions>
 			<code_completion />
-			<debugger />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

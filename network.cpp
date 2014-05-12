@@ -1,5 +1,8 @@
 #include "network.h"
 #include "util.h"
+#ifdef _WIN32 // Windows
+#error finish
+#else
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -202,3 +205,4 @@ shared_ptr<StreamRW> NetworkServer::accept()
     shared_ptr<Writer> writer = shared_ptr<Writer>(new NetworkWriter(fd2));
     return shared_ptr<StreamRW>(new StreamRWWrapper(reader, writer));
 }
+#endif

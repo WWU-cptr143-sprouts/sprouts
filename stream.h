@@ -9,6 +9,7 @@
 #include <cstring>
 #include <memory>
 #include <list>
+#include <sstream>
 #include "util.h"
 #ifdef DEBUG_STREAM
 #include <iostream>
@@ -82,7 +83,9 @@ private:
     {
         if(v < min || v > max)
         {
-            throw InvalidDataValueException("read value out of range : " + to_string(v));
+            ostringstream os;
+            os << "read value out of range : " << v;
+            throw InvalidDataValueException(os.str());
         }
         return v;
     }
