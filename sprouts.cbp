@@ -57,6 +57,7 @@
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
+<<<<<<< HEAD
 		<Unit filename="cubicspline.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -69,6 +70,12 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+=======
+		<Unit filename="cubicspline.cpp" />
+		<Unit filename="cubicspline.h" />
+		<Unit filename="draw.cpp" />
+		<Unit filename="edge.h" />
+>>>>>>> 475bb96616516a792d6abcc5cb8481bd95f823d4
 		<Unit filename="event.h" />
 		<Unit filename="game.cpp">
 			<Option target="Debug" />
@@ -109,10 +116,15 @@
 		<Unit filename="mesh.h" />
 		<Unit filename="network.cpp" />
 		<Unit filename="network.h" />
+<<<<<<< HEAD
 		<Unit filename="node.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+=======
+		<Unit filename="node.cpp" />
+		<Unit filename="node.h" />
+>>>>>>> 475bb96616516a792d6abcc5cb8481bd95f823d4
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
