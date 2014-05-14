@@ -24,6 +24,19 @@ inline TransformedMesh invert(TransformedMesh mesh)
     return mesh;
 }
 
+inline Mesh cut(Mesh mesh, Vector normal, float d)
+{
+    vector<Triangle> triangles;
+    triangles.reserve(mesh->size() * 2);
+    assert(false);
+    #warning finish implementing cut()
+    for(Triangle tri : *mesh)
+    {
+
+    }
+    return nullptr;
+}
+
 namespace Generate
 {
 	inline Mesh quadrilateral(TextureDescriptor texture, VectorF p1, Color c1, VectorF p2, Color c2, VectorF p3, Color c3, VectorF p4, Color c4)

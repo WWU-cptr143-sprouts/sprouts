@@ -55,7 +55,7 @@ Mesh drawButton(bool pressed, wstring str, float minX, float maxX, float minY, f
         float midX = (minX + maxX) * 0.5, midY = (minY + maxY) * 0.5;
         buttonTransform = Matrix::translate(-midX, -midY, 0).concat(Matrix::rotateZ(M_PI)).concat(Matrix::translate(midX, midY, 0));
     }
-    Mesh retval = Mesh(new Mesh_t(transform(buttonTransform, diffuse)));
+    Mesh retval = (Mesh)transform(buttonTransform, diffuse);
     if(textHeight > 0 && textWidth > 0)
     {
         float textScale = 0.5 * (maxY - minY) / textHeight;
@@ -74,6 +74,7 @@ Mesh drawButton(bool pressed, wstring str, float minX, float maxX, float minY, f
 struct TheEventHandler final : public EventHandler
 {
     bool mouseDown = false;
+    double lastDownTime = -1;
     virtual bool handleMouseUp(MouseUpEvent &event)
     {
         if(event.button == MouseButton_Left)
@@ -83,7 +84,10 @@ struct TheEventHandler final : public EventHandler
     virtual bool handleMouseDown(MouseDownEvent &event)
     {
         if(event.button == MouseButton_Left)
+        {
             mouseDown = true;
+            lastDownTime = Display::timer();
+        }
         return true;
     }
     virtual bool handleMouseMove(MouseMoveEvent &event)
@@ -138,7 +142,7 @@ int main()
         world->add(transform(Matrix::rotateY(Display::timer()).concat(Matrix::translate(0, 0, -20)), m));
         renderer << world;
         Display::initOverlay();
-        renderer << drawButton(eventHandler.mouseDown, L"Button", -0.4, 0.4, 0.9, 1, Color(0.7, 0, 1));
+        renderer << drawButton(eventHandler.mouseDown || (Display::timer() - eventHandler.lastDownTime < 0.1), L"Button", -0.4, 0.4, 0.9, 1, Color::HSV(fmod(Display::timer() / 4, 1), 1, 1));
         Display::flip(60);
     }
 }
