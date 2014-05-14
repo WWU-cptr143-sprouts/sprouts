@@ -887,7 +887,7 @@ float Display::scaleY()
 
 void Display::initFrame()
 {
-    if(width > height)
+    if(width < height)
     {
         scaleXInternal = static_cast<float>(width()) / height();
         scaleYInternal = 1.0;
@@ -944,3 +944,23 @@ VectorF Display::transformMouseTo3D(float x, float y, float depth)
     return VectorF(depth * scaleX() * (2 * x / width() - 1), depth * scaleY() * (1 - 2 * y / height()), -depth);
 }
 
+bool hasClipboardText()
+{
+    return SDL_HasClipboardText();
+}
+
+wstring getClipboardText()
+{
+    if(!SDL_HasClipboardText())
+        return L"";
+    const char * text = SDL_GetClipboardText();
+    if(text == nullptr)
+        return L"";
+    return mbsrtowcs(string(text));
+}
+
+void setClipboardText(wstring text)
+{
+    string str = wcsrtombs(text);
+    SDL_SetClipboardText(str.c_str());
+}

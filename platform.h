@@ -226,5 +226,9 @@ namespace Display
 void startGraphics();
 void endGraphics();
 
+bool hasClipboardText();
+wstring getClipboardText();
+void setClipboardText(wstring text);
+
 #endif // PLATFORM_H_INCLUDED
 #include "event.h"

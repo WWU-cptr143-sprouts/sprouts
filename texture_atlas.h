@@ -30,7 +30,13 @@ public:
     }
     static const TextureAtlas Font8x8,
     Line,
-    Point;
+    Point,
+    ButtonLeftDiffuse,
+    ButtonRightDiffuse,
+    ButtonMiddleDiffuse,
+    ButtonLeftSpecular,
+    ButtonRightSpecular,
+    ButtonMiddleSpecular;
 };
 
 #endif // TEXTURE_ATLAS_H_INCLUDED

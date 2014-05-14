@@ -24,4 +24,10 @@ const Image TextureAtlas::texture = loadImage();
 
 const TextureAtlas TextureAtlas::Font8x8(0, 0, 128, 128),
 TextureAtlas::Line(128, 0, 1, 1),
-TextureAtlas::Point(128, 1, 1, 1);
+TextureAtlas::Point(128, 1, 1, 1),
+TextureAtlas::ButtonLeftDiffuse(0, 128 + 16, 8, 16),
+TextureAtlas::ButtonRightDiffuse(24, 128 + 16, 8, 16),
+TextureAtlas::ButtonMiddleDiffuse(8, 128 + 16, 16, 16),
+TextureAtlas::ButtonLeftSpecular(0, 128, 8, 16),
+TextureAtlas::ButtonRightSpecular(24, 128, 8, 16),
+TextureAtlas::ButtonMiddleSpecular(8, 128, 16, 16);
