@@ -75,6 +75,7 @@ private:
         const unsigned w, h;
         RowOrder rowOrder;
         uint32_t texture;
+        size_t graphicsNumber = -1;
         bool textureValid;
         mutex lock;
         data_t(uint8_t * data, unsigned w, unsigned h, RowOrder rowOrder)

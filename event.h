@@ -1,8 +1,10 @@
+#include "platform.h"
 #ifndef EVENT_H_INCLUDED
 #define EVENT_H_INCLUDED
 
-#include "platform.h"
 #include <memory>
+
+using namespace std;
 
 class KeyDownEvent;
 class MouseUpEvent;
@@ -13,7 +15,7 @@ class KeyUpEvent;
 class KeyPressEvent;
 class QuitEvent;
 
-struct EventHandler
+struct EventHandler : public enable_shared_from_this<EventHandler>
 {
     virtual bool handleMouseUp(MouseUpEvent &event) = 0;
     virtual bool handleMouseDown(MouseDownEvent &event) = 0;

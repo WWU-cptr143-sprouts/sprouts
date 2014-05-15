@@ -182,6 +182,14 @@ static int xResInternal, yResInternal;
 static SDL_Window *window = nullptr;
 static SDL_GLContext glcontext = nullptr;
 static atomic_bool runningGraphics(false), runningSDL(false);
+static size_t currentGraphics_ = 0;
+
+size_t currentGraphicsNumber()
+{
+    if(runningGraphics)
+        return currentGraphics_;
+    return (size_t)-1;
+}
 
 static void startSDL()
 {
@@ -203,9 +211,18 @@ void endGraphics()
         glcontext = nullptr;
         SDL_DestroyWindow(window);
         window = nullptr;
+        currentGraphics_++;
     }
     if(runningSDL.exchange(false))
         SDL_Quit();
+}
+
+static int preferredXRes = -1, preferredYRes = -1;
+
+void setPreferredMode(int xRes, int yRes)
+{
+    preferredXRes = xRes;
+    preferredYRes = yRes;
 }
 
 void startGraphics()
@@ -213,26 +230,34 @@ void startGraphics()
     startSDL();
     if(runningGraphics.exchange(true))
         return;
-#if 0
-    const SDL_VideoInfo * vidInfo = SDL_GetVideoInfo();
-    if(vidInfo == nullptr)
+    if(preferredXRes > 0 && preferredYRes > 0)
     {
-        xResInternal = 800;
-        yResInternal = 600;
+        xResInternal = preferredXRes;
+        yResInternal = preferredYRes;
     }
     else
     {
-        xResInternal = vidInfo->current_w;
-        yResInternal = vidInfo->current_h;
-        if(xResInternal == 32 * yResInternal / 9)
-            xResInternal /= 2;
-        else if(xResInternal == 32 * yResInternal / 10)
-            xResInternal /= 2;
-    }
+#if 0
+        const SDL_VideoInfo * vidInfo = SDL_GetVideoInfo();
+        if(vidInfo == nullptr)
+        {
+            xResInternal = 800;
+            yResInternal = 600;
+        }
+        else
+        {
+            xResInternal = vidInfo->current_w;
+            yResInternal = vidInfo->current_h;
+            if(xResInternal == 32 * yResInternal / 9)
+                xResInternal /= 2;
+            else if(xResInternal == 32 * yResInternal / 10)
+                xResInternal /= 2;
+        }
 #else
-    xResInternal = 800;
-    yResInternal = 600;
+        xResInternal = 1024;
+        yResInternal = 768;
 #endif
+    }
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -963,4 +988,16 @@ void setClipboardText(wstring text)
 {
     string str = wcsrtombs(text);
     SDL_SetClipboardText(str.c_str());
+}
+
+MouseButton Display::getMouseState()
+{
+    return buttonState;
+}
+
+bool Display::getKeyState(KeyboardKey key)
+{
+    if((int)key < (int)KeyboardKey_min || (int)key > (int)KeyboardKey_max)
+        return false;
+    return keyState(key);
 }

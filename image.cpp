@@ -118,16 +118,19 @@ void Image::bind() const
     data->lock.lock();
     setRowOrder(BottomToTop);
 
-    if(data->textureValid)
+    size_t graphicsNumber = currentGraphicsNumber();
+
+    if(data->textureValid && graphicsNumber == data->graphicsNumber)
     {
         glBindTexture(GL_TEXTURE_2D, data->texture);
         data->lock.unlock();
         return;
     }
 
-    if(data->texture == 0)
+    if(data->texture == 0 || graphicsNumber != data->graphicsNumber)
     {
         glGenTextures(1, (GLuint *)&data->texture);
+        data->graphicsNumber = graphicsNumber;
     }
 
     glBindTexture(GL_TEXTURE_2D, data->texture);

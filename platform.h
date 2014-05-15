@@ -221,14 +221,20 @@ namespace Display
     bool grabMouse();
     void grabMouse(bool g);
     VectorF transformMouseTo3D(float x, float y, float depth = 1.0f);
+    MouseButton getMouseState();
+    bool getKeyState(KeyboardKey key);
 }
 
 void startGraphics();
 void endGraphics();
+void setPreferredMode(int xRes = -1, int yRes = -1);
 
 bool hasClipboardText();
 wstring getClipboardText();
 void setClipboardText(wstring text);
 
-#endif // PLATFORM_H_INCLUDED
+size_t currentGraphicsNumber(); // returns a number corresponding to the current graphics run
+
 #include "event.h"
+
+#endif // PLATFORM_H_INCLUDED

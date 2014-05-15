@@ -24,7 +24,7 @@ inline TransformedMesh invert(TransformedMesh mesh)
     return mesh;
 }
 
-inline Mesh cut(Mesh mesh, Vector normal, float d)
+inline Mesh cut(Mesh mesh, VectorF normal, float d)
 {
     vector<Triangle> triangles;
     triangles.reserve(mesh->size() * 2);

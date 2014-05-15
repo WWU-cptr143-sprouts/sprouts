@@ -35,6 +35,14 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     {
         return Color(r, g, b);
     }
+    static Color VA(float v, float a)
+    {
+        return Color(v, a);
+    }
+    static Color V(float v)
+    {
+        return Color(v);
+    }
     static Color HSVA(float hue, float saturation, float value, float a);
     static Color HSV(float h, float s, float v)
     {

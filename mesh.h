@@ -33,7 +33,7 @@ struct TextureCoord
 };
 
 template <>
-const TextureCoord interpolate<TextureCoord>(const float t, const TextureCoord a, const TextureCoord b)
+inline const TextureCoord interpolate<TextureCoord>(const float t, const TextureCoord a, const TextureCoord b)
 {
     return TextureCoord(interpolate(t, a.u, b.u), interpolate(t, a.v, b.v));
 }

@@ -103,9 +103,13 @@
 		<Unit filename="graphics_test.cpp">
 			<Option target="Graphics Test" />
 		</Unit>
+		<Unit filename="guibutton.h" />
+		<Unit filename="guicontainer.h" />
+		<Unit filename="guielement.cpp" />
+		<Unit filename="guielement.h" />
+		<Unit filename="guilabel.h" />
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
-		<Unit filename="include/guielement.h" />
 		<Unit filename="main.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -146,7 +150,6 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="src/guielement.cpp" />
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
 		<Unit filename="structs.cpp">
