@@ -14,10 +14,10 @@ int main()
     Display::initFrame();
     vector<function<void()>> needRunFunctions;
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    shared_ptr<GUILabel> lastButtonLabel = make_shared<GUILabel>(L"", -0.5, 0.5, -0.15, -0.05);
+    shared_ptr<GUILabel> lastButtonLabel = make_shared<GUILabel>(L"", -0.5, 0.5, -0.35, -0.05);
     gui->add(make_shared<GUIButton>([lastButtonLabel]()
     {
-        lastButtonLabel->text = L"button 1 pressed";
+        lastButtonLabel->text = L"button 1 pressed √π ≤ ½·e²";
         lastButtonLabel->textColor = Color::RGB(1, 0, 0);
     }, L"Button 1", -0.4, 0.4, 0.9, 1));
     gui->add(make_shared<GUIButton>([lastButtonLabel]()
@@ -25,6 +25,11 @@ int main()
         lastButtonLabel->text = L"button 2 pressed";
         lastButtonLabel->textColor = Color::RGB(1, 1, 0);
     }, L"Button 2", -0.4, 0.4, 0.7, 0.8));
+    gui->add(make_shared<GUIButton>([lastButtonLabel]()
+    {
+        lastButtonLabel->text = L"π\n⌠\n│ sin(x) dx = 2\n⌡\n0";
+        lastButtonLabel->textColor = Color::RGB(1, 1, 0);
+    }, L"Button 1½", -0.4, 0.4, 0.8, 0.9));
     shared_ptr<GUILabel> fpsLabel = make_shared<GUILabel>(L"", -0.5, 0.5, -0.05, 0.05);
     gui->add(make_shared<GUIContainer>(-0.5, 0.5, -0.4, 0.1)->add(fpsLabel)->add(lastButtonLabel));
     gui->add(make_shared<GUIButton>([&needRunFunctions, &gui]()
