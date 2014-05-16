@@ -103,6 +103,7 @@
 			<Option target="Graphics Test" />
 		</Unit>
 		<Unit filename="guibutton.h" />
+		<Unit filename="guicanvas.h" />
 		<Unit filename="guicontainer.h" />
 		<Unit filename="guielement.cpp" />
 		<Unit filename="guielement.h" />

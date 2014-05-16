@@ -1,6 +1,8 @@
 #include "platform.h"
 #include "guibutton.h"
 #include "guilabel.h"
+#include "guicanvas.h"
+#include "text.h"
 #include <cwchar>
 #include <sstream>
 #include <iostream>
@@ -54,6 +56,19 @@ int main()
             gui->reset();
         });
     }, L"Set 1024x768 graphics", -0.4, 0.4, -0.4, -0.3, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(0, 0, 1)));
+    gui->add(make_shared<GUICanvas>(-1, -0.5, -0.25, 0.25, []() -> Mesh
+                                    {
+                                        wstring str = L"Hello";
+                                        Mesh mesh = Text::mesh(str, Color::RGB(0, 0, 1));
+                                        mesh->add(invert(mesh));
+                                        float width = Text::width(str);
+                                        float height = Text::height(str);
+                                        return (Mesh)transform(Matrix::translate(-width / 2, -height / 2, 0)
+                                                               .concat(Matrix::scale(2 / width))
+                                                               .concat(Matrix::rotateY(Display::timer() * M_PI))
+                                                               .concat(Matrix::translate(0, 0, -0.5)), mesh);
+                                    }));
+
     while(true)
     {
         Display::initFrame();
@@ -65,8 +80,9 @@ int main()
         glClearColor(0, 0, 0, 0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         TextureDescriptor td = TextureDescriptor(background, 0, Display::width() / background.width(), 0, Display::height() / background.height());
-        Mesh backgroundmesh=Generate::quadrilateral(td, VectorF(-Display::scaleX(), -Display::scaleY(), -1), Color(1), VectorF(Display::scaleX(), -Display::scaleY(), -1), Color(1), VectorF(Display::scaleX(), Display::scaleY(), -1), Color(1), VectorF(-Display::scaleX(), Display::scaleY(), -1), Color(1));
-        renderer<<backgroundmesh;
+        Mesh backgroundmesh = Generate::quadrilateral(td, VectorF(-Display::scaleX(), -Display::scaleY(), -1), Color(1), VectorF(Display::scaleX(), -Display::scaleY(), -1), Color(1),
+                              VectorF(Display::scaleX(), Display::scaleY(), -1), Color(1), VectorF(-Display::scaleX(), Display::scaleY(), -1), Color(1));
+        renderer << backgroundmesh;
         Display::initOverlay();
         wostringstream os;
         os << L"FPS : " << setprecision(4) << setw(5) << setfill(L'0') << left << Display::averageFPS();
@@ -75,6 +91,7 @@ int main()
         Display::flip(60);
         vector<function<void()>> fns = std::move(needRunFunctions);
         needRunFunctions.clear();
+
         for(function<void()> fn : fns)
         {
             fn();

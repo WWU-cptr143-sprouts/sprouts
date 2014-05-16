@@ -407,11 +407,17 @@ inline VectorF normalize(const VectorI & v)
 {
     return normalize((VectorF)v);
 }
+
 inline VectorF normalizeNoThrow(const VectorI & v)
 {
     return normalizeNoThrow((VectorF)v);
 }
 
 constexpr VectorF gravityVector = VectorF(0, -9.8, 0);
+
+inline float findIntersectionPoint(VectorF a, VectorF b, VectorF normal, float d)
+{
+    return (dot(a, normal) + d) / dot(a - b, normal);
+}
 
 #endif // VECTOR_H
