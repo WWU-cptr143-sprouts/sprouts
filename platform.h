@@ -223,6 +223,9 @@ namespace Display
     VectorF transformMouseTo3D(float x, float y, float depth = 1.0f);
     MouseButton getMouseState();
     bool getKeyState(KeyboardKey key);
+    bool fullScreen();
+    void fullScreen(bool fs);
+    void setSize(int width, int height);
 }
 
 void startGraphics();

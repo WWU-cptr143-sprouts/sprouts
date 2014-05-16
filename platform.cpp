@@ -218,6 +218,7 @@ void endGraphics()
 }
 
 static int preferredXRes = -1, preferredYRes = -1;
+static bool isFullScreen = false;
 
 void setPreferredMode(int xRes, int yRes)
 {
@@ -225,11 +226,8 @@ void setPreferredMode(int xRes, int yRes)
     preferredYRes = yRes;
 }
 
-void startGraphics()
+static void makeScreenResolution()
 {
-    startSDL();
-    if(runningGraphics.exchange(true))
-        return;
     if(preferredXRes > 0 && preferredYRes > 0)
     {
         xResInternal = preferredXRes;
@@ -258,6 +256,15 @@ void startGraphics()
         yResInternal = 768;
 #endif
     }
+}
+
+void startGraphics()
+{
+    startSDL();
+    if(runningGraphics.exchange(true))
+        return;
+    isFullScreen = false;
+    makeScreenResolution();
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -276,6 +283,66 @@ void startGraphics()
         exit(1);
     }
     SDL_SetHint(SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK, "1");
+}
+
+void Display::fullScreen(bool fs)
+{
+    assert(runningGraphics);
+    if(fs && isFullScreen)
+        return;
+    if(!fs && !isFullScreen)
+        return;
+    isFullScreen = fs;
+#if 1
+    SDL_SetWindowFullscreen(window, isFullScreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+    SDL_Rect rect;
+    if(isFullScreen)
+    {
+        SDL_GetWindowSize(window, &rect.w, &rect.h);
+        xResInternal = rect.w;
+        yResInternal = rect.h;
+    }
+    else
+    {
+        makeScreenResolution();
+        SDL_SetWindowSize(window, xResInternal, yResInternal);
+    }
+#else
+    int displayIndex = SDL_GetWindowDisplayIndex(window);
+    SDL_Rect rect;
+    SDL_GetDisplayBounds(displayIndex, &rect);
+    SDL_SetWindowBordered(window, isFullScreen ? SDL_FALSE : SDL_TRUE);
+    if(isFullScreen)
+    {
+        SDL_SetWindowPosition(window, rect.x, rect.y);
+        SDL_SetWindowSize(window, rect.w, rect.h);
+        SDL_RaiseWindow(window);
+        xResInternal = rect.w;
+        yResInternal = rect.h;
+    }
+    else
+    {
+        makeScreenResolution();
+        SDL_SetWindowSize(window, xResInternal, yResInternal);
+        SDL_SetWindowPosition(window, 0, 0);
+    }
+#endif
+}
+
+bool Display::fullScreen()
+{
+    return isFullScreen;
+}
+
+void Display::setSize(int width, int height)
+{
+    assert(width > 0 && height > 0 && runningGraphics);
+    if(!isFullScreen)
+    {
+        SDL_SetWindowSize(window, width, height);
+        xResInternal = width;
+        yResInternal = height;
+    }
 }
 
 static volatile double lastFlipTime = 0;
