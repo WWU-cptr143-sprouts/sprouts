@@ -1,7 +1,7 @@
 #include "cubicspline.h"
 #include "util.h"
 
-bool CubicSpline::intersects(const CubicSpline2D & rt, VectorF ignoreAxis) const
+bool CubicSpline::intersects(const CubicSpline & rt, VectorF ignoreAxis) const
 {
     const int splitCount = 100; // number of line segments to split spline into
     ignoreAxis = normalize(ignoreAxis);
