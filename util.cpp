@@ -5,12 +5,6 @@
 
 using namespace std;
 
-uint32_t makeSeed()
-{
-    uint64_t v = chrono::system_clock::now().time_since_epoch().count();
-    return (uint32_t)v ^ (uint32_t)(v >> 32);
-}
-
 #if 0 // testing balanced_tree
 namespace
 {

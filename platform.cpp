@@ -112,7 +112,7 @@ initializer initializer1([]()
 shared_ptr<Reader> getResourceReader(wstring resource)
 {
     startSDL();
-    string fname = wcsrtombs(getResourceFileName(resource));
+    string fname = wstringToString(getResourceFileName(resource));
     return make_shared<RWOpsReader>(SDL_RWFromFile(fname.c_str(), "rb"));
 }
 #elif __ANDROID
@@ -149,7 +149,7 @@ static wstring getExecutablePath()
         throw runtime_error(string("can't get executable path : ") + strerror(errno));
     }
     buf[rv] = '\0';
-    return mbsrtowcs(&buf[0]);
+    return stringToWString(&buf[0]);
 }
 
 initializer initializer1([]()
@@ -166,7 +166,7 @@ initializer initializer1([]()
 shared_ptr<Reader> getResourceReader(wstring resource)
 {
     startSDL();
-    string fname = wcsrtombs(getResourceFileName(resource));
+    string fname = wstringToString(getResourceFileName(resource));
     return make_shared<RWOpsReader>(SDL_RWFromFile(fname.c_str(), "rb"));
 }
 #elif __unix
@@ -903,12 +903,12 @@ void glLoadMatrix(Matrix mat)
 
 wstring Display::title()
 {
-    return mbsrtowcs(SDL_GetWindowTitle(window));
+    return stringToWString(SDL_GetWindowTitle(window));
 }
 
 void Display::title(wstring newTitle)
 {
-    string s = wcsrtombs(newTitle);
+    string s = wstringToString(newTitle);
     SDL_SetWindowTitle(window, s.c_str());
 }
 
@@ -1048,12 +1048,12 @@ wstring getClipboardText()
     const char * text = SDL_GetClipboardText();
     if(text == nullptr)
         return L"";
-    return mbsrtowcs(string(text));
+    return stringToWString(string(text));
 }
 
 void setClipboardText(wstring text)
 {
-    string str = wcsrtombs(text);
+    string str = wstringToString(text);
     SDL_SetClipboardText(str.c_str());
 }
 

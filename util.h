@@ -21,7 +21,7 @@ using namespace std;
 const float eps = 1e-4;
 
 template <typename T>
-inline const T limit(const T v, const T minV, const T maxV)
+inline const T limit(const T v, const T minV, const T maxV) // returns the value v limited to the range minV <= v <= maxV
 {
     if(v > maxV)
     {
@@ -36,18 +36,18 @@ inline const T limit(const T v, const T minV, const T maxV)
     return v;
 }
 
-inline int ifloor(float v)
+inline int ifloor(float v) // returns the floor of v as an int
 {
     return floor(v);
 }
 
-inline int iceil(float v)
+inline int iceil(float v) // returns the ceil of v as an int
 {
     return ceil(v);
 }
 
 template <typename T>
-inline int sgn(T v)
+inline int sgn(T v) // the sign function : returns -1 if v is negative, 1 if v is positive and 0 if v == 0
 {
     if(v < 0)
     {
@@ -63,12 +63,12 @@ inline int sgn(T v)
 }
 
 template <typename T>
-inline const T interpolate(const float t, const T a, const T b)
+inline const T interpolate(const float t, const T a, const T b) // linear interpolation : returns a if t == 0, b if t == 1 and interpolates in between
 {
     return a + t * (b - a);
 }
 
-class initializer
+class initializer // class for running a function before main
 {
 private:
     void (*finalizeFn)();
@@ -89,7 +89,7 @@ public:
     }
 };
 
-class finalizer
+class finalizer // class for running a function after main or when exit is called
 {
 private:
     void (*finalizeFn)();
@@ -107,7 +107,7 @@ public:
     }
 };
 
-inline string wcsrtombs(wstring wstr)
+inline string wstringToString(wstring wstr)
 {
     size_t destLen = wstr.length() * 4 + 1 + 32/*for extra buffer space*/;
     char *str = new char[destLen];
@@ -128,7 +128,7 @@ inline string wcsrtombs(wstring wstr)
     return retval;
 }
 
-inline wstring mbsrtowcs(string str)
+inline wstring stringToWString(string str)
 {
     size_t destLen = str.length() + 1 + 32/* for extra buffer space*/;
     wchar_t *wstr = new wchar_t[destLen];
@@ -148,6 +148,8 @@ inline wstring mbsrtowcs(string str)
     delete []wstr;
     return retval;
 }
+
+// not used
 
 //class flag final
 //{
@@ -217,7 +219,7 @@ inline wstring mbsrtowcs(string str)
 //};
 
 template <typename T, size_t arraySize>
-class circularDeque final
+class circularDeque final // a deque class like #include <deque> but implemented as a circular queue
 {
 public:
     typedef T value_type;
@@ -786,28 +788,8 @@ public:
     }
 };
 
-uint32_t makeSeed();
-
-inline uint32_t makeSeed(wstring str)
-{
-    if(str == L"")
-    {
-        return makeSeed();
-    }
-
-    uint32_t retval = 0;
-
-    for(wchar_t ch : str)
-    {
-        retval *= 9;
-        retval += ch;
-    }
-
-    return retval;
-}
-
 template <typename T>
-struct default_comparer final
+struct default_comparer final // the default comparer class for balanced_tree
 {
     template <typename U>
     int operator()(const T &l, const U &r) const
@@ -827,24 +809,24 @@ struct default_comparer final
 };
 
 template <typename T, typename Compare = default_comparer<T>>
-class balanced_tree final
+class balanced_tree final // a balanced tree class that also has all the nodes in a linked list
 {
 private:
-    struct Node
+    struct Node // the tree node class
     {
         T value;
-        unsigned depth;
-        Node *left, *right;
-        Node *prev, *next;
-        Node(const T &value)
+        unsigned depth; // the depth of this subtree
+        Node *left, *right; // the left and right children
+        Node *prev, *next; // for the linked list
+        Node(const T &value) // create a node containing value by copying it
             : value(value), depth(0)
         {
         }
-        Node(T  &&value)
+        Node(T &&value) // create a node containing value by moving it
             : value(move(value)), depth(0)
         {
         }
-        void calcDepth()
+        void calcDepth() // recalculate this subtree's depth
         {
             unsigned newDepth = 0;
 
@@ -862,7 +844,7 @@ private:
         }
     };
     Node *root, *head, *tail;
-    void removeNodeFromList(Node *node)
+    void removeNodeFromList(Node *node) // remove node from the linked list
     {
         if(node->prev == nullptr)
         {
@@ -883,7 +865,7 @@ private:
         }
     }
     Compare compare;
-    static void rotateLeft(Node  *&node)
+    static void rotateLeft(Node *&node) // rotate the subtree node left
     {
         assert(node && node->right);
         Node *tree1 = node->left;
@@ -898,7 +880,7 @@ private:
         node->left->calcDepth();
         node->calcDepth();
     }
-    static void rotateRight(Node  *&node)
+    static void rotateRight(Node *&node) // rotate the subtree node right
     {
         assert(node && node->left);
         Node *tree1 = node->left->left;
@@ -913,7 +895,7 @@ private:
         node->right->calcDepth();
         node->calcDepth();
     }
-    static void balanceNode(Node  *&node)
+    static void balanceNode(Node *&node) // balance the subtree node
     {
         assert(node);
         unsigned lDepth = 0;
@@ -939,7 +921,7 @@ private:
             rotateLeft(node);
         }
     }
-    void insertNode(Node *&tree, Node *newNode, Node *&head, Node *&tail)
+    void insertNode(Node *&tree, Node *newNode, Node *&head, Node *&tail) // insert a node into the tree and the linked list
     {
         assert(newNode);
 
@@ -974,7 +956,7 @@ private:
         tree->calcDepth();
         balanceNode(tree);
     }
-    static Node *removeInorderPredecessorH(Node  *&node)
+    static Node *removeInorderPredecessorH(Node *&node) // remove inorder predecessor's helper
     {
         assert(node != nullptr);
 
@@ -1005,7 +987,7 @@ private:
         return removeInorderPredecessorH(node->left);
     }
     template <typename ComparedType>
-    Node *removeNode(Node *&tree, ComparedType searchFor)
+    Node *removeNode(Node *&tree, ComparedType searchFor) // remove a node from the tree and linked list
     {
         if(tree == nullptr)
         {
@@ -1068,7 +1050,7 @@ private:
         }
     }
     template <typename Function, typename ComparedType>
-    void forEachNodeInRange(Function &fn, ComparedType min, ComparedType max, Node *tree)
+    void forEachNodeInRange(Function &fn, ComparedType min, ComparedType max, Node *tree) // for each node in the range min <= node->value <= max do fn(node->value)
     {
         if(tree == nullptr)
         {
@@ -1097,7 +1079,7 @@ private:
         }
     }
     template <typename ComparedType>
-    Node *find(ComparedType value, Node *tree)
+    Node *find(ComparedType value, Node *tree) // find a node with value value
     {
         if(tree == nullptr)
         {
@@ -1120,7 +1102,7 @@ private:
         }
     }
     template <typename ComparedType>
-    const Node *find(ComparedType value, const Node *tree)
+    const Node *find(ComparedType value, const Node *tree) // find a node with value value
     {
         if(tree == nullptr)
         {
@@ -1143,7 +1125,7 @@ private:
         }
     }
     template <typename Function>
-    static void forEachNode(Function &fn, Node *tree)
+    static void forEachNode(Function &fn, Node *tree) // for each node in the tree run fn(tree->value)
     {
         if(tree == nullptr)
         {
@@ -1154,7 +1136,7 @@ private:
         fn(tree->value);
         forEachNode(fn, tree->right);
     }
-    static Node *cloneTree(const Node *tree)
+    static Node *cloneTree(const Node *tree) // return a duplicated subtree from tree
     {
         if(tree == nullptr)
         {
@@ -1167,7 +1149,7 @@ private:
         retval->depth = tree->depth;
         return retval;
     }
-    static void freeTree(Node *tree)
+    static void freeTree(Node *tree) // deallocate the subtree tree
     {
         if(tree == nullptr)
         {
@@ -1178,7 +1160,7 @@ private:
         freeTree(tree->right);
         delete tree;
     }
-    static void constructList(Node *tree, Node *&head, Node *&tail)
+    static void constructList(Node *tree, Node *&head, Node *&tail) // construct the linked list from the subtree tree
     {
         if(tree == nullptr)
         {
@@ -1458,7 +1440,7 @@ public:
         : root(nullptr), head(nullptr), tail(nullptr), compare(compare)
     {
     }
-    explicit balanced_tree(Compare  &&compare)
+    explicit balanced_tree(Compare &&compare)
         : root(nullptr), head(nullptr), tail(nullptr), compare(move(compare))
     {
     }
@@ -1467,7 +1449,7 @@ public:
     {
         constructList(root, head, tail);
     }
-    balanced_tree(balanced_tree  &&rt)
+    balanced_tree(balanced_tree &&rt)
         : root(rt.root), head(rt.head), tail(rt.tail), compare(rt.compare)
     {
         rt.root = nullptr;
@@ -1491,7 +1473,7 @@ public:
         compare = rt.compare;
         return *this;
     }
-    const balanced_tree &operator =(balanced_tree && rt)
+    const balanced_tree &operator =(balanced_tree &&rt)
     {
         swap(root, rt.root);
         swap(head, rt.head);
@@ -1507,35 +1489,35 @@ public:
         tail = nullptr;
     }
     template <typename Function>
-    void forEach(Function &fn)
+    void forEach(Function &fn) // for each value in the tree do fn(value)
     {
         forEachNode(fn, root);
     }
     template <typename Function, typename ComparedType>
-    void forEachInRange(Function &fn, ComparedType min, ComparedType max)
+    void forEachInRange(Function &fn, ComparedType min, ComparedType max) // for each value in the tree in the range min <= value <= max do fn(value)
     {
         forEachNodeInRange(fn, min, max, root);
     }
     template <typename ComparedType>
-    const_iterator find(ComparedType value) const
+    const_iterator find(ComparedType value) const // find the value value
     {
         return iterator(find(value, (const Node *)root));
     }
     template <typename ComparedType>
-    iterator get(ComparedType value)
+    iterator get(ComparedType value) // find the value value
     {
         return iterator(find(value, root));
     }
-    void insert(const T &value)
+    void insert(const T &value) // insert value by copying
     {
         insertNode(root, new Node(value), head, tail);
     }
-    void insert(T  &&value)
+    void insert(T &&value) // insert value by moving
     {
         insertNode(root, new Node(move(value)), head, tail);
     }
     template <typename ComparedType>
-    bool erase(ComparedType searchFor)
+    bool erase(ComparedType searchFor) // erase the value == searchFor and return if any values were erased
     {
         Node *node = removeNode(root, searchFor);
 
@@ -1547,14 +1529,14 @@ public:
         delete node;
         return true;
     }
-    iterator erase(iterator iter)
+    iterator erase(iterator iter) // erase the value pointed to by iter and return the next location
     {
         iterator retval = iter;
         retval++;
         erase<const T &>(*iter);
         return retval;
     }
-    const_iterator erase(const_iterator iter)
+    const_iterator erase(const_iterator iter) // erase the value pointed to by iter and return the next location
     {
         const_iterator retval = iter;
         retval++;
@@ -1610,7 +1592,7 @@ public:
         return const_reverse_iterator(nullptr);
     }
     template <typename CompareType>
-    const_iterator rangeCBegin(CompareType searchFor) const
+    const_iterator rangeCBegin(CompareType searchFor) const // return the iterator to the first position where value >= searchFor
     {
         const Node *node = root, *lastNode = root;
 
@@ -1642,7 +1624,7 @@ public:
         return const_iterator(lastNode);
     }
     template <typename CompareType>
-    const_iterator rangeCEnd(CompareType searchFor) const
+    const_iterator rangeCEnd(CompareType searchFor) const // return the iterator to the first position where value < searchFor
     {
         const Node *node = root, *lastNode = root;
 
@@ -1674,7 +1656,7 @@ public:
         return const_iterator(lastNode);
     }
     template <typename CompareType>
-    iterator rangeBegin(CompareType searchFor)
+    iterator rangeBegin(CompareType searchFor) // return the iterator to the first position where value >= searchFor
     {
         Node *node = root, *lastNode = root;
 
@@ -1706,7 +1688,7 @@ public:
         return iterator(lastNode);
     }
     template <typename CompareType>
-    iterator rangeEnd(CompareType searchFor)
+    iterator rangeEnd(CompareType searchFor) // return the iterator to the first position where value < searchFor
     {
         Node *node = root, *lastNode = root;
 
@@ -1739,7 +1721,7 @@ public:
     }
 };
 
-inline int solveLinear(float a/*constant*/, float b/*linear*/, float retval[1])
+inline int solveLinear(float a/*constant*/, float b/*linear*/, float retval[1]) // find all the solutions x to a + b * x == 0 and return the number of solutions
 {
     retval[0] = 0;
 
@@ -1752,7 +1734,7 @@ inline int solveLinear(float a/*constant*/, float b/*linear*/, float retval[1])
     return 1;
 }
 
-inline int solveQuadratic(float a/*constant*/, float b/*linear*/, float c/*quadratic*/, float retval[2])
+inline int solveQuadratic(float a/*constant*/, float b/*linear*/, float c/*quadratic*/, float retval[2]) // find all the solutions x to a + b * x + c * x * x == 0 and return the number of solutions
 {
     if(abs(c) < eps)
     {
@@ -1780,7 +1762,7 @@ inline int solveQuadratic(float a/*constant*/, float b/*linear*/, float c/*quadr
 }
 
 inline int solveCubic(float a/*constant*/, float b/*linear*/, float c/*quadratic*/, float d/*cubic*/,
-               float retval[3])
+               float retval[3]) // find all the solutions x to a + b * x + c * x * x + d * x * x * x == 0 and return the number of solutions
 {
     if(abs(d) < eps)
     {
@@ -1827,42 +1809,44 @@ inline int solveCubic(float a/*constant*/, float b/*linear*/, float c/*quadratic
     return 1;
 }
 
-template <typename T, size_t sizeLimit = 10000>
-class ArenaAllocator final
-{
-private:
-    typedef char Node[sizeof(T)];
-    vector<Node *> nodes;
-public:
-    ArenaAllocator()
-    {
-    }
-    ~ArenaAllocator()
-    {
-        for(Node * node : nodes)
-        {
-            delete node;
-        }
-    }
-    void * alloc()
-    {
-        if(nodes.size() > 0)
-        {
-            void * retval = (void *)nodes.back();
-            nodes.pop_back();
-            return retval;
-        }
-        return (void *)new Node;
-    }
-    void free(void * mem)
-    {
-        if(mem == nullptr)
-            return;
-        if(nodes.size() >= sizeLimit)
-            delete (Node *)mem;
-        else
-            nodes.push_back((Node *)mem);
-    }
-};
+//unused
+
+//template <typename T, size_t sizeLimit = 10000>
+//class ArenaAllocator final
+//{
+//private:
+//    typedef char Node[sizeof(T)];
+//    vector<Node *> nodes;
+//public:
+//    ArenaAllocator()
+//    {
+//    }
+//    ~ArenaAllocator()
+//    {
+//        for(Node * node : nodes)
+//        {
+//            delete node;
+//        }
+//    }
+//    void * alloc()
+//    {
+//        if(nodes.size() > 0)
+//        {
+//            void * retval = (void *)nodes.back();
+//            nodes.pop_back();
+//            return retval;
+//        }
+//        return (void *)new Node;
+//    }
+//    void free(void * mem)
+//    {
+//        if(mem == nullptr)
+//            return;
+//        if(nodes.size() >= sizeLimit)
+//            delete (Node *)mem;
+//        else
+//            nodes.push_back((Node *)mem);
+//    }
+//};
 
 #endif // UTIL_H

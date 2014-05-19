@@ -195,7 +195,7 @@ public:
             uint32_t b1 = readU8();
             if(b1 == 0)
             {
-                DUMP_V(readString, "\"" + wcsrtombs(retval) + "\"");
+                DUMP_V(readString, "\"" + wstringToString(retval) + "\"");
                 return retval;
             }
             else if((b1 & 0x80) == 0)
@@ -427,7 +427,7 @@ private:
 public:
     FileReader(wstring fileName)
     {
-        string str = wcsrtombs(fileName);
+        string str = wstringToString(fileName);
         f = fopen(str.c_str(), "rb");
         if(f == nullptr)
             throw IOException(string("IO Error : ") + strerror(errno));
@@ -461,7 +461,7 @@ private:
 public:
     FileWriter(wstring fileName)
     {
-        string str = wcsrtombs(fileName);
+        string str = wstringToString(fileName);
         f = fopen(str.c_str(), "wb");
         if(f == nullptr)
             throw IOException(string("IO Error : ") + strerror(errno));

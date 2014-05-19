@@ -68,7 +68,7 @@ public:
 
 NetworkConnection::NetworkConnection(wstring url, uint16_t port)
 {
-    string url_utf8 = wcsrtombs(url), port_str = to_string((unsigned)port);
+    string url_utf8 = wstringToString(url), port_str = to_string((unsigned)port);
     addrinfo *addrList = nullptr;
     addrinfo hints;
     memset(&hints, 0, sizeof(hints));
