@@ -5,6 +5,7 @@
 #include "mesh.h"
 
 class GUIContainer;
+class GUIRunner;
 
 class GUIElement : public EventHandler
 {
@@ -21,7 +22,7 @@ public:
 
     GUIElement(float minX, float maxX, float minY, float maxY);
     virtual ~GUIElement();
-    Mesh render() const
+    Mesh render()
     {
         return render(0.1, 10, true);
     }
@@ -100,12 +101,14 @@ public:
     {
     }
 protected:
-    virtual Mesh render(float minZ, float maxZ, bool hasFocus) const = 0;
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) = 0;
     friend class GUIContainer; // so GUIContainer can set parent
+    friend class GUIRunner;
     shared_ptr<GUIContainer> getParent() const
     {
         return parent;
     }
+    virtual shared_ptr<GUIContainer> getTopLevelParent(); // definition in guicontainer.h
 private:
     shared_ptr<GUIContainer> parent;
 };

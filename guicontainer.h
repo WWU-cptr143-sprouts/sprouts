@@ -2,6 +2,7 @@
 #define GUICONTAINER_H_INCLUDED
 
 #include "guielement.h"
+#include "platform.h"
 #include <vector>
 
 class GUIContainer final : public GUIElement
@@ -283,7 +284,7 @@ public:
             return GUIElement::handleQuit(event);
         return e->handleQuit(event);
     }
-    virtual Mesh render(float minZ, float maxZ, bool hasFocus) const
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
         Mesh retval = nullptr;
         for(size_t i = 0; i < elements.size(); i++)
@@ -319,10 +320,35 @@ public:
     }
     virtual void reset()
     {
+        if(getParent() == nullptr)
+        {
+            minX = -Display::scaleX();
+            maxX = Display::scaleX();
+            minY = -Display::scaleY();
+            maxY = Display::scaleY();
+        }
         for(shared_ptr<GUIElement> e : elements)
             e->reset();
         firstFocusElement();
     }
+    virtual shared_ptr<GUIContainer> getTopLevelParent() override
+    {
+        shared_ptr<GUIContainer> retval = dynamic_pointer_cast<GUIContainer>(shared_from_this());
+        while(retval->getParent() != nullptr)
+            retval = retval->getParent();
+        return retval;
+    }
 };
+
+inline shared_ptr<GUIContainer> GUIElement::getTopLevelParent() // this is here so that GUIContainer is defined
+{
+    shared_ptr<GUIContainer> retval = getParent();
+    if(retval == nullptr)
+        return retval;
+    while(retval->getParent() != nullptr)
+        retval = retval->getParent();
+    return retval;
+}
+
 
 #endif // GUICONTAINER_H_INCLUDED

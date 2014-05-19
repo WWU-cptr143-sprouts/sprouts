@@ -9,7 +9,7 @@
 
 using namespace std;
 
-struct GUILabel final : public GUIElement
+struct GUILabel : public GUIElement
 {
     wstring text;
     Color textColor;
@@ -17,12 +17,12 @@ struct GUILabel final : public GUIElement
         : GUIElement(minX, maxX, minY, maxY), text(text), textColor(textColor)
     {
     }
-    virtual bool canHaveKeyboardFocus() const override
+    virtual bool canHaveKeyboardFocus() const override final
     {
         return false;
     }
 protected:
-    virtual Mesh render(float minZ, float maxZ, bool hasFocus) const override
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
         float textWidth = Text::width(text);
         float textHeight = Text::height(text);

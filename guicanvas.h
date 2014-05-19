@@ -25,7 +25,7 @@ protected:
     {
         return generateMeshFn();
     }
-    virtual Mesh render(float, float maxZ, bool) const override final
+    virtual Mesh render(float, float maxZ, bool) override final
     {
         Mesh retval = generateMesh();
         assert(retval != nullptr);

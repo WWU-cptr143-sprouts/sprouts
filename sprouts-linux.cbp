@@ -102,6 +102,8 @@
 		<Unit filename="graphics_test.cpp">
 			<Option target="Graphics Test" />
 		</Unit>
+		<Unit filename="gui.cpp" />
+		<Unit filename="gui.h" />
 		<Unit filename="guibutton.h" />
 		<Unit filename="guicanvas.h" />
 		<Unit filename="guicontainer.h" />

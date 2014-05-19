@@ -1,7 +1,5 @@
 #include "platform.h"
-#include "guibutton.h"
-#include "guilabel.h"
-#include "guicanvas.h"
+#include "gui.h"
 #include "text.h"
 #include <cwchar>
 #include <sstream>
@@ -12,11 +10,41 @@
 
 using namespace std;
 
+namespace
+{
+class FPSLabel : public GUILabel
+{
+public:
+    FPSLabel(float minX, float maxX, float minY, float maxY)
+        : GUILabel(L"", minX, maxX, minY, maxY)
+    {
+    }
+protected:
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
+    {
+        wostringstream os;
+        os << L"FPS : " << setprecision(4) << setw(5) << setfill(L'0') << left << Display::averageFPS();
+        text = os.str();
+        return GUILabel::render(minZ, maxZ, hasFocus);
+    }
+};
+
+bool runSubmenu()
+{
+    shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
+    gui->add(make_shared<GUIButton>([&gui]()
+    {
+        GUIRunner::get(gui)->quit();
+    }, L"Quit", -0.4, 0.4, -0.8, -0.7, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
+            0, 1)));
+    gui->add(make_shared<GUILabel>(L"Dialog", -0.5, 0.5, -0.15, 0.15));
+    return runAsDialog(gui);
+}
+}
+
 int main()
 {
     startGraphics();
-    Renderer renderer;
-    Image background(L"background.png");
     Display::initFrame();
     vector<function<void()>> needRunFunctions;
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(),
@@ -37,20 +65,20 @@ int main()
         lastButtonLabel->text = L"button 2 pressed";
         lastButtonLabel->textColor = Color::RGB(1, 1, 0);
     }, L"Button 2", -0.4, 0.4, 0.7, 0.8));
-    shared_ptr<GUILabel> fpsLabel = make_shared<GUILabel>(L"", -0.5, 0.5, -0.05, 0.05);
+    shared_ptr<GUILabel> fpsLabel = make_shared<FPSLabel>(-0.5, 0.5, -0.05, 0.05);
     gui->add(make_shared<GUIContainer>(-0.5, 0.5, -0.4, 0.1)->add(fpsLabel)->add(lastButtonLabel));
-    gui->add(make_shared<GUIButton>([&needRunFunctions, &gui]()
+    gui->add(make_shared<GUIButton>([&gui]()
     {
-        needRunFunctions.push_back([&gui]()
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
         {
             Display::setSize(640, 480);
             Display::initFrame();
             gui->reset();
         });
     }, L"Set 640x480 graphics", -0.4, 0.4, 0.3, 0.4));
-    gui->add(make_shared<GUIButton>([&needRunFunctions, &gui]()
+    gui->add(make_shared<GUIButton>([&gui]()
     {
-        needRunFunctions.push_back([&gui]()
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
         {
             Display::setSize(1024, 768);
             Display::initFrame();
@@ -58,9 +86,9 @@ int main()
         });
     }, L"Set 1024x768 graphics", -0.4, 0.4, -0.4, -0.3, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
             0, 1)));
-    gui->add(make_shared<GUIButton>([&needRunFunctions, &gui]()
+    gui->add(make_shared<GUIButton>([&gui]()
     {
-        needRunFunctions.push_back([&gui]()
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
         {
             Display::fullScreen(!Display::fullScreen());
             Display::initFrame();
@@ -68,15 +96,20 @@ int main()
         });
     }, L"Toggle fullscreen", -0.4, 0.4, -0.6, -0.5, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
             0, 1)));
-    gui->add(make_shared<GUIButton>([&needRunFunctions, &gui]()
+    gui->add(make_shared<GUIButton>([&gui]()
     {
-        needRunFunctions.push_back([&gui]()
-        {
-            endGraphics();
-            exit(0);
-        });
+        GUIRunner::get(gui)->quit();
     }, L"Quit", -0.4, 0.4, -0.7, -0.6, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
             0, 1)));
+    gui->add(make_shared<GUIButton>([&gui]()
+    {
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
+        {
+            runSubmenu();
+            gui->reset();
+        });
+    }, L"Run dialog", -0.4, 0.4, -0.9, -0.8, Color::RGB(1, 1, 0), Color::V(0), Color::RGB(1,
+            1, 1)));
     gui->add(make_shared<GUICanvas>(-1, -0.5, -0.25, 0.25, []() -> Mesh
     {
         wstring str = L"Hello";
@@ -99,35 +132,8 @@ int main()
         return (Mesh)transform(Matrix::rotateY(Display::timer() * M_PI / 3).concat(Matrix::translate(0, 0, -1)), retval);
     }));
 
-    while(true)
-    {
-        Display::initFrame();
-        gui->minX = -Display::scaleX();
-        gui->maxX = Display::scaleX();
-        gui->minY = -Display::scaleY();
-        gui->maxY = Display::scaleY();
-        Display::handleEvents(gui);
-        glClearColor(0, 0, 0, 0);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        TextureDescriptor td = TextureDescriptor(background, 0, Display::width() / background.width(), 0,
-                               Display::height() / background.height());
-        Mesh backgroundmesh = Generate::quadrilateral(td, VectorF(-Display::scaleX(), -Display::scaleY(),
-                              -1), Color(1), VectorF(Display::scaleX(), -Display::scaleY(), -1), Color(1),
-                              VectorF(Display::scaleX(), Display::scaleY(), -1), Color(1), VectorF(-Display::scaleX(),
-                                      Display::scaleY(), -1), Color(1));
-        renderer << backgroundmesh;
-        Display::initOverlay();
-        wostringstream os;
-        os << L"FPS : " << setprecision(4) << setw(5) << setfill(L'0') << left << Display::averageFPS();
-        fpsLabel->text = os.str();
-        renderer << gui->render();
-        Display::flip(60);
-        vector<function<void()>> fns = std::move(needRunFunctions);
-        needRunFunctions.clear();
+    runAsDialog(gui);
 
-        for(function<void()> fn : fns)
-        {
-            fn();
-        }
-    }
+    endGraphics();
+    return 0;
 }
