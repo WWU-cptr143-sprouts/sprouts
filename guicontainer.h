@@ -5,13 +5,29 @@
 #include "platform.h"
 #include <vector>
 
-class GUIContainer final : public GUIElement
+class GUIContainer : public GUIElement
 {
 private:
     vector<shared_ptr<GUIElement>> elements;
     size_t currentFocusIndex = 0;
-    static constexpr const size_t NoElement = (size_t)-1;
     size_t lastMouseElement = NoElement;
+protected:
+    static constexpr const size_t NoElement = (size_t)-1;
+    virtual void onSetFocus()
+    {
+    }
+    shared_ptr<GUIElement> getElement(size_t index)
+    {
+        return elements[index];
+    }
+    size_t getElementCount()
+    {
+        return elements.size();
+    }
+    size_t getCurrentElementIndex()
+    {
+        return currentFocusIndex;
+    }
 public:
     using GUIElement::render;
     GUIContainer(float minX, float maxX, float minY, float maxY)
@@ -26,14 +42,14 @@ public:
         return dynamic_pointer_cast<GUIContainer>(shared_from_this());
     }
 
-    virtual shared_ptr<GUIElement> getFocusElement() override
+    virtual shared_ptr<GUIElement> getFocusElement() override final
     {
         if(currentFocusIndex >= elements.size())
             return shared_from_this();
         return elements[currentFocusIndex];
     }
 
-    virtual bool canHaveKeyboardFocus() const override
+    virtual bool canHaveKeyboardFocus() const override final
     {
         for(shared_ptr<GUIElement> e : elements)
             if(e->canHaveKeyboardFocus())
@@ -41,7 +57,7 @@ public:
         return false;
     }
 
-    virtual void firstFocusElement() override
+    virtual void firstFocusElement() override final
     {
         for(currentFocusIndex = 0; currentFocusIndex < elements.size(); currentFocusIndex++)
         {
@@ -49,9 +65,10 @@ public:
                 return;
         }
         currentFocusIndex = 0;
+        onSetFocus();
     }
 
-    virtual void lastFocusElement() override
+    virtual void lastFocusElement() override final
     {
         currentFocusIndex = elements.size() - 1;
         for(size_t i = 0; i < elements.size(); currentFocusIndex--, i++)
@@ -60,9 +77,10 @@ public:
                 return;
         }
         currentFocusIndex = 0;
+        onSetFocus();
     }
 
-    virtual bool prevFocusElement() override /// returns true when reached container boundary
+    virtual bool prevFocusElement() override final /// returns true when reached container boundary
     {
         if(elements.size() == 0)
             return true;
@@ -80,7 +98,8 @@ public:
             if(elements[currentFocusIndex]->canHaveKeyboardFocus())
             {
                 elements[currentFocusIndex]->lastFocusElement();
-                return currentFocusIndex != elements.size() - 1;
+                onSetFocus();
+                return currentFocusIndex == elements.size() - 1;
             }
         }
         while(currentFocusIndex != elements.size() - 1);
@@ -88,7 +107,7 @@ public:
         return true;
     }
 
-    virtual bool nextFocusElement() override /// returns true when reached container boundary
+    virtual bool nextFocusElement() override final /// returns true when reached container boundary
     {
         if(elements.size() == 0)
             return true;
@@ -106,7 +125,8 @@ public:
             if(elements[currentFocusIndex]->canHaveKeyboardFocus())
             {
                 elements[currentFocusIndex]->firstFocusElement();
-                return currentFocusIndex != 0;
+                onSetFocus();
+                return currentFocusIndex == 0;
             }
         }
         while(currentFocusIndex != 0);
@@ -125,7 +145,7 @@ private:
         return NoElement;
     }
 public:
-    virtual bool handleMouseUp(MouseUpEvent &event) override
+    virtual bool handleMouseUp(MouseUpEvent &event) override final
     {
         size_t index = getIndexFromPosition(event.x, event.y);
         if(index != lastMouseElement)
@@ -146,7 +166,7 @@ public:
         }
         return GUIElement::handleMouseUp(event);
     }
-    virtual bool handleMouseDown(MouseDownEvent &event) override
+    virtual bool handleMouseDown(MouseDownEvent &event) override final
     {
         size_t index = getIndexFromPosition(event.x, event.y);
         if(index != lastMouseElement)
@@ -167,7 +187,7 @@ public:
         }
         return GUIElement::handleMouseDown(event);
     }
-    virtual bool handleMouseMove(MouseMoveEvent &event) override
+    virtual bool handleMouseMove(MouseMoveEvent &event) override final
     {
         size_t index = getIndexFromPosition(event.x, event.y);
         if(index != lastMouseElement)
@@ -188,7 +208,7 @@ public:
         }
         return GUIElement::handleMouseMove(event);
     }
-    virtual bool handleMouseMoveOut(MouseEvent &event) override
+    virtual bool handleMouseMoveOut(MouseEvent &event) override final
     {
         if(lastMouseElement != NoElement)
         {
@@ -198,7 +218,7 @@ public:
         }
         return GUIElement::handleMouseMoveOut(event);
     }
-    virtual bool handleMouseMoveIn(MouseEvent &event) override
+    virtual bool handleMouseMoveIn(MouseEvent &event) override final
     {
         size_t index = getIndexFromPosition(event.x, event.y);
         lastMouseElement = index;
@@ -208,7 +228,7 @@ public:
         }
         return GUIElement::handleMouseMoveIn(event);
     }
-    virtual bool handleMouseScroll(MouseScrollEvent &event) override
+    virtual bool handleMouseScroll(MouseScrollEvent &event) override final
     {
         size_t index = getIndexFromPosition(event.x, event.y);
         if(index != lastMouseElement)
@@ -229,14 +249,14 @@ public:
         }
         return GUIElement::handleMouseScroll(event);
     }
-    virtual bool handleKeyUp(KeyUpEvent &event) override
+    virtual bool handleKeyUp(KeyUpEvent &event) override final
     {
         shared_ptr<GUIElement> e = getFocusElement();
         if(e == shared_from_this())
             return GUIElement::handleKeyUp(event);
         return e->handleKeyUp(event);
     }
-    virtual bool handleKeyDown(KeyDownEvent &event) override
+    virtual bool handleKeyDown(KeyDownEvent &event) override final
     {
         shared_ptr<GUIElement> e = getFocusElement();
         bool retval;
@@ -270,14 +290,14 @@ public:
         }
         return false;
     }
-    virtual bool handleKeyPress(KeyPressEvent &event) override
+    virtual bool handleKeyPress(KeyPressEvent &event) override final
     {
         shared_ptr<GUIElement> e = getFocusElement();
         if(e == shared_from_this())
             return GUIElement::handleKeyPress(event);
         return e->handleKeyPress(event);
     }
-    virtual bool handleQuit(QuitEvent &event) override
+    virtual bool handleQuit(QuitEvent &event) override final
     {
         shared_ptr<GUIElement> e = getFocusElement();
         if(e == shared_from_this())
@@ -314,11 +334,12 @@ public:
                     {
                         getParent()->setFocus(shared_from_this());
                     }
+                    onSetFocus();
                 }
             }
         }
     }
-    virtual void reset()
+    virtual void reset() override
     {
         if(getParent() == nullptr)
         {
@@ -331,7 +352,7 @@ public:
             e->reset();
         firstFocusElement();
     }
-    virtual shared_ptr<GUIContainer> getTopLevelParent() override
+    virtual shared_ptr<GUIContainer> getTopLevelParent() override final
     {
         shared_ptr<GUIContainer> retval = dynamic_pointer_cast<GUIContainer>(shared_from_this());
         while(retval->getParent() != nullptr)

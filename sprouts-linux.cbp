@@ -106,6 +106,8 @@
 		<Unit filename="gui.h" />
 		<Unit filename="guibutton.h" />
 		<Unit filename="guicanvas.h" />
+		<Unit filename="guicircle_arrangement.cpp" />
+		<Unit filename="guicircle_arrangement.h" />
 		<Unit filename="guicontainer.h" />
 		<Unit filename="guielement.cpp" />
 		<Unit filename="guielement.h" />
@@ -118,10 +120,8 @@
 		</Unit>
 		<Unit filename="matrix.cpp" />
 		<Unit filename="matrix.h" />
-		<Unit filename="menu.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
 		<Unit filename="network.cpp">

@@ -10,6 +10,7 @@
 #include "guibutton.h"
 #include "guilabel.h"
 #include "guicanvas.h"
+#include "guicircle_arrangement.h"
 
 using namespace std;
 

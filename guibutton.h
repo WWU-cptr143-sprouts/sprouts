@@ -109,6 +109,11 @@ public:
 
         return GUIElement::handleMouseDown(event);
     }
+    virtual bool handleMouseMoveOut(MouseEvent &event) override
+    {
+        isMousePressed = false;
+        return true;
+    }
     virtual bool handleKeyDown(KeyDownEvent &event) override
     {
         if(!event.isRepetition && (event.key == KeyboardKey_Return || event.key == KeyboardKey_Space))

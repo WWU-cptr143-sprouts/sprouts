@@ -32,12 +32,31 @@ protected:
 bool runSubmenu()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    gui->add(make_shared<GUIButton>([&gui]()
+    wstring str = L"This is\nsoo neat.";
+    Mesh mesh = Text::mesh(str, Color::V(1));
+    mesh->add(invert(mesh));
+    float width = Text::width(str);
+    float height = Text::height(str);
+    mesh = (Mesh)transform(Matrix::translate(-width / 2, -height / 2, 0).concat(Matrix::scale(2 / width)).concat(Matrix::translate(0, 0, -1)), mesh);
+    shared_ptr<GUICircleArrangement> circleArrangement = make_shared<GUICircleArrangement>(-1, 1, -1, 1, -M_PI / 3, M_PI / 3, VectorF(-0.7, 0, 0), 0.8, mesh, VectorF(0, 0.5, 0));
+    circleArrangement->add(make_shared<GUIButton>([]()
+    {
+    }, L"Button 1", -0.4, 0.4, -0.8, -0.7, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
+            0, 1)));
+    circleArrangement->add(make_shared<GUIButton>([]()
+    {
+    }, L"Button 2", -0.4, 0.4, -0.8, -0.7, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
+            0, 1)));
+    circleArrangement->add(make_shared<GUIButton>([]()
+    {
+    }, L"Button 3", -0.4, 0.4, -0.8, -0.7, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
+            0, 1)));
+    circleArrangement->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
     }, L"Quit", -0.4, 0.4, -0.8, -0.7, Color::RGB(1, 0, 0), Color::V(0), Color::RGB(1,
             0, 1)));
-    gui->add(make_shared<GUILabel>(L"Dialog", -0.5, 0.5, -0.15, 0.15));
+    gui->add(circleArrangement);
     return runAsDialog(gui);
 }
 }
