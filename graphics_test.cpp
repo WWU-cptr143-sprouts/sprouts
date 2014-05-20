@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "gui.h"
 #include "text.h"
+#include "texture_atlas.h"
 #include <cwchar>
 #include <sstream>
 #include <iostream>
@@ -32,12 +33,7 @@ protected:
 bool runSubmenu()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    wstring str = L"This is\nsoo neat.";
-    Mesh mesh = Text::mesh(str, Color::V(1));
-    mesh->add(invert(mesh));
-    float width = Text::width(str);
-    float height = Text::height(str);
-    mesh = (Mesh)transform(Matrix::translate(-width / 2, -height / 2, 0).concat(Matrix::scale(2 / width)).concat(Matrix::translate(0, 0, -1)), mesh);
+    Mesh mesh = Generate::quadrilateral(TextureAtlas::MenuGearTop.td(), VectorF(-1, -1, -1), Color(1), VectorF(1, -1, -1), Color(1), VectorF(1, 1, -1), Color(1), VectorF(-1, 1, -1), Color(1));
     shared_ptr<GUICircleArrangement> circleArrangement = make_shared<GUICircleArrangement>(-1, 1, -1, 1, -M_PI / 3, M_PI / 3, VectorF(-0.7, 0, 0), 0.8, mesh, VectorF(0, 0.5, 0));
     circleArrangement->add(make_shared<GUIButton>([]()
     {

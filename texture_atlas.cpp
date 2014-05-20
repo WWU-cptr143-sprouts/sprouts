@@ -30,4 +30,5 @@ TextureAtlas::ButtonRightDiffuse(24, 128 + 16, 8, 16),
 TextureAtlas::ButtonMiddleDiffuse(8, 128 + 16, 16, 16),
 TextureAtlas::ButtonLeftSpecular(0, 128, 8, 16),
 TextureAtlas::ButtonRightSpecular(24, 128, 8, 16),
-TextureAtlas::ButtonMiddleSpecular(8, 128, 16, 16);
+TextureAtlas::ButtonMiddleSpecular(8, 128, 16, 16),
+TextureAtlas::MenuGearTop(0, 192, 64, 64);
