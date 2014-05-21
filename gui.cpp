@@ -40,8 +40,8 @@ bool GUIRunner::run()
         Display::handleEvents(gui);
         glClearColor(0, 0, 0, 0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        TextureDescriptor td = TextureDescriptor(background, 0, Display::width() / background.width(), 0,
-                               Display::height() / background.height());
+        TextureDescriptor td = TextureDescriptor(background, 0, (float)Display::width() / background.width(), 0,
+                               (float)Display::height() / background.height());
         Mesh backgroundmesh = Generate::quadrilateral(td, VectorF(-Display::scaleX(), -Display::scaleY(),
                               -1), Color(1), VectorF(Display::scaleX(), -Display::scaleY(), -1), Color(1),
                               VectorF(Display::scaleX(), Display::scaleY(), -1), Color(1), VectorF(-Display::scaleX(),

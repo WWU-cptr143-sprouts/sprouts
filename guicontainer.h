@@ -62,7 +62,11 @@ public:
         for(currentFocusIndex = 0; currentFocusIndex < elements.size(); currentFocusIndex++)
         {
             if(elements[currentFocusIndex]->canHaveKeyboardFocus())
+            {
+                elements[currentFocusIndex]->firstFocusElement();
+                onSetFocus();
                 return;
+            }
         }
         currentFocusIndex = 0;
         onSetFocus();
@@ -74,7 +78,11 @@ public:
         for(size_t i = 0; i < elements.size(); currentFocusIndex--, i++)
         {
             if(elements[currentFocusIndex]->canHaveKeyboardFocus())
+            {
+                elements[currentFocusIndex]->lastFocusElement();
+                onSetFocus();
                 return;
+            }
         }
         currentFocusIndex = 0;
         onSetFocus();

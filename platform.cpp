@@ -979,15 +979,15 @@ float Display::scaleY()
 
 void Display::initFrame()
 {
-    if(width < height)
-    {
-        scaleXInternal = static_cast<float>(width()) / height();
-        scaleYInternal = 1.0;
-    }
-    else
+    if(width() < height())
     {
         scaleXInternal = 1.0;
         scaleYInternal = static_cast<float>(height()) / width();
+    }
+    else
+    {
+        scaleXInternal = static_cast<float>(width()) / height();
+        scaleYInternal = 1.0;
     }
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
