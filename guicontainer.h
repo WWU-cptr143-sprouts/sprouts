@@ -286,6 +286,16 @@ public:
         }
         else if(event.mods & KeyboardModifiers_Shift)
             return false;
+        else if(event.key == KeyboardKey_Down)
+        {
+            nextFocusElement();
+            return true;
+        }
+        else if(event.key == KeyboardKey_Up)
+        {
+            prevFocusElement();
+            return true;
+        }
         else if(event.key == KeyboardKey_Home)
         {
             firstFocusElement();

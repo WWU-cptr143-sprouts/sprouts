@@ -23,6 +23,7 @@ struct CubicSpline final
     {
     }
     static Mesh renderSplineList(list<CubicSpline>);
+    #warning add color and texture to renderSplineList
     VectorF getConstant() const
     {
         return p0;

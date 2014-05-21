@@ -57,10 +57,7 @@
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
-		<Unit filename="cubicspline.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="cubicspline.cpp" />
 		<Unit filename="cubicspline.h">
 			<Option target="Debug" />
 			<Option target="Release" />

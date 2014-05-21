@@ -97,6 +97,10 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     {
         return Color(l.r * r, l.g * r, l.b * r, l.a);
     }
+    friend Color add(Color l, Color r)
+    {
+        return Color(l.r + r.r, l.g + r.g, l.b + r.b, min(l.a, r.a));
+    }
     friend ostream & operator <<(ostream & os, const Color & c) /// writes a color to a ostream
     {
         return os << "RGBA(" << c.r << ", " << c.g << ", " << c.b << ", " << c.a << ")";
