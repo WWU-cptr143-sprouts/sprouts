@@ -37,7 +37,8 @@ public:
     ButtonLeftSpecular,
     ButtonRightSpecular,
     ButtonMiddleSpecular,
-    MenuGearTop;
+    MenuGearTop,
+    MenuGearBottom;
 };
 
 #endif // TEXTURE_ATLAS_H_INCLUDED

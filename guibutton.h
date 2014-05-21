@@ -19,8 +19,8 @@ struct GUIButton : public GUIElement
     Color buttonColor;
     Color selectedButtonColor;
     GUIButton(function<void()> pressEvent, wstring title, float minX, float maxX, float minY,
-              float maxY, Color buttonColor = Color::V(0.75), Color textColor = Color::V(0),
-              Color selectedButtonColor = Color::V(0.75), Color selectedTextColor = Color::RGB(0, 0, 1))
+              float maxY, Color buttonColor = Color::V(0.5), Color textColor = Color::V(0),
+              Color selectedButtonColor = Color::RGB(185 / 255.0, 12 / 255.0, 12 / 255.0), Color selectedTextColor = Color::V(0))
         : GUIElement(minX, maxX, minY, maxY), title(title), textColor(textColor),
           selectedTextColor(selectedTextColor), buttonColor(buttonColor),
           selectedButtonColor(selectedButtonColor), buttonPressEvent(pressEvent)

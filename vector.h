@@ -11,7 +11,7 @@ using namespace std;
 
 struct VectorF;
 
-struct VectorI
+struct VectorI //integer vector
 {
     int x, y, z;
     constexpr VectorI(int x, int y, int z)
@@ -28,7 +28,7 @@ public:
     {
     }
 
-    constexpr const VectorI operator -() const
+    constexpr const VectorI operator -() const //switching sign
     {
         return VectorI(-x, -y, -z);
     }
@@ -38,63 +38,63 @@ public:
         return *this;
     }
 
-    constexpr const VectorI operator +(const VectorI & r) const
+    constexpr const VectorI operator +(const VectorI & r) const //addition
     {
         return VectorI(x + r.x, y + r.y, z + r.z);
     }
 
-    constexpr const VectorI operator -(const VectorI & r) const
+    constexpr const VectorI operator -(const VectorI & r) const //subtraction
     {
         return VectorI(x - r.x, y - r.y, z - r.z);
     }
 
-    constexpr const VectorI operator *(const VectorI & r) const
+    constexpr const VectorI operator *(const VectorI & r) const //multiplication
     {
         return VectorI(x * r.x, y * r.y, z * r.z);
     }
 
-    constexpr const VectorI operator *(int r) const
+    constexpr const VectorI operator *(int r) const//scalar multiplication
     {
         return VectorI(x * r, y * r, z * r);
     }
 
-    friend constexpr  VectorI operator *(int a, const VectorI & b)
+    friend constexpr  VectorI operator *(int a, const VectorI & b) //multiplication
     {
         return VectorI(a * b.x, a * b.y, a * b.z);
     }
 
-    constexpr bool operator ==(const VectorI & r) const
+    constexpr bool operator ==(const VectorI & r) const //comparison
     {
         return x == r.x && y == r.y && z == r.z;
     }
 
-    constexpr bool operator !=(const VectorI & r) const
+    constexpr bool operator !=(const VectorI & r) const //inequality
     {
         return x != r.x || y != r.y || z != r.z;
     }
 
-    const VectorI & operator +=(const VectorI & r)
+    const VectorI & operator +=(const VectorI & r) //adding to itself
     {
         x += r.x;
         y += r.y;
         z += r.z;
         return *this;
     }
-    const VectorI & operator -=(const VectorI & r)
+    const VectorI & operator -=(const VectorI & r)//subtracting to itself
     {
         x -= r.x;
         y -= r.y;
         z -= r.z;
         return *this;
     }
-    const VectorI & operator *=(const VectorI & r)
+    const VectorI & operator *=(const VectorI & r)//multiplying to itself
     {
         x *= r.x;
         y *= r.y;
         z *= r.z;
         return *this;
     }
-    const VectorI & operator *=(int r)
+    const VectorI & operator *=(int r) //multiplying by itself
     {
         x *= r;
         y *= r;
@@ -102,77 +102,77 @@ public:
         return *this;
     }
 
-    friend constexpr int dot(const VectorI & a, const VectorI & b)
+    friend constexpr int dot(const VectorI & a, const VectorI & b)//dot product
     {
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
-    friend constexpr int absSquared(const VectorI & v)
+    friend constexpr int absSquared(const VectorI & v)//length squared
     {
         return dot(v, v);
     }
 
-    friend float abs(const VectorI & v)
+    friend float abs(const VectorI & v)//length
     {
         return sqrt(absSquared(v));
     }
 
-    friend constexpr VectorI cross(const VectorI & a, const VectorI & b)
+    friend constexpr VectorI cross(const VectorI & a, const VectorI & b)//cross product
     {
         return VectorI(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
     }
 
-    friend ostream & operator <<(ostream & os, const VectorI & v)
+    friend ostream & operator <<(ostream & os, const VectorI & v)//prints vector
     {
         return os << "<" << v.x << ", " << v.y << ", " << v.z << ">";
     }
 };
 
-struct VectorF
+struct VectorF //floating point vector
 {
     float x, y, z;
 
-    constexpr VectorF(float x, float y, float z)
+    constexpr VectorF(float x, float y, float z)//constructor
         : x(x), y(y), z(z)
     {
     }
 
-    constexpr VectorF(float v = 0)
+    constexpr VectorF(float v = 0)//constructor for the origin
         : x(v), y(v), z(v)
     {
     }
 
-    constexpr VectorF(const VectorI & v)
+    constexpr VectorF(const VectorI & v)//converts integer vector to float vector
         : x(v.x), y(v.y), z(v.z)
     {
     }
 
-    explicit operator VectorI() const
+    explicit operator VectorI() const //sets vector to lowest it can be
     {
         return VectorI(ifloor(x), ifloor(y), ifloor(z));
     }
 
-    constexpr const VectorF operator -() const
+    constexpr const VectorF operator -() const//negates a vector
     {
         return VectorF(-x, -y, -z);
     }
 
-    constexpr const VectorF & operator +() const
+    constexpr const VectorF & operator +() const//leaves a vector positive
     {
         return *this;
     }
 
-    constexpr const VectorF operator +(const VectorF & r) const
+    constexpr const VectorF operator +(const VectorF & r) const//adds two vectors
     {
         return VectorF(x + r.x, y + r.y, z + r.z);
     }
 
-    friend constexpr VectorF operator +(const VectorF & l, const VectorI & r)
+    friend constexpr VectorF operator +(const VectorF & l, const VectorI & r)//adds int and float vectors
     {
         return l + (VectorF)r;
     }
 
-    friend constexpr VectorF operator +(const VectorI & l, const VectorF & r)
+    friend constexpr VectorF operator +(const VectorI & l, const VectorF & r)//adds int and float vectors
     {
         return (VectorF)l + r;
     }

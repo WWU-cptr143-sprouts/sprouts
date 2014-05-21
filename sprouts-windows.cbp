@@ -54,113 +54,57 @@
 			<Add library="./libpng.dll.a" />
 			<Add directory="SDL2-2.0.3/i686-w64-mingw32/lib" />
 		</Linker>
-		<Unit filename="area.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="area.cpp" />
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
-		<Unit filename="cubicspline.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="cubicspline.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="draw.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="edge.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="cubicspline.cpp" />
+		<Unit filename="cubicspline.h" />
+		<Unit filename="draw.cpp" />
+		<Unit filename="edge.h" />
 		<Unit filename="event.h" />
-		<Unit filename="game.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="game_state.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="game_state.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="gameai.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="gamegui.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="game.cpp" />
+		<Unit filename="game_state.cpp" />
+		<Unit filename="game_state.h" />
+		<Unit filename="gameai.cpp" />
+		<Unit filename="gamegui.cpp" />
 		<Unit filename="generate.h" />
-		<Unit filename="graph.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="graphics_test.cpp">
-			<Option target="Graphics Test" />
-		</Unit>
+		<Unit filename="graph.h" />
+		<Unit filename="graphics_test.cpp" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
 		<Unit filename="guibutton.h" />
+		<Unit filename="guicanvas.h" />
+		<Unit filename="guicircle_arrangement.cpp" />
+		<Unit filename="guicircle_arrangement.h" />
 		<Unit filename="guicontainer.h" />
 		<Unit filename="guielement.cpp" />
 		<Unit filename="guielement.h" />
 		<Unit filename="guilabel.h" />
 		<Unit filename="image.cpp" />
 		<Unit filename="image.h" />
-		<Unit filename="main.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="main.cpp" />
 		<Unit filename="matrix.cpp" />
 		<Unit filename="matrix.h" />
-		<Unit filename="menu.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
-		<Unit filename="network.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="network.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="node.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="oldnode.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="network.cpp" />
+		<Unit filename="network.h" />
+		<Unit filename="node.h" />
+		<Unit filename="oldnode.cpp" />
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
+		<Unit filename="png.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
-		<Unit filename="region.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="region.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="pngconf.h" />
+		<Unit filename="region.cpp" />
+		<Unit filename="region.h" />
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
-		<Unit filename="structs.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="structs.cpp" />
 		<Unit filename="text.cpp" />
 		<Unit filename="text.h" />
 		<Unit filename="texture_atlas.cpp" />
@@ -170,6 +114,8 @@
 		<Unit filename="util.h" />
 		<Unit filename="vector.cpp" />
 		<Unit filename="vector.h" />
+		<Unit filename="zconf.h" />
+		<Unit filename="zlib.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
