@@ -2,6 +2,7 @@
 #define CUBICSPLINE_H_INCLUDED
 
 #include <cmath>
+#include "mesh.h"
 #include "vector.h"
 
 using namespace std;
@@ -21,6 +22,7 @@ struct CubicSpline final
         : p0(p0), p1(p1), dp0(dp0), dp1(dp1)
     {
     }
+    static Mesh renderSplineList(list<CubicSpline>);
     VectorF getConstant() const
     {
         return p0;
