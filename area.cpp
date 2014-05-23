@@ -1,5 +1,5 @@
 #include "headers/area.h"
-//test
+
 ostream& operator<<(ostream& os, const Area& a)
 {
     os << "{ ";
