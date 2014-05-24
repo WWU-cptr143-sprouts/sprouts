@@ -1,5 +1,6 @@
 #include "cubicspline.h"
 #include "util.h"
+#include "generate.h"
 
 bool CubicSpline::intersects(const CubicSpline & rt, VectorF ignoreAxis) const
 {
@@ -36,4 +37,22 @@ bool CubicSpline::intersects(const CubicSpline & rt, VectorF ignoreAxis) const
         }
     }
     return false;
+}
+
+Mesh CubicSpline::renderSplineList(const vector<CubicSpline> &splines, TextureDescriptor texture, Color color, float lineWidth)
+{
+    if(splines.size() == 0)
+        return Mesh(new Mesh_t());
+    const int pointsPerSpline = 50;
+    vector<VectorF> points;
+    points.reserve(1 + pointsPerSpline * splines.size());
+    points.push_back(splines[0].evaluate(0));
+    for(int i = 0; i < splines.size(); i++)
+    {
+        for(int j = 1; j <= pointsPerSpline; j++)
+        {
+            points.push_back(splines[i].evaluate((float)j / pointsPerSpline));
+        }
+    }
+    return Generate::line(points, texture, color, lineWidth);
 }

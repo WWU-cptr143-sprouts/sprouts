@@ -4,6 +4,7 @@
 #include <cmath>
 #include "mesh.h"
 #include "vector.h"
+#include <vector>
 
 using namespace std;
 
@@ -22,8 +23,7 @@ struct CubicSpline final
         : p0(p0), p1(p1), dp0(dp0), dp1(dp1)
     {
     }
-    static Mesh renderSplineList(list<CubicSpline>);
-    #warning add color and texture to renderSplineList
+    static Mesh renderSplineList(const vector<CubicSpline> &splines, TextureDescriptor texture, Color color, float lineWidth);
     VectorF getConstant() const
     {
         return p0;

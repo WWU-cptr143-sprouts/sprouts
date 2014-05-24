@@ -91,6 +91,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="generate.cpp" />
 		<Unit filename="generate.h" />
 		<Unit filename="graph.h">
 			<Option target="Debug" />

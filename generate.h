@@ -4,6 +4,9 @@
 #include "mesh.h"
 #include "util.h"
 #include <utility>
+#include <vector>
+
+using namespace std;
 
 inline Mesh invert(Mesh mesh)
 {
@@ -193,6 +196,8 @@ inline Mesh unitBox(TextureDescriptor nx, TextureDescriptor px, TextureDescripto
 
     return retval;
 }
+
+Mesh line(const vector<VectorF> &linePoints, TextureDescriptor texture, Color color, float lineWidth);
 }
 
 #endif // GENERATE_H_INCLUDED

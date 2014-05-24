@@ -68,18 +68,21 @@ static void testSplineRendering()
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
     {
-#if 1
+#if 0
         Mesh mesh = Generate::unitBox(TextureAtlas::Point.td(), TextureAtlas::Point.td(), TextureAtlas::Point.td(), TextureAtlas::Point.td(), TextureAtlas::Point.td(), TextureAtlas::Point.td());
         mesh = (Mesh)transform(Matrix::translate(VectorF(-0.5)).concat(Matrix::rotateX(Display::timer())).concat(Matrix::rotateY(Display::timer() * M_PI)), mesh);
         mesh->add(invert(mesh));
         mesh = shadeMesh(mesh);
-        return (Mesh)transform(Matrix::translate(0, 0, -2), mesh);
+        mesh = (Mesh)transform(Matrix::translate(0, 0, -2), mesh);
+        return mesh;
         #warning change #if 1 to #if 0 when CubicSpline::renderSplineList is implemented
 #else
-        list<CubicSpline> testSplineList;
-        testSplineList.push_back(CubicSpline(VectorF(-3), VectorF(3), VectorF(1, 0, 0), VectorF(-1, 0, 0)));
-        Mesh mesh = CubicSpline::renderSplineList(testSplineList);
-        mesh->add(invert(mesh));
+        vector<CubicSpline> testSplineList;
+        VectorF dir = Matrix::rotateZ(Display::timer()).apply(VectorF(0, 10, 0));
+        testSplineList.push_back(CubicSpline(VectorF(-3, -3, 0), VectorF(0, 0, 0), dir, dir));
+        testSplineList.push_back(CubicSpline(VectorF(0, 0, 0), VectorF(3, 3, 0), dir, dir));
+        Mesh mesh = CubicSpline::renderSplineList(testSplineList, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.1);
+        //mesh->add(invert(mesh));
         return (Mesh)transform(Matrix::translate(0, 0, -10), mesh);
 #endif
     }));
