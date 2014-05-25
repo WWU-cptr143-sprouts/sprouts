@@ -63,10 +63,7 @@
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="event.h" />
-		<Unit filename="game_state.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="game_state.cpp" />
 		<Unit filename="game_state.h">
 			<Option target="Debug" />
 			<Option target="Release" />

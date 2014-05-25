@@ -624,7 +624,7 @@ public:
 
         return false;
     }
-    edge_iterator addEdge(const NT &data, node_iterator src, node_iterator dest)
+    edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
     {
         assert(src != end() && dest != end());
 
@@ -643,7 +643,7 @@ public:
         newEdge->src->adjacencyList.push_back(newEdge);
         return edge_iterator(begin(src) + (newEdge->src->adjacencyList.size() - 1));
     }
-    edge_iterator addEdge(NT  &&data, node_iterator src, node_iterator dest)
+    edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
     {
         assert(src != end() && dest != end());
 

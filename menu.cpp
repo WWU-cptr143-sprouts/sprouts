@@ -2,7 +2,72 @@
 #include "gui.h"
 #include "platform.h"
 #include "cubicspline.h"
+#include "game_state.h"
 #include <cstdlib>
+
+namespace
+{
+
+class MyCanvas : public GUICanvas
+{
+    Mesh theMesh;
+    VectorF lastPosition;
+    bool mouseDown = false;
+    VectorF getMousePosition(MouseEvent &event)
+    {
+        VectorF retval = Display::transformMouseTo3D(event.x, event.y, 1);
+        float height = maxY - minY;
+        float width = maxX - minX;
+        float scale = min(height, width);
+        retval.x -= (minX + maxX) / 2;
+        retval.x /= scale;
+        retval.y -= (minY + maxY) / 2;
+        retval.y /= scale;
+        return retval;
+    }
+public:
+    MyCanvas(float minX, float maxX, float minY, float maxY)
+        : GUICanvas(minX, maxX, minY, maxY), theMesh(Mesh(new Mesh_t()))
+    {
+    }
+    virtual bool handleMouseMove(MouseMoveEvent &event) override
+    {
+        if(!mouseDown)
+            return true;
+        VectorF currentPosition = getMousePosition(event);
+        theMesh->add(Generate::line({lastPosition, currentPosition}, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.1));
+        lastPosition = currentPosition;
+        return true;
+    }
+    virtual bool handleMouseMoveOut(MouseEvent &event) override
+    {
+        mouseDown = false;
+        return true;
+    }
+    virtual bool handleMouseDown(MouseDownEvent &event) override
+    {
+        if(event.button == MouseButton_Left)
+        {
+            mouseDown = true;
+            lastPosition = getMousePosition(event);
+        }
+        return true;
+    }
+    virtual bool handleMouseUp(MouseUpEvent &event) override
+    {
+        if(event.button == MouseButton_Left)
+        {
+            mouseDown = false;
+        }
+        return true;
+    }
+protected:
+    virtual Mesh generateMesh() const override
+    {
+        return theMesh;
+    }
+};
+}
 
 static const wchar_t *const creditsText =
     L"Credits:\n"
@@ -41,14 +106,18 @@ static void mainGame()
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
+    gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
+    {
+        GameState gs = makeEmptyGameState();
+        auto node1 = gs->addNode(make_shared<Node>(VectorF(-0.5, 0.5, 0)));
+        auto node2 = gs->addNode(make_shared<Node>(VectorF(-0.5, -0.5, 0)));
+        gs->addEdge(make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position, VectorF(1, 0, 0), VectorF(1, 0, 0))}, nullptr, nullptr), node1, node2);
+        return renderGameState(gs);
+    }));
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
-    }, L"Return to Video Settings", -1, 1, 0, 1));
-    gui->add(make_shared<GUIButton>([&gui]()
-    {
-        GUIRunner::get(gui)->quit();
-    }, L"Return to Video Settings", -1, 1, -1, 0));
+    }, L"Return", -0.4, 0.4, -1, -0.9));
     runAsDialog(gui);
 }
 
@@ -209,6 +278,14 @@ void mainMenu()
             gui->reset();
         });
     }, L"Credits", -0.4, 0.4, -0.8, -0.7));
+    circleArrangement->add(make_shared<GUIButton>([&gui]()
+    {
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
+        {
+            testBigButton();
+            gui->reset();
+        });
+    }, L"Test", -0.4, 0.4, -0.8, -0.7));
     circleArrangement->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->scheduleFunction([]()
