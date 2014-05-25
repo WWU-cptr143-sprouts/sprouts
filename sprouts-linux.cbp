@@ -50,10 +50,6 @@
 			<Add library="SDL2" />
 			<Add library="png" />
 		</Linker>
-		<Unit filename="area.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="color.h" />
 		<Unit filename="compressed_stream.cpp" />
 		<Unit filename="compressed_stream.h" />
@@ -62,32 +58,16 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="draw.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="edge.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="event.h" />
-		<Unit filename="game.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="game_state.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="game_state.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="gameai.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="gamegui.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
@@ -134,10 +114,6 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="oldnode.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
@@ -152,10 +128,6 @@
 		</Unit>
 		<Unit filename="stream.cpp" />
 		<Unit filename="stream.h" />
-		<Unit filename="structs.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="text.cpp" />
 		<Unit filename="text.h" />
 		<Unit filename="texture_atlas.cpp" />
