@@ -5,6 +5,8 @@
 #include "graph.h"
 #include "node.h"
 #include "edge.h"
+#include "mesh.h"
+#include "generate.h"
 #include <functional>
 #include <stack>
 

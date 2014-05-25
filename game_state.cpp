@@ -9,3 +9,8 @@ size_t std::hash<GameState>::operator ()(const GameState & gs)
 {
 #error finish
 }
+
+bool isValidGameState(const GameState & gs)
+{
+#error finish
+}

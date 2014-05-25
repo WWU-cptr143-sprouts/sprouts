@@ -27,6 +27,17 @@ static void creditsScreen()
     runAsDialog(gui);
 }
 
+static void mainGame()
+{
+    shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
+    gui->add(make_shared<GUILabel>(creditsText, -1, 1, -0.8, 1, Color::V(0)));
+    gui->add(make_shared<GUIButton>([&gui]()
+    {
+        GUIRunner::get(gui)->quit();
+    }, L"Return to Main Menu", -0.4, 0.4, -0.95, -0.85));
+    runAsDialog(gui);
+}
+
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
@@ -81,7 +92,7 @@ static void testSplineRendering()
         VectorF dir = Matrix::rotateZ(Display::timer()).apply(VectorF(0, 10, 0));
         testSplineList.push_back(CubicSpline(VectorF(-3, -3, 0), VectorF(0, 0, 0), dir, dir));
         testSplineList.push_back(CubicSpline(VectorF(0, 0, 0), VectorF(3, 3, 0), dir, dir));
-        Mesh mesh = CubicSpline::renderSplineList(testSplineList, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.1);
+        Mesh mesh = CubicSpline::renderSplineList(testSplineList, TextureAtlas::MenuGearTop.td(), Color::V(1), 0.4);
         //mesh->add(invert(mesh));
         return (Mesh)transform(Matrix::translate(0, 0, -10), mesh);
 #endif
