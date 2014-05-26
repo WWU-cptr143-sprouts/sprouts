@@ -45,6 +45,10 @@ struct CubicSpline final
         return t * t * t * getCubic() + t * t * getQuadratic() + t * getLinear() + getConstant();
     }
     bool intersects(const CubicSpline & rt, VectorF ignoreAxis = VectorF(0, 0, 1)) const; /// returns true if the splines intersect each other when projected onto the plane with normal == ignoreAxis
+    CubicSpline subSection(float minT, float maxT) const
+    {
+        return CubicSpline(evaluate(minT), evaluate(maxT), (maxT - minT) * (minT * (3 * minT * getCubic() + 2 * getQuadratic()) + getLinear()), (maxT - minT) * (maxT * (3 * maxT * getCubic() + 2 * getQuadratic()) + getLinear()));
+    }
 };
 
 #endif // CUBICSPLINE_H_INCLUDED

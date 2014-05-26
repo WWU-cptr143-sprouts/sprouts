@@ -19,8 +19,8 @@ inline GameState makeEmptyGameState()
     return GameState(new graph<shared_ptr<Node>, shared_ptr<Edge>>());
 }
 
-bool operator ==(const GameState & l, const GameState & r);
-inline bool operator !=(const GameState & l, const GameState & r)
+bool operator ==(GameState l, GameState r);
+inline bool operator !=(GameState l, GameState r)
 {
     return !operator ==(l, r);
 }
@@ -34,9 +34,9 @@ struct hash<GameState>
 };
 }
 
-bool isValidGameState(const GameState & gs);
+bool isValidGameState(GameState gs);
 
-Mesh renderGameState(const GameState & gs);
+Mesh renderGameState(GameState gs);
 
 typedef stack<GameState> GameStateStack;
 

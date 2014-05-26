@@ -4,7 +4,7 @@
 
 bool CubicSpline::intersects(const CubicSpline & rt, VectorF ignoreAxis) const
 {
-    const int splitCount = 100; // number of line segments to split spline into
+    const int splitCount = 50; // number of line segments to split spline into
     ignoreAxis = normalize(ignoreAxis);
     for(int segmentNumber = 0; segmentNumber < splitCount; segmentNumber++)
     {
