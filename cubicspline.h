@@ -10,7 +10,7 @@ using namespace std;
 
 struct CubicSpline final
 {
-    VectorF p0, p1, dp0, dp1;
+    VectorF p0, p1, dp0, dp1; // p0 : starting point, p1 : ending point, dp0 derivative at t = 0, dp1 derivative at t = 1
     CubicSpline()
         : p0(0), p1(0), dp0(0), dp1(0)
     {

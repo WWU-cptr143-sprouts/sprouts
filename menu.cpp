@@ -10,8 +10,8 @@ namespace
 
 class MyCanvas : public GUICanvas
 {
-    Mesh theMesh;
-    VectorF lastPosition;
+    vector<VectorF> line;
+    Mesh mesh;
     bool mouseDown = false;
     VectorF getMousePosition(MouseEvent &event)
     {
@@ -21,26 +21,28 @@ class MyCanvas : public GUICanvas
         float scale = min(height, width);
         retval.x -= (minX + maxX) / 2;
         retval.x /= scale;
+        retval.x *= 2;
         retval.y -= (minY + maxY) / 2;
         retval.y /= scale;
+        retval.y *= 2;
         return retval;
     }
 public:
     MyCanvas(float minX, float maxX, float minY, float maxY)
-        : GUICanvas(minX, maxX, minY, maxY), theMesh(Mesh(new Mesh_t()))
+        : GUICanvas(minX, maxX, minY, maxY), mesh(Mesh(new Mesh_t))
     {
     }
     virtual bool handleMouseMove(MouseMoveEvent &event) override
     {
         if(!mouseDown)
             return true;
-        VectorF currentPosition = getMousePosition(event);
-        theMesh->add(Generate::line({lastPosition, currentPosition}, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.1));
-        lastPosition = currentPosition;
+        line.push_back(getMousePosition(event));
         return true;
     }
     virtual bool handleMouseMoveOut(MouseEvent &event) override
     {
+        mesh->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
+        line.clear();
         mouseDown = false;
         return true;
     }
@@ -49,7 +51,8 @@ public:
         if(event.button == MouseButton_Left)
         {
             mouseDown = true;
-            lastPosition = getMousePosition(event);
+            line.clear();
+            line.push_back(getMousePosition(event));
         }
         return true;
     }
@@ -57,6 +60,8 @@ public:
     {
         if(event.button == MouseButton_Left)
         {
+            mesh->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
+            line.clear();
             mouseDown = false;
         }
         return true;
@@ -64,7 +69,9 @@ public:
 protected:
     virtual Mesh generateMesh() const override
     {
-        return theMesh;
+        Mesh retval = Mesh(new Mesh_t(*mesh));
+        retval->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
+        return retval;
     }
 };
 }
@@ -106,6 +113,9 @@ static void mainGame()
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
+#if 1
+    gui->add(make_shared<MyCanvas>(-0.9, 0.9, -0.9, 0.9));
+#else
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
     {
         GameState gs = makeEmptyGameState();
@@ -114,6 +124,7 @@ static void testBigButton()
         gs->addEdge(make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position, VectorF(1, 0, 0), VectorF(1, 0, 0))}, nullptr, nullptr), node1, node2);
         return renderGameState(gs);
     }));
+#endif
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();

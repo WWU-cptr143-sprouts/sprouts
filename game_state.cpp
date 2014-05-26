@@ -1,6 +1,7 @@
 #include "game_state.h"
 #include "texture_atlas.h"
 #include <unordered_map>
+#include <unordered_set>
 
 #if 0
 bool operator ==(GameState l, GameState r)
@@ -41,8 +42,16 @@ bool isValidGameState(GameState gs)
             shared_ptr<Node> node2 = *get<1>(*edgeIterator);
             assert(node2 != nullptr);
             assert(edge->cubicSplines.size() > 0);
-            assert(edge->cubicSplines.front().p0 == node->position);
-            assert(edge->cubicSplines.back().p1 == node2->position);
+            if(edge->cubicSplines.front().p0 == node->position)
+            {
+                assert(edge->cubicSplines.front().p0 == node->position);
+                assert(edge->cubicSplines.back().p1 == node2->position);
+            }
+            else
+            {
+                assert(edge->cubicSplines.front().p0 == node2->position);
+                assert(edge->cubicSplines.back().p1 == node->position);
+            }
             for(size_t i = 1; i < edge->cubicSplines.size(); i++)
             {
                 assert(edge->cubicSplines[i - 1].p1 == edge->cubicSplines[i].p0);
@@ -86,6 +95,7 @@ Mesh renderGameState(GameState gs)
     const float lineWidth = 0.01;
     const float dotSize = 0.02;
     Mesh retval = Mesh(new Mesh_t());
+    unordered_set<shared_ptr<Edge>> edges;
     for(auto nodeIterator = gs->begin(); nodeIterator != gs->end(); nodeIterator++)
     {
         shared_ptr<Node> node = *nodeIterator;
@@ -94,8 +104,11 @@ Mesh renderGameState(GameState gs)
         for(auto edgeIterator = gs->begin(nodeIterator); edgeIterator != gs->end(nodeIterator); edgeIterator++)
         {
             shared_ptr<Edge> edge = get<0>(*edgeIterator);
-            auto mesh = transform(Matrix::translate(0, 0, -1), CubicSpline::renderSplineList(edge->cubicSplines, TextureAtlas::Line.td(), Color::V(1), lineWidth));
-            retval->add(mesh);
+            if(get<1>(edges.insert(edge)))
+            {
+                auto mesh = transform(Matrix::translate(0, 0, -1), CubicSpline::renderSplineList(edge->cubicSplines, TextureAtlas::Line.td(), Color::V(1), lineWidth));
+                retval->add(mesh);
+            }
         }
     }
     return retval;
