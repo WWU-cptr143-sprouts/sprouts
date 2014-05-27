@@ -1,13 +1,15 @@
 #ifndef EDGE_H
 #define EDGE_H
-
 #include <vector> //needed for list of cubic splines
 #include <memory> //used for shared_ptr and weak_ptr
-
 #include "cubicspline.h"
-
 struct Region;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 struct Edge
 {
     vector<CubicSpline> cubicSplines; //list of cubic splines
@@ -17,7 +19,5 @@ struct Edge
     {
     }
 };
-
 #include "region.h"
-
 #endif // EDGE_H

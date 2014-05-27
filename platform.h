@@ -1,23 +1,23 @@
 #ifndef PLATFORM_H_INCLUDED
 #define PLATFORM_H_INCLUDED
-
 #include <GL/gl.h>
 #include <string>
 #include <memory>
 #include "matrix.h"
 #include "vector.h"
 #include "stream.h"
-
 #ifndef EVENT_H_INCLUDED
 class EventHandler;
 #endif // EVENT_H_INCLUDED
-
 void glLoadMatrix(Matrix mat);
-
 const float defaultFPS = 60;
-
 shared_ptr<Reader> getResourceReader(wstring resource);
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 enum KeyboardKey
 {
     KeyboardKey_Unknown,
@@ -47,7 +47,6 @@ enum KeyboardKey
     KeyboardKey_X,
     KeyboardKey_Y,
     KeyboardKey_Z,
-
     KeyboardKey_Backspace,
     KeyboardKey_Tab,
     KeyboardKey_Clear,
@@ -132,10 +131,8 @@ enum KeyboardKey
     KeyboardKey_Menu,
     KeyboardKey_Mode,
     KeyboardKey_PrintScreen,
-
     KeyboardKey_max = KeyboardKey_PrintScreen,
     KeyboardKey_min = KeyboardKey_Unknown,
-
     KeyboardKey_DQuote = KeyboardKey_SQuote,
     KeyboardKey_Underline = KeyboardKey_Dash,
     KeyboardKey_Tilde = KeyboardKey_BQuote,
@@ -171,6 +168,11 @@ enum KeyboardKey
     KeyboardKey_Break = KeyboardKey_Pause,
 };
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 enum KeyboardModifiers
 {
     KeyboardModifiers_None = 0,
@@ -191,6 +193,11 @@ enum KeyboardModifiers
     KeyboardModifiers_Meta = KeyboardModifiers_LMeta | KeyboardModifiers_RMeta,
 };
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 enum MouseButton
 {
     MouseButton_None = 0,
@@ -201,6 +208,11 @@ enum MouseButton
     MouseButton_X2 = 0x10
 };
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 namespace Display
 {
     wstring title();
@@ -227,17 +239,12 @@ namespace Display
     void fullScreen(bool fs);
     void setSize(int width, int height);
 }
-
 void startGraphics();
 void endGraphics();
 void setPreferredMode(int xRes = -1, int yRes = -1);
-
 bool hasClipboardText();
 wstring getClipboardText();
 void setClipboardText(wstring text);
-
 size_t currentGraphicsNumber(); // returns a number corresponding to the current graphics run
-
 #include "event.h"
-
 #endif // PLATFORM_H_INCLUDED

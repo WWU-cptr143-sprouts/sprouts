@@ -14,9 +14,13 @@
 #include <thread>
 #include <chrono>
 #include <list>
-
 using namespace std;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 struct graph_build_error : public runtime_error
 {
     graph_build_error(const string &msg)
@@ -24,366 +28,626 @@ struct graph_build_error : public runtime_error
     {
     }
 };
+/**
+  class for a directed graph
+  */
+template <typename NT, typename ET = NT>
 
 /**
-    class for a directed graph
-*/
-template <typename NT, typename ET = NT>
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 class graph
 {
-private:
-    struct Node;
-    struct Edge
-    {
-        ET data;
-        bool flag = false;
-        Node *src;
-        Node *dest;
-        Edge(const ET &data)  // copy into data
-            : data(data)
-        {
-        }
-        Edge(ET  &&data) // move into data
-            : data(data)
-        {
-        }
-    };
-
-    struct Node
-    {
-        int index;
-        NT data;
-        bool flag = false;
-        vector<Edge *> adjacencyList;
-        Node(int index, const NT &data)  // copy into data
-            : index(index), data(data)
-        {
-        }
-        Node(int index, NT  &&data) // move into data
-            : index(index), data(data)
-        {
-        }
-    };
-    vector<Node *> nodes;
-    vector<Edge *> edges;
-public:
-    graph() // default constructor : constructs empty graph
-    {
-    }
-    ~graph() // destructor : destroys graph
-    {
-        for(Node *node : nodes)
-        {
-            delete node;
-        }
-
-        for(Edge *edge : edges)
-        {
-            delete edge;
-        }
-    }
-    graph(const graph &rt)  // copy constructor
-    {
-        map<const Node *, Node *> nodeMap;
-
-        for(const Node *node : rt.nodes)
-        {
-            Node *newNode = new Node(nodes.size(), node->data);
-            nodes.push_back(newNode);
-            nodeMap[node] = newNode;
-        }
-
-        for(const Node *node : rt.nodes)
-        {
-            Node *newNode = nodeMap[node];
-
-            for(const Edge *edge : node->adjacencyList)
-            {
-                Edge *newEdge = new Edge(edge->data);
-                newEdge->src = node;
-                newEdge->dest = nodeMap[edge->dest];
-                newNode->adjacencyList.push_back(newEdge);
-                edges.push_back(newEdge);
-            }
-        }
-    }
-    graph(graph  &&rt) // move constructor
-    {
-        swap(nodes, rt.nodes);
-        swap(edges, rt.edges);
-    }
-    const graph &operator =(graph && rt)  // move assignment
-    {
-        swap(nodes, rt.nodes);
-        swap(edges, rt.edges);
-        return *this;
-    }
-    const graph &operator =(const graph &rt)   // copy assignment
-    {
-        if(&rt == this)
-        {
-            return *this;
-        }
-
-        for(Node *node : nodes)
-        {
-            delete node;
-        }
-
-        nodes.clear();
-
-        for(Edge *edge : edges)
-        {
-            delete edge;
-        }
-
-        edges.clear();
-        map<const Node *, Node *> nodeMap;
-
-        for(const Node *node : rt.nodes)
-        {
-            Node *newNode = new Node(nodes.size(), node->data);
-            nodes.push_back(newNode);
-            nodeMap[node] = newNode;
-        }
-
-        for(const Node *node : rt.nodes)
-        {
-            Node *newNode = nodeMap[node];
-
-            for(const Edge *edge : node->adjacencyList)
-            {
-                Edge *newEdge = new Edge(edge->data);
-                newEdge->src = node;
-                newEdge->dest = nodeMap[edge->dest];
-                newNode->adjacencyList.push_back(newEdge);
-                edges.push_back(newEdge);
-            }
-        }
-
-        return *this;
-    }
-    void clear()
-    {
-        for(Node *node : nodes)
-        {
-            delete node;
-        }
-
-        nodes.clear();
-
-        for(Edge *edge : edges)
-        {
-            delete edge;
-        }
-
-        edges.clear();
-    }
-    void build() // builds graph interactively
-    {
-        clear();
-        cout << "Enter the number of nodes:";
-        int nodeCount;
-
-        if(!(cin >> nodeCount) || nodeCount < 0)
-        {
-            throw graph_build_error("invalid node count");
-        }
-
-        vector<vector<pair<Edge *, int> > > adjacencyLists;
-        adjacencyLists.resize(nodeCount);
-
-        try
-        {
-            for(int i = 0; i < nodeCount; i++)
-            {
-                cout << "Node #" << (i + 1) << ":\n";
-                cout << "Enter Node Data:";
-                NT data;
-
-                if(!(cin >> data))
-                {
-                    throw graph_build_error("invalid node data");
-                }
-
-                Node *newNode = new Node(nodes.size(), move(data));  // move if we can because it's more efficient
-                nodes.push_back(newNode);
-
-                for(;;)
-                {
-                    cout << "Enter adjacent node (or 0 to end):";
-                    int n;
-
-                    if(!(cin >> n) || n < 0 || n > nodeCount)
-                    {
-                        throw graph_build_error("invalid node adjacency");
-                    }
-
-                    if(n == 0)
-                    {
-                        break;
-                    }
-
-                    for(auto edge : adjacencyLists[i])
-                    {
-                        if(get<1>(edge) == n - 1)
-                        {
-                            throw graph_build_error("duplicate node adjacency");
-                        }
-                    }
-
-                    ET data;
-                    cout << "Enter edge data:";
-
-                    if(!(cin >> data))
-                    {
-                        throw graph_build_error("invalid edge data");
-                    }
-
-                    Edge *newEdge;
-                    newEdge = new Edge(move(data)); // move if we can because it's more efficient
-                    adjacencyLists[i].push_back(make_pair(newEdge, n - 1));
-                }
-            }
-        }
-        catch(...)
-        {
-            for(auto adjacencyList : adjacencyLists)
-            {
-                for(auto edgePair : adjacencyList)
-                {
-                    delete get<0>(edgePair);
-                }
-            }
-
-            throw;
-        }
-
-        for(int i = 0; i < nodeCount; i++)
-        {
-            Node *node = nodes[i];
-
-            for(auto edgePair : adjacencyLists[i])
-            {
-                int destIndex = get<1>(edgePair);
-                Edge *edge = get<0>(edgePair);
-                edge->src = node;
-                edge->dest = nodes[destIndex];
-                node->adjacencyList.push_back(edge);
-            }
-        }
-    }
-    friend class node_iterator;
-    class node_iterator : public iterator<random_access_iterator_tag, NT> // node iterator
-    {
-        friend class graph;
     private:
-        int index;
-        const graph *g;
-        Node *get() const
+        struct Node;
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        struct Edge
         {
-            return g->nodes[index];
-        }
+            ET data;
+            bool flag = false;
+            Node *src;
+            Node *dest;
+            Edge(const ET &data)  // copy into data
+                : data(data)
+            {
+            }
+            Edge(ET  &&data) // move into data
+                : data(data)
+            {
+            }
+        };
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        struct Node
+        {
+            int index;
+            NT data;
+            bool flag = false;
+            vector<Edge *> adjacencyList;
+            Node(int index, const NT &data)  // copy into data
+                : index(index), data(data)
+            {
+            }
+            Node(int index, NT  &&data) // move into data
+                : index(index), data(data)
+            {
+            }
+        };
+        vector<Node *> nodes;
+        vector<Edge *> edges;
     public:
-        node_iterator()
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        graph() // default constructor : constructs empty graph
         {
         }
-        node_iterator(int index, const graph *g)
-            : index(index), g(g)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        ~graph() // destructor : destroys graph
         {
+
+            for(Node *node : nodes)
+            {
+                delete node;
+            }
+
+            for(Edge *edge : edges)
+            {
+                delete edge;
+            }
         }
-        friend bool operator ==(const node_iterator &l, const node_iterator &r)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param rt
+         *
+         * @return
+         **/
+        graph(const graph &rt)  // copy constructor
         {
-            return l.index == r.index;
+            map<const Node *, Node *> nodeMap;
+
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = new Node(nodes.size(), node->data);
+                nodes.push_back(newNode);
+                nodeMap[node] = newNode;
+            }
+
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = nodeMap[node];
+
+                for(const Edge *edge : node->adjacencyList)
+                {
+                    Edge *newEdge = new Edge(edge->data);
+                    newEdge->src = node;
+                    newEdge->dest = nodeMap[edge->dest];
+                    newNode->adjacencyList.push_back(newEdge);
+                    edges.push_back(newEdge);
+                }
+            }
         }
-        friend bool operator !=(const node_iterator &l, const node_iterator &r)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param rt
+         *
+         * @return
+         **/
+        graph(graph  &&rt) // move constructor
         {
-            return l.index != r.index;
+            swap(nodes, rt.nodes);
+            swap(edges, rt.edges);
         }
-        const NT *operator ->() const
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param rt
+         *
+         * @return
+         **/
+        const graph &operator =(graph && rt)  // move assignment
         {
-            return &g->nodes[index]->data;
-        }
-        const NT &operator *() const
-        {
-            return g->nodes[index]->data;
-        }
-        const node_iterator &operator ++()
-        {
-            ++index;
+            swap(nodes, rt.nodes);
+            swap(edges, rt.edges);
             return *this;
         }
-        node_iterator operator ++(int)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param rt
+         *
+         * @return
+         **/
+        const graph &operator =(const graph &rt)   // copy assignment
         {
-            return node_iterator(index++, g);
-        }
-        const node_iterator &operator --()
-        {
-            --index;
+
+            if(&rt == this)
+            {
+                return *this;
+            }
+
+            for(Node *node : nodes)
+            {
+                delete node;
+            }
+            nodes.clear();
+
+            for(Edge *edge : edges)
+            {
+                delete edge;
+            }
+            edges.clear();
+            map<const Node *, Node *> nodeMap;
+
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = new Node(nodes.size(), node->data);
+                nodes.push_back(newNode);
+                nodeMap[node] = newNode;
+            }
+
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = nodeMap[node];
+
+                for(const Edge *edge : node->adjacencyList)
+                {
+                    Edge *newEdge = new Edge(edge->data);
+                    newEdge->src = node;
+                    newEdge->dest = nodeMap[edge->dest];
+                    newNode->adjacencyList.push_back(newEdge);
+                    edges.push_back(newEdge);
+                }
+            }
             return *this;
         }
-        node_iterator operator --(int)
+
+        /**
+         * @brief Write what the function does here
+         *
+         void clear()
+         {
+
+         for(Node *node : nodes)
+         {
+         delete node;
+         }
+         nodes.clear();
+
+         for(Edge *edge : edges)
+         {
+         delete edge;
+         }
+         edges.clear();
+         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         void build() // builds graph interactively
+         {
+         clear();
+         cout << "Enter the number of nodes:";
+         int nodeCount;
+
+         if(!(cin >> nodeCount) || nodeCount < 0)
+         {
+         throw graph_build_error("invalid node count");
+         }
+         vector<vector<pair<Edge *, int> > > adjacencyLists;
+         adjacencyLists.resize(nodeCount);
+
+         try
+         {
+
+         for(int i = 0; i < nodeCount; i++)
+         {
+         cout << "Node #" << (i + 1) << ":\n";
+         cout << "Enter Node Data:";
+         NT data;
+
+         if(!(cin >> data))
+         {
+         throw graph_build_error("invalid node data");
+         }
+         Node *newNode = new Node(nodes.size(), move(data));  // move if we can because it's more efficient
+         nodes.push_back(newNode);
+
+         for(;;)
+         {
+         cout << "Enter adjacent node (or 0 to end):";
+         int n;
+
+         if(!(cin >> n) || n < 0 || n > nodeCount)
+         {
+         throw graph_build_error("invalid node adjacency");
+         }
+
+         if(n == 0)
+         {
+         break;
+         }
+
+         for(auto edge : adjacencyLists[i])
+         {
+
+         if(get<1>(edge) == n - 1)
+         {
+         throw graph_build_error("duplicate node adjacency");
+         }
+         }
+         ET data;
+         cout << "Enter edge data:";
+
+         if(!(cin >> data))
+         {
+         throw graph_build_error("invalid edge data");
+         }
+         Edge *newEdge;
+         newEdge = new Edge(move(data)); // move if we can because it's more efficient
+         adjacencyLists[i].push_back(make_pair(newEdge, n - 1));
+         }
+         }
+         }
+
+         catch(...)
+         {
+
+        for(auto adjacencyList : adjacencyLists)
         {
-            return node_iterator(index--, g);
+
+            for(auto edgePair : adjacencyList)
+            {
+                delete get<0>(edgePair);
+            }
         }
-        friend node_iterator operator +(int v, const node_iterator &iter)
-        {
-            return node_iterator(v + iter.index, iter.g);
-        }
-        friend node_iterator operator +(const node_iterator &iter, int v)
-        {
-            return node_iterator(iter.index + v, iter.g);
-        }
-        friend node_iterator operator -(const node_iterator &iter, int v)
-        {
-            return node_iterator(iter.index - v, iter.g);
-        }
-        friend int operator -(const node_iterator &l, const node_iterator &r)
-        {
-            return l.index - r.index;
-        }
-        friend bool operator <(const node_iterator &l, const node_iterator &r)
-        {
-            return l.index < r.index;
-        }
-        friend bool operator <=(const node_iterator &l, const node_iterator &r)
-        {
-            return l.index <= r.index;
-        }
-        friend bool operator >=(const node_iterator &l, const node_iterator &r)
-        {
-            return l.index >= r.index;
-        }
-        friend bool operator >(const node_iterator &l, const node_iterator &r)
-        {
-            return l.index > r.index;
-        }
-        const node_iterator &operator +=(int v)
-        {
-            index += v;
-            return *this;
-        }
-        const node_iterator &operator -=(int v)
-        {
-            index -= v;
-            return *this;
-        }
-        const NT &operator [](int index2) const
-        {
-            return g->nodes[index + index2]->data;
-        }
-        const int position() const
-        {
-            return index;
-        }
-    };
-    class edge_iterator : public
-        iterator<random_access_iterator_tag, pair<const ET &, node_iterator> > // edge iterator
+        throw;
+}
+
+for(int i = 0; i < nodeCount; i++)
+{
+    Node *node = nodes[i];
+
+    for(auto edgePair : adjacencyLists[i])
     {
+        int destIndex = get<1>(edgePair);
+        Edge *edge = get<0>(edgePair);
+        edge->src = node;
+        edge->dest = nodes[destIndex];
+        node->adjacencyList.push_back(edge);
+    }
+}
+}
+friend class node_iterator;
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param random_access_iterator_tag
+ *
+ * @return
+ **/
+class node_iterator : public iterator<random_access_iterator_tag, NT> // node iterator
+{
+    friend class graph;
+    private:
+    int index;
+    const graph *g;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    Node *get() const
+    {
+        return g->nodes[index];
+    }
+    public:
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    node_iterator()
+    {
+    }
+    node_iterator(int index, const graph *g)
+        : index(index), g(g)
+    {
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator ==(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index == r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator !=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index != r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const NT *operator ->() const
+    {
+        return &g->nodes[index]->data;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const NT &operator *() const
+    {
+        return g->nodes[index]->data;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const node_iterator &operator ++()
+    {
+        ++index;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param int
+     *
+     * @return
+     **/
+    node_iterator operator ++(int)
+    {
+        return node_iterator(index++, g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const node_iterator &operator --()
+    {
+        --index;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param int
+     *
+     * @return
+     **/
+    node_iterator operator --(int)
+    {
+        return node_iterator(index--, g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param v
+     * @param iter
+     *
+     * @return
+     **/
+    friend node_iterator operator +(int v, const node_iterator &iter)
+    {
+        return node_iterator(v + iter.index, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param iter
+     * @param v
+     *
+     * @return
+     **/
+    friend node_iterator operator +(const node_iterator &iter, int v)
+    {
+        return node_iterator(iter.index + v, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param iter
+     * @param v
+     *
+     * @return
+     **/
+    friend node_iterator operator -(const node_iterator &iter, int v)
+    {
+        return node_iterator(iter.index - v, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend int operator -(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index - r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator <(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index < r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator <=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index <= r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator >=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index >= r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator >(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index > r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param v
+     *
+     * @return
+     **/
+    const node_iterator &operator +=(int v)
+    {
+        index += v;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param v
+     *
+     * @return
+     **/
+    const node_iterator &operator -=(int v)
+    {
+        index -= v;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param index2
+     *
+     * @return
+     **/
+    const NT &operator [](int index2) const
+    {
+        return g->nodes[index + index2]->data;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const int position() const
+    {
+        return index;
+    }
+};
+class edge_iterator : public
+
+                      /**
+                       * @brief Write what the function does here
+                       *
+                       * @param random_access_iterator_tag
+                       *
+                       * @return
+                       **/
+                      iterator<random_access_iterator_tag, pair<const ET &, node_iterator> > // edge iterator
+{
     private:
         typename vector<Edge *>::const_iterator iter;
         const graph *g;
     public:
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         edge_iterator()
         {
         }
@@ -391,290 +655,619 @@ public:
             : iter(iter), g(g)
         {
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator ==(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter == r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator !=(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter != r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         pair<const ET &, node_iterator> operator *() const
         {
             return pair<const ET &, node_iterator>((*iter)->data, node_iterator((*iter)->dest->index, g));
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         const edge_iterator &operator ++()
         {
             ++iter;
             return *this;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param int
+         *
+         * @return
+         **/
         edge_iterator operator ++(int)
         {
             return edge_iterator(iter++, g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         const edge_iterator &operator --()
         {
             --iter;
             return *this;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param int
+         *
+         * @return
+         **/
         edge_iterator operator --(int)
         {
             return edge_iterator(iter--, g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param v
+         * @param iter
+         *
+         * @return
+         **/
         friend edge_iterator operator +(int v, const edge_iterator &iter)
         {
             return edge_iterator(v + iter.iter, iter.g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param iter
+         * @param v
+         *
+         * @return
+         **/
         friend edge_iterator operator +(const edge_iterator &iter, int v)
         {
             return edge_iterator(iter.iter + v, iter.g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param iter
+         * @param v
+         *
+         * @return
+         **/
         friend edge_iterator operator -(const edge_iterator &iter, int v)
         {
             return edge_iterator(iter.iter - v, iter.g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend int operator -(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter - r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator <(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter < r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator <=(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter <= r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator >=(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter >= r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param l
+         * @param r
+         *
+         * @return
+         **/
         friend bool operator >(const edge_iterator &l, const edge_iterator &r)
         {
             return l.iter > r.iter;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param v
+         *
+         * @return
+         **/
         const edge_iterator &operator +=(int v)
         {
             iter += v;
             return *this;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param v
+         *
+         * @return
+         **/
         const edge_iterator &operator -=(int v)
         {
             iter -= v;
             return *this;
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param index
+         *
+         * @return
+         **/
         pair<const ET &, node_iterator> operator [](int index) const
         {
             return *(*this + index);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         node_iterator src() const
         {
             return node_iterator((*iter)->src->index, g);
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         node_iterator dest() const
         {
             return node_iterator((*iter)->dest->index, g);
         }
-    };
-    node_iterator begin() const // return iterator to first node
-    {
-        return node_iterator(0, this);
-    }
-    node_iterator cbegin() const // return iterator to first node
-    {
-        return node_iterator(0, this);
-    }
-    node_iterator end() const // return iterator to past-the-end node
-    {
-        return node_iterator(nodes.size(), this);
-    }
-    node_iterator cend() const // return iterator to past-the-end node
-    {
-        return node_iterator(nodes.size(), this);
-    }
-    edge_iterator begin(node_iterator ni) const // return iterator to first edge
-    {
-        return edge_iterator(nodes[ni.index]->adjacencyList.begin(), this);
-    }
-    edge_iterator cbegin(node_iterator ni) const // return iterator to first edge
-    {
-        return edge_iterator(nodes[ni.index]->adjacencyList.begin(), this);
-    }
-    edge_iterator end(node_iterator ni) const // return iterator to past-the-end edge
-    {
-        return edge_iterator(nodes[ni.index]->adjacencyList.end(), this);
-    }
-    edge_iterator cend(node_iterator ni) const // return iterator to past-the-end edge
-    {
-        return edge_iterator(nodes[ni.index]->adjacencyList.end(), this);
-    }
+};
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+node_iterator begin() const // return iterator to first node
+{
+    return node_iterator(0, this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+node_iterator cbegin() const // return iterator to first node
+{
+    return node_iterator(0, this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+node_iterator end() const // return iterator to past-the-end node
+{
+    return node_iterator(nodes.size(), this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+node_iterator cend() const // return iterator to past-the-end node
+{
+    return node_iterator(nodes.size(), this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param ni
+ *
+ * @return
+ **/
+edge_iterator begin(node_iterator ni) const // return iterator to first edge
+{
+    return edge_iterator(nodes[ni.index]->adjacencyList.begin(), this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param ni
+ *
+ * @return
+ **/
+edge_iterator cbegin(node_iterator ni) const // return iterator to first edge
+{
+    return edge_iterator(nodes[ni.index]->adjacencyList.begin(), this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param ni
+ *
+ * @return
+ **/
+edge_iterator end(node_iterator ni) const // return iterator to past-the-end edge
+{
+    return edge_iterator(nodes[ni.index]->adjacencyList.end(), this);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param ni
+ *
+ * @return
+ **/
+edge_iterator cend(node_iterator ni) const // return iterator to past-the-end edge
+{
+    return edge_iterator(nodes[ni.index]->adjacencyList.end(), this);
+}
 private:
-    void isGraphConnectedDepthFirstHelper(Node *node) const  // depth first search helper
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param node
+ **/
+void isGraphConnectedDepthFirstHelper(Node *node) const  // depth first search helper
+{
+    node->flag = true;
+
+    for(Edge *edge : node->adjacencyList)
     {
+
+        if(!edge->dest->flag)
+        {
+            isGraphConnectedDepthFirstHelper(edge->dest);
+        }
+    }
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ void unmarkAll() const // clear all flags
+ {
+
+ for(Node *node : nodes)
+ {
+ node->flag = false;
+ }
+ }
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param state
+ *
+ * @return
+ **/
+bool anyFlagMatches(bool state) const // return if any node's flag matches state
+{
+
+    for(Node *node : nodes)
+    {
+
+        if(state == node->flag)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+bool anyMarked() const // return if any nodes are marked
+{
+    return anyFlagMatches(true);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+bool allMarked() const // return if all nodes are marked
+{
+    return !anyFlagMatches(false);
+}
+public:
+bool isGraphConnectedDepthFirst()
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const // return if the graph is connected starting from the first node
+{
+
+    if(nodes.empty())
+    {
+        return true;
+    }
+    unmarkAll();
+    isGraphConnectedDepthFirstHelper(nodes.front());
+    return allMarked();
+}
+bool isGraphConnectedBreadthFirst()
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const // return if the graph is connected starting from the first node
+{
+
+    if(nodes.empty())
+    {
+        return true;
+    }
+    unmarkAll();
+    deque<Node *> nodeQueue;
+    nodeQueue.push_back(nodes.front());
+
+    while(!nodeQueue.empty())
+    {
+        Node *node = nodeQueue.front();
+        nodeQueue.pop_front();
         node->flag = true;
 
         for(Edge *edge : node->adjacencyList)
         {
+
             if(!edge->dest->flag)
             {
-                isGraphConnectedDepthFirstHelper(edge->dest);
+                nodeQueue.push_back(edge->dest);
             }
         }
     }
-    void unmarkAll() const // clear all flags
-    {
-        for(Node *node : nodes)
-        {
-            node->flag = false;
-        }
-    }
-    bool anyFlagMatches(bool state) const // return if any node's flag matches state
-    {
-        for(Node *node : nodes)
-        {
-            if(state == node->flag)
-            {
-                return true;
-            }
-        }
+    return allMarked();
+}
 
+/**
+ * @brief Write what the function does here
+ *
+ * @param data
+ *
+ * @return
+ **/
+node_iterator addNode(const NT &data)
+{
+    node_iterator retval(nodes.size(), this);
+    nodes.push_back(new Node(nodes.size(), data));
+    return retval;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param data
+ *
+ * @return
+ **/
+node_iterator addNode(NT  &&data)
+{
+    node_iterator retval(nodes.size(), this);
+    nodes.push_back(new Node(nodes.size(), move(data)));
+    return retval;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param src
+ * @param dest
+ *
+ * @return
+ **/
+bool hasEdge(node_iterator src, node_iterator dest) const
+{
+
+    if(src == end())
+    {
         return false;
     }
-    bool anyMarked() const // return if any nodes are marked
+
+    if(dest == end())
     {
-        return anyFlagMatches(true);
+        return false;
     }
-    bool allMarked() const // return if all nodes are marked
+
+    for(edge_iterator i = begin(src); i != end(src); i++)
     {
-        return !anyFlagMatches(false);
-    }
-public:
-    bool isGraphConnectedDepthFirst()
-    const // return if the graph is connected starting from the first node
-    {
-        if(nodes.empty())
+
+        if(get<1>(*i) == dest)
         {
             return true;
         }
-
-        unmarkAll();
-        isGraphConnectedDepthFirstHelper(nodes.front());
-        return allMarked();
     }
-    bool isGraphConnectedBreadthFirst()
-    const // return if the graph is connected starting from the first node
+    return false;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param data
+ * @param src
+ * @param dest
+ *
+ * @return
+ **/
+edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
+{
+    assert(src != end() && dest != end());
+
+    for(edge_iterator i = begin(src); i != end(src); i++)
     {
-        if(nodes.empty())
+
+        if(get<1>(*i) == dest)
         {
-            return true;
+            assert(false);
         }
+    }
+    Edge *newEdge = new Edge(data);
+    newEdge->src = src.get();
+    newEdge->dest = dest.get();
+    edges.push_back(newEdge);
+    newEdge->src->adjacencyList.push_back(newEdge);
+    return edge_iterator(begin(src) + (newEdge->src->adjacencyList.size() - 1));
+}
 
-        unmarkAll();
-        deque<Node *> nodeQueue;
-        nodeQueue.push_back(nodes.front());
+/**
+ * @brief Write what the function does here
+ *
+ * @param data
+ * @param src
+ * @param dest
+ *
+ * @return
+ **/
+edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
+{
+    assert(src != end() && dest != end());
 
-        while(!nodeQueue.empty())
+    for(edge_iterator i = begin(src); i != end(src); i++)
+    {
+
+        if(get<1>(*i) == dest)
         {
-            Node *node = nodeQueue.front();
-            nodeQueue.pop_front();
-            node->flag = true;
-
-            for(Edge *edge : node->adjacencyList)
-            {
-                if(!edge->dest->flag)
-                {
-                    nodeQueue.push_back(edge->dest);
-                }
-            }
+            assert(false);
         }
-
-        return allMarked();
     }
-    node_iterator addNode(const NT &data)
-    {
-        node_iterator retval(nodes.size(), this);
-        nodes.push_back(new Node(nodes.size(), data));
-        return retval;
-    }
-    node_iterator addNode(NT  &&data)
-    {
-        node_iterator retval(nodes.size(), this);
-        nodes.push_back(new Node(nodes.size(), move(data)));
-        return retval;
-    }
-    bool hasEdge(node_iterator src, node_iterator dest) const
-    {
-        if(src == end())
-        {
-            return false;
-        }
+    Edge *newEdge = new Edge(move(data));
+    newEdge->src = src.get();
+    newEdge->dest = dest.get();
+    edges.push_back(newEdge);
+    newEdge->src->adjacencyList.push_back(newEdge);
+    return edge_iterator(begin(src) + (newEdge->src->adjacencyList.size() - 1));
+}
+template <typename NT2, typename ET2>
+friend ostream &operator <<(ostream &os, const graph<NT2, ET2> &g);
 
-        if(dest == end())
-        {
-            return false;
-        }
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+size_t nodeCount() const
+{
+    return nodes.size();
+}
 
-        for(edge_iterator i = begin(src); i != end(src); i++)
-        {
-            if(get<1>(*i) == dest)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
-    {
-        assert(src != end() && dest != end());
-
-        for(edge_iterator i = begin(src); i != end(src); i++)
-        {
-            if(get<1>(*i) == dest)
-            {
-                assert(false);
-            }
-        }
-
-        Edge *newEdge = new Edge(data);
-        newEdge->src = src.get();
-        newEdge->dest = dest.get();
-        edges.push_back(newEdge);
-        newEdge->src->adjacencyList.push_back(newEdge);
-        return edge_iterator(begin(src) + (newEdge->src->adjacencyList.size() - 1));
-    }
-    edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
-    {
-        assert(src != end() && dest != end());
-
-        for(edge_iterator i = begin(src); i != end(src); i++)
-        {
-            if(get<1>(*i) == dest)
-            {
-                assert(false);
-            }
-        }
-
-        Edge *newEdge = new Edge(move(data));
-        newEdge->src = src.get();
-        newEdge->dest = dest.get();
-        edges.push_back(newEdge);
-        newEdge->src->adjacencyList.push_back(newEdge);
-        return edge_iterator(begin(src) + (newEdge->src->adjacencyList.size() - 1));
-    }
-    template <typename NT2, typename ET2>
-    friend ostream &operator <<(ostream &os, const graph<NT2, ET2> &g);
-    size_t nodeCount() const
-    {
-        return nodes.size();
-    }
-    size_t edgeCount() const
-    {
-        return edges.size();
-    }
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+size_t edgeCount() const
+{
+    return edges.size();
+}
 };
-
 template <typename NT, typename ET>
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param NT
+ * @param g
+ * @param NT
+ * @param sourceNode
+ *
+ * @return
+ **/
 inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(const graph<NT, ET> & g, typename graph<NT, ET>::node_iterator sourceNode) // finds shortest path from sourceNode to all other nodes using dijkstra's algorithm
 {
     if(sourceNode == g.end())
@@ -686,8 +1279,8 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
     vector<typename graph<NT, ET>::node_iterator> previous;
     previous.resize(g.nodeCount(), g.end());
     previous[sourceNode.position()] = sourceNode;
-
     list<typename graph<NT, ET>::node_iterator> nodesLeft;
+
     for(size_t i = 0; i < g.nodeCount(); i++)
     {
         nodesLeft.push_back(g.begin() + i);
@@ -697,9 +1290,11 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
     {
         ET minDistance = infinity;
         auto minIterator = nodesLeft.end();
+
         for(auto i = nodesLeft.begin(); i != nodesLeft.end(); i++)
         {
             ET curDistance = distance[i->position()];
+
             if(curDistance == minDistance || minDistance == infinity || (curDistance != infinity && curDistance <= minDistance))
             {
                 minDistance = curDistance;
@@ -710,12 +1305,14 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
             break;
         auto node = *minIterator;
         nodesLeft.erase(minIterator);
+
         for(auto edge = g.begin(node); edge != g.end(node); edge++)
         {
             ET alternateDistance = distance[node.position()];
             if(alternateDistance != infinity)
                 alternateDistance += get<0>(*edge);
             auto destNode = get<1>(*edge);
+
             if(distance[destNode.position()] == alternateDistance || distance[destNode.position()] == infinity || (alternateDistance != infinity && alternateDistance <= distance[destNode.position()]))
             {
                 distance[destNode.position()] = alternateDistance;
@@ -723,15 +1320,16 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
             }
         }
     }
-
     vector<vector<typename graph<NT, ET>::node_iterator> > retval;
     retval.resize(g.nodeCount());
+
     for(size_t i = 0; i < g.nodeCount(); i++)
     {
         if(previous[i] == g.end())
             continue;
         auto node = g.begin() + i;
         retval[i].push_back(node);
+
         while(node != sourceNode)
         {
             node = previous[node.position()];
@@ -741,9 +1339,16 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
     }
     return retval;
 }
-
 inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int minimumEdgeValue,
-                               int maximumEdgeValue)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param maximumEdgeValue
+         *
+         * @return
+         **/
+        int maximumEdgeValue)
 {
     assert(numberOfEdges <= numberOfNodes * numberOfNodes);
     graph<int> retval;
@@ -761,151 +1366,236 @@ inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int 
 
         while(retval.hasEdge(retval.begin() + srcNode, retval.begin() + destNode))
         {
+
             if(++testCount > numberOfNodes * numberOfNodes)
             {
                 assert(false);
             }
-
             srcNode++;
             destNode += srcNode / numberOfNodes;
             destNode %= numberOfNodes;
             srcNode %= numberOfNodes;
         }
-
         retval.addEdge(rand() % (maximumEdgeValue - minimumEdgeValue + 1) + minimumEdgeValue,
-                       retval.begin() + srcNode, retval.begin() + destNode);
+                retval.begin() + srcNode, retval.begin() + destNode);
     }
-
     return move(retval);
 }
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 namespace GraphingInternals
 {
-template <typename NT, typename ET>
-struct DrawGraphEdge
-{
-    typename graph<NT, ET>::edge_iterator edge;
-    string text;
-    int x = 0;
-    DrawGraphEdge(typename graph<NT, ET>::edge_iterator edge)
-        : edge(edge)
+    template <typename NT, typename ET>
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        struct DrawGraphEdge
+        {
+            typename graph<NT, ET>::edge_iterator edge;
+            string text;
+            int x = 0;
+            DrawGraphEdge(typename graph<NT, ET>::edge_iterator edge)
+                : edge(edge)
+            {
+                ostringstream os;
+                os << get<0>(*edge);
+                text = os.str();
+
+                if(text != "")
+                {
+                    text += " ";
+                }
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            DrawGraphEdge()
+            {
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param other
+             *
+             * @return
+             **/
+            bool intersectsY(const DrawGraphEdge &other) const
+            {
+                int y1s = edge.src().position();
+                int y1e = edge.dest().position();
+
+                if(y1s > y1e)
+                {
+                    swap(y1s, y1e);
+                }
+                int y2s = other.edge.src().position();
+                int y2e = other.edge.dest().position();
+
+                if(y2s > y2e)
+                {
+                    swap(y2s, y2e);
+                }
+
+                if(y1s > y2s)
+                {
+                    swap(y1s, y2s);
+                    swap(y1e, y2e);
+                }
+
+                if(y2s == y2e && y1s < y2s && y1e >= y2s)
+                {
+                    return true;
+                }
+
+                if(y2s >= y1e)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator ==(const DrawGraphEdge &rt) const
+            {
+                return edge == rt.edge;
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator !=(const DrawGraphEdge &rt) const
+            {
+                return edge != rt.edge;
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator <(const DrawGraphEdge &rt) const
+            {
+
+                if(*this == rt)
+                {
+                    return false;
+                }
+                return abs(edge.src().position() - edge.dest().position()) < abs(rt.edge.src().position() -
+                        rt.edge.dest().position());
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator >(const DrawGraphEdge &rt) const
+            {
+
+                if(*this == rt)
+                {
+                    return false;
+                }
+                return abs(edge.src().position() - edge.dest().position()) > abs(rt.edge.src().position() -
+                        rt.edge.dest().position());
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator <=(const DrawGraphEdge &rt) const
+            {
+
+                if(*this == rt)
+                {
+                    return true;
+                }
+                return abs(edge.src().position() - edge.dest().position()) < abs(rt.edge.src().position() -
+                        rt.edge.dest().position());
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+            bool operator >=(const DrawGraphEdge &rt) const
+            {
+
+                if(*this == rt)
+                {
+                    return true;
+                }
+                return abs(edge.src().position() - edge.dest().position()) > abs(rt.edge.src().position() -
+                        rt.edge.dest().position());
+            }
+        };
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param os
+     * @param textBlock
+     * @param lineLength
+     **/
+    inline void drawTextBlock(ostream &os, const vector<vector<string> > &textBlock, int lineLength)
     {
-        ostringstream os;
-        os << get<0>(*edge);
-        text = os.str();
+        os << "\n";
 
-        if(text != "")
+        for(int y = 0; y < (int)textBlock.size(); y++)
         {
-            text += " ";
+            string line = "";
+
+            for(int x = 0; x < lineLength; x++)
+            {
+                line += textBlock[y][x];
+            }
+            os << line << "\n";
         }
-    }
-    DrawGraphEdge()
-    {
-    }
-    bool intersectsY(const DrawGraphEdge &other) const
-    {
-        int y1s = edge.src().position();
-        int y1e = edge.dest().position();
-
-        if(y1s > y1e)
-        {
-            swap(y1s, y1e);
-        }
-
-        int y2s = other.edge.src().position();
-        int y2e = other.edge.dest().position();
-
-        if(y2s > y2e)
-        {
-            swap(y2s, y2e);
-        }
-
-        if(y1s > y2s)
-        {
-            swap(y1s, y2s);
-            swap(y1e, y2e);
-        }
-
-        if(y2s == y2e && y1s < y2s && y1e >= y2s)
-        {
-            return true;
-        }
-
-        if(y2s >= y1e)
-        {
-            return false;
-        }
-
-        return true;
-    }
-    bool operator ==(const DrawGraphEdge &rt) const
-    {
-        return edge == rt.edge;
-    }
-    bool operator !=(const DrawGraphEdge &rt) const
-    {
-        return edge != rt.edge;
-    }
-    bool operator <(const DrawGraphEdge &rt) const
-    {
-        if(*this == rt)
-        {
-            return false;
-        }
-
-        return abs(edge.src().position() - edge.dest().position()) < abs(rt.edge.src().position() -
-                rt.edge.dest().position());
-    }
-    bool operator >(const DrawGraphEdge &rt) const
-    {
-        if(*this == rt)
-        {
-            return false;
-        }
-
-        return abs(edge.src().position() - edge.dest().position()) > abs(rt.edge.src().position() -
-                rt.edge.dest().position());
-    }
-    bool operator <=(const DrawGraphEdge &rt) const
-    {
-        if(*this == rt)
-        {
-            return true;
-        }
-
-        return abs(edge.src().position() - edge.dest().position()) < abs(rt.edge.src().position() -
-                rt.edge.dest().position());
-    }
-    bool operator >=(const DrawGraphEdge &rt) const
-    {
-        if(*this == rt)
-        {
-            return true;
-        }
-
-        return abs(edge.src().position() - edge.dest().position()) > abs(rt.edge.src().position() -
-                rt.edge.dest().position());
-    }
-};
-inline void drawTextBlock(ostream &os, const vector<vector<string> > &textBlock, int lineLength)
-{
-    os << "\n";
-
-    for(int y = 0; y < (int)textBlock.size(); y++)
-    {
-        string line = "";
-
-        for(int x = 0; x < lineLength; x++)
-        {
-            line += textBlock[y][x];
-        }
-
-        os << line << "\n";
     }
 }
-}
-
 template <typename NT, typename ET>
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param os
+ * @param NT
+ * @param g
+ *
+ * @return
+ **/
 inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 {
     using namespace GraphingInternals;
@@ -917,12 +1607,12 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
         oss << nv;
         nodeText.push_back(oss.str());
     }
-
     vector<DrawGraphEdge<NT, ET> > edges;
     int totalSize = 0;
 
     for(auto ni = g.begin(); ni != g.end(); ni++)
     {
+
         for(auto ei = g.begin(ni); ei != g.end(ni); ei++)
         {
             DrawGraphEdge<NT, ET> e(ei);
@@ -930,7 +1620,6 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
             edges.push_back(e);
         }
     }
-
     sort(edges.begin(), edges.end());
     vector<bool> possibleXValues;
     vector<int> maxX;
@@ -939,6 +1628,7 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 
     for(typename vector<DrawGraphEdge<NT, ET> >::iterator i = edges.begin(); i != edges.end(); i++)
     {
+
         for(auto i = possibleXValues.begin(); i != possibleXValues.end(); i++)
         {
             *i = true;
@@ -946,32 +1636,35 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 
         for(typename vector<DrawGraphEdge<NT, ET> >::const_iterator j = edges.begin(); j != i; j++)
         {
+
             if(i->intersectsY(*j))
             {
+
                 for(int k = 2 + j->text.size(); k >= 0; k--)
                 {
                     possibleXValues[j->x + k] = false;
                 }
             }
         }
-
         int count = 0;
 
         for(i->x = 0; i->x < possibleXValues.size(); i->x++)
         {
+
             if(possibleXValues[i->x])
             {
+
                 if(++count >= i->text.size() + 2)
                 {
                     break;
                 }
             }
+
             else
             {
                 count = 0;
             }
         }
-
         i->x -= count - 1;
         int y1s = i->edge.src().position();
         int y1e = i->edge.dest().position();
@@ -982,14 +1675,12 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
             maxX[y1e] = max(maxX[y1e], i->x);
         }
     }
-
     int xOffset = 0;
 
     for(string s : nodeText)
     {
         xOffset = max<int>(xOffset, s.size());
     }
-
     xOffset += 3;
     vector<vector<string> > textBlock;
     textBlock.resize(3 * nodeText.size());
@@ -1010,6 +1701,7 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 
         if(maxX[y] >= 0)
         {
+
             for(x += 2; x < xOffset + maxX[y]; x++)
             {
                 textBlock[y * 3 + 1][x] = "─";
@@ -1037,8 +1729,10 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
                 textBlock[y1s * 3][x + 3] = string(1, edge.text[x]);
             }
         }
+
         else if(y1s < y1e)
         {
+
             for(int y = y1s * 3 + 2; y < y1e * 3; y++)
             {
                 textBlock[y][edge.x + xOffset] = "│";
@@ -1048,19 +1742,21 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┬";
             }
+
             else if(textBlock[y1s * 3 + 1][edge.x + xOffset] == "┴")
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┼";
             }
+
             else if(textBlock[y1s * 3 + 1][edge.x + xOffset] == "┘")
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┤";
             }
+
             else
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┐";
             }
-
             textBlock[y1e * 3][edge.x + xOffset] = "v";
 
             for(int x = 0; x < edge.text.size(); x++)
@@ -1068,8 +1764,10 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
                 textBlock[y1s * 3 + 2][edge.x + xOffset + x + 1] = string(1, edge.text[x]);
             }
         }
+
         else
         {
+
             for(int y = y1e * 3 + 2; y < y1s * 3 + 1; y++)
             {
                 textBlock[y][edge.x + xOffset] = "│";
@@ -1079,19 +1777,21 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┴";
             }
+
             else if(textBlock[y1s * 3 + 1][edge.x + xOffset] == "┬")
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┼";
             }
+
             else if(textBlock[y1s * 3 + 1][edge.x + xOffset] == "┐")
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┤";
             }
+
             else
             {
                 textBlock[y1s * 3 + 1][edge.x + xOffset] = "┘";
             }
-
             textBlock[y1e * 3 + 2][edge.x + xOffset] = "^";
 
             for(int x = 0; x < edge.text.size(); x++)
@@ -1103,8 +1803,10 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 
     for(int y = 0; y < textBlock.size(); y++)
     {
+
         for(int x = xOffset + totalSize - 1; x > 0; x--)
         {
+
             if(textBlock[y][x] == " " && textBlock[y][x - 1] == "─")
             {
                 textBlock[y][x] = "╴";
@@ -1119,39 +1821,55 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
             {
                 s = "";
             }
+
             else
             {
                 break;
             }
         }
     }
-
     drawTextBlock(os, textBlock, xOffset + totalSize);
     return os;
 }
-
 template <typename NT, typename ET>
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param NT
+ * @param g
+ * @param ET
+ * @param 1
+ *
+ * @return
+ **/
 inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infinity = (ET)-1)
 {
     vector<vector<ET> > dist;
     dist.resize(g.nodeCount());
+
     for(vector<ET> & v : dist)
     {
         v.resize(g.nodeCount(), infinity);
     }
+
     for(size_t i = 0; i < g.nodeCount(); i++)
     {
         auto node = g.begin() + i;
+
         for(auto edge = g.begin(node); edge != g.end(node); edge++)
         {
             dist[i][edge.dest().position()] = get<0>(*edge);
         }
         dist[i][i] = 0;
     }
+
     for(size_t k = 0; k < g.nodeCount(); k++)
     {
+
         for(size_t i = 0; i < g.nodeCount(); i++)
         {
+
             for(size_t j = 0; j < g.nodeCount(); j++)
             {
                 ET sumDist = dist[i][k];
@@ -1159,6 +1877,7 @@ inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infi
                     sumDist = dist[i][k] + dist[k][j];
                 else
                     sumDist = infinity;
+
                 if(sumDist != infinity && (dist[i][j] == infinity || dist[i][j] > sumDist))
                 {
                     dist[i][j] = sumDist;
@@ -1167,14 +1886,18 @@ inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infi
         }
     }
     graph<NT, ET> retval;
+
     for(size_t i = 0; i < g.nodeCount(); i++)
     {
         retval.addNode(g.begin()[i]);
     }
+
     for(size_t i = 0; i < g.nodeCount(); i++)
     {
+
         for(size_t j = 0; j < g.nodeCount(); j++)
         {
+
             if(dist[i][j] != infinity)
             {
                 retval.addEdge(move(dist[i][j]), retval.begin() + i, retval.begin() + j);

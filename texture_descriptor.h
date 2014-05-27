@@ -1,9 +1,13 @@
 #ifndef TEXTURE_DESCRIPTOR_H_INCLUDED
 #define TEXTURE_DESCRIPTOR_H_INCLUDED
-
 #include "image.h"
 #include "util.h"
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 struct TextureDescriptor
 {
     Image image;
@@ -16,22 +20,44 @@ struct TextureDescriptor
         : image(image), minU(minU), maxU(maxU), minV(minV), maxV(maxV)
     {
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
     operator bool() const
     {
         return (bool)image;
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
     bool operator !() const
     {
         return !image;
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param minU
+     * @param maxU
+     * @param minV
+     * @param maxV
+     *
+     * @return
+     **/
     TextureDescriptor subTexture(const float minU, const float maxU, const float minV, const float maxV) const
     {
         return TextureDescriptor(image,
-                                 interpolate(minU, this->minU, this->maxU),
-                                 interpolate(maxU, this->minU, this->maxU),
-                                 interpolate(minV, this->minV, this->maxV),
-                                 interpolate(maxV, this->minV, this->maxV));
+                interpolate(minU, this->minU, this->maxU),
+                interpolate(maxU, this->minU, this->maxU),
+                interpolate(minV, this->minV, this->maxV),
+                interpolate(maxV, this->minV, this->maxV));
     }
 };
-
 #endif // TEXTURE_DESCRIPTOR_H_INCLUDED

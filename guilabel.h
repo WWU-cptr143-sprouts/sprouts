@@ -1,14 +1,17 @@
 #ifndef GUILABEL_H_INCLUDED
 #define GUILABEL_H_INCLUDED
-
 #include "guielement.h"
 #include "platform.h"
 #include "text.h"
 #include <functional>
 #include <stdexcept>
-
 using namespace std;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 struct GUILabel : public GUIElement
 {
     wstring text;
@@ -17,11 +20,27 @@ struct GUILabel : public GUIElement
         : GUIElement(minX, maxX, minY, maxY), text(text), textColor(textColor)
     {
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
     virtual bool canHaveKeyboardFocus() const override final
     {
         return false;
     }
-protected:
+    protected:
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param minZ
+     * @param maxZ
+     * @param hasFocus
+     *
+     * @return
+     **/
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
         float textWidth = Text::width(text);
@@ -38,5 +57,4 @@ protected:
         return (Mesh)transform(Matrix::scale(textScale).concat(Matrix::translate(xOffset, yOffset, -1).concat(Matrix::scale(minZ))), Text::mesh(text, textColor));
     }
 };
-
 #endif // GUILABEL_H_INCLUDED
