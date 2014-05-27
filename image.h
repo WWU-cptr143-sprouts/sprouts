@@ -20,10 +20,13 @@ class ImageLoadError final : public runtime_error
     public:
         explicit ImageLoadError(const string &arg)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : runtime_error(arg)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -35,6 +38,9 @@ class ImageLoadError final : public runtime_error
             : runtime_error(arg)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -52,9 +58,34 @@ class Image final
         Image();
         Image(nullptr_t)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : Image()
+=======
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            : Image()
+            {
+            }
+        void setPixel(int x, int y, Color c);
+        Color getPixel(int x, int y) const;
+        void bind() const;
+        static void unbind();
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        unsigned width() const
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         {
+            return data->w;
         }
+<<<<<<< HEAD
         void setPixel(int x, int y, Color c);
         Color getPixel(int x, int y) const;
         void bind() const;
@@ -76,11 +107,15 @@ class Image final
         static void unbind();
 
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
         unsigned width() const
         {
             return data->w;
@@ -96,6 +131,11 @@ class Image final
             return data->h;
 <<<<<<< HEAD
 =======
+=======
+        unsigned height() const
+        {
+            return data->h;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
         /**
@@ -116,12 +156,16 @@ class Image final
         bool operator !() const
         {
             return data == nullptr;
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @return
          **/
@@ -143,6 +187,8 @@ class Image final
         /**
          * @brief Write what the function does here
          *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @param l
@@ -198,6 +244,7 @@ class Image final
             mutex lock;
             data_t(uint8_t * data, unsigned w, unsigned h, RowOrder rowOrder)
 <<<<<<< HEAD
+<<<<<<< HEAD
                 : data(data), w(w), h(h), rowOrder(rowOrder), texture(0), textureValid(false)
             {
             }
@@ -206,6 +253,8 @@ class Image final
             {
             }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
                 /**
                  * @brief Write what the function does here
@@ -239,6 +288,9 @@ class Image final
                 : data(data), w(rt->w), h(rt->h), rowOrder(rt->rowOrder), texture(0), textureValid(false)
                 {
                 }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             ~data_t();
         };

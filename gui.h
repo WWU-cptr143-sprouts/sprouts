@@ -51,7 +51,10 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -59,6 +62,9 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(gui != nullptr && runners != nullptr)
         {

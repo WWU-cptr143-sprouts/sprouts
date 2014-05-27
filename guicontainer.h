@@ -25,7 +25,10 @@ class GUIContainer : public GUIElement
          {
          }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
@@ -38,11 +41,15 @@ class GUIContainer : public GUIElement
         {
             return elements[index];
         }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @param index
          *
@@ -64,6 +71,8 @@ class GUIContainer : public GUIElement
         }
 
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @return
          **/
         size_t getElementCount()
@@ -232,12 +241,16 @@ virtual bool prevFocusElement() override final /// returns true when reached con
         currentFocusIndex += elements.size() - 1;
         currentFocusIndex %= elements.size();
 
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         size_t getCurrentElementIndex()
         {
@@ -337,6 +350,14 @@ virtual bool prevFocusElement() override final /// returns true when reached con
             onSetFocus();
             return currentFocusIndex == elements.size() - 1;
         }
+=======
+        if(elements[currentFocusIndex]->canHaveKeyboardFocus())
+        {
+            elements[currentFocusIndex]->lastFocusElement();
+            onSetFocus();
+            return currentFocusIndex == elements.size() - 1;
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     }
     while(currentFocusIndex != elements.size() - 1);
     lastFocusElement();
@@ -375,6 +396,9 @@ virtual bool nextFocusElement() override final /// returns true when reached con
     {
         currentFocusIndex++;
         currentFocusIndex %= elements.size();
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
@@ -382,6 +406,7 @@ virtual bool nextFocusElement() override final /// returns true when reached con
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool prevFocusElement() override final /// returns true when reached container boundary
         {
@@ -418,6 +443,8 @@ virtual bool nextFocusElement() override final /// returns true when reached con
             return true;
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(elements[currentFocusIndex]->canHaveKeyboardFocus())
         {
             elements[currentFocusIndex]->firstFocusElement();
@@ -479,11 +506,15 @@ virtual bool handleMouseUp(MouseUpEvent &event) override final
      **/
     if(index != lastMouseElement)
     {
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @return
          **/
@@ -523,10 +554,26 @@ virtual bool handleMouseUp(MouseUpEvent &event) override final
         }
     private:
 =======
+=======
          * @param NoElement
          *
          * @return
          **/
+        if(lastMouseElement != NoElement)
+        {
+            elements[lastMouseElement]->handleMouseMoveOut(event);
+        }
+        lastMouseElement = index;
+
+        /**
+         * @brief Write what the function does here
+         *
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+         * @param NoElement
+         *
+         * @return
+         **/
+<<<<<<< HEAD
         if(lastMouseElement != NoElement)
         {
             elements[lastMouseElement]->handleMouseMoveOut(event);
@@ -598,10 +645,43 @@ virtual bool handleMouseUp(MouseUpEvent &event) override final
             elements[index]->handleMouseMoveIn(event);
         }
     }
+=======
+        if(index != NoElement)
+        {
+            elements[index]->handleMouseMoveIn(event);
+        }
+    }
 
     /**
      * @brief Write what the function does here
      *
+     * @param NoElement
+     *
+     * @return
+     **/
+    if(index != NoElement)
+    {
+        return elements[index]->handleMouseUp(event);
+    }
+    return GUIElement::handleMouseUp(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleMouseDown(MouseDownEvent &event) override final
+{
+    size_t index = getIndexFromPosition(event.x, event.y);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
      * @param NoElement
      *
      * @return
@@ -634,10 +714,19 @@ virtual bool handleMouseDown(MouseDownEvent &event) override final
     if(index != lastMouseElement)
     {
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+     * @param lastMouseElement
+     *
+     * @return
+     **/
+    if(index != lastMouseElement)
+    {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @param event
          *
@@ -669,6 +758,7 @@ virtual bool handleMouseDown(MouseDownEvent &event) override final
             return GUIElement::handleMouseDown(event);
         }
 =======
+=======
          * @param NoElement
          *
          * @return
@@ -678,42 +768,10 @@ virtual bool handleMouseDown(MouseDownEvent &event) override final
             elements[lastMouseElement]->handleMouseMoveOut(event);
         }
         lastMouseElement = index;
->>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
-<<<<<<< HEAD
-         * @param event
-         *
-         * @return
-         **/
-        virtual bool handleMouseMove(MouseMoveEvent &event) override final
-        {
-            size_t index = getIndexFromPosition(event.x, event.y);
-
-            if(index != lastMouseElement)
-            {
-
-                if(lastMouseElement != NoElement)
-                {
-                    elements[lastMouseElement]->handleMouseMoveOut(event);
-                }
-                lastMouseElement = index;
-
-                if(index != NoElement)
-                {
-                    elements[index]->handleMouseMoveIn(event);
-                }
-            }
-
-            if(index != NoElement)
-            {
-                return elements[index]->handleMouseMove(event);
-            }
-            return GUIElement::handleMouseMove(event);
-        }
-=======
          * @param NoElement
          *
          * @return
@@ -758,11 +816,178 @@ virtual bool handleMouseMove(MouseMoveEvent &event) override final
      **/
     if(index != lastMouseElement)
     {
+
+        /**
+         * @brief Write what the function does here
+         *
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+         * @param NoElement
+         *
+         * @return
+         **/
+        if(lastMouseElement != NoElement)
+        {
+            elements[lastMouseElement]->handleMouseMoveOut(event);
+        }
+        lastMouseElement = index;
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
+<<<<<<< HEAD
+         * @param event
+         *
+         * @return
+         **/
+        virtual bool handleMouseMove(MouseMoveEvent &event) override final
+        {
+            size_t index = getIndexFromPosition(event.x, event.y);
+
+            if(index != lastMouseElement)
+            {
+
+                if(lastMouseElement != NoElement)
+                {
+                    elements[lastMouseElement]->handleMouseMoveOut(event);
+                }
+                lastMouseElement = index;
+
+                if(index != NoElement)
+                {
+                    elements[index]->handleMouseMoveIn(event);
+                }
+            }
+
+            if(index != NoElement)
+            {
+                return elements[index]->handleMouseMove(event);
+            }
+            return GUIElement::handleMouseMove(event);
+        }
+=======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+         * @param NoElement
+         *
+         * @return
+         **/
+        if(index != NoElement)
+        {
+            elements[index]->handleMouseMoveIn(event);
+        }
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param NoElement
+     *
+     * @return
+     **/
+    if(index != NoElement)
+<<<<<<< HEAD
+    {
+        return elements[index]->handleMouseDown(event);
+    }
+    return GUIElement::handleMouseDown(event);
+=======
+    {
+        return elements[index]->handleMouseMove(event);
+    }
+    return GUIElement::handleMouseMove(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleMouseMoveOut(MouseEvent &event) override final
+{
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param NoElement
+     *
+     * @return
+     **/
+    if(lastMouseElement != NoElement)
+    {
+        shared_ptr<GUIElement> e = elements[lastMouseElement];
+        lastMouseElement = NoElement;
+        return e->handleMouseMoveOut(event);
+    }
+    return GUIElement::handleMouseMoveOut(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleMouseMoveIn(MouseEvent &event) override final
+{
+    size_t index = getIndexFromPosition(event.x, event.y);
+    lastMouseElement = index;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param NoElement
+     *
+     * @return
+     **/
+    if(index != NoElement)
+    {
+        return elements[index]->handleMouseMoveIn(event);
+    }
+    return GUIElement::handleMouseMoveIn(event);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+<<<<<<< HEAD
+virtual bool handleMouseMove(MouseMoveEvent &event) override final
+=======
+virtual bool handleMouseScroll(MouseScrollEvent &event) override final
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+{
+    size_t index = getIndexFromPosition(event.x, event.y);
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param lastMouseElement
+     *
+     * @return
+     **/
+    if(index != lastMouseElement)
+    {
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+        /**
+         * @brief Write what the function does here
+         *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @param event
          *
@@ -811,6 +1036,21 @@ virtual bool handleMouseMove(MouseMoveEvent &event) override final
             return GUIElement::handleMouseMoveIn(event);
         }
 =======
+=======
+         * @param NoElement
+         *
+         * @return
+         **/
+        if(lastMouseElement != NoElement)
+        {
+            elements[lastMouseElement]->handleMouseMoveOut(event);
+        }
+        lastMouseElement = index;
+
+        /**
+         * @brief Write what the function does here
+         *
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @param NoElement
          *
          * @return
@@ -830,9 +1070,15 @@ virtual bool handleMouseMove(MouseMoveEvent &event) override final
      **/
     if(index != NoElement)
     {
+<<<<<<< HEAD
         return elements[index]->handleMouseMove(event);
     }
     return GUIElement::handleMouseMove(event);
+=======
+        return elements[index]->handleMouseScroll(event);
+    }
+    return GUIElement::handleMouseScroll(event);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 }
 
 /**
@@ -842,12 +1088,43 @@ virtual bool handleMouseMove(MouseMoveEvent &event) override final
  *
  * @return
  **/
+<<<<<<< HEAD
 virtual bool handleMouseMoveOut(MouseEvent &event) override final
 {
+=======
+virtual bool handleKeyUp(KeyUpEvent &event) override final
+{
+    shared_ptr<GUIElement> e = getFocusElement();
+    if(e == shared_from_this())
+        return GUIElement::handleKeyUp(event);
+    return e->handleKeyUp(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleKeyDown(KeyDownEvent &event) override final
+{
+    shared_ptr<GUIElement> e = getFocusElement();
+    bool retval;
+    if(e == shared_from_this())
+        retval = GUIElement::handleKeyDown(event);
+    else
+        retval = e->handleKeyDown(event);
+    if(retval)
+        return true;
+    if(getParent() != nullptr || (event.mods & (KeyboardModifiers_Ctrl | KeyboardModifiers_Alt | KeyboardModifiers_Meta | KeyboardModifiers_Mode)) != 0)
+        return false;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
      * @param NoElement
      *
      * @return
@@ -1140,11 +1417,27 @@ virtual bool handleKeyDown(KeyDownEvent &event) override final
     if(retval)
         return true;
     if(getParent() != nullptr || (event.mods & (KeyboardModifiers_Ctrl | KeyboardModifiers_Alt | KeyboardModifiers_Meta | KeyboardModifiers_Mode)) != 0)
+=======
+     * @param KeyboardKey_Tab
+     *
+     * @return
+     **/
+    if(event.key == KeyboardKey_Tab)
+    {
+        if(event.mods & KeyboardModifiers_Shift)
+            prevFocusElement();
+        else
+            nextFocusElement();
+        return true;
+    }
+    else if(event.mods & KeyboardModifiers_Shift)
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         return false;
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
      * @param KeyboardKey_Tab
      *
      * @return
@@ -1159,10 +1452,7 @@ virtual bool handleKeyDown(KeyDownEvent &event) override final
     }
     else if(event.mods & KeyboardModifiers_Shift)
         return false;
-
-    /**
-     * @brief Write what the function does here
-     *
+=======
      * @param KeyboardKey_Down
      *
      * @return
@@ -1172,10 +1462,20 @@ virtual bool handleKeyDown(KeyDownEvent &event) override final
         nextFocusElement();
         return true;
     }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
+     * @param KeyboardKey_Down
+     *
+     * @return
+     **/
+    else if(event.key == KeyboardKey_Down)
+    {
+        nextFocusElement();
+=======
      * @param KeyboardKey_Up
      *
      * @return
@@ -1183,12 +1483,37 @@ virtual bool handleKeyDown(KeyDownEvent &event) override final
     else if(event.key == KeyboardKey_Up)
     {
         prevFocusElement();
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         return true;
     }
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
+     * @param KeyboardKey_Up
+     *
+     * @return
+     **/
+    else if(event.key == KeyboardKey_Up)
+    {
+        prevFocusElement();
+=======
+     * @param KeyboardKey_Home
+     *
+     * @return
+     **/
+    else if(event.key == KeyboardKey_Home)
+    {
+        firstFocusElement();
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+        return true;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
      * @param KeyboardKey_Home
      *
      * @return
@@ -1273,6 +1598,91 @@ virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     if(retval == nullptr)
         return Mesh(new Mesh_t());
     return retval;
+=======
+     * @param KeyboardKey_End
+     *
+     * @return
+     **/
+    else if(event.key == KeyboardKey_End)
+    {
+        lastFocusElement();
+        return true;
+    }
+    return false;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+}
+
+/**
+ * @brief Write what the function does here
+ *
+<<<<<<< HEAD
+ * @param e
+ **/
+void setFocus(shared_ptr<GUIElement> e)
+{
+    if(e == nullptr)
+        return;
+=======
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleKeyPress(KeyPressEvent &event) override final
+{
+    shared_ptr<GUIElement> e = getFocusElement();
+    if(e == shared_from_this())
+        return GUIElement::handleKeyPress(event);
+    return e->handleKeyPress(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param event
+ *
+ * @return
+ **/
+virtual bool handleQuit(QuitEvent &event) override final
+{
+    shared_ptr<GUIElement> e = getFocusElement();
+    if(e == shared_from_this())
+        return GUIElement::handleQuit(event);
+    return e->handleQuit(event);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param minZ
+ * @param maxZ
+ * @param hasFocus
+ *
+ * @return
+ **/
+virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
+{
+    Mesh retval = nullptr;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    for(size_t i = 0; i < elements.size(); i++)
+    {
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+        Mesh mesh = elements[i]->render(interpolate((float)(i + 1) / elements.size(), maxZ, minZ), interpolate((float)i / elements.size(), maxZ, minZ), hasFocus && i == currentFocusIndex);
+        if(retval != nullptr)
+            retval->add(mesh);
+        else
+            retval = mesh;
+    }
+    if(retval == nullptr)
+        return Mesh(new Mesh_t());
+    return retval;
 }
 
 /**
@@ -1298,6 +1708,7 @@ void setFocus(shared_ptr<GUIElement> e)
          * @brief Write what the function does here
          *
          * @param e
+<<<<<<< HEAD
 <<<<<<< HEAD
          **/
         void setFocus(shared_ptr<GUIElement> e)
@@ -1348,10 +1759,38 @@ void setFocus(shared_ptr<GUIElement> e)
                 {
                     getParent()->setFocus(shared_from_this());
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+         *
+         * @return
+         **/
+        if(elements[i] == e)
+        {
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            if(e->canHaveKeyboardFocus())
+            {
+                currentFocusIndex = i;
+
+                /**
+                 * @brief Write what the function does here
+                 *
+                 * @param nullptr
+                 *
+                 * @return
+                 **/
+                if(getParent() != nullptr)
+                {
+                    getParent()->setFocus(shared_from_this());
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 }
                 onSetFocus();
             }
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         /**
@@ -1385,6 +1824,8 @@ void setFocus(shared_ptr<GUIElement> e)
             return retval;
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     }
 }
 
@@ -1425,6 +1866,9 @@ virtual shared_ptr<GUIContainer> getTopLevelParent() override final
         retval = retval->getParent();
     return retval;
 }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 

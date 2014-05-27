@@ -58,10 +58,13 @@ class Event
     protected:
         Event(Type type)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : type(type)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -73,6 +76,9 @@ class Event
             : type(type)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     public:
         virtual bool dispatch(shared_ptr<EventHandler> eventHandler) = 0;
@@ -91,10 +97,13 @@ class MouseEvent : public Event
     protected:
         MouseEvent(Type type, float x, float y, float deltaX, float deltaY)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : Event(type), x(x), y(y), deltaX(deltaX), deltaY(deltaY)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -110,6 +119,9 @@ class MouseEvent : public Event
             : Event(type), x(x), y(y), deltaX(deltaX), deltaY(deltaY)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -192,10 +204,13 @@ class KeyUpEvent : public KeyEvent
     public:
         KeyUpEvent(KeyboardKey key, KeyboardModifiers mods)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : KeyEvent(Type_KeyUp, key, mods)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -209,6 +224,9 @@ class KeyUpEvent : public KeyEvent
             : KeyEvent(Type_KeyUp, key, mods)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
@@ -244,8 +262,13 @@ struct KeyPressEvent : public Event
          **/
         : Event(Type_KeyPress), character(character)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }
@@ -467,8 +490,13 @@ struct QuitEvent : public Event
          **/
         : Event(Type_Quit)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }
@@ -499,9 +527,12 @@ class CombinedEventHandler final : public EventHandler
     public:
         CombinedEventHandler(shared_ptr<EventHandler> first, shared_ptr<EventHandler> second)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : first(first), second(second)
         {
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -537,6 +568,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleMouseUp(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -547,6 +581,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleMouseUp(MouseUpEvent &event) override
         {
@@ -560,6 +595,11 @@ class CombinedEventHandler final : public EventHandler
         virtual bool handleMouseDown(MouseDownEvent &event) override
         {
 
+=======
+        virtual bool handleMouseDown(MouseDownEvent &event) override
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -572,6 +612,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleMouseDown(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -582,6 +625,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleMouseDown(MouseDownEvent &event) override
         {
@@ -592,6 +636,8 @@ class CombinedEventHandler final : public EventHandler
             }
             return second->handleMouseDown(event);
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         virtual bool handleMouseMove(MouseMoveEvent &event) override
         {
 
@@ -607,6 +653,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleMouseMove(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -617,6 +666,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleMouseMove(MouseMoveEvent &event) override
         {
@@ -630,6 +680,11 @@ class CombinedEventHandler final : public EventHandler
         virtual bool handleMouseScroll(MouseScrollEvent &event)override
         {
 
+=======
+        virtual bool handleMouseScroll(MouseScrollEvent &event)override
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -642,6 +697,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleMouseScroll(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -652,6 +710,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleMouseScroll(MouseScrollEvent &event)override
         {
@@ -665,6 +724,11 @@ class CombinedEventHandler final : public EventHandler
         virtual bool handleKeyUp(KeyUpEvent &event)override
         {
 
+=======
+        virtual bool handleKeyUp(KeyUpEvent &event)override
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -677,6 +741,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleKeyUp(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -688,6 +755,7 @@ class CombinedEventHandler final : public EventHandler
          * @return
          **/
 <<<<<<< HEAD
+<<<<<<< HEAD
         virtual bool handleKeyUp(KeyUpEvent &event)override
         {
 
@@ -697,6 +765,8 @@ class CombinedEventHandler final : public EventHandler
             }
             return second->handleKeyUp(event);
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         virtual bool handleKeyDown(KeyDownEvent &event)override
         {
 
@@ -712,6 +782,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleKeyDown(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -722,6 +795,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleKeyDown(KeyDownEvent &event)override
         {
@@ -735,6 +809,11 @@ class CombinedEventHandler final : public EventHandler
         virtual bool handleKeyPress(KeyPressEvent &event)override
         {
 
+=======
+        virtual bool handleKeyPress(KeyPressEvent &event)override
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -747,6 +826,9 @@ class CombinedEventHandler final : public EventHandler
                 return true;
             }
             return second->handleKeyPress(event);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -757,6 +839,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         virtual bool handleKeyPress(KeyPressEvent &event)override
         {
@@ -782,6 +865,11 @@ class CombinedEventHandler final : public EventHandler
         virtual bool handleQuit(QuitEvent &event)override
         {
 
+=======
+        virtual bool handleQuit(QuitEvent &event)override
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -789,6 +877,9 @@ class CombinedEventHandler final : public EventHandler
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(first->handleQuit(event))
             {

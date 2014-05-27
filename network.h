@@ -13,10 +13,13 @@ class NetworkException : public IOException
     public:
         explicit NetworkException(string msg)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException(msg)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -28,6 +31,9 @@ class NetworkException : public IOException
             : IOException(msg)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -54,8 +60,13 @@ class NetworkConnection final : public StreamRW
          **/
         : readerInternal(new FileReader(fdopen(readFd, "r"))), writerInternal(new FileWriter(fdopen(writeFd, "w")))
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }

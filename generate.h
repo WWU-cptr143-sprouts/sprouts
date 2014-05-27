@@ -88,7 +88,10 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
         {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -98,6 +101,9 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(dot(tri.p[i], normal) + d < 0)
             {
@@ -105,12 +111,18 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             else
             {
@@ -150,7 +162,10 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
             {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -158,6 +173,9 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(!inside[lastPt])
                 {
@@ -172,7 +190,10 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -180,6 +201,9 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             else if(inside[lastPt])
             {
@@ -205,7 +229,10 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -213,6 +240,9 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         else if(pointCount == 4)
         {
@@ -297,7 +327,10 @@ namespace Generate
         const Color c = Color(1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -305,6 +338,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(nx)
         {
@@ -317,7 +353,10 @@ namespace Generate
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -325,6 +364,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(px)
         {
@@ -337,7 +379,10 @@ namespace Generate
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -345,6 +390,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(ny)
         {
@@ -357,7 +405,10 @@ namespace Generate
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -365,6 +416,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(py)
         {
@@ -377,7 +431,10 @@ namespace Generate
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -385,6 +442,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(nz)
         {
@@ -397,7 +457,10 @@ namespace Generate
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -405,6 +468,9 @@ namespace Generate
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(pz)
         {

@@ -1,5 +1,6 @@
 checklist
 <<<<<<< HEAD
+<<<<<<< HEAD
 ==========
 
 name/date | color.h
@@ -33,6 +34,8 @@ name/date | texture_descriptor.h
 name/date | util.h
 name/date | vector.h
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 ========
 
 1.  jared/5-26   |  color.h
@@ -65,4 +68,7 @@ name/date | vector.h
 1.  name/date   |  texture_descriptor.h
 1.  name/date   |  util.h
 1.  name/date   |  vector.h
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f

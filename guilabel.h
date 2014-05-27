@@ -32,8 +32,13 @@ struct GUILabel : public GUIElement
          **/
         : GUIElement(minX, maxX, minY, maxY), text(text), textColor(textColor)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }

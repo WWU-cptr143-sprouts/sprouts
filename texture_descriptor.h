@@ -43,8 +43,13 @@ struct TextureDescriptor
          **/
         : image(image), minU(minU), maxU(maxU), minV(minV), maxV(maxV)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }

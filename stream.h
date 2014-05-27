@@ -34,11 +34,14 @@ class IOException : public runtime_error
     public:
         explicit IOException(const string & msg)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : runtime_error(msg)
         {
         }
         explicit IOException(exception * e, bool deleteIt = true)
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -60,6 +63,9 @@ class IOException : public runtime_error
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             : runtime_error((dynamic_cast<IOException *>(e) == nullptr) ? string("IO Error : ") + e->what() : string(e->what()))
             {
@@ -68,10 +74,13 @@ class IOException : public runtime_error
             }
         explicit IOException(exception & e, bool deleteIt = false)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException(&e, deleteIt)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -84,6 +93,9 @@ class IOException : public runtime_error
             : IOException(&e, deleteIt)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -97,10 +109,13 @@ class EOFException final : public IOException
     public:
         explicit EOFException()
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException("IO Error : reached end of file")
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -110,6 +125,9 @@ class EOFException final : public IOException
             : IOException("IO Error : reached end of file")
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -123,10 +141,13 @@ class NoStreamsLeftException final : public IOException
     public:
         explicit NoStreamsLeftException()
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException("IO Error : no streams left")
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -136,6 +157,9 @@ class NoStreamsLeftException final : public IOException
             : IOException("IO Error : no streams left")
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -149,10 +173,13 @@ class UTFDataFormatException final : public IOException
     public:
         explicit UTFDataFormatException()
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException("IO Error : invalid UTF data")
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -162,6 +189,9 @@ class UTFDataFormatException final : public IOException
             : IOException("IO Error : invalid UTF data")
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -175,10 +205,13 @@ class InvalidDataValueException final : public IOException
     public:
         explicit InvalidDataValueException(string msg)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException(msg)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -190,6 +223,9 @@ class InvalidDataValueException final : public IOException
             : IOException(msg)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -216,7 +252,10 @@ class Reader
             {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -224,6 +263,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(v < min || v > max)
                 {
@@ -266,12 +308,18 @@ class Reader
         {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             for(size_t i = 0; i < count; i++)
             {
@@ -419,6 +467,7 @@ class Reader
              **/
             union
 <<<<<<< HEAD
+<<<<<<< HEAD
             {
                 uint64_t ival;
                 double fval;
@@ -489,6 +538,44 @@ class Reader
              **/
             for(;;)
             {
+=======
+            {
+                uint64_t ival;
+                double fval;
+            };
+            ival = readU64();
+            double retval = fval;
+            DUMP_V(readF64, retval);
+            return retval;
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        bool readBool()
+        {
+            return readU8() != 0;
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        wstring readString()
+        {
+            wstring retval = L"";
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            for(;;)
+            {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 uint32_t b1 = readU8();
 
                 /**
@@ -498,6 +585,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(b1 == 0)
                 {
@@ -506,7 +596,10 @@ class Reader
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -515,6 +608,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if((b1 & 0x80) == 0)
                 {
@@ -522,7 +618,10 @@ class Reader
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -531,6 +630,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if((b1 & 0xE0) == 0xC0)
                 {
@@ -543,7 +645,10 @@ class Reader
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -552,6 +657,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if((b1 & 0xF0) == 0xE0)
                 {
@@ -568,7 +676,10 @@ class Reader
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -577,6 +688,9 @@ class Reader
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if((b1 & 0xF8) == 0xF0)
                 {
@@ -716,7 +830,10 @@ class Reader
             float retval = readF32();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -724,6 +841,9 @@ class Reader
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(!isfinite(retval))
             {
@@ -742,7 +862,10 @@ class Reader
             double retval = readF64();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -750,6 +873,9 @@ class Reader
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(!isfinite(retval))
             {
@@ -982,19 +1108,28 @@ class Writer
         {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             for(size_t i = 0; i < v.length(); i++)
             {
                 uint32_t ch = v[i];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -1002,6 +1137,9 @@ class Writer
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(ch != 0 && ch < 0x80)
                 {
@@ -1009,7 +1147,10 @@ class Writer
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -1017,6 +1158,9 @@ class Writer
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if(ch < 0x800)
                 {
@@ -1025,7 +1169,10 @@ class Writer
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
@@ -1033,6 +1180,9 @@ class Writer
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else if(ch < 0x1000)
                 {
@@ -1042,12 +1192,18 @@ class Writer
                 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 /**
                  * @brief Write what the function does here
                  *
                  * @return
                  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 else
                 {
@@ -1088,11 +1244,14 @@ class FileReader final : public Reader
         }
         explicit FileReader(FILE * f)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : f(f)
         {
             assert(f != nullptr);
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -1105,6 +1264,9 @@ class FileReader final : public Reader
             {
                 assert(f != nullptr);
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
@@ -1127,7 +1289,10 @@ class FileReader final : public Reader
             int ch = fgetc(f);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -1135,6 +1300,9 @@ class FileReader final : public Reader
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(ch == EOF)
             {
@@ -1172,6 +1340,7 @@ class FileWriter final : public Writer
                 throw IOException(string("IO Error : ") + strerror(errno));
         }
         explicit FileWriter(FILE * f)
+<<<<<<< HEAD
 <<<<<<< HEAD
             : f(f)
         {
@@ -1234,6 +1403,52 @@ class FileWriter final : public Writer
          }
          };
 
+=======
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param f
+             *
+             * @return
+             **/
+            : f(f)
+            {
+                assert(f != nullptr);
+            }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        virtual ~FileWriter()
+        {
+            fclose(f);
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param v
+         **/
+        virtual void writeByte(uint8_t v) override
+        {
+            if(fputc(v, f) == EOF)
+                throw IOException("IO Error : can't write to file");
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         virtual void flush() override
+         {
+         if(EOF == fflush(f))
+         throw IOException("IO Error : can't write to file");
+         }
+         };
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 /**
  * @brief Write what the function does here
  *
@@ -1247,6 +1462,7 @@ class MemoryReader final : public Reader
         const size_t length;
     public:
         explicit MemoryReader(shared_ptr<const uint8_t> mem, size_t length)
+<<<<<<< HEAD
 <<<<<<< HEAD
             : mem(mem), offset(0), length(length)
         {
@@ -1287,6 +1503,33 @@ class MemoryReader final : public Reader
 
 
 
+=======
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param mem
+             * @param 0
+             * @param length
+             *
+             * @return
+             **/
+            : mem(mem), offset(0), length(length)
+            {
+            }
+        template <size_t length>
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            explicit MemoryReader(const uint8_t a[length])
+
+
+
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
 
 
@@ -1339,6 +1582,9 @@ class MemoryReader final : public Reader
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             : MemoryReader(shared_ptr<const uint8_t>(&a[0], [](const uint8_t *){}))
             {

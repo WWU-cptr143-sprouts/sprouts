@@ -64,6 +64,7 @@ class graph
             Node *dest;
             Edge(const ET &data)  // copy into data
 <<<<<<< HEAD
+<<<<<<< HEAD
                 : data(data)
             {
             }
@@ -72,6 +73,8 @@ class graph
             {
             }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
                 /**
                  * @brief Write what the function does here
@@ -95,6 +98,9 @@ class graph
                 : data(data)
                 {
                 }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         };
 
@@ -111,6 +117,7 @@ class graph
             vector<Edge *> adjacencyList;
             Node(int index, const NT &data)  // copy into data
 <<<<<<< HEAD
+<<<<<<< HEAD
                 : index(index), data(data)
             {
             }
@@ -119,6 +126,8 @@ class graph
             {
             }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
                 /**
                  * @brief Write what the function does here
@@ -144,11 +153,15 @@ class graph
                 : index(index), data(data)
                 {
                 }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         };
         vector<Node *> nodes;
         vector<Edge *> edges;
     public:
+<<<<<<< HEAD
 
         /**
          * @brief Write what the function does here
@@ -159,12 +172,15 @@ class graph
 <<<<<<< HEAD
         {
         }
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
         ~graph() // destructor : destroys graph
         {
 
@@ -213,11 +229,16 @@ class graph
 =======
         {
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+        graph() // default constructor : constructs empty graph
+        {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
 <<<<<<< HEAD
          * @param rt
          *
@@ -247,6 +268,13 @@ class graph
         ~graph() // destructor : destroys graph
         {
 
+=======
+         * @return
+         **/
+        ~graph() // destructor : destroys graph
+        {
+
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -270,6 +298,9 @@ class graph
             {
                 delete edge;
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         }
 
@@ -280,6 +311,7 @@ class graph
          *
          * @return
          **/
+<<<<<<< HEAD
 <<<<<<< HEAD
         const graph &operator =(const graph &rt)   // copy assignment
         {
@@ -307,6 +339,52 @@ class graph
                 Node *newNode = new Node(nodes.size(), node->data);
                 nodes.push_back(newNode);
                 nodeMap[node] = newNode;
+=======
+        graph(const graph &rt)  // copy constructor
+        {
+            map<const Node *, Node *> nodeMap;
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param nodes
+             *
+             * @return
+             **/
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = new Node(nodes.size(), node->data);
+                nodes.push_back(newNode);
+                nodeMap[node] = newNode;
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param nodes
+             *
+             * @return
+             **/
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = nodeMap[node];
+
+                /**
+                 * @brief Write what the function does here
+                 *
+                 * @param adjacencyList
+                 *
+                 * @return
+                 **/
+                for(const Edge *edge : node->adjacencyList)
+                {
+                    Edge *newEdge = new Edge(edge->data);
+                    newEdge->src = node;
+                    newEdge->dest = nodeMap[edge->dest];
+                    newNode->adjacencyList.push_back(newEdge);
+                    edges.push_back(newEdge);
+                }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             }
 
             for(const Node *node : rt.nodes)
@@ -324,6 +402,7 @@ class graph
             }
             return *this;
         }
+<<<<<<< HEAD
 
         /**
          * @brief Write what the function does here
@@ -763,6 +842,8 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
             swap(edges, rt.edges);
             return *this;
         }
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
@@ -771,6 +852,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
          *
          * @return
          **/
+<<<<<<< HEAD
         const graph &operator =(const graph &rt)   // copy assignment
         {
 
@@ -871,9 +953,453 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
          * @return
          **/
         for(Node *node : nodes)
+=======
+        graph(graph  &&rt) // move constructor
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         {
-            delete node;
+            swap(nodes, rt.nodes);
+            swap(edges, rt.edges);
         }
+<<<<<<< HEAD
+        nodes.clear();
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+        /**
+         * @brief Write what the function does here
+         *
+<<<<<<< HEAD
+         * @param edges
+         *
+         * @return
+         **/
+        for(Edge *edge : edges)
+=======
+         * @param rt
+         *
+         * @return
+         **/
+        const graph &operator =(graph && rt)  // move assignment
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+        {
+            swap(nodes, rt.nodes);
+            swap(edges, rt.edges);
+            return *this;
+        }
+<<<<<<< HEAD
+        edges.clear();
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ void build() // builds graph interactively
+ {
+ clear();
+ cout << "Enter the number of nodes:";
+ int nodeCount;
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param nodeCount
+ * @param 0
+ *
+ * @return
+ **/
+if(!(cin >> nodeCount) || nodeCount < 0)
+{
+    throw graph_build_error("invalid node count");
+}
+vector<vector<pair<Edge *, int> > > adjacencyLists;
+adjacencyLists.resize(nodeCount);
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+try
+{
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    for(int i = 0; i < nodeCount; i++)
+    {
+        cout << "Node #" << (i + 1) << ":\n";
+        cout << "Enter Node Data:";
+        NT data;
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param data
+         *
+         * @return
+         **/
+        if(!(cin >> data))
+        {
+            throw graph_build_error("invalid node data");
+        }
+        Node *newNode = new Node(nodes.size(), move(data));  // move if we can because it's more efficient
+        nodes.push_back(newNode);
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        for(;;)
+        {
+            cout << "Enter adjacent node (or 0 to end):";
+            int n;
+=======
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param rt
+         *
+         * @return
+         **/
+        const graph &operator =(const graph &rt)   // copy assignment
+        {
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param this
+             *
+             * @return
+             **/
+            if(&rt == this)
+            {
+                return *this;
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param nodes
+             *
+             * @return
+             **/
+            for(Node *node : nodes)
+            {
+                delete node;
+            }
+            nodes.clear();
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+            /**
+             * @brief Write what the function does here
+             *
+<<<<<<< HEAD
+             * @param n
+             * @param nodeCount
+             *
+             * @return
+             **/
+            if(!(cin >> n) || n < 0 || n > nodeCount)
+            {
+                throw graph_build_error("invalid node adjacency");
+            }
+=======
+             * @param edges
+             *
+             * @return
+             **/
+            for(Edge *edge : edges)
+            {
+                delete edge;
+            }
+            edges.clear();
+            map<const Node *, Node *> nodeMap;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+            /**
+             * @brief Write what the function does here
+             *
+<<<<<<< HEAD
+             * @param 0
+             *
+             * @return
+             **/
+            if(n == 0)
+            {
+                break;
+=======
+             * @param nodes
+             *
+             * @return
+             **/
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = new Node(nodes.size(), node->data);
+                nodes.push_back(newNode);
+                nodeMap[node] = newNode;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+            }
+
+            /**
+             * @brief Write what the function does here
+             *
+<<<<<<< HEAD
+             * @param i
+             *
+             * @return
+             **/
+            for(auto edge : adjacencyLists[i])
+            {
+=======
+             * @param nodes
+             *
+             * @return
+             **/
+            for(const Node *node : rt.nodes)
+            {
+                Node *newNode = nodeMap[node];
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+                /**
+                 * @brief Write what the function does here
+                 *
+<<<<<<< HEAD
+                 * @param edge
+                 * @param 1
+                 *
+                 * @return
+                 **/
+                if(get<1>(edge) == n - 1)
+                {
+                    throw graph_build_error("duplicate node adjacency");
+                }
+            }
+            ET data;
+            cout << "Enter edge data:";
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param data
+             *
+             * @return
+             **/
+            if(!(cin >> data))
+            {
+                throw graph_build_error("invalid edge data");
+            }
+            Edge *newEdge;
+            newEdge = new Edge(move(data)); // move if we can because it's more efficient
+            adjacencyLists[i].push_back(make_pair(newEdge, n - 1));
+=======
+                 * @param adjacencyList
+                 *
+                 * @return
+                 **/
+                for(const Edge *edge : node->adjacencyList)
+                {
+                    Edge *newEdge = new Edge(edge->data);
+                    newEdge->src = node;
+                    newEdge->dest = nodeMap[edge->dest];
+                    newNode->adjacencyList.push_back(newEdge);
+                    edges.push_back(newEdge);
+                }
+            }
+            return *this;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+        }
+    }
+}
+
+<<<<<<< HEAD
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+catch(...)
+{
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param v
+     *
+     * @return
+     **/
+    const node_iterator &operator -=(int v)
+    {
+        index -= v;
+        return *this;
+    }
+=======
+     * @param adjacencyLists
+     *
+     * @return
+     **/
+    for(auto adjacencyList : adjacencyLists)
+    {
+=======
+        /**
+         * @brief Write what the function does here
+         *
+         void clear()
+         {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+        /**
+         * @brief Write what the function does here
+         *
+<<<<<<< HEAD
+         * @param adjacencyList
+         *
+         * @return
+         **/
+        for(auto edgePair : adjacencyList)
+=======
+         * @param nodes
+         *
+         * @return
+         **/
+        for(Node *node : nodes)
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+        {
+            delete get<0>(edgePair);
+        }
+<<<<<<< HEAD
+    }
+    throw;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+for(int i = 0; i < nodeCount; i++)
+{
+    Node *node = nodes[i];
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param index2
+     *
+     * @return
+     **/
+    const NT &operator [](int index2) const
+    {
+        return g->nodes[index + index2]->data;
+=======
+     * @param i
+     *
+     * @return
+     **/
+    for(auto edgePair : adjacencyLists[i])
+    {
+        int destIndex = get<1>(edgePair);
+        Edge *edge = get<0>(edgePair);
+        edge->src = node;
+        edge->dest = nodes[destIndex];
+        node->adjacencyList.push_back(edge);
+    }
+}
+}
+friend class node_iterator;
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param random_access_iterator_tag
+ *
+ * @return
+ **/
+class node_iterator : public iterator<random_access_iterator_tag, NT> // node iterator
+{
+    friend class graph;
+    private:
+    int index;
+    const graph *g;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    Node *get() const
+    {
+        return g->nodes[index];
+    }
+    public:
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    node_iterator()
+    {
+    }
+    node_iterator(int index, const graph *g)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param index
+         * @param g
+         *
+         * @return
+         **/
+        : index(index), g(g)
+        {
+        }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator ==(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index == r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator !=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index != r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const NT *operator ->() const
+    {
+        return &g->nodes[index]->data;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+=======
         nodes.clear();
 
         /**
@@ -922,11 +1448,185 @@ adjacencyLists.resize(nodeCount);
 try
 {
 
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
      * @return
      **/
+<<<<<<< HEAD
+<<<<<<< HEAD
+    const int position() const
+    {
+=======
+    const NT &operator *() const
+    {
+        return g->nodes[index]->data;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const node_iterator &operator ++()
+    {
+        ++index;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param int
+     *
+     * @return
+     **/
+    node_iterator operator ++(int)
+    {
+        return node_iterator(index++, g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const node_iterator &operator --()
+    {
+        --index;
+        return *this;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param int
+     *
+     * @return
+     **/
+    node_iterator operator --(int)
+    {
+        return node_iterator(index--, g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param v
+     * @param iter
+     *
+     * @return
+     **/
+    friend node_iterator operator +(int v, const node_iterator &iter)
+    {
+        return node_iterator(v + iter.index, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param iter
+     * @param v
+     *
+     * @return
+     **/
+    friend node_iterator operator +(const node_iterator &iter, int v)
+    {
+        return node_iterator(iter.index + v, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param iter
+     * @param v
+     *
+     * @return
+     **/
+    friend node_iterator operator -(const node_iterator &iter, int v)
+    {
+        return node_iterator(iter.index - v, iter.g);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend int operator -(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index - r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator <(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index < r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator <=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index <= r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator >=(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index >= r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param l
+     * @param r
+     *
+     * @return
+     **/
+    friend bool operator >(const node_iterator &l, const node_iterator &r)
+    {
+        return l.index > r.index;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param v
+     *
+     * @return
+     **/
+    const node_iterator &operator +=(int v)
+    {
+        index += v;
+        return *this;
+    }
+=======
     for(int i = 0; i < nodeCount; i++)
     {
         cout << "Node #" << (i + 1) << ":\n";
@@ -1201,6 +1901,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
 <<<<<<< HEAD
     const int position() const
     {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
     const NT &operator *() const
     {
@@ -1442,8 +2143,13 @@ class edge_iterator : public
              **/
             : iter(iter), g(g)
 <<<<<<< HEAD
+<<<<<<< HEAD
         {
         }
+=======
+            {
+            }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
             {
             }
@@ -1783,6 +2489,7 @@ edge_iterator cend(node_iterator ni) const // return iterator to past-the-end ed
 }
 private:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * @brief Write what the function does here
@@ -2066,6 +2773,64 @@ bool isGraphConnectedDepthFirst()
     return allMarked();
 }
 bool isGraphConnectedBreadthFirst()
+=======
+void isGraphConnectedDepthFirstHelper(Node *node) const  // depth first search helper
+{
+    node->flag = true;
+    for(Edge *edge : node->adjacencyList)
+    {
+        if(!edge->dest->flag)
+        {
+            isGraphConnectedDepthFirstHelper(edge->dest);
+        }
+    }
+}
+void unmarkAll() const // clear all flags
+{
+    for(Node *node : nodes)
+    {
+        node->flag = false;
+    }
+}
+bool anyFlagMatches(bool state) const // return if any node's flag matches state
+{
+    for(Node *node : nodes)
+    {
+        if(state == node->flag)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+bool anyMarked() const // return if any nodes are marked
+{
+    return anyFlagMatches(true);
+}
+bool allMarked() const // return if all nodes are marked
+{
+    return !anyFlagMatches(false);
+}
+public:
+bool isGraphConnectedDepthFirst()
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    const // return if the graph is connected starting from the first node
+{
+    if(nodes.empty())
+    {
+        return true;
+    }
+    unmarkAll();
+<<<<<<< HEAD
+    deque<Node *> nodeQueue;
+    nodeQueue.push_back(nodes.front());
+    while(!nodeQueue.empty())
+    {
+=======
+    isGraphConnectedDepthFirstHelper(nodes.front());
+    return allMarked();
+}
+bool isGraphConnectedBreadthFirst()
     const // return if the graph is connected starting from the first node
 {
     if(nodes.empty())
@@ -2077,6 +2842,7 @@ bool isGraphConnectedBreadthFirst()
     nodeQueue.push_back(nodes.front());
     while(!nodeQueue.empty())
     {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         Node *node = nodeQueue.front();
         nodeQueue.pop_front();
         node->flag = true;
@@ -2126,6 +2892,9 @@ edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
     assert(src != end() && dest != end());
     for(edge_iterator i = begin(src); i != end(src); i++)
     {
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(get<1>(*i) == dest)
         {
@@ -2133,7 +2902,10 @@ edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     Edge *newEdge = new Edge(data);
     newEdge->src = src.get();
     newEdge->dest = dest.get();
@@ -2151,6 +2923,9 @@ edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
             assert(false);
         }
     }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     Edge *newEdge = new Edge(move(data));
     newEdge->src = src.get();
@@ -2162,18 +2937,6 @@ edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
 template <typename NT2, typename ET2>
 friend ostream &operator <<(ostream &os, const graph<NT2, ET2> &g);
 <<<<<<< HEAD
-
-/**
- * @brief Write what the function does here
- *
- * @return
- **/
-=======
->>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
-size_t nodeCount() const
-{
-    return nodes.size();
-}
 <<<<<<< HEAD
 
 /**
@@ -2183,11 +2946,30 @@ size_t nodeCount() const
  **/
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+size_t nodeCount() const
+{
+    return nodes.size();
+}
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 size_t edgeCount() const
 {
     return edges.size();
 }
 };
+<<<<<<< HEAD
 <<<<<<< HEAD
 template <typename NT, typename ET>
 
@@ -2201,6 +2983,9 @@ template <typename NT, typename ET>
  *
  * @return
  **/
+=======
+    template <typename NT, typename ET>
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
     template <typename NT, typename ET>
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
@@ -2276,6 +3061,7 @@ inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(c
 }
 inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int minimumEdgeValue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         /**
          * @brief Write what the function does here
@@ -2284,6 +3070,8 @@ inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int 
          *
          * @return
          **/
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         int maximumEdgeValue)
@@ -2317,6 +3105,7 @@ inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int 
     return move(retval);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /**
  * @brief Write what the function does here
@@ -2337,6 +3126,11 @@ namespace GraphingInternals
 {
     template <typename NT, typename ET>
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+namespace GraphingInternals
+{
+    template <typename NT, typename ET>
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         struct DrawGraphEdge
         {
             typename graph<NT, ET>::edge_iterator edge;
@@ -2349,7 +3143,10 @@ namespace GraphingInternals
                 os << get<0>(*edge);
                 text = os.str();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(text != "")
@@ -2357,6 +3154,7 @@ namespace GraphingInternals
                     text += " ";
                 }
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             /**
@@ -2380,12 +3178,20 @@ namespace GraphingInternals
             {
             }
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+            DrawGraphEdge()
+            {
+            }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             bool intersectsY(const DrawGraphEdge &other) const
             {
                 int y1s = edge.src().position();
                 int y1e = edge.dest().position();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(y1s > y1e)
@@ -2395,7 +3201,10 @@ namespace GraphingInternals
                 int y2s = other.edge.src().position();
                 int y2e = other.edge.dest().position();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(y2s > y2e)
@@ -2403,7 +3212,10 @@ namespace GraphingInternals
                     swap(y2s, y2e);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(y1s > y2s)
@@ -2412,7 +3224,10 @@ namespace GraphingInternals
                     swap(y1e, y2e);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(y2s == y2e && y1s < y2s && y1e >= y2s)
@@ -2420,7 +3235,10 @@ namespace GraphingInternals
                     return true;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(y2s >= y1e)
@@ -2430,20 +3248,6 @@ namespace GraphingInternals
                 return true;
             }
 <<<<<<< HEAD
-
-            /**
-             * @brief Write what the function does here
-             *
-             * @param rt
-             *
-             * @return
-             **/
-=======
->>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
-            bool operator ==(const DrawGraphEdge &rt) const
-            {
-                return edge == rt.edge;
-            }
 <<<<<<< HEAD
 
             /**
@@ -2455,10 +3259,31 @@ namespace GraphingInternals
              **/
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+            bool operator ==(const DrawGraphEdge &rt) const
+            {
+                return edge == rt.edge;
+            }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param rt
+             *
+             * @return
+             **/
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             bool operator !=(const DrawGraphEdge &rt) const
             {
                 return edge != rt.edge;
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             /**
@@ -2471,6 +3296,10 @@ namespace GraphingInternals
             bool operator <(const DrawGraphEdge &rt) const
             {
 
+=======
+            bool operator <(const DrawGraphEdge &rt) const
+            {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
             bool operator <(const DrawGraphEdge &rt) const
             {
@@ -2483,6 +3312,7 @@ namespace GraphingInternals
                         rt.edge.dest().position());
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             /**
              * @brief Write what the function does here
@@ -2494,6 +3324,10 @@ namespace GraphingInternals
             bool operator >(const DrawGraphEdge &rt) const
             {
 
+=======
+            bool operator >(const DrawGraphEdge &rt) const
+            {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
             bool operator >(const DrawGraphEdge &rt) const
             {
@@ -2506,6 +3340,7 @@ namespace GraphingInternals
                         rt.edge.dest().position());
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             /**
              * @brief Write what the function does here
@@ -2521,6 +3356,10 @@ namespace GraphingInternals
             bool operator <=(const DrawGraphEdge &rt) const
             {
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+            bool operator <=(const DrawGraphEdge &rt) const
+            {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                 if(*this == rt)
                 {
                     return true;
@@ -2528,6 +3367,7 @@ namespace GraphingInternals
                 return abs(edge.src().position() - edge.dest().position()) < abs(rt.edge.src().position() -
                         rt.edge.dest().position());
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             /**
@@ -2540,6 +3380,10 @@ namespace GraphingInternals
             bool operator >=(const DrawGraphEdge &rt) const
             {
 
+=======
+            bool operator >=(const DrawGraphEdge &rt) const
+            {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
             bool operator >=(const DrawGraphEdge &rt) const
             {
@@ -2552,6 +3396,7 @@ namespace GraphingInternals
                         rt.edge.dest().position());
             }
         };
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     /**
@@ -2570,12 +3415,17 @@ namespace GraphingInternals
             string line = "";
 
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     inline void drawTextBlock(ostream &os, const vector<vector<string> > &textBlock, int lineLength)
     {
         os << "\n";
         for(int y = 0; y < (int)textBlock.size(); y++)
         {
             string line = "";
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             for(int x = 0; x < lineLength; x++)
             {
@@ -2585,6 +3435,7 @@ namespace GraphingInternals
         }
     }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 template <typename NT, typename ET>
 
@@ -2597,6 +3448,9 @@ template <typename NT, typename ET>
  *
  * @return
  **/
+=======
+    template <typename NT, typename ET>
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
     template <typename NT, typename ET>
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
@@ -2815,6 +3669,7 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
     return os;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 template <typename NT, typename ET>
 
 /**
@@ -2827,6 +3682,9 @@ template <typename NT, typename ET>
  *
  * @return
  **/
+=======
+    template <typename NT, typename ET>
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
     template <typename NT, typename ET>
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f

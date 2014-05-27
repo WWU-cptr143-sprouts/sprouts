@@ -51,10 +51,37 @@ class GUICircleArrangement final : public GUIContainer
     public:
         GUICircleArrangement(float minX, float maxX, float minY, float maxY, float minAngle, float maxAngle, VectorF circleCenter, float radius, Mesh forwardCenterMesh, VectorF forwardOffset, Mesh reverseCenterMesh, VectorF reverseOffset, VectorF followSpot)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : GUIContainer(minX, maxX, minY, maxY), radius(radius), minAngle(minAngle), maxAngle(maxAngle), followSpot(followSpot), circleCenter(circleCenter), forwardOffset(forwardOffset), reverseOffset(reverseOffset), forwardCenterMesh(forwardCenterMesh), reverseCenterMesh(reverseCenterMesh)
         {
             angle = neededAngle();
         }
+=======
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param minX
+             * @param maxX
+             * @param minY
+             * @param maxY
+             * @param radius
+             * @param minAngle
+             * @param maxAngle
+             * @param followSpot
+             * @param circleCenter
+             * @param forwardOffset
+             * @param reverseOffset
+             * @param forwardCenterMesh
+             * @param reverseCenterMesh
+             *
+             * @return
+             **/
+            : GUIContainer(minX, maxX, minY, maxY), radius(radius), minAngle(minAngle), maxAngle(maxAngle), followSpot(followSpot), circleCenter(circleCenter), forwardOffset(forwardOffset), reverseOffset(reverseOffset), forwardCenterMesh(forwardCenterMesh), reverseCenterMesh(reverseCenterMesh)
+            {
+                angle = neededAngle();
+            }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
@@ -68,6 +95,7 @@ class GUICircleArrangement final : public GUIContainer
         virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
         {
 
+<<<<<<< HEAD
 =======
 
             /**
@@ -106,6 +134,8 @@ class GUICircleArrangement final : public GUIContainer
         virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
         {
 
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -113,6 +143,9 @@ class GUICircleArrangement final : public GUIContainer
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             if(hasFocus && Display::frameDeltaTime() > eps)
             {
@@ -127,12 +160,18 @@ class GUICircleArrangement final : public GUIContainer
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             for(size_t i = 0; i < getElementCount(); i++)
             {

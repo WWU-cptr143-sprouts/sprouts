@@ -30,7 +30,10 @@ class Matrix
         {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -38,13 +41,19 @@ class Matrix
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             switch(x)
             {
                 case 0:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -52,6 +61,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -67,7 +79,10 @@ class Matrix
                 case 1:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -75,6 +90,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -90,7 +108,10 @@ class Matrix
                 case 2:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -98,6 +119,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -113,7 +137,10 @@ class Matrix
                 case 3:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -121,6 +148,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -149,7 +179,10 @@ class Matrix
         {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             /**
              * @brief Write what the function does here
              *
@@ -157,13 +190,19 @@ class Matrix
              *
              * @return
              **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             switch(x)
             {
                 case 0:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -171,6 +210,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -189,7 +231,10 @@ class Matrix
                 case 1:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -197,6 +242,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -215,7 +263,10 @@ class Matrix
                 case 2:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -223,6 +274,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -241,7 +295,10 @@ class Matrix
                 case 3:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     /**
                      * @brief Write what the function does here
                      *
@@ -249,6 +306,9 @@ class Matrix
                      *
                      * @return
                      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
                     switch(y)
                     {
@@ -705,10 +765,13 @@ inline bool operator ==(const Matrix & a, const Matrix & b)
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     for(int y = 0; y < 4; y++)
     {
 
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
@@ -722,6 +785,9 @@ inline bool operator ==(const Matrix & a, const Matrix & b)
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         for(int x = 0; x < 4; x++)
         {
@@ -744,10 +810,13 @@ inline bool operator !=(const Matrix & a, const Matrix & b)
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     for(int y = 0; y < 4; y++)
     {
 
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
@@ -761,6 +830,9 @@ inline bool operator !=(const Matrix & a, const Matrix & b)
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         for(int x = 0; x < 4; x++)
         {

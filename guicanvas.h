@@ -30,8 +30,13 @@ class GUICanvas : public GUIElement
          **/
         : GUIElement(minX, maxX, minY, maxY), generateMeshFn(generateMeshFn)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }
@@ -42,11 +47,14 @@ class GUICanvas : public GUIElement
      * @brief Write what the function does here
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param minX
      * @param maxX
      * @param minY
      * @param maxY
      *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
      * @return

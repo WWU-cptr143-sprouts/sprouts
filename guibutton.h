@@ -99,7 +99,10 @@ struct GUIButton : public GUIElement
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -108,6 +111,9 @@ struct GUIButton : public GUIElement
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(!GUIElement::isPointInside(x, y))
         {
@@ -141,12 +147,18 @@ struct GUIButton : public GUIElement
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         else
         {
@@ -190,7 +202,10 @@ struct GUIButton : public GUIElement
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -198,6 +213,9 @@ struct GUIButton : public GUIElement
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(event.button == MouseButton_Left)
         {
@@ -218,7 +236,10 @@ struct GUIButton : public GUIElement
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -226,6 +247,9 @@ struct GUIButton : public GUIElement
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(event.button == MouseButton_Left)
         {
@@ -262,7 +286,10 @@ struct GUIButton : public GUIElement
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -270,6 +297,9 @@ struct GUIButton : public GUIElement
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(!event.isRepetition && (event.key == KeyboardKey_Return || event.key == KeyboardKey_Space))
         {

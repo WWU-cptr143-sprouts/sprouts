@@ -16,10 +16,13 @@ class PngLoadError final : public IOException
     public:
         explicit PngLoadError(const string & arg)
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException(arg)
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -31,6 +34,9 @@ class PngLoadError final : public IOException
             : IOException(arg)
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 /** read and decode png files<br/>
@@ -52,6 +58,7 @@ class PngDecoder final
     public:
         explicit PngDecoder(Reader & reader);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         /**
          * @brief Write what the function does here
@@ -69,12 +76,17 @@ class PngDecoder final
         }
 =======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @param rt
          *
          * @return
@@ -90,6 +102,9 @@ class PngDecoder final
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @return
          **/

@@ -45,8 +45,13 @@ struct TextureCoord
          **/
         : TextureCoord(0, 0)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }
@@ -152,7 +157,10 @@ inline Triangle transform(const Matrix &m, Triangle t)
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
@@ -160,6 +168,9 @@ inline Triangle transform(const Matrix &m, Triangle t)
      *
      * @return
      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     for(VectorF &p : t.p)
     {
@@ -273,10 +284,13 @@ class ImageNotSameException final : public runtime_error
     public:
         explicit ImageNotSameException()
 <<<<<<< HEAD
+<<<<<<< HEAD
             : runtime_error("can't use more than one image per mesh")
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -286,6 +300,9 @@ class ImageNotSameException final : public runtime_error
             : runtime_error("can't use more than one image per mesh")
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -324,6 +341,7 @@ class Mesh_t final
               DUMP_V(Mesh_t::Mesh_t, "reading mesh : read texture");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
               for(float & v : points)
               {
               v = reader.readFiniteF32();
@@ -344,6 +362,8 @@ class Mesh_t final
               }*/
     public:
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -369,16 +389,22 @@ class Mesh_t final
             v = reader.readFiniteF32();
         }
         DUMP_V(Mesh_t::Mesh_t, "reading mesh : read textureCoords");
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
 <<<<<<< HEAD
+<<<<<<< HEAD
          * @return
          **/
         Mesh_t()
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @param colors
          *
          * @return
@@ -388,6 +414,7 @@ class Mesh_t final
         {
             length = 0;
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         /**
@@ -436,10 +463,229 @@ class Mesh_t final
                 textureCoords.push_back(tri.t[2].v);
             }
         }
+=======
+        DUMP_V(Mesh_t::Mesh_t, "reading mesh : read colors");
+}*/
+public:
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+Mesh_t()
+{
+    length = 0;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param texture
+ *
+ * @return
+ **/
+Mesh_t(Image texture, vector<Triangle> triangles = vector<Triangle>())
+{
+    length = triangles.size();
+    points.reserve(floatsPerPoint * pointsPerTriangle * length);
+    colors.reserve(floatsPerColor * colorsPerTriangle * length);
+    textureCoords.reserve(floatsPerTextureCoord * textureCoordsPerTriangle * length);
+    textureInternal = texture;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param triangles
+     *
+     * @return
+     **/
+    for(Triangle tri : triangles)
+    {
+        points.push_back(tri.p[0].x);
+        points.push_back(tri.p[0].y);
+        points.push_back(tri.p[0].z);
+        points.push_back(tri.p[1].x);
+        points.push_back(tri.p[1].y);
+        points.push_back(tri.p[1].z);
+        points.push_back(tri.p[2].x);
+        points.push_back(tri.p[2].y);
+        points.push_back(tri.p[2].z);
+        colors.push_back(tri.c[0].r);
+        colors.push_back(tri.c[0].g);
+        colors.push_back(tri.c[0].b);
+        colors.push_back(tri.c[0].a);
+        colors.push_back(tri.c[1].r);
+        colors.push_back(tri.c[1].g);
+        colors.push_back(tri.c[1].b);
+        colors.push_back(tri.c[1].a);
+        colors.push_back(tri.c[2].r);
+        colors.push_back(tri.c[2].g);
+        colors.push_back(tri.c[2].b);
+        colors.push_back(tri.c[2].a);
+        textureCoords.push_back(tri.t[0].u);
+        textureCoords.push_back(tri.t[0].v);
+        textureCoords.push_back(tri.t[1].u);
+        textureCoords.push_back(tri.t[1].v);
+        textureCoords.push_back(tri.t[2].u);
+        textureCoords.push_back(tri.t[2].v);
+    }
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param tex
+ *
+ * @return
+ **/
+Mesh_t(TextureDescriptor tex, vector<Triangle> triangles = vector<Triangle>())
+{
+    length = triangles.size();
+    points.reserve(floatsPerPoint * pointsPerTriangle * length);
+    colors.reserve(floatsPerColor * colorsPerTriangle * length);
+    textureCoords.reserve(floatsPerTextureCoord * textureCoordsPerTriangle * length);
+    textureInternal = tex.image;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param triangles
+     *
+     * @return
+     **/
+    for(Triangle tri : triangles)
+    {
+        points.push_back(tri.p[0].x);
+        points.push_back(tri.p[0].y);
+        points.push_back(tri.p[0].z);
+        points.push_back(tri.p[1].x);
+        points.push_back(tri.p[1].y);
+        points.push_back(tri.p[1].z);
+        points.push_back(tri.p[2].x);
+        points.push_back(tri.p[2].y);
+        points.push_back(tri.p[2].z);
+        colors.push_back(tri.c[0].r);
+        colors.push_back(tri.c[0].g);
+        colors.push_back(tri.c[0].b);
+        colors.push_back(tri.c[0].a);
+        colors.push_back(tri.c[1].r);
+        colors.push_back(tri.c[1].g);
+        colors.push_back(tri.c[1].b);
+        colors.push_back(tri.c[1].a);
+        colors.push_back(tri.c[2].r);
+        colors.push_back(tri.c[2].g);
+        colors.push_back(tri.c[2].b);
+        colors.push_back(tri.c[2].a);
+        textureCoords.push_back(interpolate(tri.t[0].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[0].v, tex.minV, tex.maxV));
+        textureCoords.push_back(interpolate(tri.t[1].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[1].v, tex.minV, tex.maxV));
+        textureCoords.push_back(interpolate(tri.t[2].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[2].v, tex.minV, tex.maxV));
+    }
+}
+Mesh_t(const TransformedMesh &tm)
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+: Mesh_t()
+{
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param nullptr
+     *
+     * @return
+     **/
+    if(tm.mesh == nullptr)
+    {
+        return;
+    }
+    points = tm.mesh->points;
+    colors = tm.mesh->colors;
+    textureCoords = tm.mesh->textureCoords;
+    textureInternal = tm.mesh->texture();
+    length = tm.mesh->length;
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param floatsPerPoint
+     *
+     * @return
+     **/
+    for(auto i = points.begin(); i != points.end(); i += floatsPerPoint)
+    {
+        VectorF v;
+        v.x = i[0];
+        v.y = i[1];
+        v.z = i[2];
+        v = transform(tm.tform, v);
+        i[0] = v.x;
+        i[1] = v.y;
+        i[2] = v.z;
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param floatsPerColor
+     *
+     * @return
+     **/
+    for(auto i = colors.begin(); i != colors.end(); i += floatsPerColor)
+    {
+        Color c;
+        c.r = i[0];
+        c.g = i[1];
+        c.b = i[2];
+        c.a = i[3];
+        c = scale(c, tm.factor);
+        i[0] = c.r;
+        i[1] = c.g;
+        i[2] = c.b;
+        i[3] = c.a;
+    }
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const Image &texture() const
+{
+    return textureInternal;
+}
+friend class const_iterator;
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param value_type
+ * @param Triangle
+ *
+ * @return
+ **/
+class const_iterator final : public iterator<iterator_traits<vector<float>::iterator>::value_type, const Triangle, ssize_t>
+{
+    friend class Mesh_t;
+    private:
+    typedef vector<float>::const_iterator subIterator;
+    mutable Triangle tri;
+    subIterator pointIterator, colorIterator, textureCoordIterator;
+    const_iterator(subIterator pointIterator, subIterator colorIterator, subIterator textureCoordIterator)
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
          * @param tex
          *
          * @return
@@ -1012,161 +1258,7 @@ Mesh_t(Image texture, vector<Triangle> triangles = vector<Triangle>())
         textureCoords.push_back(tri.t[1].v);
         textureCoords.push_back(tri.t[2].u);
         textureCoords.push_back(tri.t[2].v);
-    }
-}
-
-/**
- * @brief Write what the function does here
- *
- * @param tex
- *
- * @return
- **/
-Mesh_t(TextureDescriptor tex, vector<Triangle> triangles = vector<Triangle>())
-{
-    length = triangles.size();
-    points.reserve(floatsPerPoint * pointsPerTriangle * length);
-    colors.reserve(floatsPerColor * colorsPerTriangle * length);
-    textureCoords.reserve(floatsPerTextureCoord * textureCoordsPerTriangle * length);
-    textureInternal = tex.image;
-
-    /**
-     * @brief Write what the function does here
-     *
-     * @param triangles
-     *
-     * @return
-     **/
-    for(Triangle tri : triangles)
-    {
-        points.push_back(tri.p[0].x);
-        points.push_back(tri.p[0].y);
-        points.push_back(tri.p[0].z);
-        points.push_back(tri.p[1].x);
-        points.push_back(tri.p[1].y);
-        points.push_back(tri.p[1].z);
-        points.push_back(tri.p[2].x);
-        points.push_back(tri.p[2].y);
-        points.push_back(tri.p[2].z);
-        colors.push_back(tri.c[0].r);
-        colors.push_back(tri.c[0].g);
-        colors.push_back(tri.c[0].b);
-        colors.push_back(tri.c[0].a);
-        colors.push_back(tri.c[1].r);
-        colors.push_back(tri.c[1].g);
-        colors.push_back(tri.c[1].b);
-        colors.push_back(tri.c[1].a);
-        colors.push_back(tri.c[2].r);
-        colors.push_back(tri.c[2].g);
-        colors.push_back(tri.c[2].b);
-        colors.push_back(tri.c[2].a);
-        textureCoords.push_back(interpolate(tri.t[0].u, tex.minU, tex.maxU));
-        textureCoords.push_back(interpolate(tri.t[0].v, tex.minV, tex.maxV));
-        textureCoords.push_back(interpolate(tri.t[1].u, tex.minU, tex.maxU));
-        textureCoords.push_back(interpolate(tri.t[1].v, tex.minV, tex.maxV));
-        textureCoords.push_back(interpolate(tri.t[2].u, tex.minU, tex.maxU));
-        textureCoords.push_back(interpolate(tri.t[2].v, tex.minV, tex.maxV));
-    }
-}
-Mesh_t(const TransformedMesh &tm)
-
-    /**
-     * @brief Write what the function does here
-     *
-     * @return
-     **/
-: Mesh_t()
-{
-
-    /**
-     * @brief Write what the function does here
-     *
-     * @param nullptr
-     *
-     * @return
-     **/
-    if(tm.mesh == nullptr)
-    {
-        return;
-    }
-    points = tm.mesh->points;
-    colors = tm.mesh->colors;
-    textureCoords = tm.mesh->textureCoords;
-    textureInternal = tm.mesh->texture();
-    length = tm.mesh->length;
-
-    /**
-     * @brief Write what the function does here
-     *
-     * @param floatsPerPoint
-     *
-     * @return
-     **/
-    for(auto i = points.begin(); i != points.end(); i += floatsPerPoint)
-    {
-        VectorF v;
-        v.x = i[0];
-        v.y = i[1];
-        v.z = i[2];
-        v = transform(tm.tform, v);
-        i[0] = v.x;
-        i[1] = v.y;
-        i[2] = v.z;
-    }
-
-    /**
-     * @brief Write what the function does here
-     *
-     * @param floatsPerColor
-     *
-     * @return
-     **/
-    for(auto i = colors.begin(); i != colors.end(); i += floatsPerColor)
-    {
-        Color c;
-        c.r = i[0];
-        c.g = i[1];
-        c.b = i[2];
-        c.a = i[3];
-        c = scale(c, tm.factor);
-        i[0] = c.r;
-        i[1] = c.g;
-        i[2] = c.b;
-        i[3] = c.a;
-    }
-}
-
-/**
- * @brief Write what the function does here
- *
- * @return
- **/
-const Image &texture() const
-{
-    return textureInternal;
-}
-friend class const_iterator;
-
-/**
- * @brief Write what the function does here
- *
- * @param value_type
- * @param Triangle
- *
- * @return
- **/
-class const_iterator final : public iterator<iterator_traits<vector<float>::iterator>::value_type, const Triangle, ssize_t>
-{
-    friend class Mesh_t;
-    private:
-    typedef vector<float>::const_iterator subIterator;
-    mutable Triangle tri;
-    subIterator pointIterator, colorIterator, textureCoordIterator;
-    const_iterator(subIterator pointIterator, subIterator colorIterator, subIterator textureCoordIterator)
-
-        /**
-         * @brief Write what the function does here
-         *
+=======
          * @param pointIterator
          * @param colorIterator
          * @param textureCoordIterator
@@ -1290,15 +1382,389 @@ class const_iterator final : public iterator<iterator_traits<vector<float>::iter
     const_iterator operator -(ssize_t i) const
     {
         return operator +(-i);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param tex
+ *
+ * @return
+ **/
+Mesh_t(TextureDescriptor tex, vector<Triangle> triangles = vector<Triangle>())
+{
+    length = triangles.size();
+    points.reserve(floatsPerPoint * pointsPerTriangle * length);
+    colors.reserve(floatsPerColor * colorsPerTriangle * length);
+    textureCoords.reserve(floatsPerTextureCoord * textureCoordsPerTriangle * length);
+    textureInternal = tex.image;
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param triangles
+     *
+     * @return
+     **/
+    for(Triangle tri : triangles)
+    {
+        points.push_back(tri.p[0].x);
+        points.push_back(tri.p[0].y);
+        points.push_back(tri.p[0].z);
+        points.push_back(tri.p[1].x);
+        points.push_back(tri.p[1].y);
+        points.push_back(tri.p[1].z);
+        points.push_back(tri.p[2].x);
+        points.push_back(tri.p[2].y);
+        points.push_back(tri.p[2].z);
+        colors.push_back(tri.c[0].r);
+        colors.push_back(tri.c[0].g);
+        colors.push_back(tri.c[0].b);
+        colors.push_back(tri.c[0].a);
+        colors.push_back(tri.c[1].r);
+        colors.push_back(tri.c[1].g);
+        colors.push_back(tri.c[1].b);
+        colors.push_back(tri.c[1].a);
+        colors.push_back(tri.c[2].r);
+        colors.push_back(tri.c[2].g);
+        colors.push_back(tri.c[2].b);
+        colors.push_back(tri.c[2].a);
+        textureCoords.push_back(interpolate(tri.t[0].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[0].v, tex.minV, tex.maxV));
+        textureCoords.push_back(interpolate(tri.t[1].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[1].v, tex.minV, tex.maxV));
+        textureCoords.push_back(interpolate(tri.t[2].u, tex.minU, tex.maxU));
+        textureCoords.push_back(interpolate(tri.t[2].v, tex.minV, tex.maxV));
+=======
+     * @param r
+     *
+     * @return
+     **/
+    ssize_t operator -(const const_iterator &r) const
+    {
+        return (textureCoordIterator - r.textureCoordIterator) / (floatsPerTextureCoord * textureCoordsPerTriangle);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+}
+Mesh_t(const TransformedMesh &tm)
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+: Mesh_t()
+{
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param nullptr
+     *
+     * @return
+     **/
+    if(tm.mesh == nullptr)
+    {
+        return;
+=======
+     * @param i
+     *
+     * @return
+     **/
+    const const_iterator &operator +=(ssize_t i)
+    {
+        return *this = operator +(i);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+    points = tm.mesh->points;
+    colors = tm.mesh->colors;
+    textureCoords = tm.mesh->textureCoords;
+    textureInternal = tm.mesh->texture();
+    length = tm.mesh->length;
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param floatsPerPoint
+     *
+     * @return
+     **/
+    for(auto i = points.begin(); i != points.end(); i += floatsPerPoint)
+    {
+        VectorF v;
+        v.x = i[0];
+        v.y = i[1];
+        v.z = i[2];
+        v = transform(tm.tform, v);
+        i[0] = v.x;
+        i[1] = v.y;
+        i[2] = v.z;
+=======
+     * @param i
+     *
+     * @return
+     **/
+    const const_iterator &operator -=(ssize_t i)
+    {
+        return *this = operator -(i);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     }
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
+     * @param floatsPerColor
+     *
+     * @return
+     **/
+    for(auto i = colors.begin(); i != colors.end(); i += floatsPerColor)
+    {
+        Color c;
+        c.r = i[0];
+        c.g = i[1];
+        c.b = i[2];
+        c.a = i[3];
+        c = scale(c, tm.factor);
+        i[0] = c.r;
+        i[1] = c.g;
+        i[2] = c.b;
+        i[3] = c.a;
+=======
+     * @return
+     **/
+    const const_iterator &operator ++()
+    {
+        return operator +=(1);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+}
+
+<<<<<<< HEAD
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const Image &texture() const
+{
+    return textureInternal;
+}
+friend class const_iterator;
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param value_type
+ * @param Triangle
+ *
+ * @return
+ **/
+class const_iterator final : public iterator<iterator_traits<vector<float>::iterator>::value_type, const Triangle, ssize_t>
+{
+    friend class Mesh_t;
+    private:
+    typedef vector<float>::const_iterator subIterator;
+    mutable Triangle tri;
+    subIterator pointIterator, colorIterator, textureCoordIterator;
+    const_iterator(subIterator pointIterator, subIterator colorIterator, subIterator textureCoordIterator)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param pointIterator
+         * @param colorIterator
+         * @param textureCoordIterator
+         *
+         * @return
+         **/
+        : pointIterator(pointIterator), colorIterator(colorIterator), textureCoordIterator(textureCoordIterator)
+        {
+        }
+    public:
+
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+<<<<<<< HEAD
+    const_iterator()
+    {
+=======
+    const const_iterator &operator --()
+    {
+        return operator -=(1);
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param rt
+     *
+     * @return
+     **/
+    bool operator ==(const const_iterator &rt) const
+    {
+        return pointIterator == rt.pointIterator;
+=======
+     * @param int
+     *
+     * @return
+     **/
+    const_iterator operator ++(int)
+    {
+        const_iterator retval = *this;
+        operator ++();
+        return retval;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param rt
+     *
+     * @return
+     **/
+    bool operator !=(const const_iterator &rt) const
+    {
+        return pointIterator != rt.pointIterator;
+=======
+     * @param int
+     *
+     * @return
+     **/
+    const_iterator operator --(int)
+    {
+        const_iterator retval = *this;
+        operator --();
+        return retval;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @return
+     **/
+    const Triangle &operator *() const
+    {
+        subIterator p = pointIterator, c = colorIterator, t = textureCoordIterator;
+        tri.p[0] = VectorF(p[0], p[1], p[2]);
+        tri.p[1] = VectorF(p[3], p[4], p[5]);
+        tri.p[2] = VectorF(p[6], p[7], p[8]);
+        tri.c[0] = Color(c[0], c[1], c[2], c[3]);
+        tri.c[1] = Color(c[4], c[5], c[6], c[7]);
+        tri.c[2] = Color(c[8], c[9], c[10], c[11]);
+        tri.t[0] = TextureCoord(t[0], t[1]);
+        tri.t[1] = TextureCoord(t[2], t[3]);
+        tri.t[2] = TextureCoord(t[4], t[5]);
+        return tri;
+=======
      * @param r
      *
      * @return
      **/
+    bool operator >(const const_iterator &r) const
+    {
+        return pointIterator > r.pointIterator;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param index
+     *
+     * @return
+     **/
+    const Triangle &operator[](ssize_t index) const
+    {
+        return operator +(index).operator * ();
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    const Triangle *operator ->() const
+    {
+        return &operator *();
+=======
+     * @param r
+     *
+     * @return
+     **/
+    bool operator >=(const const_iterator &r) const
+    {
+        return pointIterator >= r.pointIterator;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+<<<<<<< HEAD
+     * @param i
+     *
+     * @return
+     **/
+    const_iterator operator +(ssize_t i) const
+    {
+        return const_iterator(pointIterator + i * floatsPerPoint * pointsPerTriangle,
+                colorIterator + i * floatsPerColor * colorsPerTriangle,
+                textureCoordIterator + i * floatsPerTextureCoord * textureCoordsPerTriangle);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param i
+     * @param iter
+     *
+     * @return
+     **/
+    friend const_iterator operator +(ssize_t i, const const_iterator &iter)
+    {
+        return iter.operator + (i);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param i
+     *
+     * @return
+     **/
+    const_iterator operator -(ssize_t i) const
+    {
+        return operator +(-i);
+    }
+
+    /**
+     * @brief Write what the function does here
+     *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+     * @param r
+     *
+     * @return
+     **/
+<<<<<<< HEAD
     ssize_t operator -(const const_iterator &r) const
     {
         return (textureCoordIterator - r.textureCoordIterator) / (floatsPerTextureCoord * textureCoordsPerTriangle);
@@ -1314,11 +1780,17 @@ class const_iterator final : public iterator<iterator_traits<vector<float>::iter
     const const_iterator &operator +=(ssize_t i)
     {
         return *this = operator +(i);
+=======
+    bool operator <(const const_iterator &r) const
+    {
+        return pointIterator < r.pointIterator;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     }
 
     /**
      * @brief Write what the function does here
      *
+<<<<<<< HEAD
      * @param i
      *
      * @return
@@ -1415,11 +1887,14 @@ class const_iterator final : public iterator<iterator_traits<vector<float>::iter
     /**
      * @brief Write what the function does here
      *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
      * @param r
      *
      * @return
      **/
     bool operator <=(const const_iterator &r) const
+<<<<<<< HEAD
     {
         return pointIterator <= r.pointIterator;
     }
@@ -1541,8 +2016,134 @@ void add(const Mesh_t &m)
         {
             throw ImageNotSameException();
         }
+=======
+    {
+        return pointIterator <= r.pointIterator;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+    }
+};
+typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
+<<<<<<< HEAD
+=======
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+size_t size() const
+{
+    return length;
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_iterator begin() const
+{
+    return const_iterator(points.begin(), colors.begin(), textureCoords.begin());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_iterator end() const
+{
+    return const_iterator(points.end(), colors.end(), textureCoords.end());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_iterator cbegin() const
+{
+    return const_iterator(points.begin(), colors.begin(), textureCoords.begin());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_iterator cend() const
+{
+    return const_iterator(points.end(), colors.end(), textureCoords.end());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_reverse_iterator rbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_reverse_iterator rend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_reverse_iterator crbegin() const
+{
+    return const_reverse_iterator(end());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
+const_reverse_iterator crend() const
+{
+    return const_reverse_iterator(begin());
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param m
+ **/
+void add(const Mesh_t &m)
+{
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
+    if(texture())
+    {
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        if(m.texture() && m.texture() != texture())
+        {
+            throw ImageNotSameException();
+        }
     }
 
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
@@ -1583,6 +2184,9 @@ void add(TransformedMesh m)
 friend Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ);
 friend Mesh interpolateColors(Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ);
 friend Mesh lightColors(Mesh dest, Mesh mesh, VectorF lightDir, float ambient, float diffuse);
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -1615,12 +2219,18 @@ inline Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ
     {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(mesh->texture() && mesh->texture() != dest->texture())
         {
@@ -1629,12 +2239,18 @@ inline Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
      * @return
      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     else
     {
@@ -1645,12 +2261,18 @@ inline Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ
     size_t vi = 0, ci = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
      * @return
      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     for(size_t i = 0; i < mesh->length; i++)
     {
@@ -1699,12 +2321,18 @@ inline Mesh interpolateColors(Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNX
     size_t vi = 0, ci = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
      * @return
      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     for(size_t i = 0; i < mesh->length; i++)
     {
@@ -1744,7 +2372,10 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
     triangles.reserve(mesh->size());
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     /**
      * @brief Write what the function does here
      *
@@ -1752,6 +2383,9 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
      *
      * @return
      **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     for(Triangle t : *mesh)
     {
@@ -1782,6 +2416,7 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
   mesh->texture().write(writer, client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   for(float v : mesh->points)
   {
   writer.writeF32(v);
@@ -1799,6 +2434,8 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
   }
 
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 /**
  * @brief Write what the function does here
  *
@@ -1809,11 +2446,40 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
 for(float v : mesh->points)
 {
     writer.writeF32(v);
+<<<<<<< HEAD
+=======
 }
 
 /**
  * @brief Write what the function does here
  *
+ * @param textureCoords
+ *
+ * @return
+ **/
+for(float v : mesh->textureCoords)
+{
+    writer.writeF32(v);
+}
+
+/**
+ * @brief Write what the function does here
+ *
+ * @param colors
+ *
+ * @return
+ **/
+for(float v : mesh->colors)
+{
+    writer.writeF32(v);
+}
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+}
+
+/**
+ * @brief Write what the function does here
+ *
+<<<<<<< HEAD
  * @param textureCoords
  *
  * @return
@@ -1840,6 +2506,8 @@ for(float v : mesh->colors)
 /**
  * @brief Write what the function does here
  *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
  * @param reader
  * @param client
  *

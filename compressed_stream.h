@@ -14,10 +14,13 @@ class LZ77FormatException final : public IOException
     public:
         LZ77FormatException()
 <<<<<<< HEAD
+<<<<<<< HEAD
             : IOException("LZ77 format error")
         {
         }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
             /**
              * @brief Write what the function does here
@@ -27,6 +30,9 @@ class LZ77FormatException final : public IOException
             : IOException("LZ77 format error")
             {
             }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 };
 
@@ -83,8 +89,13 @@ struct LZ77CodeType final
          **/
         : length(0), offset(0), nextByte(nextByte)
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
     }
+=======
+        {
+        }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 =======
         {
         }
@@ -135,7 +146,10 @@ struct LZ77CodeType final
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -143,6 +157,9 @@ struct LZ77CodeType final
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         catch(EOFException &e)
         {
@@ -179,6 +196,7 @@ class ExpandReader final : public Reader
         LZ77CodeType currentCode;
     public:
         ExpandReader(shared_ptr<Reader> reader)
+<<<<<<< HEAD
 <<<<<<< HEAD
             : reader(reader)
         {
@@ -265,11 +283,82 @@ class ExpandReader final : public Reader
 };
 <<<<<<< HEAD
 =======
+=======
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param reader
+             *
+             * @return
+             **/
+            : reader(reader)
+            {
+            }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        ExpandReader(Reader &reader)
+            : ExpandReader(shared_ptr<Reader>(&reader, [](Reader *) {}))
+            {
+            }
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        virtual ~ExpandReader()
+        {
+        }
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+        virtual uint8_t readByte() override
+        {
+            while(currentCode.eof())
+            {
+                currentCode = LZ77CodeType::read(*reader);
+            }
+            uint8_t retval;
+            if(currentCode.length == 0)
+            {
+                retval = currentCode.nextByte;
+                currentCode = LZ77CodeType();
+            }
+            else
+            {
+                if(currentCode.offset >= buffer.size())
+                {
+                    throw LZ77FormatException();
+                }
+                retval = buffer.cbegin()[currentCode.offset];
+                if(--currentCode.length == 0)
+                {
+                    currentCode = LZ77CodeType(currentCode.nextByte);
+                }
+            }
+            buffer.push_front(retval);
+            if(buffer.size() > bufferSize)
+            {
+                buffer.pop_back();
+            }
+            return retval;
+        }
+};
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 /**
  * @brief Write what the function does here
  *
  * @return
  **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 class CompressWriter final : public Writer
 {
@@ -277,15 +366,47 @@ class CompressWriter final : public Writer
         static constexpr int uint8_max = (1 << 8) - 1;
         static constexpr size_t bufferSize = LZ77CodeType::maxOffset + 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
         struct Match
         {
             size_t location, length;
+=======
 =======
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+        struct Match
+        {
+            size_t location, length;
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            Match(size_t location, size_t length)
+                : location(location), length(length)
+            {
+            }
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
+            Match()
+                : Match(0, 0)
+            {
+            }
+        };
+        size_t location;
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+<<<<<<< HEAD
         struct Match
         {
             size_t location, length;
@@ -323,6 +444,10 @@ class CompressWriter final : public Writer
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         size_t getActualLocation(size_t l)
         {
+=======
+        size_t getActualLocation(size_t l)
+        {
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
             return location - l;
         }
         shared_ptr<Writer> writer;
@@ -330,12 +455,18 @@ class CompressWriter final : public Writer
         circularDeque<uint_fast8_t, bufferSize + 2> buffer;
         list<size_t> nodes[uint8_max + 1];
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         void addByte(uint_fast8_t v)
         {
@@ -374,12 +505,18 @@ class CompressWriter final : public Writer
           }
           }*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         Match getBiggestMatch()
         {
@@ -414,12 +551,18 @@ class CompressWriter final : public Writer
             return retval;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         void writeCode()
         {
@@ -453,33 +596,47 @@ class CompressWriter final : public Writer
         }
     public:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         CompressWriter(shared_ptr<Writer> writer)
             : writer(writer)
         {
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         CompressWriter(Writer &writer)
             : CompressWriter(shared_ptr<Writer>(&writer, [](Writer *) {}))
             {
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
         virtual ~CompressWriter()
         {
         }
+=======
 =======
         /**
          * @brief Write what the function does here
@@ -489,11 +646,23 @@ class CompressWriter final : public Writer
         virtual ~CompressWriter()
         {
         }
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+        virtual ~CompressWriter()
+        {
+        }
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         virtual void flush() override
         {
@@ -502,12 +671,18 @@ class CompressWriter final : public Writer
             writer->flush();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         virtual void writeByte(uint8_t v) override
         {

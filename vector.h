@@ -18,10 +18,13 @@ struct VectorI //integer vector
     int x, y, z;
     constexpr VectorI(int x, int y, int z)
 <<<<<<< HEAD
+<<<<<<< HEAD
         : x(x), y(y), z(z)
     {
     }
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
@@ -35,6 +38,9 @@ struct VectorI //integer vector
         : x(x), y(y), z(z)
         {
         }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     private:
     VectorI(float x, float y, float z) = delete;
@@ -293,6 +299,7 @@ struct VectorF //floating point vector
     float x, y, z;
     constexpr VectorF(float x, float y, float z)//constructor
 <<<<<<< HEAD
+<<<<<<< HEAD
         : x(x), y(y), z(z)
     {
     }
@@ -300,6 +307,7 @@ struct VectorF //floating point vector
         : x(v), y(v), z(v)
     {
     }
+=======
 =======
 
         /**
@@ -315,10 +323,28 @@ struct VectorF //floating point vector
         {
         }
     constexpr VectorF(float v = 0)//constructor for the origin
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
 
         /**
          * @brief Write what the function does here
          *
+<<<<<<< HEAD
+         * @param x
+         * @param y
+         * @param z
+         *
+         * @return
+         **/
+        : x(x), y(y), z(z)
+        {
+        }
+    constexpr VectorF(float v = 0)//constructor for the origin
+
+        /**
+         * @brief Write what the function does here
+         *
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
          * @param v
          * @param v
          * @param v
@@ -328,6 +354,9 @@ struct VectorF //floating point vector
         : x(v), y(v), z(v)
         {
         }
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
     constexpr VectorF(const VectorI & v)//converts integer vector to float vector
 
@@ -726,7 +755,10 @@ struct VectorF //floating point vector
         float r = abs(v);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -734,6 +766,9 @@ struct VectorF //floating point vector
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(r == 0)
         {
@@ -754,7 +789,10 @@ struct VectorF //floating point vector
         float r = abs(v);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -762,6 +800,9 @@ struct VectorF //floating point vector
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(v == 0)
         {
@@ -785,7 +826,10 @@ struct VectorF //floating point vector
         float r = abs(v);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -793,6 +837,9 @@ struct VectorF //floating point vector
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(v == 0)
         {
@@ -811,7 +858,10 @@ struct VectorF //floating point vector
         float r = abs(*this);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         /**
          * @brief Write what the function does here
          *
@@ -819,6 +869,9 @@ struct VectorF //floating point vector
          *
          * @return
          **/
+<<<<<<< HEAD
+>>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
+=======
 >>>>>>> 3854c8d4af1c567779842cfd990fcd7aae1ece8f
         if(r == 0)
         {
