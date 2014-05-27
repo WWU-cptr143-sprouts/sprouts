@@ -1,0 +1,336 @@
+\hypertarget{classImage}{\section{Image Class Reference}
+\label{classImage}\index{Image@{Image}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$image.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structImage_1_1data__t}{data\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImage_a5408754295f3c928f514504a1af7f0d6}{{\bfseries Image} (const string \&, bool transparent=false)}\label{classImage_a5408754295f3c928f514504a1af7f0d6}
+
+\item 
+\hypertarget{classImage_a18ae111e701a052087cc2ac6546f3c3f}{\hyperlink{structSDL__Surface}{S\+D\+L\+\_\+\+Surface} $\ast$ {\bfseries surface} ()}\label{classImage_a18ae111e701a052087cc2ac6546f3c3f}
+
+\item 
+\hypertarget{classImage_a54e0042d9eac7f20a1dab76683fe9c7f}{{\bfseries Image} (wstring resource\+Name)}\label{classImage_a54e0042d9eac7f20a1dab76683fe9c7f}
+
+\item 
+\hypertarget{classImage_a9b680c47c5cbcdb5e40cbafda9f01585}{{\bfseries Image} (unsigned w, unsigned h)}\label{classImage_a9b680c47c5cbcdb5e40cbafda9f01585}
+
+\item 
+\hypertarget{classImage_ae464aed23c1ff34ad69d6a523035c8f9}{{\bfseries Image} (\hyperlink{structColor}{Color} c)}\label{classImage_ae464aed23c1ff34ad69d6a523035c8f9}
+
+\item 
+\hyperlink{classImage_aeadd5d847590baf1a1dc8956476bb78e}{Image} (nullptr\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{classImage_a26e062a056015a1aebf4bbc9961646d5}{void {\bfseries set\+Pixel} (int x, int y, \hyperlink{structColor}{Color} c)}\label{classImage_a26e062a056015a1aebf4bbc9961646d5}
+
+\item 
+\hypertarget{classImage_a39c099122fc2bb6f0ed9ad4080681b1a}{\hyperlink{structColor}{Color} {\bfseries get\+Pixel} (int x, int y) const }\label{classImage_a39c099122fc2bb6f0ed9ad4080681b1a}
+
+\item 
+\hypertarget{classImage_aca8eb96b468eaeaf83df9141c0710a8b}{void {\bfseries bind} () const }\label{classImage_aca8eb96b468eaeaf83df9141c0710a8b}
+
+\item 
+unsigned \hyperlink{classImage_a4010d0e12a669145acd733bcf9f4bfc5}{width} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classImage_ad37da5a6118258cf72b0f1dc4d947309}{height} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classImage_a265f35ac9a54a1162f0b1bbf4a4a6d5d}{operator bool} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+bool \hyperlink{classImage_a287b62a3f46e2e5836182c8d99815721}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImage_a60aa59d14aedd4047f034326b347c7c8}{static void {\bfseries unbind} ()}\label{classImage_a60aa59d14aedd4047f034326b347c7c8}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classImage_a856d0983e089ff127d0bcad3828c1aab}{Row\+Order} \{ {\bfseries Top\+To\+Bottom}, 
+{\bfseries Bottom\+To\+Top}
+ \}
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImage_a5bd8a41d6e720c5fd5872d3dbba42cbc}{void {\bfseries set\+Row\+Order} (\hyperlink{classImage_a856d0983e089ff127d0bcad3828c1aab}{Row\+Order} new\+Row\+Order) const }\label{classImage_a5bd8a41d6e720c5fd5872d3dbba42cbc}
+
+\item 
+\hypertarget{classImage_a16e027ce30976d5d2703dd0c579094be}{void {\bfseries swap\+Rows} (unsigned y1, unsigned y2) const }\label{classImage_a16e027ce30976d5d2703dd0c579094be}
+
+\item 
+\hypertarget{classImage_af932925dc96ef5857cf9622803a7be72}{void {\bfseries copy\+On\+Write} ()}\label{classImage_af932925dc96ef5857cf9622803a7be72}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImage_a9592ab5485100bdb7418909f6d0136cd}{\hyperlink{structSDL__Surface}{S\+D\+L\+\_\+\+Surface} $\ast$ {\bfseries img}}\label{classImage_a9592ab5485100bdb7418909f6d0136cd}
+
+\item 
+\hypertarget{classImage_a0003e2a1be5b1642913c5b1837c361e7}{shared\+\_\+ptr$<$ \hyperlink{structImage_1_1data__t}{data\+\_\+t} $>$ {\bfseries data}}\label{classImage_a0003e2a1be5b1642913c5b1837c361e7}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classImage_a34ce493f5ecfbd5cf3dc5d215d0d0620}{static constexpr size\+\_\+t {\bfseries Bytes\+Per\+Pixel} = 4}\label{classImage_a34ce493f5ecfbd5cf3dc5d215d0d0620}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classImage_a2304aa1c9fbc445512db17eadc2c3f6f}{operator==} (\hyperlink{classImage}{Image} l, \hyperlink{classImage}{Image} r)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+bool \hyperlink{classImage_ac96614d2b0093664f753bb88a95c0815}{operator!=} (\hyperlink{classImage}{Image} l, \hyperlink{classImage}{Image} r)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 22 of file image.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classImage_a856d0983e089ff127d0bcad3828c1aab}{\index{Image@{Image}!Row\+Order@{Row\+Order}}
+\index{Row\+Order@{Row\+Order}!Image@{Image}}
+\subsubsection[{Row\+Order}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Image\+::\+Row\+Order}\hspace{0.3cm}{\ttfamily [private]}}}\label{classImage_a856d0983e089ff127d0bcad3828c1aab}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 136 of file image.\+h.
+
+
+\begin{DoxyCode}
+137         \{
+138             TopToBottom,
+139             BottomToTop
+140         \};
+\end{DoxyCode}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classImage_aeadd5d847590baf1a1dc8956476bb78e}{\index{Image@{Image}!Image@{Image}}
+\index{Image@{Image}!Image@{Image}}
+\subsubsection[{Image}]{\setlength{\rightskip}{0pt plus 5cm}Image\+::\+Image (
+\begin{DoxyParamCaption}
+\item[{nullptr\+\_\+t}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_aeadd5d847590baf1a1dc8956476bb78e}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 47 of file image.\+h.
+
+
+\begin{DoxyCode}
+54             : \hyperlink{classImage}{Image}()
+55             \{
+56             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classImage_ad37da5a6118258cf72b0f1dc4d947309}{\index{Image@{Image}!height@{height}}
+\index{height@{height}!Image@{Image}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}unsigned Image\+::height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_ad37da5a6118258cf72b0f1dc4d947309}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 77 of file image.\+h.
+
+
+\begin{DoxyCode}
+78         \{
+79             \textcolor{keywordflow}{return} data->h;
+80         \}
+\end{DoxyCode}
+\hypertarget{classImage_a265f35ac9a54a1162f0b1bbf4a4a6d5d}{\index{Image@{Image}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Image@{Image}}
+\subsubsection[{operator bool}]{\setlength{\rightskip}{0pt plus 5cm}Image\+::operator bool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a265f35ac9a54a1162f0b1bbf4a4a6d5d}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 87 of file image.\+h.
+
+
+\begin{DoxyCode}
+88         \{
+89             \textcolor{keywordflow}{return} data != \textcolor{keyword}{nullptr};
+90         \}
+\end{DoxyCode}
+\hypertarget{classImage_a287b62a3f46e2e5836182c8d99815721}{\index{Image@{Image}!operator"!@{operator"!}}
+\index{operator"!@{operator"!}!Image@{Image}}
+\subsubsection[{operator"!}]{\setlength{\rightskip}{0pt plus 5cm}bool Image\+::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a287b62a3f46e2e5836182c8d99815721}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 97 of file image.\+h.
+
+
+\begin{DoxyCode}
+98         \{
+99             \textcolor{keywordflow}{return} data == \textcolor{keyword}{nullptr};
+100         \}
+\end{DoxyCode}
+\hypertarget{classImage_a4010d0e12a669145acd733bcf9f4bfc5}{\index{Image@{Image}!width@{width}}
+\index{width@{width}!Image@{Image}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}unsigned Image\+::width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classImage_a4010d0e12a669145acd733bcf9f4bfc5}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 67 of file image.\+h.
+
+
+\begin{DoxyCode}
+68         \{
+69             \textcolor{keywordflow}{return} data->w;
+70         \}
+\end{DoxyCode}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classImage_ac96614d2b0093664f753bb88a95c0815}{\index{Image@{Image}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Image@{Image}}
+\subsubsection[{operator"!=}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf operator!}= (
+\begin{DoxyParamCaption}
+\item[{{\bf Image}}]{l, }
+\item[{{\bf Image}}]{r}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classImage_ac96614d2b0093664f753bb88a95c0815}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 123 of file image.\+h.
+
+
+\begin{DoxyCode}
+124         \{
+125             \textcolor{keywordflow}{return} l.data != r.data;
+126         \}
+\end{DoxyCode}
+\hypertarget{classImage_a2304aa1c9fbc445512db17eadc2c3f6f}{\index{Image@{Image}!operator==@{operator==}}
+\index{operator==@{operator==}!Image@{Image}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf Image}}]{l, }
+\item[{{\bf Image}}]{r}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classImage_a2304aa1c9fbc445512db17eadc2c3f6f}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 110 of file image.\+h.
+
+
+\begin{DoxyCode}
+111         \{
+112             \textcolor{keywordflow}{return} l.data == r.data;
+113         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/image.\+h\item 
+image.\+cpp\end{DoxyCompactItemize}

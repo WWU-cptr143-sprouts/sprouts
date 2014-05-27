@@ -1,26 +1,1114 @@
 #ifndef GUICANVAS_H_INCLUDED
 #define GUICANVAS_H_INCLUDED
-
 #include "guielement.h"
 #include "generate.h"
 #include <functional>
 #include <stdexcept>
-
 using namespace std;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 class GUICanvas : public GUIElement
 {
     function<Mesh()> generateMeshFn;
-public:
+    public:
     GUICanvas(float minX, float maxX, float minY, float maxY, function<Mesh()> generateMeshFn)
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         * @param generateMeshFn
+         *
+         * @return
+         **/
         : GUIElement(minX, maxX, minY, maxY), generateMeshFn(generateMeshFn)
-    {
-    }
-protected:
+        {
+        }
+    protected:
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
     GUICanvas(float minX, float maxX, float minY, float maxY)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minX
+         * @param maxX
+         * @param minY
+         * @param maxY
+         *
+         * @return
+         **/
         : GUIElement(minX, maxX, minY, maxY), generateMeshFn([]() -> Mesh {throw logic_error("generateMeshFn called instead of overridden generateMesh");})
-    {
-    }
+        {
+        }
     virtual Mesh generateMesh() const
     {
         return generateMeshFn();
@@ -35,8 +1123,8 @@ protected:
         float centerX = 0.5 * (maxX + minX);
         float centerY = 0.5 * (maxY + minY);
         retval = (Mesh)transform(Matrix(scale, 0, -centerX, 0,
-                                        0, scale, -centerY, 0,
-                                        0, 0, 1, 0), retval);
+                    0, scale, -centerY, 0,
+                    0, 0, 1, 0), retval);
         retval = cut(retval, VectorF(-1, 0, -minX), 0);
         retval = cut(retval, VectorF(1, 0, maxX), 0);
         retval = cut(retval, VectorF(0, -1, -minY), 0);
@@ -59,5 +1147,4 @@ protected:
         return (Mesh)transform(Matrix::scale(maxZ / -minZ), retval);
     }
 };
-
 #endif // GUICANVAS_H_INCLUDED

@@ -1,0 +1,119 @@
+\hypertarget{structKeyPressEvent}{\section{Key\+Press\+Event Struct Reference}
+\label{structKeyPressEvent}\index{Key\+Press\+Event@{Key\+Press\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Key\+Press\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structKeyPressEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structKeyPressEvent_a4d9766496d06b53ba5b594ed922082a8}{Key\+Press\+Event} (wchar\+\_\+t character)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structKeyPressEvent_a1c0e591880a4e20864a5d910e062c7fb}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structKeyPressEvent_a07fd7ffa0d7ab155ecaaed3cfb087b43}{const wchar\+\_\+t {\bfseries character}}\label{structKeyPressEvent_a07fd7ffa0d7ab155ecaaed3cfb087b43}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 214 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structKeyPressEvent_a4d9766496d06b53ba5b594ed922082a8}{\index{Key\+Press\+Event@{Key\+Press\+Event}!Key\+Press\+Event@{Key\+Press\+Event}}
+\index{Key\+Press\+Event@{Key\+Press\+Event}!Key\+Press\+Event@{Key\+Press\+Event}}
+\subsubsection[{Key\+Press\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Key\+Press\+Event\+::\+Key\+Press\+Event (
+\begin{DoxyParamCaption}
+\item[{wchar\+\_\+t}]{character}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structKeyPressEvent_a4d9766496d06b53ba5b594ed922082a8}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+\_\+\+Key\+Press} & \\
+\hline
+{\em character} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 217 of file event.\+h.
+
+
+\begin{DoxyCode}
+227         : \hyperlink{classEvent_a07dd964621d0623bfccc24197c2f509b}{Event}(Type\_KeyPress), character(character)
+228         \{
+229         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structKeyPressEvent_a1c0e591880a4e20864a5d910e062c7fb}{\index{Key\+Press\+Event@{Key\+Press\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Key\+Press\+Event@{Key\+Press\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Key\+Press\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structKeyPressEvent_a1c0e591880a4e20864a5d910e062c7fb}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 238 of file event.\+h.
+
+
+\begin{DoxyCode}
+239     \{
+240         \textcolor{keywordflow}{return} eventHandler->handleKeyPress(*\textcolor{keyword}{this});
+241     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

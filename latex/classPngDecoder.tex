@@ -1,0 +1,249 @@
+\hypertarget{classPngDecoder}{\section{Png\+Decoder Class Reference}
+\label{classPngDecoder}\index{Png\+Decoder@{Png\+Decoder}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$png\+\_\+decoder.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPngDecoder_ad2a3600a772e46d9957240cb13909b9a}{{\bfseries Png\+Decoder} (\hyperlink{classReader}{Reader} \&reader)}\label{classPngDecoder_ad2a3600a772e46d9957240cb13909b9a}
+
+\item 
+\hyperlink{classPngDecoder_abb583c6067fbcd11133ee69041ff7839}{Png\+Decoder} (\hyperlink{classPngDecoder}{Png\+Decoder} \&\&rt)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classPngDecoder_ac029788d28a1551b584cf387f71bb127}{$\sim$\+Png\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classPngDecoder_ac8546a346caf8b6e80cc0713188109b5}{operator()} (int x, int y, int byte\+Num) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+int \hyperlink{classPngDecoder_a0a42c8992ee9e3ac8ec5565f5a0094e8}{width} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+int \hyperlink{classPngDecoder_aeb76e6f9eda9439b913ff9a7f43d4393}{height} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \hyperlink{classPngDecoder_ab8c9261a551941015ea4721d6972ec30}{remove\+Data} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPngDecoder_a593683f3ab43f058ad6623bf9a0cc101}{{\bfseries Png\+Decoder} (const \hyperlink{classPngDecoder}{Png\+Decoder} \&)=delete}\label{classPngDecoder_a593683f3ab43f058ad6623bf9a0cc101}
+
+\item 
+\hypertarget{classPngDecoder_a930e1427fb5ad61dca776f458ca99b06}{const \hyperlink{classPngDecoder}{Png\+Decoder} \& {\bfseries operator=} (const \hyperlink{classPngDecoder}{Png\+Decoder} \&)=delete}\label{classPngDecoder_a930e1427fb5ad61dca776f458ca99b06}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPngDecoder_a40f09e2097962ab0c9788a7cf61eacd0}{unsigned {\bfseries w}}\label{classPngDecoder_a40f09e2097962ab0c9788a7cf61eacd0}
+
+\item 
+\hypertarget{classPngDecoder_a20aa858e65cb8af05c781f7f4e3a2f50}{unsigned {\bfseries h}}\label{classPngDecoder_a20aa858e65cb8af05c781f7f4e3a2f50}
+
+\item 
+\hypertarget{classPngDecoder_a23272dbc35d902b9c2aed79cf9ed40a6}{uint8\+\_\+t $\ast$ {\bfseries data}}\label{classPngDecoder_a23272dbc35d902b9c2aed79cf9ed40a6}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+read and decode png files~\newline
+ bytes in R\+G\+B\+A format \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 39 of file png\+\_\+decoder.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPngDecoder_abb583c6067fbcd11133ee69041ff7839}{\index{Png\+Decoder@{Png\+Decoder}!Png\+Decoder@{Png\+Decoder}}
+\index{Png\+Decoder@{Png\+Decoder}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{Png\+Decoder}]{\setlength{\rightskip}{0pt plus 5cm}Png\+Decoder\+::\+Png\+Decoder (
+\begin{DoxyParamCaption}
+\item[{{\bf Png\+Decoder} \&\&}]{rt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_abb583c6067fbcd11133ee69041ff7839}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rt} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 56 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+57         \{
+58             w = rt.w;
+59             h = rt.h;
+60             data = rt.data;
+61             rt.data = \textcolor{keyword}{nullptr};
+62         \}
+\end{DoxyCode}
+\hypertarget{classPngDecoder_ac029788d28a1551b584cf387f71bb127}{\index{Png\+Decoder@{Png\+Decoder}!````~Png\+Decoder@{$\sim$\+Png\+Decoder}}
+\index{````~Png\+Decoder@{$\sim$\+Png\+Decoder}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{$\sim$\+Png\+Decoder}]{\setlength{\rightskip}{0pt plus 5cm}Png\+Decoder\+::$\sim$\+Png\+Decoder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_ac029788d28a1551b584cf387f71bb127}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 69 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+70         \{
+71             \textcolor{keyword}{delete} []data;
+72         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPngDecoder_aeb76e6f9eda9439b913ff9a7f43d4393}{\index{Png\+Decoder@{Png\+Decoder}!height@{height}}
+\index{height@{height}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}int Png\+Decoder\+::height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_aeb76e6f9eda9439b913ff9a7f43d4393}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 110 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+111         \{
+112             \textcolor{keywordflow}{return} h;
+113         \}
+\end{DoxyCode}
+\hypertarget{classPngDecoder_ac8546a346caf8b6e80cc0713188109b5}{\index{Png\+Decoder@{Png\+Decoder}!operator()@{operator()}}
+\index{operator()@{operator()}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Png\+Decoder\+::operator() (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{byte\+Num}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_ac8546a346caf8b6e80cc0713188109b5}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em byte\+Num} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 83 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+84         \{
+85             \textcolor{keywordflow}{if}(x < 0 || (\textcolor{keywordtype}{unsigned})x >= w || y < 0 || (\textcolor{keywordtype}{unsigned})y >= h || byteNum < 0 || byteNum >= 4)
+86                 \textcolor{keywordflow}{throw} range\_error(\textcolor{stringliteral}{"index out of range in PngDecoder::operator()(int x, int y, int byteNum)
+       const"});
+87             \textcolor{keywordtype}{size\_t} index = y;
+88             index *= w;
+89             index += x;
+90             index *= 4;
+91             index += byteNum;
+92             \textcolor{keywordflow}{return} data[index];
+93         \}
+\end{DoxyCode}
+\hypertarget{classPngDecoder_ab8c9261a551941015ea4721d6972ec30}{\index{Png\+Decoder@{Png\+Decoder}!remove\+Data@{remove\+Data}}
+\index{remove\+Data@{remove\+Data}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{remove\+Data}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t$\ast$ Png\+Decoder\+::remove\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_ab8c9261a551941015ea4721d6972ec30}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 120 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+121         \{
+122             uint8\_t * retval = data;
+123             data = \textcolor{keyword}{nullptr};
+124             \textcolor{keywordflow}{return} retval;
+125         \}
+\end{DoxyCode}
+\hypertarget{classPngDecoder_a0a42c8992ee9e3ac8ec5565f5a0094e8}{\index{Png\+Decoder@{Png\+Decoder}!width@{width}}
+\index{width@{width}!Png\+Decoder@{Png\+Decoder}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}int Png\+Decoder\+::width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classPngDecoder_a0a42c8992ee9e3ac8ec5565f5a0094e8}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 100 of file png\+\_\+decoder.\+h.
+
+
+\begin{DoxyCode}
+101         \{
+102             \textcolor{keywordflow}{return} w;
+103         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+png\+\_\+decoder.\+h\item 
+png\+\_\+decoder.\+cpp\end{DoxyCompactItemize}

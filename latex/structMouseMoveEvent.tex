@@ -1,0 +1,122 @@
+\hypertarget{structMouseMoveEvent}{\section{Mouse\+Move\+Event Struct Reference}
+\label{structMouseMoveEvent}\index{Mouse\+Move\+Event@{Mouse\+Move\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Mouse\+Move\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structMouseMoveEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structMouseMoveEvent_abf421414902d34aa2d9435cc485fc4c8}{Mouse\+Move\+Event} (float x, float y, float delta\+X, float delta\+Y)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structMouseMoveEvent_a2718ebd4f6f40d533773e59530372d62}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 357 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structMouseMoveEvent_abf421414902d34aa2d9435cc485fc4c8}{\index{Mouse\+Move\+Event@{Mouse\+Move\+Event}!Mouse\+Move\+Event@{Mouse\+Move\+Event}}
+\index{Mouse\+Move\+Event@{Mouse\+Move\+Event}!Mouse\+Move\+Event@{Mouse\+Move\+Event}}
+\subsubsection[{Mouse\+Move\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Mouse\+Move\+Event\+::\+Mouse\+Move\+Event (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{delta\+X, }
+\item[{float}]{delta\+Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structMouseMoveEvent_abf421414902d34aa2d9435cc485fc4c8}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+\_\+\+Mouse\+Move} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em delta\+X} & \\
+\hline
+{\em delta\+Y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 359 of file event.\+h.
+
+
+\begin{DoxyCode}
+372         : \hyperlink{classMouseEvent_a38e3202976fe08a74713bbb3326004c6}{MouseEvent}(Type\_MouseMove, x, y, deltaX, deltaY)
+373         \{
+374         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structMouseMoveEvent_a2718ebd4f6f40d533773e59530372d62}{\index{Mouse\+Move\+Event@{Mouse\+Move\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Mouse\+Move\+Event@{Mouse\+Move\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mouse\+Move\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structMouseMoveEvent_a2718ebd4f6f40d533773e59530372d62}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 383 of file event.\+h.
+
+
+\begin{DoxyCode}
+384     \{
+385         \textcolor{keywordflow}{return} eventHandler->handleMouseMove(*\textcolor{keyword}{this});
+386     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

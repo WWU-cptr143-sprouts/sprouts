@@ -1,0 +1,163 @@
+\hypertarget{structSDL__HapticCondition}{\section{S\+D\+L\+\_\+\+Haptic\+Condition Struct Reference}
+\label{structSDL__HapticCondition}\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+}
+
+
+A structure containing a template for a Condition effect.  
+
+
+
+
+{\ttfamily \#include $<$S\+D\+L\+\_\+haptic.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_a7be55a9a86c05dd1a54a3006781cfa6f}{type}
+\item 
+\hyperlink{structSDL__HapticDirection}{S\+D\+L\+\_\+\+Haptic\+Direction} \hyperlink{structSDL__HapticCondition_a728507d30d18998949313de3a25e5581}{direction}
+\item 
+Uint32 \hyperlink{structSDL__HapticCondition_ad0efb0a6ddc20f058e87199eaaa95978}{length}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_aad40417980530ca8d80c62ba864a090b}{delay}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_acd35a9d432ad122bf7824b16974eac7a}{button}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_aafc182abea1078bed7e9cf5d0e713ea2}{interval}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_ae60f900dda3063e1b63be77b154148b7}{right\+\_\+sat} \mbox{[}3\mbox{]}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_a9b7f297ab398efd2a9b9cb68eaab0834}{left\+\_\+sat} \mbox{[}3\mbox{]}
+\item 
+Sint16 \hyperlink{structSDL__HapticCondition_a8fd18ffa42b1a34a28759657eac21e45}{right\+\_\+coeff} \mbox{[}3\mbox{]}
+\item 
+Sint16 \hyperlink{structSDL__HapticCondition_ad0cb577a8aaf26d4cfcd857b7a6c44db}{left\+\_\+coeff} \mbox{[}3\mbox{]}
+\item 
+Uint16 \hyperlink{structSDL__HapticCondition_a7b343c95c46a3dd44ead46b169bc3f6f}{deadband} \mbox{[}3\mbox{]}
+\item 
+Sint16 \hyperlink{structSDL__HapticCondition_ad29db17143c5666e302c77e8e1b40ca0}{center} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A structure containing a template for a Condition effect. 
+
+The struct handles the following effects\+:
+\begin{DoxyItemize}
+\item \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+S\+P\+R\+I\+N\+G\+: Effect based on axes position.
+\item \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+D\+A\+M\+P\+E\+R\+: Effect based on axes velocity.
+\item \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+I\+N\+E\+R\+T\+I\+A\+: Effect based on axes acceleration.
+\item \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+F\+R\+I\+C\+T\+I\+O\+N\+: Effect based on axes movement.
+\end{DoxyItemize}
+
+Direction is handled by condition internals instead of a direction member. The condition effect specific members have three parameters. The first refers to the X axis, the second refers to the Y axis and the third refers to the Z axis. The right terms refer to the positive side of the axis and the left terms refer to the negative side of the axis. Please refer to the \hyperlink{structSDL__HapticDirection}{S\+D\+L\+\_\+\+Haptic\+Direction} diagram for which side is positive and which is negative.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{structSDL__HapticDirection}{S\+D\+L\+\_\+\+Haptic\+Direction} 
+
+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+S\+P\+R\+I\+N\+G 
+
+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+D\+A\+M\+P\+E\+R 
+
+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+I\+N\+E\+R\+T\+I\+A 
+
+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+F\+R\+I\+C\+T\+I\+O\+N 
+
+\hyperlink{unionSDL__HapticEffect}{S\+D\+L\+\_\+\+Haptic\+Effect} 
+\end{DoxySeeAlso}
+
+
+Definition at line 591 of file S\+D\+L\+\_\+haptic.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structSDL__HapticCondition_acd35a9d432ad122bf7824b16974eac7a}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!button@{button}}
+\index{button@{button}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{button}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::button}}\label{structSDL__HapticCondition_acd35a9d432ad122bf7824b16974eac7a}
+Button that triggers the effect. 
+
+Definition at line 603 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_ad29db17143c5666e302c77e8e1b40ca0}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!center@{center}}
+\index{center@{center}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}Sint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::center}}\label{structSDL__HapticCondition_ad29db17143c5666e302c77e8e1b40ca0}
+Position of the dead zone. 
+
+Definition at line 612 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_a7b343c95c46a3dd44ead46b169bc3f6f}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!deadband@{deadband}}
+\index{deadband@{deadband}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{deadband}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::deadband}}\label{structSDL__HapticCondition_a7b343c95c46a3dd44ead46b169bc3f6f}
+Size of the dead zone. 
+
+Definition at line 611 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_aad40417980530ca8d80c62ba864a090b}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!delay@{delay}}
+\index{delay@{delay}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{delay}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::delay}}\label{structSDL__HapticCondition_aad40417980530ca8d80c62ba864a090b}
+Delay before starting the effect. 
+
+Definition at line 600 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_a728507d30d18998949313de3a25e5581}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!direction@{direction}}
+\index{direction@{direction}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+D\+L\+\_\+\+Haptic\+Direction} S\+D\+L\+\_\+\+Haptic\+Condition\+::direction}}\label{structSDL__HapticCondition_a728507d30d18998949313de3a25e5581}
+Direction of the effect -\/ Not used A\+T\+M. 
+
+Definition at line 596 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_aafc182abea1078bed7e9cf5d0e713ea2}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!interval@{interval}}
+\index{interval@{interval}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{interval}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::interval}}\label{structSDL__HapticCondition_aafc182abea1078bed7e9cf5d0e713ea2}
+How soon it can be triggered again after button. 
+
+Definition at line 604 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_ad0cb577a8aaf26d4cfcd857b7a6c44db}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!left\+\_\+coeff@{left\+\_\+coeff}}
+\index{left\+\_\+coeff@{left\+\_\+coeff}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{left\+\_\+coeff}]{\setlength{\rightskip}{0pt plus 5cm}Sint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::left\+\_\+coeff}}\label{structSDL__HapticCondition_ad0cb577a8aaf26d4cfcd857b7a6c44db}
+How fast to increase the force towards the negative side. 
+
+Definition at line 610 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_a9b7f297ab398efd2a9b9cb68eaab0834}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!left\+\_\+sat@{left\+\_\+sat}}
+\index{left\+\_\+sat@{left\+\_\+sat}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{left\+\_\+sat}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::left\+\_\+sat}}\label{structSDL__HapticCondition_a9b7f297ab398efd2a9b9cb68eaab0834}
+Level when joystick is to the negative side. 
+
+Definition at line 608 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_ad0efb0a6ddc20f058e87199eaaa95978}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!length@{length}}
+\index{length@{length}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 S\+D\+L\+\_\+\+Haptic\+Condition\+::length}}\label{structSDL__HapticCondition_ad0efb0a6ddc20f058e87199eaaa95978}
+Duration of the effect. 
+
+Definition at line 599 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_a8fd18ffa42b1a34a28759657eac21e45}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!right\+\_\+coeff@{right\+\_\+coeff}}
+\index{right\+\_\+coeff@{right\+\_\+coeff}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{right\+\_\+coeff}]{\setlength{\rightskip}{0pt plus 5cm}Sint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::right\+\_\+coeff}}\label{structSDL__HapticCondition_a8fd18ffa42b1a34a28759657eac21e45}
+How fast to increase the force towards the positive side. 
+
+Definition at line 609 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_ae60f900dda3063e1b63be77b154148b7}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!right\+\_\+sat@{right\+\_\+sat}}
+\index{right\+\_\+sat@{right\+\_\+sat}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{right\+\_\+sat}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::right\+\_\+sat}}\label{structSDL__HapticCondition_ae60f900dda3063e1b63be77b154148b7}
+Level when joystick is to the positive side. 
+
+Definition at line 607 of file S\+D\+L\+\_\+haptic.\+h.
+
+\hypertarget{structSDL__HapticCondition_a7be55a9a86c05dd1a54a3006781cfa6f}{\index{S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}!type@{type}}
+\index{type@{type}!S\+D\+L\+\_\+\+Haptic\+Condition@{S\+D\+L\+\_\+\+Haptic\+Condition}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 S\+D\+L\+\_\+\+Haptic\+Condition\+::type}}\label{structSDL__HapticCondition_a7be55a9a86c05dd1a54a3006781cfa6f}
+\+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+S\+P\+R\+I\+N\+G, \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+D\+A\+M\+P\+E\+R, \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+I\+N\+E\+R\+T\+I\+A or \+::\+S\+D\+L\+\_\+\+H\+A\+P\+T\+I\+C\+\_\+\+F\+R\+I\+C\+T\+I\+O\+N 
+
+Definition at line 594 of file S\+D\+L\+\_\+haptic.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+S\+D\+L2-\/2.\+0.\+3/i686-\/w64-\/mingw32/include/\+S\+D\+L2/S\+D\+L\+\_\+haptic.\+h\end{DoxyCompactItemize}

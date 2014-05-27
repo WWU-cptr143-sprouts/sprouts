@@ -1,0 +1,186 @@
+\hypertarget{structGUILabel}{\section{G\+U\+I\+Label Struct Reference}
+\label{structGUILabel}\index{G\+U\+I\+Label@{G\+U\+I\+Label}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$guilabel.\+h$>$}
+
+Inheritance diagram for G\+U\+I\+Label\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{structGUILabel}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structGUILabel_ac4d7442b38260774b14536b343f4ff51}{G\+U\+I\+Label} (wstring text, float min\+X, float max\+X, float min\+Y, float max\+Y, \hyperlink{structColor}{Color} text\+Color=\hyperlink{structColor_a723061c1cca0072a8ecb591c4c3b4479}{Color\+::\+V}(0))
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structGUILabel_aa0127a15c722bc35de3441e8d2952a28}{can\+Have\+Keyboard\+Focus} () const overridefinal
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structGUILabel_a455ecc85732712f002fce8dcb4f8b0db}{wstring {\bfseries text}}\label{structGUILabel_a455ecc85732712f002fce8dcb4f8b0db}
+
+\item 
+\hypertarget{structGUILabel_a6ecebb11c95e284a76e706d774966067}{\hyperlink{structColor}{Color} {\bfseries text\+Color}}\label{structGUILabel_a6ecebb11c95e284a76e706d774966067}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Mesh \hyperlink{structGUILabel_a1b53ad7ce5ea0d2f3bbd6289636d95c3}{render} (float min\+Z, float max\+Z, bool has\+Focus) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 15 of file guilabel.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structGUILabel_ac4d7442b38260774b14536b343f4ff51}{\index{G\+U\+I\+Label@{G\+U\+I\+Label}!G\+U\+I\+Label@{G\+U\+I\+Label}}
+\index{G\+U\+I\+Label@{G\+U\+I\+Label}!G\+U\+I\+Label@{G\+U\+I\+Label}}
+\subsubsection[{G\+U\+I\+Label}]{\setlength{\rightskip}{0pt plus 5cm}G\+U\+I\+Label\+::\+G\+U\+I\+Label (
+\begin{DoxyParamCaption}
+\item[{wstring}]{text, }
+\item[{float}]{min\+X, }
+\item[{float}]{max\+X, }
+\item[{float}]{min\+Y, }
+\item[{float}]{max\+Y, }
+\item[{{\bf Color}}]{text\+Color = {\ttfamily {\bf Color\+::\+V}(0)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structGUILabel_ac4d7442b38260774b14536b343f4ff51}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+X} & \\
+\hline
+{\em max\+X} & \\
+\hline
+{\em min\+Y} & \\
+\hline
+{\em max\+Y} & \\
+\hline
+{\em text} & \\
+\hline
+{\em text\+Color} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 19 of file guilabel.\+h.
+
+
+\begin{DoxyCode}
+33         : \hyperlink{classGUIElement}{GUIElement}(minX, maxX, minY, maxY), text(text), textColor(textColor)
+34         \{
+35         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structGUILabel_aa0127a15c722bc35de3441e8d2952a28}{\index{G\+U\+I\+Label@{G\+U\+I\+Label}!can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}}
+\index{can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}!G\+U\+I\+Label@{G\+U\+I\+Label}}
+\subsubsection[{can\+Have\+Keyboard\+Focus}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Label\+::can\+Have\+Keyboard\+Focus (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structGUILabel_aa0127a15c722bc35de3441e8d2952a28}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classGUIElement_a073ef8863e95e55df4b701f249ba4c44}{G\+U\+I\+Element}.
+
+
+
+Definition at line 42 of file guilabel.\+h.
+
+
+\begin{DoxyCode}
+43     \{
+44         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+45     \}
+\end{DoxyCode}
+\hypertarget{structGUILabel_a1b53ad7ce5ea0d2f3bbd6289636d95c3}{\index{G\+U\+I\+Label@{G\+U\+I\+Label}!render@{render}}
+\index{render@{render}!G\+U\+I\+Label@{G\+U\+I\+Label}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}virtual Mesh G\+U\+I\+Label\+::render (
+\begin{DoxyParamCaption}
+\item[{float}]{min\+Z, }
+\item[{float}]{max\+Z, }
+\item[{bool}]{has\+Focus}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{structGUILabel_a1b53ad7ce5ea0d2f3bbd6289636d95c3}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+Z} & \\
+\hline
+{\em max\+Z} & \\
+\hline
+{\em has\+Focus} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 57 of file guilabel.\+h.
+
+
+
+References Matrix\+::scale(), and Matrix\+::translate().
+
+
+\begin{DoxyCode}
+58     \{
+59         \textcolor{keywordtype}{float} textWidth = Text::width(text);
+60         \textcolor{keywordtype}{float} textHeight = Text::height(text);
+61         \textcolor{keywordflow}{if}(textWidth == 0)
+62             textWidth = 1;
+63         \textcolor{keywordflow}{if}(textHeight == 0)
+64             textHeight = 1;
+65         \textcolor{keywordtype}{float} textScale = 0.5 * (maxY - minY) / textHeight;
+66         textScale = min(textScale, (maxX - minX) / textWidth);
+67         \textcolor{keywordtype}{float} xOffset = -0.5 * textWidth, yOffset = -0.5 * textHeight;
+68         xOffset = textScale * xOffset + 0.5 * (minX + maxX);
+69         yOffset = textScale * yOffset + 0.5 * (minY + maxY);
+70         \textcolor{keywordflow}{return} (Mesh)transform(\hyperlink{classMatrix_a1f36f7f62b8e99fea99880b6fc80a604}{Matrix::scale}(textScale).concat(
+      \hyperlink{classMatrix_adf246c47bce77c3c53b9e804ec475e35}{Matrix::translate}(xOffset, yOffset, -1).concat(\hyperlink{classMatrix_a1f36f7f62b8e99fea99880b6fc80a604}{Matrix::scale}(minZ))), 
+      Text::mesh(text, textColor));
+71     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+guilabel.\+h\end{DoxyCompactItemize}

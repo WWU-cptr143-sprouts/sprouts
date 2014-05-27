@@ -1,0 +1,342 @@
+\hypertarget{namespaceGenerate}{\section{Generate Namespace Reference}
+\label{namespaceGenerate}\index{Generate@{Generate}}
+}
+
+
+Write what the function does here.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Mesh \hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral} (\hyperlink{structTextureDescriptor}{Texture\+Descriptor} texture, \hyperlink{structVectorF}{Vector\+F} p1, \hyperlink{structColor}{Color} c1, \hyperlink{structVectorF}{Vector\+F} p2, \hyperlink{structColor}{Color} c2, \hyperlink{structVectorF}{Vector\+F} p3, \hyperlink{structColor}{Color} c3, \hyperlink{structVectorF}{Vector\+F} p4, \hyperlink{structColor}{Color} c4)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+Mesh \hyperlink{namespaceGenerate_a6b71bfa779ab0216bd94409816731e14}{unit\+Box} (\hyperlink{structTextureDescriptor}{Texture\+Descriptor} nx, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} px, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} ny, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} py, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} nz, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} pz)
+\begin{DoxyCompactList}\small\item\em make a box from $<$0, 0, 0$>$ to $<$1, 1, 1$>$ \end{DoxyCompactList}\item 
+\hypertarget{namespaceGenerate_a5056281a720da9d629addda412e12a71}{Mesh {\bfseries line} (const vector$<$ \hyperlink{structVectorF}{Vector\+F} $>$ \&line\+Points, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} texture, \hyperlink{structColor}{Color} color, float line\+Width)}\label{namespaceGenerate_a5056281a720da9d629addda412e12a71}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{\index{Generate@{Generate}!quadrilateral@{quadrilateral}}
+\index{quadrilateral@{quadrilateral}!Generate@{Generate}}
+\subsubsection[{quadrilateral}]{\setlength{\rightskip}{0pt plus 5cm}Mesh Generate\+::quadrilateral (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Descriptor}}]{texture, }
+\item[{{\bf Vector\+F}}]{p1, }
+\item[{{\bf Color}}]{c1, }
+\item[{{\bf Vector\+F}}]{p2, }
+\item[{{\bf Color}}]{c2, }
+\item[{{\bf Vector\+F}}]{p3, }
+\item[{{\bf Color}}]{c3, }
+\item[{{\bf Vector\+F}}]{p4, }
+\item[{{\bf Color}}]{c4}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & \\
+\hline
+{\em p1} & \\
+\hline
+{\em c1} & \\
+\hline
+{\em p2} & \\
+\hline
+{\em c2} & \\
+\hline
+{\em p3} & \\
+\hline
+{\em c3} & \\
+\hline
+{\em p4} & \\
+\hline
+{\em c4} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+U} & \\
+\hline
+{\em max\+V} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 240 of file generate.\+h.
+
+
+
+References quadrilateral().
+
+
+
+Referenced by quadrilateral(), and unit\+Box().
+
+
+\begin{DoxyCode}
+241     \{
+242         \textcolor{keyword}{const} \hyperlink{structTextureCoord}{TextureCoord} t1 = \hyperlink{structTextureCoord}{TextureCoord}(texture.minU, texture.minV);
+243         \textcolor{keyword}{const} \hyperlink{structTextureCoord}{TextureCoord} t2 = \hyperlink{structTextureCoord}{TextureCoord}(texture.maxU, texture.minV);
+244         \textcolor{keyword}{const} \hyperlink{structTextureCoord}{TextureCoord} t3 = \hyperlink{structTextureCoord}{TextureCoord}(texture.maxU, texture.maxV);
+245 \textcolor{comment}{}
+246 \textcolor{comment}{        /**}
+247 \textcolor{comment}{         * @brief Write what the function does here}
+248 \textcolor{comment}{         *}
+249 \textcolor{comment}{         * @param minU}
+250 \textcolor{comment}{         * @param maxV}
+251 \textcolor{comment}{         *}
+252 \textcolor{comment}{         * @return}
+253 \textcolor{comment}{         **/}
+254         \textcolor{keyword}{const} \hyperlink{structTextureCoord}{TextureCoord} t4 = \hyperlink{structTextureCoord}{TextureCoord}(texture.minU, texture.maxV);
+255         \textcolor{keywordflow}{return} Mesh(\textcolor{keyword}{new} \hyperlink{classMesh__t}{Mesh\_t}(texture.image, vector<Triangle> \{Triangle(p1, c1, t1, p2, c2, t2, p3, 
+      c3, t3), Triangle(p3, c3, t3, p4, c4, t4, p1, c1, t1)\}));
+256     \}
+\end{DoxyCode}
+\hypertarget{namespaceGenerate_a6b71bfa779ab0216bd94409816731e14}{\index{Generate@{Generate}!unit\+Box@{unit\+Box}}
+\index{unit\+Box@{unit\+Box}!Generate@{Generate}}
+\subsubsection[{unit\+Box}]{\setlength{\rightskip}{0pt plus 5cm}Mesh Generate\+::unit\+Box (
+\begin{DoxyParamCaption}
+\item[{{\bf Texture\+Descriptor}}]{nx, }
+\item[{{\bf Texture\+Descriptor}}]{px, }
+\item[{{\bf Texture\+Descriptor}}]{ny, }
+\item[{{\bf Texture\+Descriptor}}]{py, }
+\item[{{\bf Texture\+Descriptor}}]{nz, }
+\item[{{\bf Texture\+Descriptor}}]{pz}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceGenerate_a6b71bfa779ab0216bd94409816731e14}
+
+
+make a box from $<$0, 0, 0$>$ to $<$1, 1, 1$>$ 
+
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & \\
+\hline
+{\em px} & \\
+\hline
+{\em ny} & \\
+\hline
+{\em py} & \\
+\hline
+{\em nz} & \\
+\hline
+{\em pz} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em px} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em ny} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em py} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em nz} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em pz} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 271 of file generate.\+h.
+
+
+
+References quadrilateral(), and unit\+Box().
+
+
+
+Referenced by unit\+Box().
+
+
+\begin{DoxyCode}
+272     \{
+273         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p0 = \hyperlink{structVectorF}{VectorF}(0, 0, 0);
+274         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p1 = \hyperlink{structVectorF}{VectorF}(1, 0, 0);
+275         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p2 = \hyperlink{structVectorF}{VectorF}(0, 1, 0);
+276         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p3 = \hyperlink{structVectorF}{VectorF}(1, 1, 0);
+277         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p4 = \hyperlink{structVectorF}{VectorF}(0, 0, 1);
+278         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p5 = \hyperlink{structVectorF}{VectorF}(1, 0, 1);
+279         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p6 = \hyperlink{structVectorF}{VectorF}(0, 1, 1);
+280         \textcolor{keyword}{const} \hyperlink{structVectorF}{VectorF} p7 = \hyperlink{structVectorF}{VectorF}(1, 1, 1);
+281         Mesh retval = Mesh(\textcolor{keyword}{new} \hyperlink{classMesh__t}{Mesh\_t}());
+282         \textcolor{keyword}{const} \hyperlink{structColor}{Color} c = \hyperlink{structColor}{Color}(1);
+283 \textcolor{comment}{}
+284 \textcolor{comment}{        /**}
+285 \textcolor{comment}{         * @brief Write what the function does here}
+286 \textcolor{comment}{         *}
+287 \textcolor{comment}{         * @param nx}
+288 \textcolor{comment}{         *}
+289 \textcolor{comment}{         * @return}
+290 \textcolor{comment}{         **/}
+291         \textcolor{keywordflow}{if}(nx)
+292         \{
+293             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(nx,
+294                         p0, c,
+295                         p4, c,
+296                         p6, c,
+297                         p2, c
+298                         ));
+299         \}
+300 \textcolor{comment}{}
+301 \textcolor{comment}{        /**}
+302 \textcolor{comment}{         * @brief Write what the function does here}
+303 \textcolor{comment}{         *}
+304 \textcolor{comment}{         * @param px}
+305 \textcolor{comment}{         *}
+306 \textcolor{comment}{         * @return}
+307 \textcolor{comment}{         **/}
+308         \textcolor{keywordflow}{if}(px)
+309         \{
+310             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(px,
+311                         p5, c,
+312                         p1, c,
+313                         p3, c,
+314                         p7, c
+315                         ));
+316         \}
+317 \textcolor{comment}{}
+318 \textcolor{comment}{        /**}
+319 \textcolor{comment}{         * @brief Write what the function does here}
+320 \textcolor{comment}{         *}
+321 \textcolor{comment}{         * @param ny}
+322 \textcolor{comment}{         *}
+323 \textcolor{comment}{         * @return}
+324 \textcolor{comment}{         **/}
+325         \textcolor{keywordflow}{if}(ny)
+326         \{
+327             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(ny,
+328                         p0, c,
+329                         p1, c,
+330                         p5, c,
+331                         p4, c
+332                         ));
+333         \}
+334 \textcolor{comment}{}
+335 \textcolor{comment}{        /**}
+336 \textcolor{comment}{         * @brief Write what the function does here}
+337 \textcolor{comment}{         *}
+338 \textcolor{comment}{         * @param py}
+339 \textcolor{comment}{         *}
+340 \textcolor{comment}{         * @return}
+341 \textcolor{comment}{         **/}
+342         \textcolor{keywordflow}{if}(py)
+343         \{
+344             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(py,
+345                         p6, c,
+346                         p7, c,
+347                         p3, c,
+348                         p2, c
+349                         ));
+350         \}
+351 \textcolor{comment}{}
+352 \textcolor{comment}{        /**}
+353 \textcolor{comment}{         * @brief Write what the function does here}
+354 \textcolor{comment}{         *}
+355 \textcolor{comment}{         * @param nz}
+356 \textcolor{comment}{         *}
+357 \textcolor{comment}{         * @return}
+358 \textcolor{comment}{         **/}
+359         \textcolor{keywordflow}{if}(nz)
+360         \{
+361             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(nz,
+362                         p1, c,
+363                         p0, c,
+364                         p2, c,
+365                         p3, c
+366                         ));
+367         \}
+368 \textcolor{comment}{}
+369 \textcolor{comment}{        /**}
+370 \textcolor{comment}{         * @brief Write what the function does here}
+371 \textcolor{comment}{         *}
+372 \textcolor{comment}{         * @param pz}
+373 \textcolor{comment}{         *}
+374 \textcolor{comment}{         * @return}
+375 \textcolor{comment}{         **/}
+376         \textcolor{keywordflow}{if}(pz)
+377         \{
+378             retval->add(\hyperlink{namespaceGenerate_afd427e6ee5edcf5cab7d521048466496}{quadrilateral}(pz,
+379                         p4, c,
+380                         p5, c,
+381                         p7, c,
+382                         p6, c
+383                         ));
+384         \}
+385         \textcolor{keywordflow}{return} retval;
+386     \}
+\end{DoxyCode}

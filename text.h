@@ -1,14 +1,23 @@
 #ifndef TEXT_H_INCLUDED
 #define TEXT_H_INCLUDED
-
 #include "generate.h"
 #include <cwchar>
 #include <string>
-
 using namespace std;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 namespace Text
 {
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @return
+     **/
     struct TextProperties
     {
         float tabWidth = 8;
@@ -20,5 +29,4 @@ namespace Text
     float yPos(wstring str, const TextProperties & properties = defaultTextProperties);
     Mesh mesh(wstring str, Color color = Color(1), const TextProperties & properties = defaultTextProperties);
 }
-
 #endif // TEXT_H_INCLUDED

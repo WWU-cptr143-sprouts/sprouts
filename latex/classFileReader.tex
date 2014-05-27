@@ -1,0 +1,197 @@
+\hypertarget{classFileReader}{\section{File\+Reader Class Reference}
+\label{classFileReader}\index{File\+Reader@{File\+Reader}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$stream.\+h$>$}
+
+Inheritance diagram for File\+Reader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classFileReader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFileReader_a50ceae995b470d627f94caea10cd9956}{File\+Reader} (wstring file\+Name)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classFileReader_a3a06f152a16bd06550c3a4efeaed8ed2}{File\+Reader} (F\+I\+L\+E $\ast$f)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual \hyperlink{classFileReader_a029d1ddebda388d1f0f5a99ce9acb311}{$\sim$\+File\+Reader} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual uint8\+\_\+t \hyperlink{classFileReader_ac148435542dea9596532f2c3dd3c7668}{read\+Byte} () override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classFileReader_a1a1ee8dcab91301260b9623e3b35b115}{F\+I\+L\+E $\ast$ {\bfseries f}}\label{classFileReader_a1a1ee8dcab91301260b9623e3b35b115}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 957 of file stream.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFileReader_a50ceae995b470d627f94caea10cd9956}{\index{File\+Reader@{File\+Reader}!File\+Reader@{File\+Reader}}
+\index{File\+Reader@{File\+Reader}!File\+Reader@{File\+Reader}}
+\subsubsection[{File\+Reader}]{\setlength{\rightskip}{0pt plus 5cm}File\+Reader\+::\+File\+Reader (
+\begin{DoxyParamCaption}
+\item[{wstring}]{file\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classFileReader_a50ceae995b470d627f94caea10cd9956}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 970 of file stream.\+h.
+
+
+\begin{DoxyCode}
+971         \{
+972             \textcolor{keywordtype}{string} str = wstringToString(fileName);
+973             f = fopen(str.c\_str(), \textcolor{stringliteral}{"rb"});
+974             \textcolor{keywordflow}{if}(f == \textcolor{keyword}{nullptr})
+975                 \textcolor{keywordflow}{throw} \hyperlink{classIOException}{IOException}(\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"IO Error : "}) + strerror(errno));
+976         \}
+\end{DoxyCode}
+\hypertarget{classFileReader_a3a06f152a16bd06550c3a4efeaed8ed2}{\index{File\+Reader@{File\+Reader}!File\+Reader@{File\+Reader}}
+\index{File\+Reader@{File\+Reader}!File\+Reader@{File\+Reader}}
+\subsubsection[{File\+Reader}]{\setlength{\rightskip}{0pt plus 5cm}File\+Reader\+::\+File\+Reader (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}}\label{classFileReader_a3a06f152a16bd06550c3a4efeaed8ed2}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 977 of file stream.\+h.
+
+
+\begin{DoxyCode}
+986             : f(f)
+987             \{
+988                 assert(f != \textcolor{keyword}{nullptr});
+989             \}
+\end{DoxyCode}
+\hypertarget{classFileReader_a029d1ddebda388d1f0f5a99ce9acb311}{\index{File\+Reader@{File\+Reader}!````~File\+Reader@{$\sim$\+File\+Reader}}
+\index{````~File\+Reader@{$\sim$\+File\+Reader}!File\+Reader@{File\+Reader}}
+\subsubsection[{$\sim$\+File\+Reader}]{\setlength{\rightskip}{0pt plus 5cm}virtual File\+Reader\+::$\sim$\+File\+Reader (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classFileReader_a029d1ddebda388d1f0f5a99ce9acb311}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 996 of file stream.\+h.
+
+
+\begin{DoxyCode}
+997         \{
+998             fclose(f);
+999         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFileReader_ac148435542dea9596532f2c3dd3c7668}{\index{File\+Reader@{File\+Reader}!read\+Byte@{read\+Byte}}
+\index{read\+Byte@{read\+Byte}!File\+Reader@{File\+Reader}}
+\subsubsection[{read\+Byte}]{\setlength{\rightskip}{0pt plus 5cm}virtual uint8\+\_\+t File\+Reader\+::read\+Byte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classFileReader_ac148435542dea9596532f2c3dd3c7668}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em E\+O\+F} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classReader}{Reader}.
+
+
+
+Definition at line 1006 of file stream.\+h.
+
+
+\begin{DoxyCode}
+1007         \{
+1008             \textcolor{keywordtype}{int} ch = fgetc(f);
+1009 \textcolor{comment}{}
+1010 \textcolor{comment}{            /**}
+1011 \textcolor{comment}{             * @brief Write what the function does here}
+1012 \textcolor{comment}{             *}
+1013 \textcolor{comment}{             * @param EOF}
+1014 \textcolor{comment}{             *}
+1015 \textcolor{comment}{             * @return}
+1016 \textcolor{comment}{             **/}
+1017             \textcolor{keywordflow}{if}(ch == EOF)
+1018             \{
+1019                 \textcolor{keywordflow}{if}(ferror(f))
+1020                     \textcolor{keywordflow}{throw} \hyperlink{classIOException}{IOException}(\textcolor{stringliteral}{"IO Error : can't read from file"});
+1021                 \textcolor{keywordflow}{throw} \hyperlink{classEOFException}{EOFException}();
+1022             \}
+1023             \textcolor{keywordflow}{return} ch;
+1024         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+stream.\+h\end{DoxyCompactItemize}

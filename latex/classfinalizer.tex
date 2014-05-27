@@ -1,0 +1,108 @@
+\hypertarget{classfinalizer}{\section{finalizer Class Reference}
+\label{classfinalizer}\index{finalizer@{finalizer}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$util.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classfinalizer_abfb1a53ac8097489f7f832fab70ed438}{finalizer} (void($\ast$finalize\+Fn)())
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classfinalizer_a5dd96a3bece0e0dc19686da3eeafbd0d}{$\sim$finalizer} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classfinalizer_ae13d210c53c985301d67b6744f6455de}{{\bfseries finalizer} (const \hyperlink{classfinalizer}{finalizer} \&rt)=delete}\label{classfinalizer_ae13d210c53c985301d67b6744f6455de}
+
+\item 
+\hypertarget{classfinalizer_aea0825760a746dad9f22299960bc83c8}{void {\bfseries operator=} (const \hyperlink{classfinalizer}{finalizer} \&rt)=delete}\label{classfinalizer_aea0825760a746dad9f22299960bc83c8}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classfinalizer_ac9a4efb8dc93d75de3fb6561ebb59d0a}{void($\ast$ {\bfseries finalize\+Fn} )()}\label{classfinalizer_ac9a4efb8dc93d75de3fb6561ebb59d0a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 190 of file util.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classfinalizer_abfb1a53ac8097489f7f832fab70ed438}{\index{finalizer@{finalizer}!finalizer@{finalizer}}
+\index{finalizer@{finalizer}!finalizer@{finalizer}}
+\subsubsection[{finalizer}]{\setlength{\rightskip}{0pt plus 5cm}finalizer\+::finalizer (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)()}]{finalize\+Fn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classfinalizer_abfb1a53ac8097489f7f832fab70ed438}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em finalize\+Fn} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 197 of file util.\+h.
+
+
+\begin{DoxyCode}
+206             : finalizeFn(finalizeFn)
+207             \{
+208                 assert(finalizeFn);
+209             \}
+\end{DoxyCode}
+\hypertarget{classfinalizer_a5dd96a3bece0e0dc19686da3eeafbd0d}{\index{finalizer@{finalizer}!````~finalizer@{$\sim$finalizer}}
+\index{````~finalizer@{$\sim$finalizer}!finalizer@{finalizer}}
+\subsubsection[{$\sim$finalizer}]{\setlength{\rightskip}{0pt plus 5cm}finalizer\+::$\sim$finalizer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classfinalizer_a5dd96a3bece0e0dc19686da3eeafbd0d}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 216 of file util.\+h.
+
+
+\begin{DoxyCode}
+217         \{
+218             finalizeFn();
+219         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+util.\+h\end{DoxyCompactItemize}

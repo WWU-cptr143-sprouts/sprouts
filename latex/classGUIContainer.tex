@@ -1,0 +1,348 @@
+\hypertarget{classGUIContainer}{\section{G\+U\+I\+Container Class Reference}
+\label{classGUIContainer}\index{G\+U\+I\+Container@{G\+U\+I\+Container}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$guicontainer.\+h$>$}
+
+Inheritance diagram for G\+U\+I\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classGUIContainer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGUIContainer_aa35797f8b9c6a8e332ad5930faa69c00}{G\+U\+I\+Container} (float min\+X, float max\+X, float min\+Y, float max\+Y)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ \hyperlink{classGUIContainer_a01f2cf647a23b37ed7d815a9780ef8f9}{add} (shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ element)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ \hyperlink{classGUIContainer_addf987ba650075a7c0f34c571debd6a2}{get\+Focus\+Element} () overridefinal
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIContainer_a54bbf86cc92ce6518ccdc25a21b8e5f5}{can\+Have\+Keyboard\+Focus} () const overridefinal
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classGUIContainer_a4b4204dd7429c4b803dbd49927636b8b}{for} (current\+Focus\+Index=0;current\+Focus\+Index$<$ elements.\+size();current\+Focus\+Index++)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{classGUIContainer_a1b2a4a784e6440eed8b91941d8ae0820}{{\bfseries on\+Set\+Focus} ()}\label{classGUIContainer_a1b2a4a784e6440eed8b91941d8ae0820}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIContainer_ae7711b8cd165b80e625306fe443a24a4}{{\bfseries current\+Focus\+Index} = 0}\label{classGUIContainer_ae7711b8cd165b80e625306fe443a24a4}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ \hyperlink{classGUIContainer_aa284afbbc302222ac9bff04fba9bfe4e}{get\+Element} (size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classGUIContainer_a65c0f2e73c3f02ea936cb37447dba04b}{get\+Element\+Count} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classGUIContainer_a2e29a0e330951f3dd35b7b81c39b5a65}{get\+Current\+Element\+Index} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIContainer_a530b15ff8ab84f7a4357b5714da3c16b}{static constexpr const size\+\_\+t {\bfseries No\+Element} = (size\+\_\+t)-\/1}\label{classGUIContainer_a530b15ff8ab84f7a4357b5714da3c16b}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIContainer_a68726b5ba87fd7a250c95df7df745f08}{vector$<$ shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ $>$ {\bfseries elements}}\label{classGUIContainer_a68726b5ba87fd7a250c95df7df745f08}
+
+\item 
+\hypertarget{classGUIContainer_a88f758f83baa2b612d1a7fbed504a80e}{size\+\_\+t {\bfseries current\+Focus\+Index} = 0}\label{classGUIContainer_a88f758f83baa2b612d1a7fbed504a80e}
+
+\item 
+\hypertarget{classGUIContainer_a9270df928601ad530d7d18249bae3fd3}{size\+\_\+t {\bfseries last\+Mouse\+Element} = No\+Element}\label{classGUIContainer_a9270df928601ad530d7d18249bae3fd3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 12 of file guicontainer.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGUIContainer_aa35797f8b9c6a8e332ad5930faa69c00}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\index{G\+U\+I\+Container@{G\+U\+I\+Container}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{G\+U\+I\+Container}]{\setlength{\rightskip}{0pt plus 5cm}G\+U\+I\+Container\+::\+G\+U\+I\+Container (
+\begin{DoxyParamCaption}
+\item[{float}]{min\+X, }
+\item[{float}]{max\+X, }
+\item[{float}]{min\+Y, }
+\item[{float}]{max\+Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIContainer_aa35797f8b9c6a8e332ad5930faa69c00}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+X} & \\
+\hline
+{\em max\+X} & \\
+\hline
+{\em min\+Y} & \\
+\hline
+{\em max\+Y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 61 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+73             : \hyperlink{classGUIElement}{GUIElement}(minX, maxX, minY, maxY)
+74             \{
+75             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUIContainer_a01f2cf647a23b37ed7d815a9780ef8f9}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!add@{add}}
+\index{add@{add}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{add}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf G\+U\+I\+Container}$>$ G\+U\+I\+Container\+::add (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf G\+U\+I\+Element} $>$}]{element}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIContainer_a01f2cf647a23b37ed7d815a9780ef8f9}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 84 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+85         \{
+86             assert(element != \textcolor{keyword}{nullptr});
+87             elements.push\_back(element);
+88             element->parent = dynamic\_pointer\_cast<\hyperlink{classGUIContainer}{GUIContainer}>(
+      \hyperlink{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{shared\_from\_this}());
+89             \textcolor{keywordflow}{return} dynamic\_pointer\_cast<\hyperlink{classGUIContainer}{GUIContainer}>(
+      \hyperlink{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{shared\_from\_this}());
+90         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_a54bbf86cc92ce6518ccdc25a21b8e5f5}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}}
+\index{can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{can\+Have\+Keyboard\+Focus}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Container\+::can\+Have\+Keyboard\+Focus (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIContainer_a54bbf86cc92ce6518ccdc25a21b8e5f5}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classGUIElement_a073ef8863e95e55df4b701f249ba4c44}{G\+U\+I\+Element}.
+
+
+
+Definition at line 109 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+110         \{
+111             \textcolor{keywordflow}{for}(shared\_ptr<GUIElement> e : elements)
+112                 \textcolor{keywordflow}{if}(e->canHaveKeyboardFocus())
+113                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+114             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+115         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_a4b4204dd7429c4b803dbd49927636b8b}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!for@{for}}
+\index{for@{for}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{for}]{\setlength{\rightskip}{0pt plus 5cm}G\+U\+I\+Container\+::for (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIContainer_a4b4204dd7429c4b803dbd49927636b8b}
+
+
+Write what the function does here. 
+
+virtual void first\+Focus\+Element() override final \{
+
+/$\ast$$\ast$ Write what the function does here
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 128 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+129         \{
+130 \textcolor{comment}{}
+131 \textcolor{comment}{            /**}
+132 \textcolor{comment}{             * @brief Write what the function does here}
+133 \textcolor{comment}{             *}
+134 \textcolor{comment}{             * @return}
+135 \textcolor{comment}{             **/}
+136             \textcolor{keywordflow}{if}(elements[currentFocusIndex]->\hyperlink{classGUIContainer_a54bbf86cc92ce6518ccdc25a21b8e5f5}{canHaveKeyboardFocus}())
+137             \{
+138                 elements[currentFocusIndex]->firstFocusElement();
+139                 onSetFocus();
+140                 \textcolor{keywordflow}{return};
+141             \}
+142         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_a2e29a0e330951f3dd35b7b81c39b5a65}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!get\+Current\+Element\+Index@{get\+Current\+Element\+Index}}
+\index{get\+Current\+Element\+Index@{get\+Current\+Element\+Index}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{get\+Current\+Element\+Index}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t G\+U\+I\+Container\+::get\+Current\+Element\+Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{classGUIContainer_a2e29a0e330951f3dd35b7b81c39b5a65}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 55 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+56         \{
+57             \textcolor{keywordflow}{return} currentFocusIndex;
+58         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_aa284afbbc302222ac9bff04fba9bfe4e}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!get\+Element@{get\+Element}}
+\index{get\+Element@{get\+Element}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{get\+Element}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf G\+U\+I\+Element}$>$ G\+U\+I\+Container\+::get\+Element (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{classGUIContainer_aa284afbbc302222ac9bff04fba9bfe4e}
+
+
+Write what the function does here. 
+
+virtual void on\+Set\+Focus() \{ \}
+
+/$\ast$$\ast$ Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 35 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+36         \{
+37             \textcolor{keywordflow}{return} elements[index];
+38         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_a65c0f2e73c3f02ea936cb37447dba04b}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!get\+Element\+Count@{get\+Element\+Count}}
+\index{get\+Element\+Count@{get\+Element\+Count}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{get\+Element\+Count}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t G\+U\+I\+Container\+::get\+Element\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{classGUIContainer_a65c0f2e73c3f02ea936cb37447dba04b}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 45 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+46         \{
+47             \textcolor{keywordflow}{return} elements.size();
+48         \}
+\end{DoxyCode}
+\hypertarget{classGUIContainer_addf987ba650075a7c0f34c571debd6a2}{\index{G\+U\+I\+Container@{G\+U\+I\+Container}!get\+Focus\+Element@{get\+Focus\+Element}}
+\index{get\+Focus\+Element@{get\+Focus\+Element}!G\+U\+I\+Container@{G\+U\+I\+Container}}
+\subsubsection[{get\+Focus\+Element}]{\setlength{\rightskip}{0pt plus 5cm}virtual shared\+\_\+ptr$<${\bf G\+U\+I\+Element}$>$ G\+U\+I\+Container\+::get\+Focus\+Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIContainer_addf987ba650075a7c0f34c571debd6a2}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classGUIElement_acdb491fec728f3a39318850fa144c766}{G\+U\+I\+Element}.
+
+
+
+Definition at line 97 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+98         \{
+99             \textcolor{keywordflow}{if}(currentFocusIndex >= elements.size())
+100                 \textcolor{keywordflow}{return} \hyperlink{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{shared\_from\_this}();
+101             \textcolor{keywordflow}{return} elements[currentFocusIndex];
+102         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+guicontainer.\+h\end{DoxyCompactItemize}

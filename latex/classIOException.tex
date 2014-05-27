@@ -1,0 +1,143 @@
+\hypertarget{classIOException}{\section{I\+O\+Exception Class Reference}
+\label{classIOException}\index{I\+O\+Exception@{I\+O\+Exception}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$stream.\+h$>$}
+
+Inheritance diagram for I\+O\+Exception\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.871345cm]{classIOException}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIOException_a73fcf78b1b5820aa158680e896f0b983}{I\+O\+Exception} (const string \&msg)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classIOException_a286c271ca82812d1e7c12925acf33d14}{I\+O\+Exception} (exception $\ast$e, bool delete\+It=true)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classIOException_abf6ec1a6297e0558758ef144e9e36471}{I\+O\+Exception} (exception \&e, bool delete\+It=false)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 32 of file stream.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIOException_a73fcf78b1b5820aa158680e896f0b983}{\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\subsubsection[{I\+O\+Exception}]{\setlength{\rightskip}{0pt plus 5cm}I\+O\+Exception\+::\+I\+O\+Exception (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}}\label{classIOException_a73fcf78b1b5820aa158680e896f0b983}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 35 of file stream.\+h.
+
+
+\begin{DoxyCode}
+44             : runtime\_error(msg)
+45             \{
+46             \}
+\end{DoxyCode}
+\hypertarget{classIOException_a286c271ca82812d1e7c12925acf33d14}{\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\subsubsection[{I\+O\+Exception}]{\setlength{\rightskip}{0pt plus 5cm}I\+O\+Exception\+::\+I\+O\+Exception (
+\begin{DoxyParamCaption}
+\item[{exception $\ast$}]{e, }
+\item[{bool}]{delete\+It = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}}\label{classIOException_a286c271ca82812d1e7c12925acf33d14}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+{\em nullptr} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 47 of file stream.\+h.
+
+
+\begin{DoxyCode}
+57             : runtime\_error((dynamic\_cast<IOException *>(e) == \textcolor{keyword}{nullptr}) ? \textcolor{keywordtype}{string}(\textcolor{stringliteral}{"IO Error : "}) + e->what()
+       : string(e->what()))
+58             \{
+59                 \textcolor{keywordflow}{if}(deleteIt)
+60                     \textcolor{keyword}{delete} e;
+61             \}
+\end{DoxyCode}
+\hypertarget{classIOException_abf6ec1a6297e0558758ef144e9e36471}{\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\index{I\+O\+Exception@{I\+O\+Exception}!I\+O\+Exception@{I\+O\+Exception}}
+\subsubsection[{I\+O\+Exception}]{\setlength{\rightskip}{0pt plus 5cm}I\+O\+Exception\+::\+I\+O\+Exception (
+\begin{DoxyParamCaption}
+\item[{exception \&}]{e, }
+\item[{bool}]{delete\+It = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}}\label{classIOException_abf6ec1a6297e0558758ef144e9e36471}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+{\em delete\+It} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 62 of file stream.\+h.
+
+
+\begin{DoxyCode}
+72             : \hyperlink{classIOException_a73fcf78b1b5820aa158680e896f0b983}{IOException}(&e, deleteIt)
+73             \{
+74             \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+stream.\+h\end{DoxyCompactItemize}

@@ -1,18 +1,30 @@
 #ifndef GENERATE_H_INCLUDED
 #define GENERATE_H_INCLUDED
-
 #include "mesh.h"
 #include "util.h"
 #include <utility>
 #include <vector>
-
 using namespace std;
 
+/**
+ * @brief Write what the function does here
+ *
+ * @param mesh
+ *
+ * @return
+ **/
 inline Mesh invert(Mesh mesh)
 {
     vector<Triangle> triangles;
     triangles.reserve(mesh->size());
 
+    /**
+     * @brief Write what the function does here
+     *
+     * @param mesh
+     *
+     * @return
+     **/
     for(Triangle tri : *mesh)
     {
         swap(tri.p[0], tri.p[1]);
@@ -20,21 +32,45 @@ inline Mesh invert(Mesh mesh)
         swap(tri.t[0], tri.t[1]);
         triangles.push_back(tri);
     }
-
     return Mesh(new Mesh_t(mesh->texture(), triangles));
 }
 
+/**
+ * @brief Write what the function does here
+ *
+ * @param mesh
+ *
+ * @return
+ **/
 inline TransformedMesh invert(TransformedMesh mesh)
 {
     mesh.mesh = invert(mesh.mesh);
     return mesh;
 }
 
+/**
+ * @brief Write what the function does here
+ *
+ * @param mesh
+ * @param normal
+ * @param d
+ * @param normal
+ * @param p
+ *
+ * @return
+ **/
 inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p) + d < 0
 {
     vector<Triangle> triangles;
     triangles.reserve(mesh->size() * 2);
 
+    /**
+     * @brief Write what the function does here
+     *
+     * @param mesh
+     *
+     * @return
+     **/
     for(Triangle tri : *mesh)
     {
         VectorF resultPoints[4];
@@ -43,29 +79,77 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
         int pointCount = 0;
         bool inside[3];
 
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         for(int i = 0; i < 3; i++)
         {
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param i
+             * @param normal
+             * @param 0
+             *
+             * @return
+             **/
             if(dot(tri.p[i], normal) + d < 0)
             {
                 inside[i] = true;
             }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @return
+             **/
             else
             {
                 inside[i] = false;
             }
         }
 
+        /**
+         * @brief Write what the function does here
+         *
+         * @return
+         **/
         for(int currentPt = 0; currentPt < 3; currentPt++)
         {
             int lastPt = currentPt - 1;
 
+            /**
+             * @brief Write what the function does here
+             *
+             * @param 0
+             *
+             * @return
+             **/
             if(lastPt < 0)
             {
                 lastPt += 3;
             }
 
+            /**
+             * @brief Write what the function does here
+             *
+             * @param currentPt
+             *
+             * @return
+             **/
             if(inside[currentPt])
             {
+
+                /**
+                 * @brief Write what the function does here
+                 *
+                 * @param lastPt
+                 *
+                 * @return
+                 **/
                 if(!inside[lastPt])
                 {
                     float t = findIntersectionPoint(tri.p[lastPt], tri.p[currentPt], normal, d);
@@ -73,11 +157,18 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
                     resultColors[pointCount] = interpolate(t, tri.c[lastPt], tri.c[currentPt]);
                     resultTextureCoords[pointCount++] = interpolate(t, tri.t[lastPt], tri.t[currentPt]);
                 }
-
                 resultPoints[pointCount] = tri.p[currentPt];
                 resultColors[pointCount] = tri.c[currentPt];
                 resultTextureCoords[pointCount++] = tri.t[currentPt];
             }
+
+            /**
+             * @brief Write what the function does here
+             *
+             * @param lastPt
+             *
+             * @return
+             **/
             else if(inside[lastPt])
             {
                 float t = findIntersectionPoint(tri.p[lastPt], tri.p[currentPt], normal, d);
@@ -87,117 +178,212 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
             }
         }
 
+        /**
+         * @brief Write what the function does here
+         *
+         * @param 3
+         *
+         * @return
+         **/
         if(pointCount == 3)
         {
             triangles.push_back(Triangle(resultPoints[0], resultColors[0], resultTextureCoords[0],
-                                         resultPoints[1], resultColors[1], resultTextureCoords[1],
-                                         resultPoints[2], resultColors[2], resultTextureCoords[2]));
+                        resultPoints[1], resultColors[1], resultTextureCoords[1],
+                        resultPoints[2], resultColors[2], resultTextureCoords[2]));
         }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param 4
+         *
+         * @return
+         **/
         else if(pointCount == 4)
         {
             triangles.push_back(Triangle(resultPoints[0], resultColors[0], resultTextureCoords[0],
-                                         resultPoints[1], resultColors[1], resultTextureCoords[1],
-                                         resultPoints[2], resultColors[2], resultTextureCoords[2]));
+                        resultPoints[1], resultColors[1], resultTextureCoords[1],
+                        resultPoints[2], resultColors[2], resultTextureCoords[2]));
             triangles.push_back(Triangle(resultPoints[0], resultColors[0], resultTextureCoords[0],
-                                         resultPoints[2], resultColors[2], resultTextureCoords[2],
-                                         resultPoints[3], resultColors[3], resultTextureCoords[3]));
+                        resultPoints[2], resultColors[2], resultTextureCoords[2],
+                        resultPoints[3], resultColors[3], resultTextureCoords[3]));
         }
         else
             assert(pointCount < 3);
     }
-
     return Mesh(new Mesh_t(mesh->texture(), triangles));
 }
 
+/**
+ * @brief Write what the function does here
+ *
+ * @return
+ **/
 namespace Generate
 {
-inline Mesh quadrilateral(TextureDescriptor texture, VectorF p1, Color c1, VectorF p2, Color c2, VectorF p3, Color c3, VectorF p4, Color c4)
-{
-    const TextureCoord t1 = TextureCoord(texture.minU, texture.minV);
-    const TextureCoord t2 = TextureCoord(texture.maxU, texture.minV);
-    const TextureCoord t3 = TextureCoord(texture.maxU, texture.maxV);
-    const TextureCoord t4 = TextureCoord(texture.minU, texture.maxV);
-    return Mesh(new Mesh_t(texture.image, vector<Triangle> {Triangle(p1, c1, t1, p2, c2, t2, p3, c3, t3), Triangle(p3, c3, t3, p4, c4, t4, p1, c1, t1)}));
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param texture
+     * @param p1
+     * @param c1
+     * @param p2
+     * @param c2
+     * @param p3
+     * @param c3
+     * @param p4
+     * @param c4
+     *
+     * @return
+     **/
+    inline Mesh quadrilateral(TextureDescriptor texture, VectorF p1, Color c1, VectorF p2, Color c2, VectorF p3, Color c3, VectorF p4, Color c4)
+    {
+        const TextureCoord t1 = TextureCoord(texture.minU, texture.minV);
+        const TextureCoord t2 = TextureCoord(texture.maxU, texture.minV);
+        const TextureCoord t3 = TextureCoord(texture.maxU, texture.maxV);
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param minU
+         * @param maxV
+         *
+         * @return
+         **/
+        const TextureCoord t4 = TextureCoord(texture.minU, texture.maxV);
+        return Mesh(new Mesh_t(texture.image, vector<Triangle> {Triangle(p1, c1, t1, p2, c2, t2, p3, c3, t3), Triangle(p3, c3, t3, p4, c4, t4, p1, c1, t1)}));
+    }
+    /// make a box from <0, 0, 0> to <1, 1, 1>
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param nx
+     * @param px
+     * @param ny
+     * @param py
+     * @param nz
+     * @param pz
+     *
+     * @return
+     **/
+    inline Mesh unitBox(TextureDescriptor nx, TextureDescriptor px, TextureDescriptor ny, TextureDescriptor py, TextureDescriptor nz, TextureDescriptor pz)
+    {
+        const VectorF p0 = VectorF(0, 0, 0);
+        const VectorF p1 = VectorF(1, 0, 0);
+        const VectorF p2 = VectorF(0, 1, 0);
+        const VectorF p3 = VectorF(1, 1, 0);
+        const VectorF p4 = VectorF(0, 0, 1);
+        const VectorF p5 = VectorF(1, 0, 1);
+        const VectorF p6 = VectorF(0, 1, 1);
+        const VectorF p7 = VectorF(1, 1, 1);
+        Mesh retval = Mesh(new Mesh_t());
+        const Color c = Color(1);
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param nx
+         *
+         * @return
+         **/
+        if(nx)
+        {
+            retval->add(quadrilateral(nx,
+                        p0, c,
+                        p4, c,
+                        p6, c,
+                        p2, c
+                        ));
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param px
+         *
+         * @return
+         **/
+        if(px)
+        {
+            retval->add(quadrilateral(px,
+                        p5, c,
+                        p1, c,
+                        p3, c,
+                        p7, c
+                        ));
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param ny
+         *
+         * @return
+         **/
+        if(ny)
+        {
+            retval->add(quadrilateral(ny,
+                        p0, c,
+                        p1, c,
+                        p5, c,
+                        p4, c
+                        ));
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param py
+         *
+         * @return
+         **/
+        if(py)
+        {
+            retval->add(quadrilateral(py,
+                        p6, c,
+                        p7, c,
+                        p3, c,
+                        p2, c
+                        ));
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param nz
+         *
+         * @return
+         **/
+        if(nz)
+        {
+            retval->add(quadrilateral(nz,
+                        p1, c,
+                        p0, c,
+                        p2, c,
+                        p3, c
+                        ));
+        }
+
+        /**
+         * @brief Write what the function does here
+         *
+         * @param pz
+         *
+         * @return
+         **/
+        if(pz)
+        {
+            retval->add(quadrilateral(pz,
+                        p4, c,
+                        p5, c,
+                        p7, c,
+                        p6, c
+                        ));
+        }
+        return retval;
+    }
+    Mesh line(const vector<VectorF> &linePoints, TextureDescriptor texture, Color color, float lineWidth);
 }
-
-/// make a box from <0, 0, 0> to <1, 1, 1>
-inline Mesh unitBox(TextureDescriptor nx, TextureDescriptor px, TextureDescriptor ny, TextureDescriptor py, TextureDescriptor nz, TextureDescriptor pz)
-{
-    const VectorF p0 = VectorF(0, 0, 0);
-    const VectorF p1 = VectorF(1, 0, 0);
-    const VectorF p2 = VectorF(0, 1, 0);
-    const VectorF p3 = VectorF(1, 1, 0);
-    const VectorF p4 = VectorF(0, 0, 1);
-    const VectorF p5 = VectorF(1, 0, 1);
-    const VectorF p6 = VectorF(0, 1, 1);
-    const VectorF p7 = VectorF(1, 1, 1);
-    Mesh retval = Mesh(new Mesh_t());
-    const Color c = Color(1);
-
-    if(nx)
-    {
-        retval->add(quadrilateral(nx,
-                                  p0, c,
-                                  p4, c,
-                                  p6, c,
-                                  p2, c
-                                 ));
-    }
-
-    if(px)
-    {
-        retval->add(quadrilateral(px,
-                                  p5, c,
-                                  p1, c,
-                                  p3, c,
-                                  p7, c
-                                 ));
-    }
-
-    if(ny)
-    {
-        retval->add(quadrilateral(ny,
-                                  p0, c,
-                                  p1, c,
-                                  p5, c,
-                                  p4, c
-                                 ));
-    }
-
-    if(py)
-    {
-        retval->add(quadrilateral(py,
-                                  p6, c,
-                                  p7, c,
-                                  p3, c,
-                                  p2, c
-                                 ));
-    }
-
-    if(nz)
-    {
-        retval->add(quadrilateral(nz,
-                                  p1, c,
-                                  p0, c,
-                                  p2, c,
-                                  p3, c
-                                 ));
-    }
-
-    if(pz)
-    {
-        retval->add(quadrilateral(pz,
-                                  p4, c,
-                                  p5, c,
-                                  p7, c,
-                                  p6, c
-                                 ));
-    }
-
-    return retval;
-}
-
-Mesh line(const vector<VectorF> &linePoints, TextureDescriptor texture, Color color, float lineWidth);
-}
-
 #endif // GENERATE_H_INCLUDED

@@ -1,0 +1,692 @@
+\hypertarget{classGUIElement}{\section{G\+U\+I\+Element Class Reference}
+\label{classGUIElement}\index{G\+U\+I\+Element@{G\+U\+I\+Element}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$guielement.\+h$>$}
+
+Inheritance diagram for G\+U\+I\+Element\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.839037cm]{classGUIElement}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ \hyperlink{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{shared\+\_\+from\+\_\+this} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ const \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ \hyperlink{classGUIElement_a5b381516fddb549d5db4c7bf8e6f07b0}{shared\+\_\+from\+\_\+this} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{classGUIElement_aa57dfc31bd3790306daadf9b60ffd5c9}{{\bfseries G\+U\+I\+Element} (float min\+X, float max\+X, float min\+Y, float max\+Y)}\label{classGUIElement_aa57dfc31bd3790306daadf9b60ffd5c9}
+
+\item 
+Mesh \hyperlink{classGUIElement_aeb5af965b0ea78a4699d1263690a14fa}{render} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a5f0fe42b4b9fc20f01397e7face80ae6}{is\+Point\+Inside} (float x, float y) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a073ef8863e95e55df4b701f249ba4c44}{can\+Have\+Keyboard\+Focus} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_afcccb09fab792ee06ab929dec8a9d8e7}{handle\+Mouse\+Up} (\hyperlink{structMouseUpEvent}{Mouse\+Up\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a4809909ae2b25f816407da43b4a8f771}{handle\+Mouse\+Down} (\hyperlink{structMouseDownEvent}{Mouse\+Down\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a82b0ee7067d1c1deaef595f312592c5a}{handle\+Mouse\+Move} (\hyperlink{structMouseMoveEvent}{Mouse\+Move\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a0e4fe2486bff60c1dfcd058244be7acf}{handle\+Mouse\+Move\+Out} (\hyperlink{classMouseEvent}{Mouse\+Event} \&\hyperlink{unionSDL__Event}{event})
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_ae1c939c5af3544b9a5967b9035623459}{handle\+Mouse\+Move\+In} (\hyperlink{classMouseEvent}{Mouse\+Event} \&\hyperlink{unionSDL__Event}{event})
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a3640473a7fb9651a1298122a0e0a8b29}{handle\+Mouse\+Scroll} (\hyperlink{structMouseScrollEvent}{Mouse\+Scroll\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a7f0049f13cb199d09b6cf2e61ea8e7a3}{handle\+Key\+Up} (\hyperlink{classKeyUpEvent}{Key\+Up\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_aa85f949aa746eac4deadfa0bb8827f71}{handle\+Key\+Down} (\hyperlink{classKeyDownEvent}{Key\+Down\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_ac5b578dfd0da486e32d4cf223b2d6513}{handle\+Key\+Press} (\hyperlink{structKeyPressEvent}{Key\+Press\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a03dc64741eed1946966776ac3af96e65}{handle\+Quit} (\hyperlink{structQuitEvent}{Quit\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \hyperlink{classGUIElement}{G\+U\+I\+Element} $>$ \hyperlink{classGUIElement_acdb491fec728f3a39318850fa144c766}{get\+Focus\+Element} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a72dffcca76f328b780c346369d7cf325}{next\+Focus\+Element} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classGUIElement_a970e90bbb7db5de07708b0b2ef53d9e9}{prev\+Focus\+Element} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ \hyperlink{classGUIElement_aded5837705c097a7a8a755df28c572e6}{get\+Parent} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ \hyperlink{classGUIElement_a09eebb7ff9e98191caf3a0421f0bad8c}{get\+Top\+Level\+Parent} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIElement_a2fb7d617ff3fa7ef323cd8231e962a5a}{shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ {\bfseries parent}}\label{classGUIElement_a2fb7d617ff3fa7ef323cd8231e962a5a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 13 of file guielement.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUIElement_a073ef8863e95e55df4b701f249ba4c44}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}}
+\index{can\+Have\+Keyboard\+Focus@{can\+Have\+Keyboard\+Focus}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{can\+Have\+Keyboard\+Focus}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::can\+Have\+Keyboard\+Focus (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a073ef8863e95e55df4b701f249ba4c44}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classGUIContainer_a54bbf86cc92ce6518ccdc25a21b8e5f5}{G\+U\+I\+Container}, and \hyperlink{structGUILabel_aa0127a15c722bc35de3441e8d2952a28}{G\+U\+I\+Label}.
+
+
+
+Definition at line 69 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+70         \{
+71             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+72         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_acdb491fec728f3a39318850fa144c766}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!get\+Focus\+Element@{get\+Focus\+Element}}
+\index{get\+Focus\+Element@{get\+Focus\+Element}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{get\+Focus\+Element}]{\setlength{\rightskip}{0pt plus 5cm}virtual shared\+\_\+ptr$<${\bf G\+U\+I\+Element}$>$ G\+U\+I\+Element\+::get\+Focus\+Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_acdb491fec728f3a39318850fa144c766}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classGUIContainer_addf987ba650075a7c0f34c571debd6a2}{G\+U\+I\+Container}.
+
+
+
+Definition at line 200 of file guielement.\+h.
+
+
+
+References shared\+\_\+from\+\_\+this().
+
+
+\begin{DoxyCode}
+201         \{
+202             \textcolor{keywordflow}{return} \hyperlink{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{shared\_from\_this}();
+203         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_aded5837705c097a7a8a755df28c572e6}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!get\+Parent@{get\+Parent}}
+\index{get\+Parent@{get\+Parent}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{get\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf G\+U\+I\+Container}$>$ G\+U\+I\+Element\+::get\+Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIElement_aded5837705c097a7a8a755df28c572e6}
+
+
+Write what the function does here. 
+
+virtual void first\+Focus\+Element() \{ \}
+
+/$\ast$$\ast$ Write what the function does here
+
+virtual void last\+Focus\+Element() \{ \} void set\+Focus(); float min\+X, max\+X, min\+Y, max\+Y;
+
+/$\ast$$\ast$ Write what the function does here
+
+virtual void reset() \{ \} protected\+: virtual Mesh render(float min\+Z, float max\+Z, bool has\+Focus) = 0; friend class \hyperlink{classGUIContainer}{G\+U\+I\+Container}; // so \hyperlink{classGUIContainer}{G\+U\+I\+Container} can set parent friend class \hyperlink{classGUIRunner}{G\+U\+I\+Runner};
+
+/$\ast$$\ast$ Write what the function does here
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 257 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+258         \{
+259             \textcolor{keywordflow}{return} parent;
+260         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a09eebb7ff9e98191caf3a0421f0bad8c}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!get\+Top\+Level\+Parent@{get\+Top\+Level\+Parent}}
+\index{get\+Top\+Level\+Parent@{get\+Top\+Level\+Parent}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{get\+Top\+Level\+Parent}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<$ {\bf G\+U\+I\+Container} $>$ G\+U\+I\+Element\+::get\+Top\+Level\+Parent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a09eebb7ff9e98191caf3a0421f0bad8c}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 869 of file guicontainer.\+h.
+
+
+\begin{DoxyCode}
+870 \{
+871     shared\_ptr<GUIContainer> retval = \hyperlink{classGUIElement_aded5837705c097a7a8a755df28c572e6}{getParent}();
+872     \textcolor{keywordflow}{if}(retval == \textcolor{keyword}{nullptr})
+873         \textcolor{keywordflow}{return} retval;
+874     \textcolor{keywordflow}{while}(retval->getParent() != \textcolor{keyword}{nullptr})
+875         retval = retval->getParent();
+876     \textcolor{keywordflow}{return} retval;
+877 \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_aa85f949aa746eac4deadfa0bb8827f71}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Key\+Down@{handle\+Key\+Down}}
+\index{handle\+Key\+Down@{handle\+Key\+Down}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Key\+Down}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Key\+Down (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Down\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_aa85f949aa746eac4deadfa0bb8827f71}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 166 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+167         \{
+168             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+169         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_ac5b578dfd0da486e32d4cf223b2d6513}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Key\+Press@{handle\+Key\+Press}}
+\index{handle\+Key\+Press@{handle\+Key\+Press}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Key\+Press}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Key\+Press (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Press\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_ac5b578dfd0da486e32d4cf223b2d6513}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 178 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+179         \{
+180             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+181         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a7f0049f13cb199d09b6cf2e61ea8e7a3}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Key\+Up@{handle\+Key\+Up}}
+\index{handle\+Key\+Up@{handle\+Key\+Up}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Key\+Up}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Key\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Up\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_a7f0049f13cb199d09b6cf2e61ea8e7a3}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 154 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+155         \{
+156             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+157         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a4809909ae2b25f816407da43b4a8f771}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Down@{handle\+Mouse\+Down}}
+\index{handle\+Mouse\+Down@{handle\+Mouse\+Down}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Down}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Down (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Down\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_a4809909ae2b25f816407da43b4a8f771}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 93 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+94         \{
+95             setFocus();
+96             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+97         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a82b0ee7067d1c1deaef595f312592c5a}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Move@{handle\+Mouse\+Move}}
+\index{handle\+Mouse\+Move@{handle\+Mouse\+Move}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Move}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Move\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_a82b0ee7067d1c1deaef595f312592c5a}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 106 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+107         \{
+108             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+109         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_ae1c939c5af3544b9a5967b9035623459}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Move\+In@{handle\+Mouse\+Move\+In}}
+\index{handle\+Mouse\+Move\+In@{handle\+Mouse\+Move\+In}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Move\+In}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Move\+In (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_ae1c939c5af3544b9a5967b9035623459}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 130 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+131         \{
+132             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+133         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a0e4fe2486bff60c1dfcd058244be7acf}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Move\+Out@{handle\+Mouse\+Move\+Out}}
+\index{handle\+Mouse\+Move\+Out@{handle\+Mouse\+Move\+Out}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Move\+Out}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Move\+Out (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a0e4fe2486bff60c1dfcd058244be7acf}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 118 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+119         \{
+120             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+121         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a3640473a7fb9651a1298122a0e0a8b29}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Scroll@{handle\+Mouse\+Scroll}}
+\index{handle\+Mouse\+Scroll@{handle\+Mouse\+Scroll}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Scroll}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Scroll (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Scroll\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_a3640473a7fb9651a1298122a0e0a8b29}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 142 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+143         \{
+144             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+145         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_afcccb09fab792ee06ab929dec8a9d8e7}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Mouse\+Up@{handle\+Mouse\+Up}}
+\index{handle\+Mouse\+Up@{handle\+Mouse\+Up}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Mouse\+Up}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Mouse\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Up\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_afcccb09fab792ee06ab929dec8a9d8e7}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 81 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+82         \{
+83             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+84         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a03dc64741eed1946966776ac3af96e65}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!handle\+Quit@{handle\+Quit}}
+\index{handle\+Quit@{handle\+Quit}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{handle\+Quit}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::handle\+Quit (
+\begin{DoxyParamCaption}
+\item[{{\bf Quit\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIElement_a03dc64741eed1946966776ac3af96e65}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 190 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+191         \{
+192             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+193         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a5f0fe42b4b9fc20f01397e7face80ae6}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!is\+Point\+Inside@{is\+Point\+Inside}}
+\index{is\+Point\+Inside@{is\+Point\+Inside}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{is\+Point\+Inside}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::is\+Point\+Inside (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a5f0fe42b4b9fc20f01397e7face80ae6}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 57 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+58         \{
+59             \textcolor{keywordflow}{if}(x < minX || x > maxX || y < minY || y > maxY)
+60                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+61             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+62         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a72dffcca76f328b780c346369d7cf325}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!next\+Focus\+Element@{next\+Focus\+Element}}
+\index{next\+Focus\+Element@{next\+Focus\+Element}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{next\+Focus\+Element}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::next\+Focus\+Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a72dffcca76f328b780c346369d7cf325}
+
+
+Write what the function does here. 
+
+true when reached container boundary 
+
+Definition at line 210 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+211         \{
+212             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+213         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a970e90bbb7db5de07708b0b2ef53d9e9}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!prev\+Focus\+Element@{prev\+Focus\+Element}}
+\index{prev\+Focus\+Element@{prev\+Focus\+Element}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{prev\+Focus\+Element}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool G\+U\+I\+Element\+::prev\+Focus\+Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classGUIElement_a970e90bbb7db5de07708b0b2ef53d9e9}
+
+
+Write what the function does here. 
+
+true when reached container boundary 
+
+Definition at line 220 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+221         \{
+222             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+223         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_aeb5af965b0ea78a4699d1263690a14fa}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!render@{render}}
+\index{render@{render}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}Mesh G\+U\+I\+Element\+::render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIElement_aeb5af965b0ea78a4699d1263690a14fa}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 44 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+45         \{
+46             \textcolor{keywordflow}{return} \hyperlink{classGUIElement_aeb5af965b0ea78a4699d1263690a14fa}{render}(0.1, 10, \textcolor{keyword}{true});
+47         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!shared\+\_\+from\+\_\+this@{shared\+\_\+from\+\_\+this}}
+\index{shared\+\_\+from\+\_\+this@{shared\+\_\+from\+\_\+this}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{shared\+\_\+from\+\_\+this}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf G\+U\+I\+Element}$>$ G\+U\+I\+Element\+::shared\+\_\+from\+\_\+this (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIElement_a5ad5998c5b953b6c6e32b583ddf9cd97}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 22 of file guielement.\+h.
+
+
+
+Referenced by get\+Focus\+Element().
+
+
+\begin{DoxyCode}
+23         \{
+24             \textcolor{keywordflow}{return} dynamic\_pointer\_cast<\hyperlink{classGUIElement}{GUIElement}>(EventHandler::shared\_from\_this());
+25         \}
+\end{DoxyCode}
+\hypertarget{classGUIElement_a5b381516fddb549d5db4c7bf8e6f07b0}{\index{G\+U\+I\+Element@{G\+U\+I\+Element}!shared\+\_\+from\+\_\+this@{shared\+\_\+from\+\_\+this}}
+\index{shared\+\_\+from\+\_\+this@{shared\+\_\+from\+\_\+this}!G\+U\+I\+Element@{G\+U\+I\+Element}}
+\subsubsection[{shared\+\_\+from\+\_\+this}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<$const {\bf G\+U\+I\+Element}$>$ G\+U\+I\+Element\+::shared\+\_\+from\+\_\+this (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIElement_a5b381516fddb549d5db4c7bf8e6f07b0}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 32 of file guielement.\+h.
+
+
+\begin{DoxyCode}
+33         \{
+34             \textcolor{keywordflow}{return} dynamic\_pointer\_cast<\textcolor{keyword}{const} \hyperlink{classGUIElement}{GUIElement}>(EventHandler::shared\_from\_this());
+35         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+guielement.\+h\item 
+guicontainer.\+h\item 
+guielement.\+cpp\end{DoxyCompactItemize}

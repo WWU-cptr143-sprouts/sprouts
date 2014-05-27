@@ -1,0 +1,246 @@
+\hypertarget{structNode}{\section{Node Struct Reference}
+\label{structNode}\index{Node@{Node}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$node.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structNode_afc388bc3956f19cae938c60ae41eae64}{Node} (int index, const N\+T \&data)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structNode_a9ba63595eac1a32f14a40788704214ce}{Node} (int index, N\+T \&\&data)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{structNode_a8967a8ea2f7e45ab5d400eb4fb5a5b8f}{{\bfseries Node} (\hyperlink{structCoord}{Coord}, \hyperlink{structConnection}{Connection}=\hyperlink{structConnection}{Connection}(), \hyperlink{structConnection}{Connection}=\hyperlink{structConnection}{Connection}())}\label{structNode_a8967a8ea2f7e45ab5d400eb4fb5a5b8f}
+
+\item 
+\hypertarget{structNode_aa7323fcd726f9d02be5a36017b983b2d}{void {\bfseries walk} (vector$<$ Area $\ast$ $>$ \&)}\label{structNode_aa7323fcd726f9d02be5a36017b983b2d}
+
+\item 
+\hypertarget{structNode_aed462601aaebbbf910008326032619c6}{void {\bfseries walk} (vector$<$ Area $\ast$ $>$ \&, Area, \hyperlink{structConnection}{Connection} $\ast$, \hyperlink{structNode}{Node} $\ast$)}\label{structNode_aed462601aaebbbf910008326032619c6}
+
+\item 
+\hypertarget{structNode_a84e440c7e885d9c9e2e72386a351ddb3}{\hyperlink{structConnection}{Connection} $\ast$ {\bfseries get\+Conn\+Addr} ()}\label{structNode_a84e440c7e885d9c9e2e72386a351ddb3}
+
+\item 
+\hypertarget{structNode_abef94e6f9dd2576fe364fd0cb8257d9e}{bool {\bfseries dead} () const }\label{structNode_abef94e6f9dd2576fe364fd0cb8257d9e}
+
+\item 
+\hypertarget{structNode_aa76d8f65bb797e4e84a4d9dbdd933294}{bool {\bfseries vertical} () const }\label{structNode_aa76d8f65bb797e4e84a4d9dbdd933294}
+
+\item 
+\hypertarget{structNode_aa125f823cfc1231e0ba5f50e6a742db6}{const \hyperlink{structCoord}{Coord} \& {\bfseries get\+Loci} () const }\label{structNode_aa125f823cfc1231e0ba5f50e6a742db6}
+
+\item 
+\hypertarget{structNode_a6450dca659f85cd33edbb8910811c9a1}{void {\bfseries set\+Areasets} (Areaset $\ast$sets\mbox{[}2\mbox{]})}\label{structNode_a6450dca659f85cd33edbb8910811c9a1}
+
+\item 
+\hypertarget{structNode_a1adae23476112f3cfa2a29e0c43759d3}{bool {\bfseries add\+Connection} (const \hyperlink{structConnection}{Connection} \&)}\label{structNode_a1adae23476112f3cfa2a29e0c43759d3}
+
+\item 
+\hypertarget{structNode_adb1a2bb6cbbb29ebecfe7a2ec59955c7}{int {\bfseries con\+Count} () const }\label{structNode_adb1a2bb6cbbb29ebecfe7a2ec59955c7}
+
+\item 
+\hypertarget{structNode_aa8e730f4312f3e07855fcad130efd9d9}{bool {\bfseries open\+Up} () const }\label{structNode_aa8e730f4312f3e07855fcad130efd9d9}
+
+\item 
+\hypertarget{structNode_a29cd0712d13c59420d4c66269a64c5f1}{bool {\bfseries open\+Right} () const }\label{structNode_a29cd0712d13c59420d4c66269a64c5f1}
+
+\item 
+\hypertarget{structNode_a39a07081bb9473f5b7e6f95519e3a6b2}{bool {\bfseries open\+Down} () const }\label{structNode_a39a07081bb9473f5b7e6f95519e3a6b2}
+
+\item 
+\hypertarget{structNode_a76dc3334942fd5dd30c650018b4e7d4e}{bool {\bfseries open\+Left} () const }\label{structNode_a76dc3334942fd5dd30c650018b4e7d4e}
+
+\item 
+\hyperlink{structNode_a89989d52fa93844ca1be5f0c4f96ae8f}{Node} (\hyperlink{structVectorF}{Vector\+F} position=\hyperlink{structVectorF}{Vector\+F}())
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structNode_ac8055cdbda20cacce417192557741ab8}{int {\bfseries index}}\label{structNode_ac8055cdbda20cacce417192557741ab8}
+
+\item 
+\hypertarget{structNode_a877334dd39251c18f156f154dcf5c141}{N\+T {\bfseries data}}\label{structNode_a877334dd39251c18f156f154dcf5c141}
+
+\item 
+\hypertarget{structNode_a1bd87c82dccda0e8efdaef5f19de558b}{bool {\bfseries flag} = false}\label{structNode_a1bd87c82dccda0e8efdaef5f19de558b}
+
+\item 
+\hypertarget{structNode_ac20d9a187c73ffd00cbaa79e636a963b}{vector$<$ \hyperlink{structEdge}{Edge} $\ast$ $>$ {\bfseries adjacency\+List}}\label{structNode_ac20d9a187c73ffd00cbaa79e636a963b}
+
+\item 
+\hypertarget{structNode_a7771548b1788566ae2af70da09edd3e0}{Areaset $\ast$ {\bfseries areasets} \mbox{[}2\mbox{]}}\label{structNode_a7771548b1788566ae2af70da09edd3e0}
+
+\item 
+\hypertarget{structNode_a47b5558f6416791a4789051c64411c3e}{\hyperlink{structVectorF}{Vector\+F} {\bfseries position}}\label{structNode_a47b5558f6416791a4789051c64411c3e}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structNode_ab53dfd4d0c1c14c6f52e10e7dd4a7d5b}{\hyperlink{structCoord}{Coord} {\bfseries loci}}\label{structNode_ab53dfd4d0c1c14c6f52e10e7dd4a7d5b}
+
+\item 
+\hypertarget{structNode_a8c1d4129f3781fc13810790f4f263fc0}{\hyperlink{structConnection}{Connection} {\bfseries connections} \mbox{[}3\mbox{]}}\label{structNode_a8c1d4129f3781fc13810790f4f263fc0}
+
+\item 
+\hypertarget{structNode_aeb24c6e7916dd967c826084094f71e63}{bool {\bfseries open} \mbox{[}4\mbox{]}}\label{structNode_aeb24c6e7916dd967c826084094f71e63}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structNode_a2d9bbf468b6e46a184fd9deec2ffb82a}{enum {\bfseries Dir} \{ {\bfseries Up} =0, 
+{\bfseries Right}, 
+{\bfseries Down}, 
+{\bfseries Left}
+ \}}\label{structNode_a2d9bbf468b6e46a184fd9deec2ffb82a}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structNode_aca11179560b61f0d118c6d86865d20cc}{void {\bfseries update\+Open} ()}\label{structNode_aca11179560b61f0d118c6d86865d20cc}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structNode_aa2fab026580d6f14280c2ffb8063a314}{class {\bfseries Game}}\label{structNode_aa2fab026580d6f14280c2ffb8063a314}
+
+\item 
+\hypertarget{structNode_a7bb9176e07b6f6c73c930dba6400265f}{ostream \& {\bfseries operator$<$$<$} (ostream \&, const \hyperlink{classGame}{Game} \&)}\label{structNode_a7bb9176e07b6f6c73c930dba6400265f}
+
+\item 
+\hypertarget{structNode_a43649da031123d524f6605d2b0b4ebc8}{ostream \& {\bfseries operator$<$$<$} (ostream \&, const \hyperlink{structConnection}{Connection} \&)}\label{structNode_a43649da031123d524f6605d2b0b4ebc8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 433 of file graph.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structNode_afc388bc3956f19cae938c60ae41eae64}{\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}Node\+::\+Node (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{const N\+T \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structNode_afc388bc3956f19cae938c60ae41eae64}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 439 of file graph.\+h.
+
+
+\begin{DoxyCode}
+445         \{
+446             cout << \textcolor{stringliteral}{"Enter adjacent node (or 0 to end):"};
+447             \textcolor{keywordtype}{int} n;
+448 \textcolor{comment}{}
+449 \textcolor{comment}{            /**}
+450 \textcolor{comment}{             * @brief Write what the function does here}
+451 \textcolor{comment}{             *}
+\end{DoxyCode}
+\hypertarget{structNode_a9ba63595eac1a32f14a40788704214ce}{\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}Node\+::\+Node (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{N\+T \&\&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structNode_a9ba63595eac1a32f14a40788704214ce}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+{\em data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 452 of file graph.\+h.
+
+
+\begin{DoxyCode}
+458             \{
+459                 \textcolor{keywordflow}{throw} \hyperlink{structgraph__build__error}{graph\_build\_error}(\textcolor{stringliteral}{"invalid node adjacency"});
+460             \}
+461 \textcolor{comment}{}
+462 \textcolor{comment}{            /**}
+463 \textcolor{comment}{             * @brief Write what the function does here}
+464 \textcolor{comment}{             *}
+\end{DoxyCode}
+\hypertarget{structNode_a89989d52fa93844ca1be5f0c4f96ae8f}{\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}Node\+::\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{position = {\ttfamily {\bf Vector\+F}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structNode_a89989d52fa93844ca1be5f0c4f96ae8f}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 15 of file node.\+h.
+
+
+\begin{DoxyCode}
+24         : position(position)
+25         \{\}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+graph.\+h\item 
+headers/node.\+h\item 
+old-\/source/oldnode.\+cpp\end{DoxyCompactItemize}
