@@ -1,7 +1,7 @@
 checklist
 ========
 
-1.  name/date   |  color.h
+1.  jared/5-26   |  color.h
 1.  name/date   |  compressed_stream.h
 1.  name/date   |  cubicspline.h
 1.  name/date   |  edge.h

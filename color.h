@@ -110,6 +110,16 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     {
         return Color(v);
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param h
+     * @param s
+     * @param v
+     *
+     * @return
+     **/
     static Color HSVA(float hue, float saturation, float value, float a);
 
     /**
@@ -125,6 +135,16 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     {
         return HSVA(h, s, v, 1);
     }
+
+    /**
+     * @brief Write what the function does here
+     *
+     * @param h
+     * @param s
+     * @param v
+     *
+     * @return
+     **/
     static Color HSBA(float hue, float saturation, float brightness, float a);
 
     /**
@@ -302,23 +322,8 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
         if(maxV < eps * minV)
             return 0;
 
-        /**
-         * @brief Write what the function does here
-         *
-         * @param maxV
-         *
-         * @return
-         **/
         if(c.r == maxV)
         {
-
-            /**
-             * @brief Write what the function does here
-             *
-             * @param b
-             *
-             * @return
-             **/
             if(c.g < c.b)
             {
                 return (6 - c.b / maxV) / 6;
@@ -326,23 +331,9 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
             return (c.g / maxV) / 6;
         }
 
-        /**
-         * @brief Write what the function does here
-         *
-         * @param maxV
-         *
-         * @return
-         **/
         if(c.g == maxV)
         {
 
-            /**
-             * @brief Write what the function does here
-             *
-             * @param b
-             *
-             * @return
-             **/
             if(c.r < c.b)
             {
                 return (2 + c.b / maxV) / 6;
@@ -350,13 +341,6 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
             return (2 - c.r / maxV) / 6;
         }
 
-        /**
-         * @brief Write what the function does here
-         *
-         * @param g
-         *
-         * @return
-         **/
         if(c.r < c.g)
         {
             return (4 - c.g / maxV) / 6;
@@ -433,13 +417,6 @@ inline Color Color::HSVA(float hue, float saturation, float value, float a)
     hue *= 6;
     Color retval = Color(0, a);
 
-    /**
-     * @brief Write what the function does here
-     *
-     * @param hue
-     *
-     * @return
-     **/
     switch(ifloor(hue))
     {
         case 0:
@@ -489,13 +466,6 @@ inline Color Color::HSBA(float hue, float saturation, float brightness, float a)
     hue *= 6;
     Color retval = Color(0, a);
 
-    /**
-     * @brief Write what the function does here
-     *
-     * @param hue
-     *
-     * @return
-     **/
     switch(ifloor(hue))
     {
         case 0:
