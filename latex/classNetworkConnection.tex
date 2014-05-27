@@ -1,0 +1,153 @@
+\hypertarget{classNetworkConnection}{\section{Network\+Connection Class Reference}
+\label{classNetworkConnection}\index{Network\+Connection@{Network\+Connection}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$network.\+h$>$}
+
+Inheritance diagram for Network\+Connection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classNetworkConnection}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classNetworkConnection_a78733e203c2aef9a0cb1538476c637d7}{{\bfseries Network\+Connection} (wstring url, uint16\+\_\+t port)}\label{classNetworkConnection_a78733e203c2aef9a0cb1538476c637d7}
+
+\item 
+shared\+\_\+ptr$<$ \hyperlink{classReader}{Reader} $>$ \hyperlink{classNetworkConnection_a3cd959362a6b007ad005f330463c2216}{preader} () override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \hyperlink{classWriter}{Writer} $>$ \hyperlink{classNetworkConnection_a2cc73fa5d5c9b4cf74579946dc136b5a}{pwriter} () override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNetworkConnection_a9a07574433d99140bae5f156c1985394}{Network\+Connection} (int read\+Fd, int write\+Fd)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classNetworkConnection_af4802dedf4ab9533305501fd2b37a77c}{shared\+\_\+ptr$<$ \hyperlink{classReader}{Reader} $>$ {\bfseries reader\+Internal}}\label{classNetworkConnection_af4802dedf4ab9533305501fd2b37a77c}
+
+\item 
+\hypertarget{classNetworkConnection_adcad1f46ad36fe40b3f45ed12c6369e5}{shared\+\_\+ptr$<$ \hyperlink{classWriter}{Writer} $>$ {\bfseries writer\+Internal}}\label{classNetworkConnection_adcad1f46ad36fe40b3f45ed12c6369e5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classNetworkConnection_a9aeeeda70dbfefcf76c52db5f76274ab}{class {\bfseries Network\+Server}}\label{classNetworkConnection_a9aeeeda70dbfefcf76c52db5f76274ab}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 33 of file network.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNetworkConnection_a9a07574433d99140bae5f156c1985394}{\index{Network\+Connection@{Network\+Connection}!Network\+Connection@{Network\+Connection}}
+\index{Network\+Connection@{Network\+Connection}!Network\+Connection@{Network\+Connection}}
+\subsubsection[{Network\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}Network\+Connection\+::\+Network\+Connection (
+\begin{DoxyParamCaption}
+\item[{int}]{read\+Fd, }
+\item[{int}]{write\+Fd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classNetworkConnection_a9a07574433d99140bae5f156c1985394}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em read\+Fd} & \\
+\hline
+{\em write\+Fd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 39 of file network.\+h.
+
+
+\begin{DoxyCode}
+49         : readerInternal(\textcolor{keyword}{new} \hyperlink{classFileReader}{FileReader}(fdopen(readFd, \textcolor{stringliteral}{"r"}))), writerInternal(\textcolor{keyword}{new} FileWriter(
+      fdopen(writeFd, \textcolor{stringliteral}{"w"})))
+50         \{
+51         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNetworkConnection_a3cd959362a6b007ad005f330463c2216}{\index{Network\+Connection@{Network\+Connection}!preader@{preader}}
+\index{preader@{preader}!Network\+Connection@{Network\+Connection}}
+\subsubsection[{preader}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf Reader}$>$ Network\+Connection\+::preader (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}}\label{classNetworkConnection_a3cd959362a6b007ad005f330463c2216}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 60 of file network.\+h.
+
+
+\begin{DoxyCode}
+61     \{
+62         \textcolor{keywordflow}{return} readerInternal;
+63     \}
+\end{DoxyCode}
+\hypertarget{classNetworkConnection_a2cc73fa5d5c9b4cf74579946dc136b5a}{\index{Network\+Connection@{Network\+Connection}!pwriter@{pwriter}}
+\index{pwriter@{pwriter}!Network\+Connection@{Network\+Connection}}
+\subsubsection[{pwriter}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf Writer}$>$ Network\+Connection\+::pwriter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}}\label{classNetworkConnection_a2cc73fa5d5c9b4cf74579946dc136b5a}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 70 of file network.\+h.
+
+
+\begin{DoxyCode}
+71     \{
+72         \textcolor{keywordflow}{return} writerInternal;
+73     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+network.\+h\item 
+network.\+cpp\end{DoxyCompactItemize}

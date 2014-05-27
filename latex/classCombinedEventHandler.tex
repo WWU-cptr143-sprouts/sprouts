@@ -1,0 +1,543 @@
+\hypertarget{classCombinedEventHandler}{\section{Combined\+Event\+Handler Class Reference}
+\label{classCombinedEventHandler}\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Combined\+Event\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classCombinedEventHandler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCombinedEventHandler_ad45f2a5d0eb584f62d94de4c3d589a80}{Combined\+Event\+Handler} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ first, shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ second)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_a89f264f41a9de7162618e7549b24c82d}{handle\+Mouse\+Up} (\hyperlink{structMouseUpEvent}{Mouse\+Up\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_a7b4e923b77ac7c961d9919e4f169bf1a}{handle\+Mouse\+Down} (\hyperlink{structMouseDownEvent}{Mouse\+Down\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_ae7678e61d3ac2b416307bc5d4797fcdf}{handle\+Mouse\+Move} (\hyperlink{structMouseMoveEvent}{Mouse\+Move\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_a3f1d2344f2348a83242576eb9f9f81f6}{handle\+Mouse\+Scroll} (\hyperlink{structMouseScrollEvent}{Mouse\+Scroll\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_aa4fc97e377238948995cf04b10816094}{handle\+Key\+Up} (\hyperlink{classKeyUpEvent}{Key\+Up\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_a12c529bbe80bc54ffb0479b11c4cb896}{handle\+Key\+Down} (\hyperlink{classKeyDownEvent}{Key\+Down\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_a33f19194d740dc1a9af2f05fe00243bb}{handle\+Key\+Press} (\hyperlink{structKeyPressEvent}{Key\+Press\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classCombinedEventHandler_aeb9ba179ea0ea968303387f085ff424c}{handle\+Quit} (\hyperlink{structQuitEvent}{Quit\+Event} \&\hyperlink{unionSDL__Event}{event}) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCombinedEventHandler_a9a137fe3fb3af1e98bde49d167f96f40}{shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ {\bfseries first}}\label{classCombinedEventHandler_a9a137fe3fb3af1e98bde49d167f96f40}
+
+\item 
+\hypertarget{classCombinedEventHandler_a9099834af829d75a109e680c5704c66a}{shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ {\bfseries second}}\label{classCombinedEventHandler_a9099834af829d75a109e680c5704c66a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 467 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCombinedEventHandler_ad45f2a5d0eb584f62d94de4c3d589a80}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{Combined\+Event\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}Combined\+Event\+Handler\+::\+Combined\+Event\+Handler (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{first, }
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{second}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classCombinedEventHandler_ad45f2a5d0eb584f62d94de4c3d589a80}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first} & \\
+\hline
+{\em second} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 472 of file event.\+h.
+
+
+\begin{DoxyCode}
+482             : first(first), second(second)
+483             \{
+484             \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classCombinedEventHandler_a12c529bbe80bc54ffb0479b11c4cb896}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Key\+Down@{handle\+Key\+Down}}
+\index{handle\+Key\+Down@{handle\+Key\+Down}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Key\+Down}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Key\+Down (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Down\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_a12c529bbe80bc54ffb0479b11c4cb896}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 613 of file event.\+h.
+
+
+\begin{DoxyCode}
+614         \{
+615 \textcolor{comment}{}
+616 \textcolor{comment}{            /**}
+617 \textcolor{comment}{             * @brief Write what the function does here}
+618 \textcolor{comment}{             *}
+619 \textcolor{comment}{             * @param event}
+620 \textcolor{comment}{             *}
+621 \textcolor{comment}{             * @return}
+622 \textcolor{comment}{             **/}
+623             \textcolor{keywordflow}{if}(first->handleKeyDown(event))
+624             \{
+625                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+626             \}
+627             \textcolor{keywordflow}{return} second->handleKeyDown(event);
+628         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_a33f19194d740dc1a9af2f05fe00243bb}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Key\+Press@{handle\+Key\+Press}}
+\index{handle\+Key\+Press@{handle\+Key\+Press}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Key\+Press}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Key\+Press (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Press\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_a33f19194d740dc1a9af2f05fe00243bb}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 637 of file event.\+h.
+
+
+\begin{DoxyCode}
+638         \{
+639 \textcolor{comment}{}
+640 \textcolor{comment}{            /**}
+641 \textcolor{comment}{             * @brief Write what the function does here}
+642 \textcolor{comment}{             *}
+643 \textcolor{comment}{             * @param event}
+644 \textcolor{comment}{             *}
+645 \textcolor{comment}{             * @return}
+646 \textcolor{comment}{             **/}
+647             \textcolor{keywordflow}{if}(first->handleKeyPress(event))
+648             \{
+649                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+650             \}
+651             \textcolor{keywordflow}{return} second->handleKeyPress(event);
+652         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_aa4fc97e377238948995cf04b10816094}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Key\+Up@{handle\+Key\+Up}}
+\index{handle\+Key\+Up@{handle\+Key\+Up}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Key\+Up}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Key\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Key\+Up\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_aa4fc97e377238948995cf04b10816094}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 589 of file event.\+h.
+
+
+\begin{DoxyCode}
+590         \{
+591 \textcolor{comment}{}
+592 \textcolor{comment}{            /**}
+593 \textcolor{comment}{             * @brief Write what the function does here}
+594 \textcolor{comment}{             *}
+595 \textcolor{comment}{             * @param event}
+596 \textcolor{comment}{             *}
+597 \textcolor{comment}{             * @return}
+598 \textcolor{comment}{             **/}
+599             \textcolor{keywordflow}{if}(first->handleKeyUp(event))
+600             \{
+601                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+602             \}
+603             \textcolor{keywordflow}{return} second->handleKeyUp(event);
+604         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_a7b4e923b77ac7c961d9919e4f169bf1a}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Mouse\+Down@{handle\+Mouse\+Down}}
+\index{handle\+Mouse\+Down@{handle\+Mouse\+Down}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Mouse\+Down}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Mouse\+Down (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Down\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_a7b4e923b77ac7c961d9919e4f169bf1a}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 517 of file event.\+h.
+
+
+\begin{DoxyCode}
+518         \{
+519 \textcolor{comment}{}
+520 \textcolor{comment}{            /**}
+521 \textcolor{comment}{             * @brief Write what the function does here}
+522 \textcolor{comment}{             *}
+523 \textcolor{comment}{             * @param event}
+524 \textcolor{comment}{             *}
+525 \textcolor{comment}{             * @return}
+526 \textcolor{comment}{             **/}
+527             \textcolor{keywordflow}{if}(first->handleMouseDown(event))
+528             \{
+529                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+530             \}
+531             \textcolor{keywordflow}{return} second->handleMouseDown(event);
+532         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_ae7678e61d3ac2b416307bc5d4797fcdf}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Mouse\+Move@{handle\+Mouse\+Move}}
+\index{handle\+Mouse\+Move@{handle\+Mouse\+Move}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Mouse\+Move}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Mouse\+Move (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Move\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_ae7678e61d3ac2b416307bc5d4797fcdf}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 541 of file event.\+h.
+
+
+\begin{DoxyCode}
+542         \{
+543 \textcolor{comment}{}
+544 \textcolor{comment}{            /**}
+545 \textcolor{comment}{             * @brief Write what the function does here}
+546 \textcolor{comment}{             *}
+547 \textcolor{comment}{             * @param event}
+548 \textcolor{comment}{             *}
+549 \textcolor{comment}{             * @return}
+550 \textcolor{comment}{             **/}
+551             \textcolor{keywordflow}{if}(first->handleMouseMove(event))
+552             \{
+553                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+554             \}
+555             \textcolor{keywordflow}{return} second->handleMouseMove(event);
+556         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_a3f1d2344f2348a83242576eb9f9f81f6}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Mouse\+Scroll@{handle\+Mouse\+Scroll}}
+\index{handle\+Mouse\+Scroll@{handle\+Mouse\+Scroll}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Mouse\+Scroll}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Mouse\+Scroll (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Scroll\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_a3f1d2344f2348a83242576eb9f9f81f6}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 565 of file event.\+h.
+
+
+\begin{DoxyCode}
+566         \{
+567 \textcolor{comment}{}
+568 \textcolor{comment}{            /**}
+569 \textcolor{comment}{             * @brief Write what the function does here}
+570 \textcolor{comment}{             *}
+571 \textcolor{comment}{             * @param event}
+572 \textcolor{comment}{             *}
+573 \textcolor{comment}{             * @return}
+574 \textcolor{comment}{             **/}
+575             \textcolor{keywordflow}{if}(first->handleMouseScroll(event))
+576             \{
+577                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+578             \}
+579             \textcolor{keywordflow}{return} second->handleMouseScroll(event);
+580         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_a89f264f41a9de7162618e7549b24c82d}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Mouse\+Up@{handle\+Mouse\+Up}}
+\index{handle\+Mouse\+Up@{handle\+Mouse\+Up}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Mouse\+Up}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Mouse\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Mouse\+Up\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_a89f264f41a9de7162618e7549b24c82d}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 493 of file event.\+h.
+
+
+\begin{DoxyCode}
+494         \{
+495 \textcolor{comment}{}
+496 \textcolor{comment}{            /**}
+497 \textcolor{comment}{             * @brief Write what the function does here}
+498 \textcolor{comment}{             *}
+499 \textcolor{comment}{             * @param event}
+500 \textcolor{comment}{             *}
+501 \textcolor{comment}{             * @return}
+502 \textcolor{comment}{             **/}
+503             \textcolor{keywordflow}{if}(first->handleMouseUp(event))
+504             \{
+505                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+506             \}
+507             \textcolor{keywordflow}{return} second->handleMouseUp(event);
+508         \}
+\end{DoxyCode}
+\hypertarget{classCombinedEventHandler_aeb9ba179ea0ea968303387f085ff424c}{\index{Combined\+Event\+Handler@{Combined\+Event\+Handler}!handle\+Quit@{handle\+Quit}}
+\index{handle\+Quit@{handle\+Quit}!Combined\+Event\+Handler@{Combined\+Event\+Handler}}
+\subsubsection[{handle\+Quit}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Combined\+Event\+Handler\+::handle\+Quit (
+\begin{DoxyParamCaption}
+\item[{{\bf Quit\+Event} \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classCombinedEventHandler_aeb9ba179ea0ea968303387f085ff424c}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{structEventHandler}{Event\+Handler}.
+
+
+
+Definition at line 661 of file event.\+h.
+
+
+\begin{DoxyCode}
+662         \{
+663 \textcolor{comment}{}
+664 \textcolor{comment}{            /**}
+665 \textcolor{comment}{             * @brief Write what the function does here}
+666 \textcolor{comment}{             *}
+667 \textcolor{comment}{             * @param event}
+668 \textcolor{comment}{             *}
+669 \textcolor{comment}{             * @return}
+670 \textcolor{comment}{             **/}
+671             \textcolor{keywordflow}{if}(first->handleQuit(event))
+672             \{
+673                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+674             \}
+675             \textcolor{keywordflow}{return} second->handleQuit(event);
+676         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

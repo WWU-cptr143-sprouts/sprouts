@@ -1,0 +1,130 @@
+\hypertarget{classinitializer}{\section{initializer Class Reference}
+\label{classinitializer}\index{initializer@{initializer}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$util.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classinitializer_ad7eff8ec9662dda6c90a5eebbb5bb774}{initializer} (void($\ast$init\+Fn)(), void($\ast$finalize\+Fn)()=nullptr)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classinitializer_a9ac296c0a8420f783af46a77792f4253}{$\sim$initializer} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinitializer_a040920f2a1db4d0545d84c81ec6319d9}{{\bfseries initializer} (const \hyperlink{classinitializer}{initializer} \&rt)=delete}\label{classinitializer_a040920f2a1db4d0545d84c81ec6319d9}
+
+\item 
+\hypertarget{classinitializer_a622a590c3eeac8414877886cddb3c133}{void {\bfseries operator=} (const \hyperlink{classinitializer}{initializer} \&rt)=delete}\label{classinitializer_a622a590c3eeac8414877886cddb3c133}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinitializer_abb0e43532e705e711cb64318defa0a4f}{void($\ast$ {\bfseries finalize\+Fn} )()}\label{classinitializer_abb0e43532e705e711cb64318defa0a4f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 142 of file util.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classinitializer_ad7eff8ec9662dda6c90a5eebbb5bb774}{\index{initializer@{initializer}!initializer@{initializer}}
+\index{initializer@{initializer}!initializer@{initializer}}
+\subsubsection[{initializer}]{\setlength{\rightskip}{0pt plus 5cm}initializer\+::initializer (
+\begin{DoxyParamCaption}
+\item[{void($\ast$)()}]{init\+Fn, }
+\item[{void($\ast$)()}]{finalize\+Fn = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classinitializer_ad7eff8ec9662dda6c90a5eebbb5bb774}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em finalize\+Fn} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 149 of file util.\+h.
+
+
+\begin{DoxyCode}
+158             : finalizeFn(finalizeFn)
+159             \{
+160                 initFn();
+161             \}
+\end{DoxyCode}
+\hypertarget{classinitializer_a9ac296c0a8420f783af46a77792f4253}{\index{initializer@{initializer}!````~initializer@{$\sim$initializer}}
+\index{````~initializer@{$\sim$initializer}!initializer@{initializer}}
+\subsubsection[{$\sim$initializer}]{\setlength{\rightskip}{0pt plus 5cm}initializer\+::$\sim$initializer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classinitializer_a9ac296c0a8420f783af46a77792f4253}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em finalize\+Fn} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 168 of file util.\+h.
+
+
+\begin{DoxyCode}
+169         \{
+170 \textcolor{comment}{}
+171 \textcolor{comment}{            /**}
+172 \textcolor{comment}{             * @brief Write what the function does here}
+173 \textcolor{comment}{             *}
+174 \textcolor{comment}{             * @param finalizeFn}
+175 \textcolor{comment}{             *}
+176 \textcolor{comment}{             * @return}
+177 \textcolor{comment}{             **/}
+178             \textcolor{keywordflow}{if}(finalizeFn)
+179             \{
+180                 finalizeFn();
+181             \}
+182         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+util.\+h\end{DoxyCompactItemize}

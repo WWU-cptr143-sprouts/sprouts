@@ -1,0 +1,132 @@
+\hypertarget{classKeyDownEvent}{\section{Key\+Down\+Event Class Reference}
+\label{classKeyDownEvent}\index{Key\+Down\+Event@{Key\+Down\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Key\+Down\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classKeyDownEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKeyDownEvent_ae27c2dfd549d9ea2ffd270e566aece6a}{Key\+Down\+Event} (Keyboard\+Key key, Keyboard\+Modifiers mods, bool is\+Repetition=false)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classKeyDownEvent_a0661aa3784232a84df40fd570b865a51}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKeyDownEvent_aa9ad513136e6d324870e601bbea2f869}{const bool {\bfseries is\+Repetition}}\label{classKeyDownEvent_aa9ad513136e6d324870e601bbea2f869}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 138 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classKeyDownEvent_ae27c2dfd549d9ea2ffd270e566aece6a}{\index{Key\+Down\+Event@{Key\+Down\+Event}!Key\+Down\+Event@{Key\+Down\+Event}}
+\index{Key\+Down\+Event@{Key\+Down\+Event}!Key\+Down\+Event@{Key\+Down\+Event}}
+\subsubsection[{Key\+Down\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Key\+Down\+Event\+::\+Key\+Down\+Event (
+\begin{DoxyParamCaption}
+\item[{Keyboard\+Key}]{key, }
+\item[{Keyboard\+Modifiers}]{mods, }
+\item[{bool}]{is\+Repetition = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classKeyDownEvent_ae27c2dfd549d9ea2ffd270e566aece6a}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & \\
+\hline
+{\em mods} & \\
+\hline
+{\em false} & \\
+\hline
+{\em Type\+\_\+\+Key\+Down} & \\
+\hline
+{\em key} & \\
+\hline
+{\em mods} & \\
+\hline
+{\em is\+Repetition} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 156 of file event.\+h.
+
+
+\begin{DoxyCode}
+156                                                                                          : 
+      \hyperlink{classKeyEvent_aea3a7d348f12de966dc7199d26a978b0}{KeyEvent}(Type\_KeyDown, key, mods), isRepetition(isRepetition)
+157     \{
+158     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classKeyDownEvent_a0661aa3784232a84df40fd570b865a51}{\index{Key\+Down\+Event@{Key\+Down\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Key\+Down\+Event@{Key\+Down\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Key\+Down\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classKeyDownEvent_a0661aa3784232a84df40fd570b865a51}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 167 of file event.\+h.
+
+
+\begin{DoxyCode}
+168         \{
+169             \textcolor{keywordflow}{return} eventHandler->handleKeyDown(*\textcolor{keyword}{this});
+170         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

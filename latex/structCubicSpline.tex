@@ -1,0 +1,353 @@
+\hypertarget{structCubicSpline}{\section{Cubic\+Spline Struct Reference}
+\label{structCubicSpline}\index{Cubic\+Spline@{Cubic\+Spline}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$cubicspline.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structCubicSpline_a3eee74ae159c9473a6d15512ddc68d25}{Cubic\+Spline} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structCubicSpline_ae9889650db27305852f896d03d3bd75c}{Cubic\+Spline} (\hyperlink{structVectorF}{Vector\+F} p0, \hyperlink{structVectorF}{Vector\+F} p1)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structCubicSpline_a661fd0aed3df6744f52f5ba3872b9251}{Cubic\+Spline} (\hyperlink{structVectorF}{Vector\+F} p0, \hyperlink{structVectorF}{Vector\+F} p1, \hyperlink{structVectorF}{Vector\+F} dp0, \hyperlink{structVectorF}{Vector\+F} dp1)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{structCubicSpline_a87a1c29ab58b648430f45668067d7a1c}{get\+Constant} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{structCubicSpline_ada872ef617b059ef68490e828bcdf181}{get\+Linear} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}{get\+Quadratic} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}{get\+Cubic} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{structCubicSpline_a6b5d7cf704ce35a9bce93d6faf53a4fe}{evaluate} (float t) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{structCubicSpline_a17f53f7cb9b49caa80eff66097b57145}{bool {\bfseries intersects} (const \hyperlink{structCubicSpline}{Cubic\+Spline} \&rt, \hyperlink{structVectorF}{Vector\+F} ignore\+Axis=\hyperlink{structVectorF}{Vector\+F}(0, 0, 1)) const }\label{structCubicSpline_a17f53f7cb9b49caa80eff66097b57145}
+
+\item 
+\hyperlink{structCubicSpline}{Cubic\+Spline} \hyperlink{structCubicSpline_a9af4ede47352f7d8d38b520632b2bf3d}{sub\+Section} (float min\+T, float max\+T) const 
+\begin{DoxyCompactList}\small\item\em returns true if the splines intersect each other when projected onto the plane with normal == ignore\+Axis \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structCubicSpline_ab4f44a0380e5834289a60957baeaf822}{static Mesh {\bfseries render\+Spline\+List} (const vector$<$ \hyperlink{structCubicSpline}{Cubic\+Spline} $>$ \&splines, \hyperlink{structTextureDescriptor}{Texture\+Descriptor} texture, \hyperlink{structColor}{Color} color, float line\+Width)}\label{structCubicSpline_ab4f44a0380e5834289a60957baeaf822}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structCubicSpline_a84b61c539162fcfa38762e67261e3db6}{\hyperlink{structVectorF}{Vector\+F} {\bfseries p0}}\label{structCubicSpline_a84b61c539162fcfa38762e67261e3db6}
+
+\item 
+\hypertarget{structCubicSpline_a1bee668bf0240d7b70fc7f93638d253a}{\hyperlink{structVectorF}{Vector\+F} {\bfseries p1}}\label{structCubicSpline_a1bee668bf0240d7b70fc7f93638d253a}
+
+\item 
+\hypertarget{structCubicSpline_a5ebae554d5f1da3baa730d698d1667ff}{\hyperlink{structVectorF}{Vector\+F} {\bfseries dp0}}\label{structCubicSpline_a5ebae554d5f1da3baa730d698d1667ff}
+
+\item 
+\hypertarget{structCubicSpline_aeefcf5d9423158b97037640c26cf24f0}{\hyperlink{structVectorF}{Vector\+F} {\bfseries dp1}}\label{structCubicSpline_aeefcf5d9423158b97037640c26cf24f0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 14 of file cubicspline.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structCubicSpline_a3eee74ae159c9473a6d15512ddc68d25}{\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{Cubic\+Spline}]{\setlength{\rightskip}{0pt plus 5cm}Cubic\+Spline\+::\+Cubic\+Spline (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a3eee74ae159c9473a6d15512ddc68d25}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 0} & \\
+\hline
+{\em 0} & \\
+\hline
+{\em 0} & \\
+\hline
+{\em 0} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 17 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+29         : p0(0), p1(0), dp0(0), dp1(0)
+30         \{
+31         \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_ae9889650db27305852f896d03d3bd75c}{\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{Cubic\+Spline}]{\setlength{\rightskip}{0pt plus 5cm}Cubic\+Spline\+::\+Cubic\+Spline (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{p0, }
+\item[{{\bf Vector\+F}}]{p1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_ae9889650db27305852f896d03d3bd75c}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p0} & \\
+\hline
+{\em p1} & \\
+\hline
+{\em p0} & \\
+\hline
+{\em p0} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 32 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+44         : p0(p0), p1(p1), dp0(p1 - p0), dp1(p1 - p0)
+45         \{
+46         \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_a661fd0aed3df6744f52f5ba3872b9251}{\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\index{Cubic\+Spline@{Cubic\+Spline}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{Cubic\+Spline}]{\setlength{\rightskip}{0pt plus 5cm}Cubic\+Spline\+::\+Cubic\+Spline (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{p0, }
+\item[{{\bf Vector\+F}}]{p1, }
+\item[{{\bf Vector\+F}}]{dp0, }
+\item[{{\bf Vector\+F}}]{dp1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a661fd0aed3df6744f52f5ba3872b9251}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p0} & \\
+\hline
+{\em p1} & \\
+\hline
+{\em dp0} & \\
+\hline
+{\em dp1} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 47 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+59         : p0(p0), p1(p1), dp0(dp0), dp1(dp1)
+60         \{
+61         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structCubicSpline_a6b5d7cf704ce35a9bce93d6faf53a4fe}{\index{Cubic\+Spline@{Cubic\+Spline}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Cubic\+Spline\+::evaluate (
+\begin{DoxyParamCaption}
+\item[{float}]{t}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a6b5d7cf704ce35a9bce93d6faf53a4fe}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 111 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+112     \{
+113         \textcolor{keywordflow}{return} t * t * t * \hyperlink{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}{getCubic}() + t * t * \hyperlink{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}{getQuadratic}() + t * 
+      \hyperlink{structCubicSpline_ada872ef617b059ef68490e828bcdf181}{getLinear}() + \hyperlink{structCubicSpline_a87a1c29ab58b648430f45668067d7a1c}{getConstant}();
+114     \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_a87a1c29ab58b648430f45668067d7a1c}{\index{Cubic\+Spline@{Cubic\+Spline}!get\+Constant@{get\+Constant}}
+\index{get\+Constant@{get\+Constant}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{get\+Constant}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Cubic\+Spline\+::get\+Constant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a87a1c29ab58b648430f45668067d7a1c}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 69 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+70     \{
+71         \textcolor{keywordflow}{return} p0;
+72     \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}{\index{Cubic\+Spline@{Cubic\+Spline}!get\+Cubic@{get\+Cubic}}
+\index{get\+Cubic@{get\+Cubic}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{get\+Cubic}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Cubic\+Spline\+::get\+Cubic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 99 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+100     \{
+101         \textcolor{keywordflow}{return} 2 * p0 + dp0 + dp1 - 2 * p1;
+102     \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_ada872ef617b059ef68490e828bcdf181}{\index{Cubic\+Spline@{Cubic\+Spline}!get\+Linear@{get\+Linear}}
+\index{get\+Linear@{get\+Linear}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{get\+Linear}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Cubic\+Spline\+::get\+Linear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_ada872ef617b059ef68490e828bcdf181}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 79 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+80     \{
+81         \textcolor{keywordflow}{return} dp0;
+82     \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}{\index{Cubic\+Spline@{Cubic\+Spline}!get\+Quadratic@{get\+Quadratic}}
+\index{get\+Quadratic@{get\+Quadratic}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{get\+Quadratic}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Cubic\+Spline\+::get\+Quadratic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 89 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+90     \{
+91         \textcolor{keywordflow}{return} -3 * p0 - 2 * dp0 - dp1 + 3 * p1;
+92     \}
+\end{DoxyCode}
+\hypertarget{structCubicSpline_a9af4ede47352f7d8d38b520632b2bf3d}{\index{Cubic\+Spline@{Cubic\+Spline}!sub\+Section@{sub\+Section}}
+\index{sub\+Section@{sub\+Section}!Cubic\+Spline@{Cubic\+Spline}}
+\subsubsection[{sub\+Section}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cubic\+Spline} Cubic\+Spline\+::sub\+Section (
+\begin{DoxyParamCaption}
+\item[{float}]{min\+T, }
+\item[{float}]{max\+T}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structCubicSpline_a9af4ede47352f7d8d38b520632b2bf3d}
+
+
+returns true if the splines intersect each other when projected onto the plane with normal == ignore\+Axis 
+
+Write what the function does here
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+T} & \\
+\hline
+{\em max\+T} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 125 of file cubicspline.\+h.
+
+
+\begin{DoxyCode}
+126     \{
+127         \textcolor{keywordflow}{return} \hyperlink{structCubicSpline_a3eee74ae159c9473a6d15512ddc68d25}{CubicSpline}(\hyperlink{structCubicSpline_a6b5d7cf704ce35a9bce93d6faf53a4fe}{evaluate}(minT), \hyperlink{structCubicSpline_a6b5d7cf704ce35a9bce93d6faf53a4fe}{evaluate}(maxT), (maxT - minT) * (minT
+       * (3 * minT * \hyperlink{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}{getCubic}() + 2 * \hyperlink{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}{getQuadratic}()) + \hyperlink{structCubicSpline_ada872ef617b059ef68490e828bcdf181}{getLinear}()), (maxT - minT) *
+       (maxT * (3 * maxT * \hyperlink{structCubicSpline_a156525e59dae0cac2a81cf34cb673c87}{getCubic}() + 2 * \hyperlink{structCubicSpline_a7d5792ff1314032122cd342d0616a50f}{getQuadratic}()) + 
+      \hyperlink{structCubicSpline_ada872ef617b059ef68490e828bcdf181}{getLinear}()));
+128     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+cubicspline.\+h\item 
+cubicspline.\+cpp\end{DoxyCompactItemize}

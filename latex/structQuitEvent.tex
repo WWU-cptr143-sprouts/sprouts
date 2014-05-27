@@ -1,0 +1,111 @@
+\hypertarget{structQuitEvent}{\section{Quit\+Event Struct Reference}
+\label{structQuitEvent}\index{Quit\+Event@{Quit\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Quit\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structQuitEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structQuitEvent_acde25804dff366bbade69c20597ebe32}{Quit\+Event} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 434 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structQuitEvent_acde25804dff366bbade69c20597ebe32}{\index{Quit\+Event@{Quit\+Event}!Quit\+Event@{Quit\+Event}}
+\index{Quit\+Event@{Quit\+Event}!Quit\+Event@{Quit\+Event}}
+\subsubsection[{Quit\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Quit\+Event\+::\+Quit\+Event (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structQuitEvent_acde25804dff366bbade69c20597ebe32}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+\_\+\+Quit} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 436 of file event.\+h.
+
+
+\begin{DoxyCode}
+445         : \hyperlink{classEvent_a07dd964621d0623bfccc24197c2f509b}{Event}(Type\_Quit)
+446         \{
+447         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}{\index{Quit\+Event@{Quit\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Quit\+Event@{Quit\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Quit\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 456 of file event.\+h.
+
+
+\begin{DoxyCode}
+457     \{
+458         \textcolor{keywordflow}{return} eventHandler->handleQuit(*\textcolor{keyword}{this});
+459     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

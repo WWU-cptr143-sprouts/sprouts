@@ -1,0 +1,242 @@
+\hypertarget{structTextureDescriptor}{\section{Texture\+Descriptor Struct Reference}
+\label{structTextureDescriptor}\index{Texture\+Descriptor@{Texture\+Descriptor}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$texture\+\_\+descriptor.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structTextureDescriptor_a96245b9611b645eac88050ef4d70f2c2}{Texture\+Descriptor} (\hyperlink{classImage}{Image} image=\hyperlink{classImage}{Image}())
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structTextureDescriptor_affe5fe65a87405a17a428fe725dc78c3}{Texture\+Descriptor} (\hyperlink{classImage}{Image} image, float min\+U, float max\+U, float min\+V, float max\+V)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structTextureDescriptor_a41a7fa119f03e28d9b3ae556fb6ff268}{operator bool} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+bool \hyperlink{structTextureDescriptor_ad0465f550a605451e2c40a31a491c7b6}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structTextureDescriptor}{Texture\+Descriptor} \hyperlink{structTextureDescriptor_a03c94da9644d4992e51768aca4eb22ae}{sub\+Texture} (const float min\+U, const float max\+U, const float min\+V, const float max\+V) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structTextureDescriptor_a0cafe348fe84771a83d29330224a99f7}{\hyperlink{classImage}{Image} {\bfseries image}}\label{structTextureDescriptor_a0cafe348fe84771a83d29330224a99f7}
+
+\item 
+\hypertarget{structTextureDescriptor_a01a1eecc6d3a37e9dc47c4b660093e21}{float {\bfseries min\+U}}\label{structTextureDescriptor_a01a1eecc6d3a37e9dc47c4b660093e21}
+
+\item 
+\hypertarget{structTextureDescriptor_a9409e0cf7f7a82116311e53223587a40}{float {\bfseries max\+U}}\label{structTextureDescriptor_a9409e0cf7f7a82116311e53223587a40}
+
+\item 
+\hypertarget{structTextureDescriptor_a8cd78b8d1bbb63ada5b71af81b7faf6a}{float {\bfseries min\+V}}\label{structTextureDescriptor_a8cd78b8d1bbb63ada5b71af81b7faf6a}
+
+\item 
+\hypertarget{structTextureDescriptor_abd34635c386508ecca180818b20bfb78}{float {\bfseries max\+V}}\label{structTextureDescriptor_abd34635c386508ecca180818b20bfb78}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 11 of file texture\+\_\+descriptor.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structTextureDescriptor_a96245b9611b645eac88050ef4d70f2c2}{\index{Texture\+Descriptor@{Texture\+Descriptor}!Texture\+Descriptor@{Texture\+Descriptor}}
+\index{Texture\+Descriptor@{Texture\+Descriptor}!Texture\+Descriptor@{Texture\+Descriptor}}
+\subsubsection[{Texture\+Descriptor}]{\setlength{\rightskip}{0pt plus 5cm}Texture\+Descriptor\+::\+Texture\+Descriptor (
+\begin{DoxyParamCaption}
+\item[{{\bf Image}}]{image = {\ttfamily {\bf Image}()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structTextureDescriptor_a96245b9611b645eac88050ef4d70f2c2}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \\
+\hline
+{\em 0} & \\
+\hline
+{\em 1} & \\
+\hline
+{\em 0} & \\
+\hline
+{\em 1} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 15 of file texture\+\_\+descriptor.\+h.
+
+
+
+Referenced by sub\+Texture().
+
+
+\begin{DoxyCode}
+28         : image(image), minU(0), maxU(1), minV(0), maxV(1)
+29         \{
+30         \}
+\end{DoxyCode}
+\hypertarget{structTextureDescriptor_affe5fe65a87405a17a428fe725dc78c3}{\index{Texture\+Descriptor@{Texture\+Descriptor}!Texture\+Descriptor@{Texture\+Descriptor}}
+\index{Texture\+Descriptor@{Texture\+Descriptor}!Texture\+Descriptor@{Texture\+Descriptor}}
+\subsubsection[{Texture\+Descriptor}]{\setlength{\rightskip}{0pt plus 5cm}Texture\+Descriptor\+::\+Texture\+Descriptor (
+\begin{DoxyParamCaption}
+\item[{{\bf Image}}]{image, }
+\item[{float}]{min\+U, }
+\item[{float}]{max\+U, }
+\item[{float}]{min\+V, }
+\item[{float}]{max\+V}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structTextureDescriptor_affe5fe65a87405a17a428fe725dc78c3}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & \\
+\hline
+{\em min\+U} & \\
+\hline
+{\em max\+U} & \\
+\hline
+{\em min\+V} & \\
+\hline
+{\em max\+V} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 31 of file texture\+\_\+descriptor.\+h.
+
+
+\begin{DoxyCode}
+44         : image(image), minU(minU), maxU(maxU), minV(minV), maxV(maxV)
+45         \{
+46         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structTextureDescriptor_a41a7fa119f03e28d9b3ae556fb6ff268}{\index{Texture\+Descriptor@{Texture\+Descriptor}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Texture\+Descriptor@{Texture\+Descriptor}}
+\subsubsection[{operator bool}]{\setlength{\rightskip}{0pt plus 5cm}Texture\+Descriptor\+::operator bool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structTextureDescriptor_a41a7fa119f03e28d9b3ae556fb6ff268}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 53 of file texture\+\_\+descriptor.\+h.
+
+
+\begin{DoxyCode}
+54     \{
+55         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{bool})image;
+56     \}
+\end{DoxyCode}
+\hypertarget{structTextureDescriptor_ad0465f550a605451e2c40a31a491c7b6}{\index{Texture\+Descriptor@{Texture\+Descriptor}!operator"!@{operator"!}}
+\index{operator"!@{operator"!}!Texture\+Descriptor@{Texture\+Descriptor}}
+\subsubsection[{operator"!}]{\setlength{\rightskip}{0pt plus 5cm}bool Texture\+Descriptor\+::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structTextureDescriptor_ad0465f550a605451e2c40a31a491c7b6}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 63 of file texture\+\_\+descriptor.\+h.
+
+
+\begin{DoxyCode}
+64     \{
+65         \textcolor{keywordflow}{return} !image;
+66     \}
+\end{DoxyCode}
+\hypertarget{structTextureDescriptor_a03c94da9644d4992e51768aca4eb22ae}{\index{Texture\+Descriptor@{Texture\+Descriptor}!sub\+Texture@{sub\+Texture}}
+\index{sub\+Texture@{sub\+Texture}!Texture\+Descriptor@{Texture\+Descriptor}}
+\subsubsection[{sub\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Texture\+Descriptor} Texture\+Descriptor\+::sub\+Texture (
+\begin{DoxyParamCaption}
+\item[{const float}]{min\+U, }
+\item[{const float}]{max\+U, }
+\item[{const float}]{min\+V, }
+\item[{const float}]{max\+V}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structTextureDescriptor_a03c94da9644d4992e51768aca4eb22ae}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+U} & \\
+\hline
+{\em max\+U} & \\
+\hline
+{\em min\+V} & \\
+\hline
+{\em max\+V} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 78 of file texture\+\_\+descriptor.\+h.
+
+
+
+References Texture\+Descriptor().
+
+
+\begin{DoxyCode}
+79     \{
+80         \textcolor{keywordflow}{return} \hyperlink{structTextureDescriptor_a96245b9611b645eac88050ef4d70f2c2}{TextureDescriptor}(image,
+81                 interpolate(minU, this->minU, this->maxU),
+82                 interpolate(maxU, this->minU, this->maxU),
+83                 interpolate(minV, this->minV, this->maxV),
+84                 interpolate(maxV, this->minV, this->maxV));
+85     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+texture\+\_\+descriptor.\+h\end{DoxyCompactItemize}

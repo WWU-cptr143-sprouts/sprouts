@@ -1,0 +1,137 @@
+\hypertarget{structMouseScrollEvent}{\section{Mouse\+Scroll\+Event Struct Reference}
+\label{structMouseScrollEvent}\index{Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Mouse\+Scroll\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{structMouseScrollEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structMouseScrollEvent_a7fffc52d48bef83bcf2aea47734c3fca}{Mouse\+Scroll\+Event} (float x, float y, float delta\+X, float delta\+Y, int scroll\+X, int scroll\+Y)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structMouseScrollEvent_acaa9673a50db8c33dd1cdbf1c5da2816}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMouseScrollEvent_aed934d011f9c2fd1cd63f1b53bec598d}{const int {\bfseries scroll\+X}}\label{structMouseScrollEvent_aed934d011f9c2fd1cd63f1b53bec598d}
+
+\item 
+\hypertarget{structMouseScrollEvent_aefa811ca1ad2b3ef22c4423241e3ae40}{const int {\bfseries scroll\+Y}}\label{structMouseScrollEvent_aefa811ca1ad2b3ef22c4423241e3ae40}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 394 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structMouseScrollEvent_a7fffc52d48bef83bcf2aea47734c3fca}{\index{Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}!Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}}
+\index{Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}!Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}}
+\subsubsection[{Mouse\+Scroll\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Mouse\+Scroll\+Event\+::\+Mouse\+Scroll\+Event (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{delta\+X, }
+\item[{float}]{delta\+Y, }
+\item[{int}]{scroll\+X, }
+\item[{int}]{scroll\+Y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structMouseScrollEvent_a7fffc52d48bef83bcf2aea47734c3fca}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+\_\+\+Mouse\+Scroll} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em delta\+X} & \\
+\hline
+{\em delta\+Y} & \\
+\hline
+{\em scroll\+X} & \\
+\hline
+{\em scroll\+Y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 397 of file event.\+h.
+
+
+\begin{DoxyCode}
+412         : \hyperlink{classMouseEvent_a38e3202976fe08a74713bbb3326004c6}{MouseEvent}(Type\_MouseScroll, x, y, deltaX, deltaY), scrollX(scrollX), scrollY(scrollY)
+413         \{
+414         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structMouseScrollEvent_acaa9673a50db8c33dd1cdbf1c5da2816}{\index{Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Mouse\+Scroll\+Event@{Mouse\+Scroll\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mouse\+Scroll\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structMouseScrollEvent_acaa9673a50db8c33dd1cdbf1c5da2816}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 423 of file event.\+h.
+
+
+\begin{DoxyCode}
+424     \{
+425         \textcolor{keywordflow}{return} eventHandler->handleMouseScroll(*\textcolor{keyword}{this});
+426     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

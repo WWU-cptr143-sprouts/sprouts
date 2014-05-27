@@ -1,62 +1,22 @@
 sprouts
-=======
-Every spring quarter the CPTR 143 programming class at Walla Walla University
-codes Conway's Game of Sprouts for a final project. The students are supposed
-to create a new version from previous code with the final goal of creating an
-unbeatable AI. However, except for one three-year streak, most years people
-recode the program basically from scratch due to differing design approaches,
-not wanting to read other people's messy code, etc. The CPTR 143 class of 2013
-chose to take the 2010v2 code, which looked like a single person's side project
-to check for line crossings graphically, as the basis for the new version.
-However, like other years, after spending much time in designing a foundation,
-a simple and unified data structure for storing nodes and lines, we chose to
-recode most of the basic design. We have provided the A-Checker as a working,
-well-tested foundation for future years and provided an experimental,
-partially-working AI and GUI that respectively inherit from each other and
-from Game, the A-Checker.
+======
 
-Using
------
-Because of people's differing preferred platforms, we have made this
-cross-platform. 
+Okay, here's the deal. I created an automated script generate a doxygen comment for every function. Unfortunately, scripts aren't perfect. It still saves us hours of work, but it does mean that we'll have to have a list of files that need to be checked, and then go through each file and delete/fix any small errors. Some files have more things wrong than others. Most of the files should be "correct" out of the box.
 
-### Windows ###
-Throughout the year we used CodeBlocks to code in class. We chose to provide
-project files for Windows in ``codeblocks/Sprouts_windows.cbp``. This will
-link to the included SDL libraries. If you want to run the A-Checker tests,
-build the project ``codeblocks/AChecker.cbp``.
+The only important files in this branch are the .h files that were modified, along with this readme and a list "checklist.md". Please edit the checklist.md with your name/date next to whichever .h file you went through and checked and then push the changes to this repo when you're done. When all the files have been changed, we'll merge this with the master repo and work on actually filling in the boilerplate. I will be looking at the script in the meantime to see if I can modify it to "proof" it for more things. With that in mind, feel free to work "easiest to hardest" on the files and leave the really long and messy ones for me.
 
-**Note:** On Windows SDL will not output to the command prompt, so you'll
-have to open ``stdout.txt`` to see the output.
+-Jared
 
-### Mac ###
-To install the libraries, you can use any package manager, for example:  
-**Fink** *(untested)*: ``fink install sdl sdl-image sdl-gfx13 sdl-ttf``  
-**Macports** *(tested)*: ``port install libsdl libsdl-framework libsdl_gfx libsdl_image libsdl_ttf``  
+Note to self:
 
-After this, you can either setup a CodeBlocks file or run ``make`` to compile
-and ``./sprouts`` to run. To run the tests, ``make tests; ./tests/tests``.
+Script currently breaks on:
 
-### Linux ###
-Install whatever provides the following. Dependencies:  
-
- * SDL
- * SDL\_gfx
- * SDL\_image
- * SDL\_ttf
-
-Then, run ``make`` to compile and ``./sprouts`` to run. You can also run the
-tests with ``make tests; ./tests/tests``.
-
-Project Files
--------------
-To provide easy access to all of the files, they are stored in two places. The
-code can be accessed from the GitHub link below. If future years decide to use
-this code as a basis, they can easily either fork it or clone and push to their
-own repository on GitHub or elsewhere. A few key documents are in the *docs/*
-folder, but the rest of the documentation is on the wiki linked to below. All
-of the classes have a page documenting what they consist of for easy reference
-and searchability.
-
-[Github Code](https://github.com/floft/sprouts)  
-[Sprouts Wiki](http://sprouts.kingscastle.co/index.php/Main_Page) (dead link)
+1.     functions with no {
+1.     if statements | FIXED
+1.     switch statements | FIXED
+1.     else statement | FIXED
+1.     while loop | FIXED
+1.     Anything starting with { that's not a function, really. | FIXED (should be)
+1.     Breaks if "{" isn't one line below function name
+1.     Breaks if entire function is commented out "//" style (don't do this! We have version control for a reason)
+1.     Breaks if function is void w/no parameters

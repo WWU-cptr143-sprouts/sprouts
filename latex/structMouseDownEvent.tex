@@ -1,0 +1,125 @@
+\hypertarget{structMouseDownEvent}{\section{Mouse\+Down\+Event Struct Reference}
+\label{structMouseDownEvent}\index{Mouse\+Down\+Event@{Mouse\+Down\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Mouse\+Down\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{structMouseDownEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structMouseDownEvent_a297d7e50d7363addef438a1a7e0981a8}{Mouse\+Down\+Event} (float x, float y, float delta\+X, float delta\+Y, Mouse\+Button button)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{structMouseDownEvent_a4c3d79107e6cef049a76089fd2b5b431}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 319 of file event.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structMouseDownEvent_a297d7e50d7363addef438a1a7e0981a8}{\index{Mouse\+Down\+Event@{Mouse\+Down\+Event}!Mouse\+Down\+Event@{Mouse\+Down\+Event}}
+\index{Mouse\+Down\+Event@{Mouse\+Down\+Event}!Mouse\+Down\+Event@{Mouse\+Down\+Event}}
+\subsubsection[{Mouse\+Down\+Event}]{\setlength{\rightskip}{0pt plus 5cm}Mouse\+Down\+Event\+::\+Mouse\+Down\+Event (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{delta\+X, }
+\item[{float}]{delta\+Y, }
+\item[{Mouse\+Button}]{button}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structMouseDownEvent_a297d7e50d7363addef438a1a7e0981a8}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type\+\_\+\+Mouse\+Down} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em delta\+X} & \\
+\hline
+{\em delta\+Y} & \\
+\hline
+{\em button} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 321 of file event.\+h.
+
+
+\begin{DoxyCode}
+335         : \hyperlink{structMouseButtonEvent_a1dd634033a88534d5bedb2dee0f4299a}{MouseButtonEvent}(Type\_MouseDown, x, y, deltaX, deltaY, button)
+336         \{
+337         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structMouseDownEvent_a4c3d79107e6cef049a76089fd2b5b431}{\index{Mouse\+Down\+Event@{Mouse\+Down\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Mouse\+Down\+Event@{Mouse\+Down\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mouse\+Down\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structMouseDownEvent_a4c3d79107e6cef049a76089fd2b5b431}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 346 of file event.\+h.
+
+
+\begin{DoxyCode}
+347     \{
+348         \textcolor{keywordflow}{return} eventHandler->handleMouseDown(*\textcolor{keyword}{this});
+349     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

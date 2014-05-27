@@ -1,0 +1,37 @@
+Every spring quarter the C\+P\+T\+R 143 programming class at Walla Walla University codes Conway's \hyperlink{classGame}{Game} of Sprouts for a final project. The students are supposed to create a new version from previous code with the final goal of creating an unbeatable A\+I. However, except for one three-\/year streak, most years people recode the program basically from scratch due to differing design approaches, not wanting to read other people's messy code, etc. The C\+P\+T\+R 143 class of 2013 chose to take the 2010v2 code, which looked like a single person's side project to check for line crossings graphically, as the basis for the new version. However, like other years, after spending much time in designing a foundation, a simple and unified data structure for storing nodes and lines, we chose to recode most of the basic design. We have provided the A-\/\+Checker as a working, well-\/tested foundation for future years and provided an experimental, partially-\/working A\+I and G\+U\+I that respectively inherit from each other and from \hyperlink{classGame}{Game}, the A-\/\+Checker.
+
+\subsection*{Using }
+
+Because of people's differing preferred platforms, we have made this cross-\/platform.
+
+\subsubsection*{Windows}
+
+Throughout the year we used Code\+Blocks to code in class. We chose to provide project files for Windows in {\ttfamily codeblocks/\+Sprouts\+\_\+windows.\+cbp}. This will link to the included S\+D\+L libraries. If you want to run the A-\/\+Checker tests, build the project {\ttfamily codeblocks/\+A\+Checker.\+cbp}.
+
+{\bfseries Note\+:} On Windows S\+D\+L will not output to the command prompt, so you'll have to open {\ttfamily stdout.\+txt} to see the output.
+
+\subsubsection*{Mac}
+
+To install the libraries, you can use any package manager, for example\+: {\bfseries Fink} $\ast$(untested)$\ast$\+: {\ttfamily fink install sdl sdl-\/image sdl-\/gfx13 sdl-\/ttf} {\bfseries Macports} $\ast$(tested)$\ast$\+: {\ttfamily port install libsdl libsdl-\/framework libsdl\+\_\+gfx libsdl\+\_\+image libsdl\+\_\+ttf}
+
+After this, you can either setup a Code\+Blocks file or run {\ttfamily make} to compile and {\ttfamily ./sprouts} to run. To run the tests, {\ttfamily make tests; ./tests/tests}.
+
+\subsubsection*{Linux}
+
+Install whatever provides the following. Dependencies\+:
+
+
+\begin{DoxyItemize}
+\item S\+D\+L
+\item S\+D\+L\+\_\+gfx
+\item S\+D\+L\+\_\+image
+\item S\+D\+L\+\_\+ttf
+\end{DoxyItemize}
+
+Then, run {\ttfamily make} to compile and {\ttfamily ./sprouts} to run. You can also run the tests with {\ttfamily make tests; ./tests/tests}.
+
+\subsection*{Project Files }
+
+To provide easy access to all of the files, they are stored in two places. The code can be accessed from the Git\+Hub link below. If future years decide to use this code as a basis, they can easily either fork it or clone and push to their own repository on Git\+Hub or elsewhere. A few key documents are in the {\itshape docs/} folder, but the rest of the documentation is on the wiki linked to below. All of the classes have a page documenting what they consist of for easy reference and searchability.
+
+\href{https://github.com/floft/sprouts}{\tt Github Code} \href{http://sprouts.kingscastle.co/index.php/Main_Page}{\tt Sprouts Wiki} (dead link) 
