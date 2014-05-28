@@ -21,6 +21,20 @@ protected:
         : GUIElement(minX, maxX, minY, maxY), generateMeshFn([]() -> Mesh {throw logic_error("generateMeshFn called instead of overridden generateMesh");})
     {
     }
+    VectorF getMousePosition(MouseEvent &event) const
+    {
+        VectorF retval = Display::transformMouseTo3D(event.x, event.y, 1);
+        float height = maxY - minY;
+        float width = maxX - minX;
+        float scale = min(height, width);
+        retval.x -= (minX + maxX) / 2;
+        retval.x /= scale;
+        retval.x *= 2;
+        retval.y -= (minY + maxY) / 2;
+        retval.y /= scale;
+        retval.y *= 2;
+        return retval;
+    }
     virtual Mesh generateMesh() const
     {
         return generateMeshFn();

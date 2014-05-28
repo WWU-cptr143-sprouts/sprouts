@@ -8,25 +8,16 @@
 namespace
 {
 
+class GameCanvas : public GUICanvas
+{
+
+};
+
 class MyCanvas : public GUICanvas
 {
     vector<VectorF> line;
     Mesh mesh;
     bool mouseDown = false;
-    VectorF getMousePosition(MouseEvent &event)
-    {
-        VectorF retval = Display::transformMouseTo3D(event.x, event.y, 1);
-        float height = maxY - minY;
-        float width = maxX - minX;
-        float scale = min(height, width);
-        retval.x -= (minX + maxX) / 2;
-        retval.x /= scale;
-        retval.x *= 2;
-        retval.y -= (minY + maxY) / 2;
-        retval.y /= scale;
-        retval.y *= 2;
-        return retval;
-    }
 public:
     MyCanvas(float minX, float maxX, float minY, float maxY)
         : GUICanvas(minX, maxX, minY, maxY), mesh(Mesh(new Mesh_t))
