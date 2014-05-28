@@ -48,9 +48,17 @@
 <div class="title">sprouts </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Okay, here's the deal. I created an automated script generate a doxygen comment for every function. Unfortunately, scripts aren't perfect. It still saves us hours of work, but it does mean that we'll have to have a list of files that need to be checked, and then go through each file and delete/fix any small errors. Some files have more things wrong than others. Most of the files should be "correct" out of the box.</p>
+<div class="textblock"><p>. Please change the "Write  what..." to an actual description of the code</p>
+<p>Okay, here's the deal. I created an automated script generate a doxygen comment for every function. Unfortunately, scripts aren't perfect. It still saves us hours of work, but it does mean that we'll have to have a list of files that need to be checked, and then go through each file and delete/fix any small errors. Some files have more things wrong than others. Most of the files should be "correct" out of the box.</p>
 <p>The only important files in this branch are the .h files that were modified, along with this readme and a list "checklist.md". Please edit the <a class="el" href="checklist_8md_source.html">checklist.md</a> with your name/date next to whichever .h file you went through and checked and then push the changes to this repo when you're done. When all the files have been changed, we'll merge this with the master repo and work on actually filling in the boilerplate. I will be looking at the script in the meantime to see if I can modify it to "proof" it for more things. With that in mind, feel free to work "easiest to hardest" on the files and leave the really long and messy ones for me.</p>
-<p>-Jared</p>
+<p>In the doxygen code, there should be a </p><dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">for</td><td>every returned variable (or none for no returned variable). Please go ahead and clone the </td></tr>
+    <tr><td class="paramname">line</td><td>if there's multiple returns. Change (variable) to the name of the variable and (description of variable) to a description.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>In-Jared</p>
 <p>Note to self:</p>
 <p>Script currently breaks on:</p>
 <ol type="1">
@@ -83,7 +91,7 @@
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2014 11:02:14 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 28 2014 11:41:55 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

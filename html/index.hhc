@@ -4,7 +4,7 @@
 <param name="FrameName" value="right">
 </OBJECT>
 <UL>
-<LI><OBJECT type="text/sitemap"><param name="Name" value="The mainpage documentation"><param name="Local" value="index.html"><param name="ImageNumber" value="11"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Sprouts Documentation"><param name="Local" value="index.html"><param name="ImageNumber" value="11"></OBJECT>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="checklist"><param name="Local" value="md_checklist.html"><param name="ImageNumber" value="11"></OBJECT>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="Data Structures II: Sprouts class"><param name="Local" value="md_docs_04-24-2014.html"><param name="ImageNumber" value="11"></OBJECT>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="Data Structures II: Sprouts class"><param name="Local" value="md_docs_04-28-2014.html"><param name="ImageNumber" value="11"></OBJECT>

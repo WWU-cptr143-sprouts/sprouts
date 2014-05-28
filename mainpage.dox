@@ -7,8 +7,8 @@ Inside the "documentation" repo of sprouts, there is a copy of the repo that's h
 
 There are a few optional options to use with doxygen to add features to the documentation:
 
-1. You can use the tag @todo in which you can describe what still needs to be done for that particular function. This will be added to a global todo list.
+1. You can use the tag \verbatim @todo \endverbatim in which you can describe what still needs to be done for that particular function. This will be added to a global todo list.
 
-2. You can use the tag @bug in which you can describe any bugs in the current function.
+2. You can use the tag \verbatim @bug \endverbatim in which you can describe any bugs in the current function.
 
 */

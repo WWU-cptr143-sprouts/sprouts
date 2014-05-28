@@ -6,6 +6,7 @@ The only important files in this branch are the .h files that were modified, alo
 
 In the doxygen code, there should be a @retval for every returned variable (or none for no returned variable). Please go ahead and clone the @retval line if there's multiple returns. Change (variable) to the name of the variable and (description of variable) to a description.
 
+All the doxygen code can be
 In @brief. Please change the "Write  what..." to an actual description of the code
 
 -Jared

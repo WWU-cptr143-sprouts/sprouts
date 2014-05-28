@@ -60,26 +60,30 @@
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="stringliteral"></span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral">The only important files in this branch are the .h files that were modified, along with this readme and a list &quot;checklist.md&quot;. Please edit the checklist.md with your name/date next to whichever .h file you went through and checked and then push the changes to this repo when you&#39;</span>re done. When all the files have been changed, we<span class="stringliteral">&#39;ll merge this with the master repo and work on actually filling in the boilerplate. I will be looking at the script in the meantime to see if I can modify it to &quot;proof&quot; it for more things. With that in mind, feel free to work &quot;easiest to hardest&quot; on the files and leave the really long and messy ones for me.</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">-Jared</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">Note to self:</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">Script currently breaks on:</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">1.     functions with no {</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral">1.     if statements | FIXED</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">1.     switch statements | FIXED</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">1.     else statement | FIXED</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">1.     while loop | FIXED</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">1.     Anything starting with { that&#39;</span>s not a <span class="keyword">function</span>, really. | FIXED (should be)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;1.     Breaks <span class="keywordflow">if</span> <span class="stringliteral">&quot;{&quot;</span> isn<span class="stringliteral">&#39;t one line below function name</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">1.     Breaks if entire function is commented out &quot;//&quot; style (don&#39;</span>t <span class="keywordflow">do</span> <span class="keyword">this</span>! We have version control <span class="keywordflow">for</span> a reason)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;1.     Breaks <span class="keywordflow">if</span> <span class="keyword">function</span> is <span class="keywordtype">void</span> w/no parameters</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="stringliteral">In the doxygen code, there should be a @retval for every returned variable (or none for no returned variable). Please go ahead and clone the @retval line if there&#39;</span>s multiple returns. Change (variable) to the name of the variable and (description of variable) to a description.</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;In @brief. Please change the &quot;Write  what...&quot; to an actual description of the code</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;-Jared</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;Note to self:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;Script currently breaks on:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;1.     functions with no {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;1.     <span class="keywordflow">if</span> statements | FIXED</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;1.     <span class="keywordflow">switch</span> statements | FIXED</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;1.     <span class="keywordflow">else</span> statement | FIXED</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;1.     <span class="keywordflow">while</span> loop | FIXED</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;1.     Anything starting with { that<span class="stringliteral">&#39;s not a function, really. | FIXED (should be)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">1.     Breaks if &quot;{&quot; isn&#39;</span>t one line below <span class="keyword">function</span> name</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;1.     Breaks <span class="keywordflow">if</span> entire <span class="keyword">function</span> is commented out <span class="stringliteral">&quot;//&quot;</span> style (don<span class="stringliteral">&#39;t do this! We have version control for a reason)</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">1.     Breaks if function is void w/no parameters</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2014 11:02:12 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 28 2014 11:41:52 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

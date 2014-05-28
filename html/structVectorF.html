@@ -215,9 +215,14 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00265">265</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00266">266</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a553da195f30b0f0de5d856c80f7348ff"></a>
 <div class="memitem">
@@ -266,21 +271,26 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00696">696</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    {</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        <a class="code" href="structVectorF.html">VectorF</a> v(x, y, z);</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="keywordflow">if</span>(v == 0)</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        {</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;            <span class="keywordflow">throw</span> domain_error(<span class="stringliteral">&quot;can&#39;t normalize &lt;0, 0, 0&gt;&quot;</span>);</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        }</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
-<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00646">vector.h:646</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00697">697</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    {</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        <a class="code" href="structVectorF.html">VectorF</a> v(x, y, z);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="keywordflow">if</span>(v == 0)</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        {</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;            <span class="keywordflow">throw</span> domain_error(<span class="stringliteral">&quot;can&#39;t normalize &lt;0, 0, 0&gt;&quot;</span>);</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        }</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
+<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00647">vector.h:647</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -306,13 +316,18 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00286">286</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorI.html">VectorI</a>(ifloor(x), ifloor(y), ifloor(z));</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    }</div>
-<div class="ttc" id="structVectorI_html"><div class="ttname"><a href="structVectorI.html">VectorI</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00016">vector.h:16</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00287">287</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorI.html">VectorI</a>(ifloor(x), ifloor(y), ifloor(z));</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    }</div>
+<div class="ttc" id="structVectorI_html"><div class="ttname"><a href="structVectorI.html">VectorI</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00017">vector.h:17</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -345,12 +360,17 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00493">493</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    {</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        <span class="keywordflow">return</span> x != r.x || y != r.y || z != r.z;</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00494">494</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    {</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <span class="keywordflow">return</span> x != r.x || y != r.y || z != r.z;</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -383,13 +403,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00394">394</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x * r.x, y * r.y, z * r.z);</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00395">395</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x * r.x, y * r.y, z * r.z);</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -422,13 +447,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00444">444</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    {</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x * r, y * r, z * r);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00445">445</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    {</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x * r, y * r, z * r);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -461,15 +491,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00535">535</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;    {</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        x *= r.x;</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        y *= r.y;</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        z *= r.z;</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00536">536</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    {</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        x *= r.x;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        y *= r.y;</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        z *= r.z;</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -502,15 +537,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00565">565</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;    {</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;        x *= r;</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;        y *= r;</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        z *= r;</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00566">566</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    {</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;        x *= r;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;        y *= r;</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;        z *= r;</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -536,12 +576,17 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00306">306</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00307">307</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    {</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -574,13 +619,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00318">318</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x + r.x, y + r.y, z + r.z);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00319">319</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x + r.x, y + r.y, z + r.z);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -613,15 +663,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00505">505</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    {</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;        x += r.x;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;        y += r.y;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        z += r.z;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00506">506</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    {</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;        x += r.x;</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        y += r.y;</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;        z += r.z;</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -647,13 +702,18 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00296">296</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    {</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(-x, -y, -z);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00297">297</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    {</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(-x, -y, -z);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -686,13 +746,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00356">356</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    {</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x - r.x, y - r.y, z - r.z);</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00357">357</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    {</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x - r.x, y - r.y, z - r.z);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -725,15 +790,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00520">520</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    {</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;        x -= r.x;</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;        y -= r.y;</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        z -= r.z;</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00521">521</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    {</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;        x -= r.x;</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        y -= r.y;</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        z -= r.z;</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -766,13 +836,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00432">432</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    {</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x / r.x, y / r.y, z / r.z);</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00433">433</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    {</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x / r.x, y / r.y, z / r.z);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -805,13 +880,18 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00469">469</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    {</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x / r, y / r, z / r);</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00470">470</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    {</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(x / r, y / r, z / r);</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -844,15 +924,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00550">550</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    {</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;        x /= r.x;</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;        y /= r.y;</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;        z /= r.z;</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00551">551</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;    {</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;        x /= r.x;</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;        y /= r.y;</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        z /= r.z;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -885,15 +970,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00580">580</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;    {</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;        x /= r;</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        y /= r;</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;        z /= r;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00581">581</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    {</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        x /= r;</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;        y /= r;</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;        z /= r;</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -926,12 +1016,17 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00481">481</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    {</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;        <span class="keywordflow">return</span> x == r.x &amp;&amp; y == r.y &amp;&amp; z == r.z;</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00482">482</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    {</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        <span class="keywordflow">return</span> x == r.x &amp;&amp; y == r.y &amp;&amp; z == r.z;</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -957,21 +1052,26 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00713">713</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    {</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        <span class="keywordflow">if</span>(r == 0)</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        {</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        }</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        <span class="keywordtype">float</span> v = y / r;</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        v = limit(v, -1.0f, 1.0f);</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        <span class="keywordflow">return</span> asin(v);</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00646">vector.h:646</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00714">714</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    {</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        <span class="keywordflow">if</span>(r == 0)</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        {</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        }</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        <span class="keywordtype">float</span> v = y / r;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        v = limit(v, -1.0f, 1.0f);</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;        <span class="keywordflow">return</span> asin(v);</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00647">vector.h:647</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1006,30 +1106,40 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Write what the function does here</p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable)</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00767">767</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        {</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;            <a class="code" href="structVectorF.html">VectorF</a> retval;</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;<span class="comment">            /**</span></div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;<span class="comment">             * @brief Write what the function does here</span></div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="comment">             *</span></div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;<span class="comment">             * @return</span></div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;<span class="comment">             **/</span></div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;            <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            {</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;                retval.x = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;                retval.y = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;                retval.z = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;            }</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;            <span class="keywordflow">while</span>(<a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(retval) &gt; 1 || <a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(retval) &lt; eps);</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;            <span class="keywordflow">return</span> retval;</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;        }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
-<div class="ttc" id="structVectorF_html_a1536c33d14bb5c290322c504e0f734b7"><div class="ttname"><a href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">VectorF::absSquared</a></div><div class="ttdeci">friend constexpr float absSquared(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00634">vector.h:634</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00768">768</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        {</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;            <a class="code" href="structVectorF.html">VectorF</a> retval;</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;<span class="comment">            /**</span></div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="comment">             * @brief Write what the function does here</span></div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;<span class="comment">             *</span></div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;<span class="comment">             * @retval (variable) (description of variable)</span></div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;<span class="comment">             **/</span></div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;            {</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;                retval.x = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;                retval.y = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;                retval.z = uniform_real_distribution&lt;float&gt;(-1, 1)(re);</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;            }</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;            <span class="keywordflow">while</span>(<a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(retval) &gt; 1 || <a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(retval) &lt; eps);</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;            <span class="keywordflow">return</span> retval;</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;        }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
+<div class="ttc" id="structVectorF_html_a1536c33d14bb5c290322c504e0f734b7"><div class="ttname"><a href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">VectorF::absSquared</a></div><div class="ttdeci">friend constexpr float absSquared(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00635">vector.h:635</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1055,13 +1165,18 @@ template&lt;typename RE &gt; </div>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00741">741</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    {</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00646">vector.h:646</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00742">742</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;    {</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00647">vector.h:647</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1087,12 +1202,17 @@ template&lt;typename RE &gt; </div>
 </div><div class="memdoc">
 
 <p>Write what the function does here. </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00731">731</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    {</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        <span class="keywordflow">return</span> atan2(x, z);</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00732">732</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    {</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        <span class="keywordflow">return</span> atan2(x, z);</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1126,13 +1246,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00646">646</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;    {</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;        <span class="keywordflow">return</span> sqrt(<a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(v));</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_a1536c33d14bb5c290322c504e0f734b7"><div class="ttname"><a href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">VectorF::absSquared</a></div><div class="ttdeci">friend constexpr float absSquared(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00634">vector.h:634</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00647">647</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;    {</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;        <span class="keywordflow">return</span> sqrt(<a class="code" href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">absSquared</a>(v));</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_a1536c33d14bb5c290322c504e0f734b7"><div class="ttname"><a href="structVectorF.html#a1536c33d14bb5c290322c504e0f734b7">VectorF::absSquared</a></div><div class="ttdeci">friend constexpr float absSquared(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00635">vector.h:635</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1165,13 +1290,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00634">634</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;    {</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html#ae6a81a095a040050d82332d33b63b80d">dot</a>(v, v);</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_ae6a81a095a040050d82332d33b63b80d"><div class="ttname"><a href="structVectorF.html#ae6a81a095a040050d82332d33b63b80d">VectorF::dot</a></div><div class="ttdeci">friend constexpr float dot(const VectorF &amp;a, const VectorF &amp;b)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00596">vector.h:596</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00635">635</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    {</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html#ae6a81a095a040050d82332d33b63b80d">dot</a>(v, v);</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_ae6a81a095a040050d82332d33b63b80d"><div class="ttname"><a href="structVectorF.html#ae6a81a095a040050d82332d33b63b80d">VectorF::dot</a></div><div class="ttdeci">friend constexpr float dot(const VectorF &amp;a, const VectorF &amp;b)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00597">vector.h:597</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1215,13 +1345,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00754">754</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;    {</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00755">755</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    {</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1265,12 +1400,17 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00596">596</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;    {</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00597">597</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    {</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1314,12 +1454,17 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00609">609</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;    {</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00610">610</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;    {</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1363,12 +1508,17 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00622">622</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;    {</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00623">623</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;    {</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;        <span class="keywordflow">return</span> a.x * b.x + a.y * b.y + a.z * b.z;</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1401,19 +1551,24 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00676">676</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    {</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        <span class="keywordflow">if</span>(v == 0)</div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        {</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;            <span class="keywordflow">throw</span> domain_error(<span class="stringliteral">&quot;can&#39;t normalize &lt;0, 0, 0&gt;&quot;</span>);</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;        }</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00646">vector.h:646</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00677">677</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    {</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        <span class="keywordflow">if</span>(v == 0)</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        {</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;            <span class="keywordflow">throw</span> domain_error(<span class="stringliteral">&quot;can&#39;t normalize &lt;0, 0, 0&gt;&quot;</span>);</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        }</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00647">vector.h:647</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1446,19 +1601,24 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00658">658</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;    {</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        <span class="keywordflow">if</span>(r == 0)</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        {</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;            r = 1;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        }</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00646">vector.h:646</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00659">659</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;    {</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;        <span class="keywordtype">float</span> r = <a class="code" href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">abs</a>(v);</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        <span class="keywordflow">if</span>(r == 0)</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        {</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;            r = 1;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        }</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        <span class="keywordflow">return</span> v / r;</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html_a34fe870a7141fd569c7144399f50c9a4"><div class="ttname"><a href="structVectorF.html#a34fe870a7141fd569c7144399f50c9a4">VectorF::abs</a></div><div class="ttdeci">friend float abs(const VectorF &amp;v)</div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00647">vector.h:647</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1502,13 +1662,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00407">407</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    {</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <span class="keywordflow">return</span> l * (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00408">408</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    {</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="keywordflow">return</span> l * (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1552,13 +1717,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00420">420</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    {</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l * r;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00421">421</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    {</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l * r;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1602,13 +1772,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00457">457</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    {</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(a * b.x, a * b.y, a * b.z);</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00458">458</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    {</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structVectorF.html">VectorF</a>(a * b.x, a * b.y, a * b.z);</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1652,13 +1827,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00331">331</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    {</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        <span class="keywordflow">return</span> l + (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00332">332</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    {</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keywordflow">return</span> l + (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1702,13 +1882,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00344">344</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    {</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l + r;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00345">345</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    {</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l + r;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1752,13 +1937,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00369">369</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keywordflow">return</span> l - (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00370">370</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="keywordflow">return</span> l - (<a class="code" href="structVectorF.html">VectorF</a>)r;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1802,13 +1992,18 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00382">382</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    {</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l - r;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    }</div>
-<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00265">vector.h:265</a></div></div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00383">383</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    {</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="structVectorF.html">VectorF</a>)l - r;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    }</div>
+<div class="ttc" id="structVectorF_html"><div class="ttname"><a href="structVectorF.html">VectorF</a></div><div class="ttdoc">Write what the function does here. </div><div class="ttdef"><b>Definition:</b> <a href="vector_8h_source.html#l00266">vector.h:266</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1852,12 +2047,17 @@ template&lt;typename RE &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">(variable)</td><td>(description of variable) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="vector_8h_source.html#l00794">794</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    {</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="keywordflow">return</span> os &lt;&lt; <span class="stringliteral">&quot;&lt;&quot;</span> &lt;&lt; v.x &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; v.y &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; v.z &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    }</div>
+<p>Definition at line <a class="el" href="vector_8h_source.html#l00795">795</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    {</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordflow">return</span> os &lt;&lt; <span class="stringliteral">&quot;&lt;&quot;</span> &lt;&lt; v.x &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; v.y &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; v.z &lt;&lt; <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1867,7 +2067,7 @@ template&lt;typename RE &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2014 11:02:16 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 28 2014 11:41:56 for Sprouts by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
