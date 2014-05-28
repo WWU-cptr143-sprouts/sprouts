@@ -15,7 +15,7 @@ typedef shared_ptr<Mesh_t> Mesh;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct TextureCoord
 {
@@ -35,7 +35,7 @@ struct TextureCoord
      * @param os
      * @param t
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend ostream & operator <<(ostream & os, const TextureCoord & t)
     {
@@ -51,7 +51,7 @@ template <>
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline const TextureCoord interpolate<TextureCoord>(const float t, const TextureCoord a, const TextureCoord b)
 {
@@ -61,7 +61,7 @@ inline const TextureCoord interpolate<TextureCoord>(const float t, const Texture
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct Triangle
 {
@@ -72,7 +72,7 @@ struct Triangle
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Triangle()
     {
@@ -91,7 +91,7 @@ struct Triangle
      * @param c3
      * @param t3
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Triangle(VectorF p1, Color c1, TextureCoord t1, VectorF p2, Color c2, TextureCoord t2, VectorF p3, Color c3, TextureCoord t3)
     {
@@ -109,7 +109,7 @@ struct Triangle
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF normal() const
     {
@@ -123,7 +123,7 @@ struct Triangle
  * @param m
  * @param t
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Triangle transform(const Matrix &m, Triangle t)
 {
@@ -138,7 +138,7 @@ inline Triangle transform(const Matrix &m, Triangle t)
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct TransformedMesh
 {
@@ -162,7 +162,7 @@ struct TransformedMesh
  * @param m
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh transform(const Matrix &m, Mesh mesh)
 {
@@ -175,7 +175,7 @@ inline TransformedMesh transform(const Matrix &m, Mesh mesh)
  * @param m
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh transform(const Matrix &m, TransformedMesh mesh)
 {
@@ -188,7 +188,7 @@ inline TransformedMesh transform(const Matrix &m, TransformedMesh mesh)
  * @param factor
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh scaleColors(Color factor, Mesh mesh)
 {
@@ -201,7 +201,7 @@ inline TransformedMesh scaleColors(Color factor, Mesh mesh)
  * @param factor
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh scaleColors(Color factor, TransformedMesh mesh)
 {
@@ -211,7 +211,7 @@ inline TransformedMesh scaleColors(Color factor, TransformedMesh mesh)
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class ImageNotSameException final : public runtime_error
 {
@@ -225,7 +225,7 @@ class ImageNotSameException final : public runtime_error
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Mesh_t final
 {
@@ -244,7 +244,7 @@ class Mesh_t final
          * @param reader
          * @param client
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         /*    Mesh_t(Reader &reader, Client &client)
               {
@@ -279,7 +279,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Mesh_t()
         {
@@ -291,7 +291,7 @@ class Mesh_t final
          *
          * @param texture
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Mesh_t(Image texture, vector<Triangle> triangles = vector<Triangle>())
         {
@@ -338,7 +338,7 @@ class Mesh_t final
          *
          * @param tex
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Mesh_t(TextureDescriptor tex, vector<Triangle> triangles = vector<Triangle>())
         {
@@ -423,7 +423,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const Image &texture() const
         {
@@ -437,7 +437,7 @@ class Mesh_t final
          * @param value_type
          * @param Triangle
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         class const_iterator final : public iterator<iterator_traits<vector<float>::iterator>::value_type, const Triangle, ssize_t>
     {
@@ -455,7 +455,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator()
         {
@@ -466,7 +466,7 @@ class Mesh_t final
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator ==(const const_iterator &rt) const
         {
@@ -478,7 +478,7 @@ class Mesh_t final
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator !=(const const_iterator &rt) const
         {
@@ -488,7 +488,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const Triangle &operator *() const
         {
@@ -510,7 +510,7 @@ class Mesh_t final
          *
          * @param index
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const Triangle &operator[](ssize_t index) const
         {
@@ -520,7 +520,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const Triangle *operator ->() const
         {
@@ -532,7 +532,7 @@ class Mesh_t final
          *
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator +(ssize_t i) const
         {
@@ -547,7 +547,7 @@ class Mesh_t final
          * @param i
          * @param iter
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend const_iterator operator +(ssize_t i, const const_iterator &iter)
         {
@@ -559,7 +559,7 @@ class Mesh_t final
          *
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator -(ssize_t i) const
         {
@@ -571,7 +571,7 @@ class Mesh_t final
          *
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ssize_t operator -(const const_iterator &r) const
         {
@@ -583,7 +583,7 @@ class Mesh_t final
          *
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator +=(ssize_t i)
         {
@@ -595,7 +595,7 @@ class Mesh_t final
          *
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator -=(ssize_t i)
         {
@@ -605,7 +605,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator ++()
         {
@@ -615,7 +615,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator --()
         {
@@ -627,7 +627,7 @@ class Mesh_t final
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator ++(int)
         {
@@ -641,7 +641,7 @@ class Mesh_t final
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator --(int)
         {
@@ -655,7 +655,7 @@ class Mesh_t final
          *
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator >(const const_iterator &r) const
         {
@@ -667,7 +667,7 @@ class Mesh_t final
          *
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator >=(const const_iterator &r) const
         {
@@ -679,7 +679,7 @@ class Mesh_t final
          *
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator <(const const_iterator &r) const
         {
@@ -691,7 +691,7 @@ class Mesh_t final
          *
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator <=(const const_iterator &r) const
         {
@@ -703,7 +703,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         size_t size() const
         {
@@ -713,7 +713,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator begin() const
         {
@@ -723,7 +723,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator end() const
         {
@@ -733,7 +733,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator cbegin() const
         {
@@ -743,7 +743,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator cend() const
         {
@@ -753,7 +753,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator rbegin() const
         {
@@ -763,7 +763,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator rend() const
         {
@@ -773,7 +773,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator crbegin() const
         {
@@ -783,7 +783,7 @@ class Mesh_t final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator crend() const
         {
@@ -858,7 +858,7 @@ class Mesh_t final
  * @param cPXPYNZ
  * @param cPXPYPZ
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ)
 {
@@ -916,7 +916,7 @@ inline Mesh interpolateColors(Mesh dest, Mesh mesh, Color cNXNYNZ, Color cNXNYPZ
  * @param cPXPYNZ
  * @param cPXPYPZ
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh interpolateColors(Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNXPYNZ, Color cNXPYPZ, Color cPXNYNZ, Color cPXNYPZ, Color cPXPYNZ, Color cPXPYPZ)
 {
@@ -957,7 +957,7 @@ inline Mesh interpolateColors(Mesh mesh, Color cNXNYNZ, Color cNXNYPZ, Color cNX
  * @param ambient
  * @param diffuse
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffuse)
 {
@@ -1014,7 +1014,7 @@ inline Mesh lightColors(Mesh mesh, VectorF lightDir, float ambient, float diffus
  * @param reader
  * @param client
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh readMesh(Reader &reader, Client &client)
 {
@@ -1024,7 +1024,7 @@ inline Mesh readMesh(Reader &reader, Client &client)
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh::operator Mesh() const
 {
@@ -1034,7 +1034,7 @@ inline TransformedMesh::operator Mesh() const
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Renderer final
 {
@@ -1046,7 +1046,7 @@ class Renderer final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Renderer()
         {
@@ -1055,7 +1055,7 @@ class Renderer final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ~Renderer()
         {
@@ -1067,7 +1067,7 @@ class Renderer final
          *
          * @param m
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Renderer &operator <<(Mesh m)
         {
@@ -1080,7 +1080,7 @@ class Renderer final
          *
          * @param m
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Renderer &operator <<(TransformedMesh m)
         {

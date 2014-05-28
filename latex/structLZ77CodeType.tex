@@ -1,0 +1,208 @@
+\hypertarget{structLZ77CodeType}{\section{L\+Z77\+Code\+Type Struct Reference}
+\label{structLZ77CodeType}\index{L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$compressed\+\_\+stream.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structLZ77CodeType_a3f8c29e5f88aff1053705e5a651a443f}{{\bfseries L\+Z77\+Code\+Type} (size\+\_\+t length, size\+\_\+t offset, uint8\+\_\+t next\+Byte)}\label{structLZ77CodeType_a3f8c29e5f88aff1053705e5a651a443f}
+
+\item 
+\hypertarget{structLZ77CodeType_a008eb3e8953c86bf3ae044c6824321cc}{{\bfseries L\+Z77\+Code\+Type} (uint8\+\_\+t next\+Byte)}\label{structLZ77CodeType_a008eb3e8953c86bf3ae044c6824321cc}
+
+\item 
+bool \hyperlink{structLZ77CodeType_a36290b0883b9280e74fab0f2a051bdd6}{has\+Next\+Byte} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+bool \hyperlink{structLZ77CodeType_a7277c9ee60156ee1b577d9b30cac3402}{eof} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+void \hyperlink{structLZ77CodeType_adf2ddd7196f0b8a4e60cddfccb60795c}{write} (\hyperlink{classWriter}{Writer} \&writer)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{structLZ77CodeType}{L\+Z77\+Code\+Type} \hyperlink{structLZ77CodeType_a81a3dc5f81b7ab0f7fc8ddfe80dca56f}{read} (\hyperlink{classReader}{Reader} \&reader)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structLZ77CodeType_a1293f16ab8da36535682268031ec12a2}{size\+\_\+t {\bfseries length}}\label{structLZ77CodeType_a1293f16ab8da36535682268031ec12a2}
+
+\item 
+\hypertarget{structLZ77CodeType_a99e75c41fc2a5d36496e2eb6c675e8ce}{size\+\_\+t {\bfseries offset}}\label{structLZ77CodeType_a99e75c41fc2a5d36496e2eb6c675e8ce}
+
+\item 
+\hypertarget{structLZ77CodeType_ad5e0d80546417194466ff5300d0abc6f}{uint8\+\_\+t {\bfseries next\+Byte}}\label{structLZ77CodeType_ad5e0d80546417194466ff5300d0abc6f}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structLZ77CodeType_af6ddc790f261e742edf7e4c9730f2428}{static constexpr int {\bfseries length\+Bits} = 6}\label{structLZ77CodeType_af6ddc790f261e742edf7e4c9730f2428}
+
+\item 
+\hypertarget{structLZ77CodeType_a73491cf97e707f632e18d331d88c9aec}{static constexpr int {\bfseries offset\+Bits} = 16 -\/ length\+Bits}\label{structLZ77CodeType_a73491cf97e707f632e18d331d88c9aec}
+
+\item 
+\hypertarget{structLZ77CodeType_a91907290a8a919c21b5312ece5fe5eb4}{static constexpr size\+\_\+t {\bfseries max\+Length} = (1 $<$$<$ length\+Bits) -\/ 1}\label{structLZ77CodeType_a91907290a8a919c21b5312ece5fe5eb4}
+
+\item 
+\hypertarget{structLZ77CodeType_a07cb40a10cc2f689a9323c0f6533ed3c}{static constexpr size\+\_\+t {\bfseries max\+Offset} = (1 $<$$<$ offset\+Bits) -\/ 1}\label{structLZ77CodeType_a07cb40a10cc2f689a9323c0f6533ed3c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 26 of file compressed\+\_\+stream.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structLZ77CodeType_a7277c9ee60156ee1b577d9b30cac3402}{\index{L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}!eof@{eof}}
+\index{eof@{eof}!L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}}
+\subsubsection[{eof}]{\setlength{\rightskip}{0pt plus 5cm}bool L\+Z77\+Code\+Type\+::eof (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structLZ77CodeType_a7277c9ee60156ee1b577d9b30cac3402}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 61 of file compressed\+\_\+stream.\+h.
+
+
+\begin{DoxyCode}
+62     \{
+63         \textcolor{keywordflow}{return} length == 0 && offset != 0;
+64     \}
+\end{DoxyCode}
+\hypertarget{structLZ77CodeType_a36290b0883b9280e74fab0f2a051bdd6}{\index{L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}!has\+Next\+Byte@{has\+Next\+Byte}}
+\index{has\+Next\+Byte@{has\+Next\+Byte}!L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}}
+\subsubsection[{has\+Next\+Byte}]{\setlength{\rightskip}{0pt plus 5cm}bool L\+Z77\+Code\+Type\+::has\+Next\+Byte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structLZ77CodeType_a36290b0883b9280e74fab0f2a051bdd6}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 51 of file compressed\+\_\+stream.\+h.
+
+
+\begin{DoxyCode}
+52     \{
+53         \textcolor{keywordflow}{return} length != 0 || offset == 0;
+54     \}
+\end{DoxyCode}
+\hypertarget{structLZ77CodeType_a81a3dc5f81b7ab0f7fc8ddfe80dca56f}{\index{L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}!read@{read}}
+\index{read@{read}!L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf L\+Z77\+Code\+Type} L\+Z77\+Code\+Type\+::read (
+\begin{DoxyParamCaption}
+\item[{{\bf Reader} \&}]{reader}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{structLZ77CodeType_a81a3dc5f81b7ab0f7fc8ddfe80dca56f}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 73 of file compressed\+\_\+stream.\+h.
+
+
+
+References Reader\+::read\+U16().
+
+
+\begin{DoxyCode}
+74     \{
+75         \hyperlink{structLZ77CodeType}{LZ77CodeType} retval;
+76         retval.nextByte = reader.readByte();
+77 
+78         \textcolor{keywordflow}{try}
+79         \{
+80             uint16\_t v = reader.\hyperlink{classReader_afd87a9f4420fdf4d6bd5d311c745df92}{readU16}();
+81             retval.length = v >> offsetBits;
+82             retval.offset = v & maxOffset;
+83         \}
+84 
+85         \textcolor{keywordflow}{catch}(\hyperlink{classEOFException}{EOFException} &e)
+86         \{
+87             \textcolor{keywordflow}{throw} \hyperlink{classLZ77FormatException}{LZ77FormatException}();
+88         \}
+89         \textcolor{keywordflow}{return} retval;
+90     \}
+\end{DoxyCode}
+\hypertarget{structLZ77CodeType_adf2ddd7196f0b8a4e60cddfccb60795c}{\index{L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}!write@{write}}
+\index{write@{write}!L\+Z77\+Code\+Type@{L\+Z77\+Code\+Type}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void L\+Z77\+Code\+Type\+::write (
+\begin{DoxyParamCaption}
+\item[{{\bf Writer} \&}]{writer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{structLZ77CodeType_adf2ddd7196f0b8a4e60cddfccb60795c}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 97 of file compressed\+\_\+stream.\+h.
+
+
+
+References Writer\+::write\+U16().
+
+
+\begin{DoxyCode}
+98     \{
+99         \textcolor{comment}{//cout << "Write code : 0x" << hex << (unsigned)nextByte << dec << " : length : " << length << " :
+       offset : " << offset << endl;}
+100         writer.writeByte(nextByte);
+101         uint16\_t v = (offset & maxOffset) | (length << offsetBits);
+102         writer.\hyperlink{classWriter_a87898dff934c55c144149029173fe66f}{writeU16}(v);
+103     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+compressed\+\_\+stream.\+h\end{DoxyCompactItemize}

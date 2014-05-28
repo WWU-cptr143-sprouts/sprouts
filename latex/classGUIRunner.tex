@@ -1,0 +1,276 @@
+\hypertarget{classGUIRunner}{\section{G\+U\+I\+Runner Class Reference}
+\label{classGUIRunner}\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$gui.\+h$>$}
+
+Inheritance diagram for G\+U\+I\+Runner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classGUIRunner}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGUIRunner_aede15735ddb1dfdde334cfa6a4263c8d}{$\sim$\+G\+U\+I\+Runner} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{classGUIRunner_aa573be0a5f5473f5a7fe492eb2d94894}{bool {\bfseries run} ()}\label{classGUIRunner_aa573be0a5f5473f5a7fe492eb2d94894}
+
+\item 
+void \hyperlink{classGUIRunner_a71350d287889af5d9e588af1361390d0}{schedule\+Function} (function$<$ void()$>$ fn)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+void \hyperlink{classGUIRunner_a516b306d0c8ba1ba979db12947ea5541}{quit} (bool retval=false)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ \hyperlink{classGUIRunner_a9c09adda078b10a901dacb17fae7d888}{get\+G\+U\+I} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static shared\+\_\+ptr$<$ \hyperlink{classGUIRunner}{G\+U\+I\+Runner} $>$ \hyperlink{classGUIRunner_a75d10817e13347f279c658ef35e18686}{make} (shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ gui)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static shared\+\_\+ptr$<$ \hyperlink{classGUIRunner}{G\+U\+I\+Runner} $>$ \hyperlink{classGUIRunner_a5e79f6335a17c69fa02eac997cc610bf}{get} (shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ gui)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIRunner_addadbd965220a1a8d699dc6dcd3e211b}{{\bfseries G\+U\+I\+Runner} (shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ gui)}\label{classGUIRunner_addadbd965220a1a8d699dc6dcd3e211b}
+
+\item 
+\hypertarget{classGUIRunner_aca0cc460589930f95ff6eee66e1028a2}{{\bfseries G\+U\+I\+Runner} (const \hyperlink{classGUIRunner}{G\+U\+I\+Runner} \&)=delete}\label{classGUIRunner_aca0cc460589930f95ff6eee66e1028a2}
+
+\item 
+\hypertarget{classGUIRunner_afd663758b5632f28b6544479a055de2c}{const \hyperlink{classGUIRunner}{G\+U\+I\+Runner} \& {\bfseries operator=} (const \hyperlink{classGUIRunner}{G\+U\+I\+Runner} \&)=delete}\label{classGUIRunner_afd663758b5632f28b6544479a055de2c}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIRunner_a41c80c195e9dd4309df502f3427b1d36}{static void {\bfseries make\+Runners} ()}\label{classGUIRunner_a41c80c195e9dd4309df502f3427b1d36}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIRunner_ad60838d742eaccba8a58b135f752621d}{shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$ {\bfseries gui}}\label{classGUIRunner_ad60838d742eaccba8a58b135f752621d}
+
+\item 
+\hypertarget{classGUIRunner_a2cc56b998bbe4e30c760146648d7dee8}{vector$<$ function$<$ void()$>$ $>$ {\bfseries function\+List}}\label{classGUIRunner_a2cc56b998bbe4e30c760146648d7dee8}
+
+\item 
+\hypertarget{classGUIRunner_a19cbe217b41b144355edbcda2f482680}{bool {\bfseries run\+Retval} = false}\label{classGUIRunner_a19cbe217b41b144355edbcda2f482680}
+
+\item 
+\hypertarget{classGUIRunner_a2cec6973d0f9e098dbfdf1849b36b3f0}{bool {\bfseries need\+Quit} = false}\label{classGUIRunner_a2cec6973d0f9e098dbfdf1849b36b3f0}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIRunner_adeced5f9556e581c711ffef78b992356}{static unordered\+\_\+map\\*
+$<$ shared\+\_\+ptr$<$ \hyperlink{classGUIContainer}{G\+U\+I\+Container} $>$\\*
+, weak\+\_\+ptr$<$ \hyperlink{classGUIRunner}{G\+U\+I\+Runner} $>$ $>$ $\ast$ {\bfseries runners} = nullptr}\label{classGUIRunner_adeced5f9556e581c711ffef78b992356}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 20 of file gui.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGUIRunner_aede15735ddb1dfdde334cfa6a4263c8d}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!````~G\+U\+I\+Runner@{$\sim$\+G\+U\+I\+Runner}}
+\index{````~G\+U\+I\+Runner@{$\sim$\+G\+U\+I\+Runner}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{$\sim$\+G\+U\+I\+Runner}]{\setlength{\rightskip}{0pt plus 5cm}G\+U\+I\+Runner\+::$\sim$\+G\+U\+I\+Runner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIRunner_aede15735ddb1dfdde334cfa6a4263c8d}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 42 of file gui.\+h.
+
+
+\begin{DoxyCode}
+43     \{
+44 
+45         \textcolor{keywordflow}{if}(gui != \textcolor{keyword}{nullptr} && runners != \textcolor{keyword}{nullptr})
+46         \{
+47             runners->erase(gui);
+48         \}
+49     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUIRunner_a5e79f6335a17c69fa02eac997cc610bf}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!get@{get}}
+\index{get@{get}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}static shared\+\_\+ptr$<${\bf G\+U\+I\+Runner}$>$ G\+U\+I\+Runner\+::get (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf G\+U\+I\+Container} $>$}]{gui}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classGUIRunner_a5e79f6335a17c69fa02eac997cc610bf}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gui} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 74 of file gui.\+h.
+
+
+\begin{DoxyCode}
+75     \{
+76         makeRunners();
+77         gui = gui->getTopLevelParent();
+78         \textcolor{keyword}{auto} iter = runners->find(gui);
+79         \textcolor{keywordflow}{if}(iter == runners->end())
+80             \textcolor{keywordflow}{return} shared\_ptr<GUIRunner>(\textcolor{keyword}{nullptr});
+81         \textcolor{keywordflow}{return} std::get<1>(*iter).lock();
+82     \}
+\end{DoxyCode}
+\hypertarget{classGUIRunner_a9c09adda078b10a901dacb17fae7d888}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!get\+G\+U\+I@{get\+G\+U\+I}}
+\index{get\+G\+U\+I@{get\+G\+U\+I}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{get\+G\+U\+I}]{\setlength{\rightskip}{0pt plus 5cm}shared\+\_\+ptr$<${\bf G\+U\+I\+Container}$>$ G\+U\+I\+Runner\+::get\+G\+U\+I (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIRunner_a9c09adda078b10a901dacb17fae7d888}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 111 of file gui.\+h.
+
+
+\begin{DoxyCode}
+112     \{
+113         \textcolor{keywordflow}{return} gui;
+114     \}
+\end{DoxyCode}
+\hypertarget{classGUIRunner_a75d10817e13347f279c658ef35e18686}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!make@{make}}
+\index{make@{make}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{make}]{\setlength{\rightskip}{0pt plus 5cm}static shared\+\_\+ptr$<${\bf G\+U\+I\+Runner}$>$ G\+U\+I\+Runner\+::make (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf G\+U\+I\+Container} $>$}]{gui}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classGUIRunner_a75d10817e13347f279c658ef35e18686}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gui} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 58 of file gui.\+h.
+
+
+\begin{DoxyCode}
+59     \{
+60         makeRunners();
+61         gui = gui->getTopLevelParent();
+62         shared\_ptr<GUIRunner> retval = shared\_ptr<GUIRunner>(\textcolor{keyword}{new} \hyperlink{classGUIRunner}{GUIRunner}(gui));
+63         (*runners)[gui] = retval;
+64         \textcolor{keywordflow}{return} retval;
+65     \}
+\end{DoxyCode}
+\hypertarget{classGUIRunner_a516b306d0c8ba1ba979db12947ea5541}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!quit@{quit}}
+\index{quit@{quit}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{quit}]{\setlength{\rightskip}{0pt plus 5cm}void G\+U\+I\+Runner\+::quit (
+\begin{DoxyParamCaption}
+\item[{bool}]{retval = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIRunner_a516b306d0c8ba1ba979db12947ea5541}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em false} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 100 of file gui.\+h.
+
+
+\begin{DoxyCode}
+101     \{
+102         needQuit = \textcolor{keyword}{true};
+103         runRetval = retval;
+104     \}
+\end{DoxyCode}
+\hypertarget{classGUIRunner_a71350d287889af5d9e588af1361390d0}{\index{G\+U\+I\+Runner@{G\+U\+I\+Runner}!schedule\+Function@{schedule\+Function}}
+\index{schedule\+Function@{schedule\+Function}!G\+U\+I\+Runner@{G\+U\+I\+Runner}}
+\subsubsection[{schedule\+Function}]{\setlength{\rightskip}{0pt plus 5cm}void G\+U\+I\+Runner\+::schedule\+Function (
+\begin{DoxyParamCaption}
+\item[{function$<$ void()$>$}]{fn}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGUIRunner_a71350d287889af5d9e588af1361390d0}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fn} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file gui.\+h.
+
+
+\begin{DoxyCode}
+91     \{
+92         functionList.push\_back(fn);
+93     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gui.\+h\item 
+gui.\+cpp\end{DoxyCompactItemize}

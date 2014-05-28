@@ -5,13 +5,14 @@
 #include <stdexcept>
 #include <random>
 #include <ostream>
+
 using namespace std;
 struct VectorF;
 
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct VectorI //integer vector
 {
@@ -31,7 +32,7 @@ struct VectorI //integer vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI operator -() const //switching sign
     {
@@ -41,7 +42,7 @@ struct VectorI //integer vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI & operator +() const
     {
@@ -53,7 +54,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI operator +(const VectorI & r) const //addition
     {
@@ -65,7 +66,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI operator -(const VectorI & r) const //subtraction
     {
@@ -77,7 +78,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI operator *(const VectorI & r) const //multiplication
     {
@@ -89,7 +90,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorI operator *(int r) const//scalar multiplication
     {
@@ -102,7 +103,7 @@ struct VectorI //integer vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr  VectorI operator *(int a, const VectorI & b) //multiplication
     {
@@ -114,7 +115,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr bool operator ==(const VectorI & r) const //comparison
     {
@@ -126,7 +127,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr bool operator !=(const VectorI & r) const //inequality
     {
@@ -138,7 +139,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorI & operator +=(const VectorI & r) //adding to itself
     {
@@ -153,7 +154,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorI & operator -=(const VectorI & r)//subtracting to itself
     {
@@ -168,7 +169,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorI & operator *=(const VectorI & r)//multiplying to itself
     {
@@ -183,7 +184,7 @@ struct VectorI //integer vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorI & operator *=(int r) //multiplying by itself
     {
@@ -199,7 +200,7 @@ struct VectorI //integer vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr int dot(const VectorI & a, const VectorI & b)//dot product
     {
@@ -211,7 +212,7 @@ struct VectorI //integer vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr int absSquared(const VectorI & v)//length squared
     {
@@ -223,7 +224,7 @@ struct VectorI //integer vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend float abs(const VectorI & v)//length
     {
@@ -236,7 +237,7 @@ struct VectorI //integer vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorI cross(const VectorI & a, const VectorI & b)//cross product
     {
@@ -249,7 +250,7 @@ struct VectorI //integer vector
      * @param os
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend ostream & operator <<(ostream & os, const VectorI & v)//prints vector
     {
@@ -260,7 +261,7 @@ struct VectorI //integer vector
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct VectorF //floating point vector
 {
@@ -281,7 +282,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     explicit operator VectorI() const //sets vector to lowest it can be
     {
@@ -291,7 +292,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator -() const//negates a vector
     {
@@ -301,7 +302,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF & operator +() const//leaves a vector positive
     {
@@ -313,7 +314,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator +(const VectorF & r) const//adds two vectors
     {
@@ -326,7 +327,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator +(const VectorF & l, const VectorI & r)//adds int and float vectors
     {
@@ -339,7 +340,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator +(const VectorI & l, const VectorF & r)//adds int and float vectors
     {
@@ -351,7 +352,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator -(const VectorF & r) const
     {
@@ -364,7 +365,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator -(const VectorF & l, const VectorI & r)
     {
@@ -377,7 +378,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator -(const VectorI & l, const VectorF & r)
     {
@@ -389,7 +390,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator *(const VectorF & r) const
     {
@@ -402,7 +403,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator *(const VectorF & l, const VectorI & r)
     {
@@ -415,7 +416,7 @@ struct VectorF //floating point vector
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator *(const VectorI & l, const VectorF & r)
     {
@@ -427,7 +428,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator /(const VectorF & r) const
     {
@@ -439,7 +440,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator *(float r) const
     {
@@ -452,7 +453,7 @@ struct VectorF //floating point vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF operator *(float a, const VectorF & b)
     {
@@ -464,7 +465,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr const VectorF operator /(float r) const
     {
@@ -476,7 +477,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr bool operator ==(const VectorF & r) const
     {
@@ -488,7 +489,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     constexpr bool operator !=(const VectorF & r) const
     {
@@ -500,7 +501,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator +=(const VectorF & r)
     {
@@ -515,7 +516,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator -=(const VectorF & r)
     {
@@ -530,7 +531,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator *=(const VectorF & r)
     {
@@ -545,7 +546,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator /=(const VectorF & r)
     {
@@ -560,7 +561,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator *=(float r)
     {
@@ -575,7 +576,7 @@ struct VectorF //floating point vector
      *
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF & operator /=(float r)
     {
@@ -591,7 +592,7 @@ struct VectorF //floating point vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr float dot(const VectorF & a, const VectorF & b)
     {
@@ -604,7 +605,7 @@ struct VectorF //floating point vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr float dot(const VectorI & a, const VectorF & b)
     {
@@ -617,7 +618,7 @@ struct VectorF //floating point vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr float dot(const VectorF & a, const VectorI & b)
     {
@@ -629,7 +630,7 @@ struct VectorF //floating point vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr float absSquared(const VectorF & v)
     {
@@ -641,7 +642,7 @@ struct VectorF //floating point vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend float abs(const VectorF & v)
     {
@@ -653,7 +654,7 @@ struct VectorF //floating point vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend const VectorF normalizeNoThrow(const VectorF & v)
     {
@@ -671,7 +672,7 @@ struct VectorF //floating point vector
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend const VectorF normalize(const VectorF v)
     {
@@ -691,7 +692,7 @@ struct VectorF //floating point vector
      * @param y
      * @param z
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const VectorF static normalize(float x, float y, float z)
     {
@@ -708,7 +709,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float phi() const
     {
@@ -726,7 +727,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float theta() const
     {
@@ -736,7 +737,7 @@ struct VectorF //floating point vector
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float rSpherical() const
     {
@@ -749,7 +750,7 @@ struct VectorF //floating point vector
      * @param a
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend constexpr VectorF cross(const VectorF & a, const VectorF & b)
     {
@@ -762,7 +763,7 @@ struct VectorF //floating point vector
          *
          * @param re
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static VectorF random(RE & re)
         {
@@ -771,7 +772,7 @@ struct VectorF //floating point vector
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             do
             {
@@ -789,7 +790,7 @@ struct VectorF //floating point vector
      * @param os
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend ostream & operator <<(ostream & os, const VectorF & v)
     {
@@ -803,7 +804,7 @@ struct VectorF //floating point vector
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 constexpr inline bool operator ==(const VectorF & a, const VectorI & b)
 {
@@ -816,7 +817,7 @@ constexpr inline bool operator ==(const VectorF & a, const VectorI & b)
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 constexpr inline bool operator ==(const VectorI & a, const VectorF & b)
 {
@@ -829,7 +830,7 @@ constexpr inline bool operator ==(const VectorI & a, const VectorF & b)
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 constexpr inline bool operator !=(const VectorF & a, const VectorI & b)
 {
@@ -842,7 +843,7 @@ constexpr inline bool operator !=(const VectorF & a, const VectorI & b)
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 constexpr inline bool operator !=(const VectorI & a, const VectorF & b)
 {
@@ -854,7 +855,7 @@ constexpr inline bool operator !=(const VectorI & a, const VectorF & b)
  *
  * @param v
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline VectorF normalize(const VectorI & v)
 {
@@ -866,7 +867,7 @@ inline VectorF normalize(const VectorI & v)
  *
  * @param v
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline VectorF normalizeNoThrow(const VectorI & v)
 {
@@ -882,10 +883,11 @@ constexpr VectorF gravityVector = VectorF(0, -9.8, 0);
  * @param normal
  * @param d
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline float findIntersectionPoint(VectorF a, VectorF b, VectorF normal, float d)
 {
     return (dot(a, normal) + d) / dot(a - b, normal);
 }
+
 #endif // VECTOR_H

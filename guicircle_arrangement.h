@@ -8,7 +8,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class GUICircleArrangement final : public GUIContainer
 {
@@ -28,7 +28,7 @@ class GUICircleArrangement final : public GUIContainer
          *
          * @param index
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float getUnadjustedElementAngle(size_t index)
         {
@@ -40,7 +40,7 @@ class GUICircleArrangement final : public GUIContainer
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float neededAngle()
         {
@@ -62,7 +62,7 @@ class GUICircleArrangement final : public GUIContainer
          * @param maxZ
          * @param hasFocus
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
         {

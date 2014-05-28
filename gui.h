@@ -15,7 +15,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class GUIRunner final : public enable_shared_from_this<GUIRunner>
 {
@@ -37,7 +37,7 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     ~GUIRunner()
     {
@@ -53,7 +53,7 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
      *
      * @param gui
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static shared_ptr<GUIRunner> make(shared_ptr<GUIContainer> gui)
     {
@@ -69,7 +69,7 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
      *
      * @param gui
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static shared_ptr<GUIRunner> get(shared_ptr<GUIContainer> gui)
     {
@@ -106,7 +106,7 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     shared_ptr<GUIContainer> getGUI()
     {
@@ -119,7 +119,7 @@ class GUIRunner final : public enable_shared_from_this<GUIRunner>
  *
  * @param gui
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline bool runAsDialog(shared_ptr<GUIContainer> gui)
 {

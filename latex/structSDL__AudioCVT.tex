@@ -1,0 +1,151 @@
+\hypertarget{structSDL__AudioCVT}{\section{S\+D\+L\+\_\+\+Audio\+C\+V\+T Struct Reference}
+\label{structSDL__AudioCVT}\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+}
+
+
+{\ttfamily \#include $<$S\+D\+L\+\_\+audio.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structSDL__AudioCVT_a289a571421d05e416dd585c6f890a75b}{{\bfseries void} (S\+D\+L\+C\+A\+L\+L $\ast$\hyperlink{structSDL__AudioCVT_aa9b3c25dcbfc957dd439a34fcd3ff608}{filters}\mbox{[}10\mbox{]})(struct \hyperlink{structSDL__AudioCVT}{S\+D\+L\+\_\+\+Audio\+C\+V\+T} $\ast$cvt}\label{structSDL__AudioCVT_a289a571421d05e416dd585c6f890a75b}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structSDL__AudioCVT_ac600a035a48df05e14d3712fd6953ad4}{needed}
+\item 
+Uint16 \hyperlink{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}{src\+\_\+format}
+\item 
+Uint16 \hyperlink{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}{dst\+\_\+format}
+\item 
+double \hyperlink{structSDL__AudioCVT_ad886122c23a6673073baace31bff3b6c}{rate\+\_\+incr}
+\item 
+Uint8 $\ast$ \hyperlink{structSDL__AudioCVT_af42eb88b79cf9180670a5122c2c82671}{buf}
+\item 
+int \hyperlink{structSDL__AudioCVT_aeaeb8c5a63c3ab96471fbfdf412c78ff}{len}
+\item 
+int \hyperlink{structSDL__AudioCVT_a5c60163f34d1947e5b166c23aba9879d}{len\+\_\+cvt}
+\item 
+int \hyperlink{structSDL__AudioCVT_ac9662d47cf2348b82b27b151150116b0}{len\+\_\+mult}
+\item 
+double \hyperlink{structSDL__AudioCVT_a5628ff5ccf711de9d77c0a4a9f57d2f0}{len\+\_\+ratio}
+\item 
+\hypertarget{structSDL__AudioCVT_a020b6e1c01089169921ddb0c1e7f08d2}{Uint16 {\bfseries format}}\label{structSDL__AudioCVT_a020b6e1c01089169921ddb0c1e7f08d2}
+
+\item 
+int \hyperlink{structSDL__AudioCVT_a35093b3ad3331c17416c593a76012b63}{filter\+\_\+index}
+\item 
+S\+D\+L\+\_\+\+Audio\+Format \hyperlink{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}{src\+\_\+format}
+\item 
+S\+D\+L\+\_\+\+Audio\+Format \hyperlink{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}{dst\+\_\+format}
+\item 
+S\+D\+L\+\_\+\+Audio\+Filter \hyperlink{structSDL__AudioCVT_aa9b3c25dcbfc957dd439a34fcd3ff608}{filters} \mbox{[}10\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A structure to hold a set of audio conversion filters and buffers 
+
+Definition at line 126 of file S\+D\+L\+\_\+audio.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structSDL__AudioCVT_af42eb88b79cf9180670a5122c2c82671}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!buf@{buf}}
+\index{buf@{buf}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{buf}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 $\ast$ S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::buf}}\label{structSDL__AudioCVT_af42eb88b79cf9180670a5122c2c82671}
+Buffer to hold entire audio data 
+
+Definition at line 131 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!dst\+\_\+format@{dst\+\_\+format}}
+\index{dst\+\_\+format@{dst\+\_\+format}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{dst\+\_\+format}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Audio\+Format S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::dst\+\_\+format}}\label{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}
+Target audio format 
+
+Definition at line 129 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!dst\+\_\+format@{dst\+\_\+format}}
+\index{dst\+\_\+format@{dst\+\_\+format}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{dst\+\_\+format}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Audio\+Format S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::dst\+\_\+format}}\label{structSDL__AudioCVT_a8f890d017be857a3b048bf00525736c6}
+Target audio format 
+
+Definition at line 201 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a35093b3ad3331c17416c593a76012b63}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!filter\+\_\+index@{filter\+\_\+index}}
+\index{filter\+\_\+index@{filter\+\_\+index}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{filter\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}int S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::filter\+\_\+index}}\label{structSDL__AudioCVT_a35093b3ad3331c17416c593a76012b63}
+Current audio conversion function 
+
+Definition at line 137 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_aa9b3c25dcbfc957dd439a34fcd3ff608}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!filters@{filters}}
+\index{filters@{filters}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{filters}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Audio\+Filter S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::filters}}\label{structSDL__AudioCVT_aa9b3c25dcbfc957dd439a34fcd3ff608}
+Filter list 
+
+Definition at line 208 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_aeaeb8c5a63c3ab96471fbfdf412c78ff}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!len@{len}}
+\index{len@{len}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{len}]{\setlength{\rightskip}{0pt plus 5cm}int S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::len}}\label{structSDL__AudioCVT_aeaeb8c5a63c3ab96471fbfdf412c78ff}
+Length of original audio buffer 
+
+Definition at line 132 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a5c60163f34d1947e5b166c23aba9879d}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!len\+\_\+cvt@{len\+\_\+cvt}}
+\index{len\+\_\+cvt@{len\+\_\+cvt}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{len\+\_\+cvt}]{\setlength{\rightskip}{0pt plus 5cm}int S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::len\+\_\+cvt}}\label{structSDL__AudioCVT_a5c60163f34d1947e5b166c23aba9879d}
+Length of converted audio buffer 
+
+Definition at line 133 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_ac9662d47cf2348b82b27b151150116b0}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!len\+\_\+mult@{len\+\_\+mult}}
+\index{len\+\_\+mult@{len\+\_\+mult}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{len\+\_\+mult}]{\setlength{\rightskip}{0pt plus 5cm}int S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::len\+\_\+mult}}\label{structSDL__AudioCVT_ac9662d47cf2348b82b27b151150116b0}
+buffer must be len$\ast$len\+\_\+mult big 
+
+Definition at line 134 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a5628ff5ccf711de9d77c0a4a9f57d2f0}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!len\+\_\+ratio@{len\+\_\+ratio}}
+\index{len\+\_\+ratio@{len\+\_\+ratio}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{len\+\_\+ratio}]{\setlength{\rightskip}{0pt plus 5cm}double S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::len\+\_\+ratio}}\label{structSDL__AudioCVT_a5628ff5ccf711de9d77c0a4a9f57d2f0}
+Given len, final size is len$\ast$len\+\_\+ratio 
+
+Definition at line 135 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_ac600a035a48df05e14d3712fd6953ad4}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!needed@{needed}}
+\index{needed@{needed}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{needed}]{\setlength{\rightskip}{0pt plus 5cm}int S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::needed}}\label{structSDL__AudioCVT_ac600a035a48df05e14d3712fd6953ad4}
+Set to 1 if conversion possible 
+
+Definition at line 127 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_ad886122c23a6673073baace31bff3b6c}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!rate\+\_\+incr@{rate\+\_\+incr}}
+\index{rate\+\_\+incr@{rate\+\_\+incr}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{rate\+\_\+incr}]{\setlength{\rightskip}{0pt plus 5cm}double S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::rate\+\_\+incr}}\label{structSDL__AudioCVT_ad886122c23a6673073baace31bff3b6c}
+Rate conversion increment 
+
+Definition at line 130 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!src\+\_\+format@{src\+\_\+format}}
+\index{src\+\_\+format@{src\+\_\+format}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{src\+\_\+format}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Audio\+Format S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::src\+\_\+format}}\label{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}
+Source audio format 
+
+Definition at line 128 of file S\+D\+L\+\_\+audio.\+h.
+
+\hypertarget{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}{\index{S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}!src\+\_\+format@{src\+\_\+format}}
+\index{src\+\_\+format@{src\+\_\+format}!S\+D\+L\+\_\+\+Audio\+C\+V\+T@{S\+D\+L\+\_\+\+Audio\+C\+V\+T}}
+\subsubsection[{src\+\_\+format}]{\setlength{\rightskip}{0pt plus 5cm}S\+D\+L\+\_\+\+Audio\+Format S\+D\+L\+\_\+\+Audio\+C\+V\+T\+::src\+\_\+format}}\label{structSDL__AudioCVT_a6ae81231e017105e6d5e745a51732e16}
+Source audio format 
+
+Definition at line 200 of file S\+D\+L\+\_\+audio.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+codeblocks/include/\+S\+D\+L/S\+D\+L\+\_\+audio.\+h\end{DoxyCompactItemize}

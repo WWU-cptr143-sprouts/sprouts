@@ -7,7 +7,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class LZ77FormatException final : public IOException
 {
@@ -21,7 +21,7 @@ class LZ77FormatException final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct LZ77CodeType final
 {
@@ -46,7 +46,7 @@ struct LZ77CodeType final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     bool hasNextByte()
     {
@@ -56,7 +56,7 @@ struct LZ77CodeType final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     bool eof()
     {
@@ -68,7 +68,7 @@ struct LZ77CodeType final
      *
      * @param reader
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static LZ77CodeType read(Reader &reader)
     {
@@ -106,7 +106,7 @@ struct LZ77CodeType final
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class ExpandReader final : public Reader
 {
@@ -126,7 +126,7 @@ class ExpandReader final : public Reader
          *
          * @param reader
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ExpandReader(Reader &reader)
             : ExpandReader(shared_ptr<Reader>(&reader, [](Reader *) {}))

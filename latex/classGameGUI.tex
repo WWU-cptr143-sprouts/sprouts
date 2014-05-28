@@ -1,0 +1,149 @@
+\hypertarget{classGameGUI}{\section{Game\+G\+U\+I Class Reference}
+\label{classGameGUI}\index{Game\+G\+U\+I@{Game\+G\+U\+I}}
+}
+Inheritance diagram for Game\+G\+U\+I\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGameGUI}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGameGUI_a861b8dfdb3581b45689347f1d29dbaa4}{{\bfseries Game\+G\+U\+I} (\hyperlink{structSDL__Surface}{S\+D\+L\+\_\+\+Surface} $\ast$, T\+T\+F\+\_\+\+Font $\ast$)}\label{classGameGUI_a861b8dfdb3581b45689347f1d29dbaa4}
+
+\item 
+\hypertarget{classGameGUI_af64590a0f2446d0f423740f2b029ec38}{void {\bfseries init} (Mode, int, int, int)}\label{classGameGUI_af64590a0f2446d0f423740f2b029ec38}
+
+\item 
+\hypertarget{classGameGUI_a3b7fac84cc6dea53b4737f04d6c811bc}{void {\bfseries cancel} ()}\label{classGameGUI_a3b7fac84cc6dea53b4737f04d6c811bc}
+
+\item 
+\hypertarget{classGameGUI_a871d45a08bc3ccd49c81a4457bc816ca}{State {\bfseries click} (\hyperlink{structCoord}{Coord})}\label{classGameGUI_a871d45a08bc3ccd49c81a4457bc816ca}
+
+\item 
+\hypertarget{classGameGUI_aba9fcea825313750c6d20b6997d98acf}{void {\bfseries cursor} (\hyperlink{structCoord}{Coord})}\label{classGameGUI_aba9fcea825313750c6d20b6997d98acf}
+
+\item 
+\hypertarget{classGameGUI_aef1f54246657ec24df74b1fb70745e33}{bool {\bfseries player\+Turn} () const }\label{classGameGUI_aef1f54246657ec24df74b1fb70745e33}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGameGUI_ae406bf29c4d36199bc57cf421b4216f6}{bool {\bfseries player1}}\label{classGameGUI_ae406bf29c4d36199bc57cf421b4216f6}
+
+\item 
+\hypertarget{classGameGUI_a5b2ce95070adc6cb2ca2b9456e63f4e2}{bool {\bfseries error}}\label{classGameGUI_a5b2ce95070adc6cb2ca2b9456e63f4e2}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGameGUI_a592ace24e5d51ac5a199b58be854eb46}{\hyperlink{structCoord}{Coord} {\bfseries center} () const }\label{classGameGUI_a592ace24e5d51ac5a199b58be854eb46}
+
+\item 
+\hypertarget{classGameGUI_ae55b18a0f3d6fc2e03544ec77358482c}{void {\bfseries lock} ()}\label{classGameGUI_ae55b18a0f3d6fc2e03544ec77358482c}
+
+\item 
+\hypertarget{classGameGUI_a0aa550e8ebc5ac6f93183edfd95fe471}{void {\bfseries unlock} ()}\label{classGameGUI_a0aa550e8ebc5ac6f93183edfd95fe471}
+
+\item 
+\hypertarget{classGameGUI_a319990b62283916ac319e703b8be1310}{void {\bfseries redraw} (bool lock\+\_\+screen=true)}\label{classGameGUI_a319990b62283916ac319e703b8be1310}
+
+\item 
+\hypertarget{classGameGUI_a875b89ee8751d94293bf329c9b759517}{void {\bfseries line} (\hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}, Uint32 color)}\label{classGameGUI_a875b89ee8751d94293bf329c9b759517}
+
+\item 
+\hypertarget{classGameGUI_a49925f8ecdd22519d668b28d79badeb2}{void {\bfseries circle} (\hyperlink{structCoord}{Coord}, int radius, Uint32 color)}\label{classGameGUI_a49925f8ecdd22519d668b28d79badeb2}
+
+\item 
+\hypertarget{classGameGUI_aa2ecb2062a00e6d7e099fe0fd706313c}{bool {\bfseries valid\+Line} (\hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}, bool) const }\label{classGameGUI_aa2ecb2062a00e6d7e099fe0fd706313c}
+
+\item 
+\hypertarget{classGameGUI_af786a5df1b7ae2d2d0309cda34d30c3c}{bool {\bfseries valid\+Single\+Line} (const Line \&, \hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}, int, bool) const }\label{classGameGUI_af786a5df1b7ae2d2d0309cda34d30c3c}
+
+\item 
+\hypertarget{classGameGUI_aad8d3da450b57b150be4fc1c24594f47}{bool {\bfseries vertical} (\hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}) const }\label{classGameGUI_aad8d3da450b57b150be4fc1c24594f47}
+
+\item 
+\hypertarget{classGameGUI_a12816d2f7a5043a03242186968a7c098}{\hyperlink{structCoord}{Coord} {\bfseries straighten} (\hyperlink{structCoord}{Coord} last, \hyperlink{structCoord}{Coord} point) const }\label{classGameGUI_a12816d2f7a5043a03242186968a7c098}
+
+\item 
+\hypertarget{classGameGUI_a4900be71f21cecf0aafca9d9201b7c77}{\hyperlink{structCoord}{Coord} {\bfseries firststraighten} (\hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}, bool, bool, bool, bool) const }\label{classGameGUI_a4900be71f21cecf0aafca9d9201b7c77}
+
+\item 
+\hypertarget{classGameGUI_aa12fbbd12f46981f02e78fbfd2a5d404}{void {\bfseries combine\+Lines} (\hyperlink{structCoord}{Coord})}\label{classGameGUI_aa12fbbd12f46981f02e78fbfd2a5d404}
+
+\item 
+\hypertarget{classGameGUI_ada539abb78b785c11172aa9bf4dfabf6}{double {\bfseries distance} (\hyperlink{structCoord}{Coord}, \hyperlink{structCoord}{Coord}) const }\label{classGameGUI_ada539abb78b785c11172aa9bf4dfabf6}
+
+\item 
+\hypertarget{classGameGUI_ac927454c0511580c102ddc739fd9a6df}{\hyperlink{classNode}{Node} $\ast$ {\bfseries selected\+Node} (\hyperlink{structCoord}{Coord}) const }\label{classGameGUI_ac927454c0511580c102ddc739fd9a6df}
+
+\item 
+\hypertarget{classGameGUI_a597ba4a997c9aca9d765ce1b43613001}{\hyperlink{structCoord}{Coord} {\bfseries find\+Middle} () const }\label{classGameGUI_a597ba4a997c9aca9d765ce1b43613001}
+
+\item 
+\hypertarget{classGameGUI_a346606e8f741b3fad9d9fcccdd4b4a5b}{void {\bfseries display\+Position} (\hyperlink{structCoord}{Coord})}\label{classGameGUI_a346606e8f741b3fad9d9fcccdd4b4a5b}
+
+\item 
+\hypertarget{classGameGUI_a414dd5716a93388919d89ca82ffb1d23}{void {\bfseries display\+Error} (const string \&)}\label{classGameGUI_a414dd5716a93388919d89ca82ffb1d23}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGameGUI_a36d66af3091c9d98a68c07635ed3d7d1}{\hyperlink{structSDL__Surface}{S\+D\+L\+\_\+\+Surface} $\ast$ {\bfseries screen}}\label{classGameGUI_a36d66af3091c9d98a68c07635ed3d7d1}
+
+\item 
+\hypertarget{classGameGUI_a299611c20e79f1a1201c286b3ccafef0}{T\+T\+F\+\_\+\+Font $\ast$ {\bfseries font}}\label{classGameGUI_a299611c20e79f1a1201c286b3ccafef0}
+
+\item 
+\hypertarget{classGameGUI_a0f821145e9fe953efd2a17050a943d3b}{Mode {\bfseries player\+Mode}}\label{classGameGUI_a0f821145e9fe953efd2a17050a943d3b}
+
+\item 
+\hypertarget{classGameGUI_a5edf0cb0d35c985f80ae9537fd25ae55}{State {\bfseries state}}\label{classGameGUI_a5edf0cb0d35c985f80ae9537fd25ae55}
+
+\item 
+\hypertarget{classGameGUI_a3dfe0ccdd1468a7dc735db9ac7e8f55b}{Line {\bfseries current\+Line}}\label{classGameGUI_a3dfe0ccdd1468a7dc735db9ac7e8f55b}
+
+\item 
+\hypertarget{classGameGUI_aae17f26d90497475d50c65a8000cb181}{\hyperlink{structSDL__Color}{S\+D\+L\+\_\+\+Color} {\bfseries text\+Col}}\label{classGameGUI_aae17f26d90497475d50c65a8000cb181}
+
+\item 
+\hypertarget{classGameGUI_a075d8943a94366ce096941cab4e0264c}{int {\bfseries node\+Radius}}\label{classGameGUI_a075d8943a94366ce096941cab4e0264c}
+
+\item 
+\hypertarget{classGameGUI_a34ec0729523dfd0b80214071274a59e9}{int {\bfseries line\+Thick}}\label{classGameGUI_a34ec0729523dfd0b80214071274a59e9}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGameGUI_a3538fd5d42ac59248b1a83d5f43fad0c}{static const Uint32 {\bfseries node\+Col} = 0x\+F\+F4500\+F\+F}\label{classGameGUI_a3538fd5d42ac59248b1a83d5f43fad0c}
+
+\item 
+\hypertarget{classGameGUI_ab0bebe6620cd6172be5897a42a0dcacb}{static const Uint32 {\bfseries line\+Col} = 0x\+F\+F\+F\+F\+F\+F\+F\+F}\label{classGameGUI_ab0bebe6620cd6172be5897a42a0dcacb}
+
+\item 
+\hypertarget{classGameGUI_af35f33e73362109de3751e0478c36cee}{static const Uint32 {\bfseries player1\+Col} = 0x069\+D\+D6\+F\+F}\label{classGameGUI_af35f33e73362109de3751e0478c36cee}
+
+\item 
+\hypertarget{classGameGUI_aca95044a11eb45ba6aee9c6842a4afb4}{static const Uint32 {\bfseries player2\+Col} = 0x\+F\+E0208\+F\+F}\label{classGameGUI_aca95044a11eb45ba6aee9c6842a4afb4}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file gamegui.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/gamegui.\+h\item 
+old-\/source/gamegui.\+cpp\end{DoxyCompactItemize}

@@ -13,7 +13,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class ImageLoadError final : public runtime_error
 {
@@ -27,7 +27,7 @@ class ImageLoadError final : public runtime_error
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Image final
 {
@@ -48,7 +48,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         unsigned width() const
         {
@@ -58,7 +58,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         unsigned height() const
         {
@@ -68,7 +68,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         operator bool() const
         {
@@ -78,7 +78,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool operator !() const
         {
@@ -91,7 +91,7 @@ class Image final
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(Image l, Image r)
         {
@@ -104,7 +104,7 @@ class Image final
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(Image l, Image r)
         {
@@ -117,7 +117,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         enum RowOrder
         {
@@ -128,7 +128,7 @@ class Image final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct data_t
         {

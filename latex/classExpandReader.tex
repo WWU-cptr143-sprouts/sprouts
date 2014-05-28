@@ -1,0 +1,97 @@
+\hypertarget{classExpandReader}{\section{Expand\+Reader Class Reference}
+\label{classExpandReader}\index{Expand\+Reader@{Expand\+Reader}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$compressed\+\_\+stream.\+h$>$}
+
+Inheritance diagram for Expand\+Reader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classExpandReader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classExpandReader_a6e08c2a0ddfcaf4039364a7d5b86c713}{{\bfseries Expand\+Reader} (shared\+\_\+ptr$<$ \hyperlink{classReader}{Reader} $>$ reader)}\label{classExpandReader_a6e08c2a0ddfcaf4039364a7d5b86c713}
+
+\item 
+\hyperlink{classExpandReader_acff92ec084cb738b0a072fcad2096e45}{Expand\+Reader} (\hyperlink{classReader}{Reader} \&reader)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hypertarget{classExpandReader_ad3339a664afce44dbba5ceb3cf9b6ebd}{virtual uint8\+\_\+t {\bfseries read\+Byte} () override}\label{classExpandReader_ad3339a664afce44dbba5ceb3cf9b6ebd}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classExpandReader_abb317fa1dae74a6f01efb916dc1f1a78}{shared\+\_\+ptr$<$ \hyperlink{classReader}{Reader} $>$ {\bfseries reader}}\label{classExpandReader_abb317fa1dae74a6f01efb916dc1f1a78}
+
+\item 
+\hypertarget{classExpandReader_a75ba7c441e5d85a84432604ddbdaa734}{\hyperlink{classcircularDeque}{circular\+Deque}$<$ uint8\+\_\+t, \\*
+buffer\+Size+2 $>$ {\bfseries buffer}}\label{classExpandReader_a75ba7c441e5d85a84432604ddbdaa734}
+
+\item 
+\hypertarget{classExpandReader_a3829efc17d18ef7a90c05177cea0a402}{\hyperlink{structLZ77CodeType}{L\+Z77\+Code\+Type} {\bfseries current\+Code}}\label{classExpandReader_a3829efc17d18ef7a90c05177cea0a402}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classExpandReader_aea9fc5ac4ca868bf23dbe48022f81d53}{static constexpr size\+\_\+t {\bfseries buffer\+Size} = L\+Z77\+Code\+Type\+::max\+Offset + 1}\label{classExpandReader_aea9fc5ac4ca868bf23dbe48022f81d53}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 111 of file compressed\+\_\+stream.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classExpandReader_acff92ec084cb738b0a072fcad2096e45}{\index{Expand\+Reader@{Expand\+Reader}!Expand\+Reader@{Expand\+Reader}}
+\index{Expand\+Reader@{Expand\+Reader}!Expand\+Reader@{Expand\+Reader}}
+\subsubsection[{Expand\+Reader}]{\setlength{\rightskip}{0pt plus 5cm}Expand\+Reader\+::\+Expand\+Reader (
+\begin{DoxyParamCaption}
+\item[{{\bf Reader} \&}]{reader}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classExpandReader_acff92ec084cb738b0a072fcad2096e45}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 131 of file compressed\+\_\+stream.\+h.
+
+
+\begin{DoxyCode}
+132             : \hyperlink{classExpandReader}{ExpandReader}(shared\_ptr<Reader>(&reader, [](\hyperlink{classReader}{Reader} *) \{\}))
+133             \{
+134             \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+compressed\+\_\+stream.\+h\end{DoxyCompactItemize}

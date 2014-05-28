@@ -15,7 +15,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 #include <iostream>
 #define DUMP_V(fn, v) do {cerr << #fn << ": read " << v << endl;} while(false)
@@ -27,7 +27,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class IOException : public runtime_error
 {
@@ -51,7 +51,7 @@ class IOException : public runtime_error
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class EOFException final : public IOException
 {
@@ -65,7 +65,7 @@ class EOFException final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class NoStreamsLeftException final : public IOException
 {
@@ -79,7 +79,7 @@ class NoStreamsLeftException final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class UTFDataFormatException final : public IOException
 {
@@ -93,7 +93,7 @@ class UTFDataFormatException final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class InvalidDataValueException final : public IOException
 {
@@ -107,7 +107,7 @@ class InvalidDataValueException final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Reader
 {
@@ -121,7 +121,7 @@ class Reader
              * @param min
              * @param max
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             static T limitAfterRead(T v, T min, T max)
             {
@@ -139,7 +139,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Reader()
         {
@@ -150,7 +150,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual ~Reader()
         {
@@ -175,7 +175,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint8_t readU8()
         {
@@ -187,7 +187,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int8_t readS8()
         {
@@ -199,7 +199,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint16_t readU16()
         {
@@ -212,7 +212,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int16_t readS16()
         {
@@ -224,7 +224,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint32_t readU32()
         {
@@ -237,7 +237,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int32_t readS32()
         {
@@ -249,7 +249,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint64_t readU64()
         {
@@ -262,7 +262,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int64_t readS64()
         {
@@ -274,7 +274,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float readF32()
         {
@@ -283,7 +283,7 @@ class Reader
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             union
             {
@@ -299,7 +299,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         double readF64()
         {
@@ -308,7 +308,7 @@ class Reader
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             union
             {
@@ -324,7 +324,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool readBool()
         {
@@ -334,7 +334,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         wstring readString()
         {
@@ -409,7 +409,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint8_t readLimitedU8(uint8_t min, uint8_t max)
         {
@@ -422,7 +422,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int8_t readLimitedS8(int8_t min, int8_t max)
         {
@@ -435,7 +435,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint16_t readLimitedU16(uint16_t min, uint16_t max)
         {
@@ -448,7 +448,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int16_t readLimitedS16(int16_t min, int16_t max)
         {
@@ -461,7 +461,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint32_t readLimitedU32(uint32_t min, uint32_t max)
         {
@@ -474,7 +474,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int32_t readLimitedS32(int32_t min, int32_t max)
         {
@@ -487,7 +487,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint64_t readLimitedU64(uint64_t min, uint64_t max)
         {
@@ -500,7 +500,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int64_t readLimitedS64(int64_t min, int64_t max)
         {
@@ -510,7 +510,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float readFiniteF32()
         {
@@ -526,7 +526,7 @@ class Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         double readFiniteF64()
         {
@@ -545,7 +545,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float readLimitedF32(float min, float max)
         {
@@ -558,7 +558,7 @@ class Reader
          * @param min
          * @param max
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         double readLimitedF64(double min, double max)
         {
@@ -569,7 +569,7 @@ class Reader
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Writer
 {
@@ -578,7 +578,7 @@ class Writer
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Writer()
         {
@@ -589,7 +589,7 @@ class Writer
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual ~Writer()
         {
@@ -710,7 +710,7 @@ class Writer
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             union
             {
@@ -733,7 +733,7 @@ class Writer
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             union
             {
@@ -799,7 +799,7 @@ class Writer
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class FileReader final : public Reader
 {
@@ -812,7 +812,7 @@ class FileReader final : public Reader
          *
          * @param fileName
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         FileReader(wstring fileName)
         {
@@ -830,7 +830,7 @@ class FileReader final : public Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual ~FileReader()
         {
@@ -840,7 +840,7 @@ class FileReader final : public Reader
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual uint8_t readByte() override
         {
@@ -859,7 +859,7 @@ class FileReader final : public Reader
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class FileWriter final : public Writer
 {
@@ -872,7 +872,7 @@ class FileWriter final : public Writer
          *
          * @param fileName
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         FileWriter(wstring fileName)
         {
@@ -890,7 +890,7 @@ class FileWriter final : public Writer
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual ~FileWriter()
         {
@@ -921,7 +921,7 @@ class FileWriter final : public Writer
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class MemoryReader final : public Reader
 {
@@ -941,7 +941,7 @@ class MemoryReader final : public Reader
              *
              * @param length
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             explicit MemoryReader(const uint8_t a[length])
             : MemoryReader(shared_ptr<const uint8_t>(&a[0], [](const uint8_t *){}))

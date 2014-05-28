@@ -14,7 +14,7 @@ typedef shared_ptr<graph<shared_ptr<Node>, shared_ptr<Edge>>> GameState;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline GameState makeEmptyGameState()
 {
@@ -28,7 +28,7 @@ bool operator ==(GameState l, GameState r);
  * @param l
  * @param r
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline bool operator !=(GameState l, GameState r)
 {
@@ -38,7 +38,7 @@ inline bool operator !=(GameState l, GameState r)
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 namespace std
 {
@@ -47,7 +47,7 @@ namespace std
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct hash<GameState>
         {

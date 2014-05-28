@@ -1,0 +1,117 @@
+\hypertarget{structSDL__KeyboardEvent}{\section{S\+D\+L\+\_\+\+Keyboard\+Event Struct Reference}
+\label{structSDL__KeyboardEvent}\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+}
+
+
+Keyboard button event structure (\hyperlink{unionSDL__Event_ab99927835cc77a9b6bb50b419b4a27df}{event.\+key}.$\ast$)  
+
+
+
+
+{\ttfamily \#include $<$S\+D\+L\+\_\+events.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Uint8 \hyperlink{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}{type}
+\item 
+Uint8 \hyperlink{structSDL__KeyboardEvent_acb25972bab6a9f142de5652530857b9b}{which}
+\item 
+Uint8 \hyperlink{structSDL__KeyboardEvent_a110558eb96c113c86cfa31a7018c2346}{state}
+\item 
+\hyperlink{structSDL__keysym}{S\+D\+L\+\_\+keysym} \hyperlink{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}{keysym}
+\item 
+Uint32 \hyperlink{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}{type}
+\item 
+\hypertarget{structSDL__KeyboardEvent_a3da1d8f6892e7f6ee28d9eafdb5e7d02}{Uint32 {\bfseries timestamp}}\label{structSDL__KeyboardEvent_a3da1d8f6892e7f6ee28d9eafdb5e7d02}
+
+\item 
+Uint32 \hyperlink{structSDL__KeyboardEvent_a56efb6780b96acd5b50d8f797efb3546}{window\+I\+D}
+\item 
+Uint8 \hyperlink{structSDL__KeyboardEvent_a3edac3b36304812d533795c9df4ed4c1}{repeat}
+\item 
+\hypertarget{structSDL__KeyboardEvent_ae270122f757f76171318294afd2c95e6}{Uint8 {\bfseries padding2}}\label{structSDL__KeyboardEvent_ae270122f757f76171318294afd2c95e6}
+
+\item 
+\hypertarget{structSDL__KeyboardEvent_ae1831035ef556a7b09efcd2469f26f7a}{Uint8 {\bfseries padding3}}\label{structSDL__KeyboardEvent_ae1831035ef556a7b09efcd2469f26f7a}
+
+\item 
+\hyperlink{structSDL__Keysym}{S\+D\+L\+\_\+\+Keysym} \hyperlink{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}{keysym}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Keyboard button event structure (\hyperlink{unionSDL__Event_ab99927835cc77a9b6bb50b419b4a27df}{event.\+key}.$\ast$) 
+
+Keyboard event structure 
+
+Definition at line 126 of file S\+D\+L\+\_\+events.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!keysym@{keysym}}
+\index{keysym@{keysym}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{keysym}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+D\+L\+\_\+\+Keysym} S\+D\+L\+\_\+\+Keyboard\+Event\+::keysym}}\label{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}
+The key that was pressed or released 
+
+Definition at line 130 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!keysym@{keysym}}
+\index{keysym@{keysym}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{keysym}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+D\+L\+\_\+\+Keysym} S\+D\+L\+\_\+\+Keyboard\+Event\+::keysym}}\label{structSDL__KeyboardEvent_a2a57ba820a298f2c02ad5d41fd2b1aa8}
+The key that was pressed or released 
+
+Definition at line 188 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_a3edac3b36304812d533795c9df4ed4c1}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!repeat@{repeat}}
+\index{repeat@{repeat}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{repeat}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 S\+D\+L\+\_\+\+Keyboard\+Event\+::repeat}}\label{structSDL__KeyboardEvent_a3edac3b36304812d533795c9df4ed4c1}
+Non-\/zero if this is a key repeat 
+
+Definition at line 185 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_a110558eb96c113c86cfa31a7018c2346}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!state@{state}}
+\index{state@{state}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 S\+D\+L\+\_\+\+Keyboard\+Event\+::state}}\label{structSDL__KeyboardEvent_a110558eb96c113c86cfa31a7018c2346}
+S\+D\+L\+\_\+\+P\+R\+E\+S\+S\+E\+D or S\+D\+L\+\_\+\+R\+E\+L\+E\+A\+S\+E\+D
+
+\+::\+S\+D\+L\+\_\+\+P\+R\+E\+S\+S\+E\+D or \+::\+S\+D\+L\+\_\+\+R\+E\+L\+E\+A\+S\+E\+D 
+
+Definition at line 129 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!type@{type}}
+\index{type@{type}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 S\+D\+L\+\_\+\+Keyboard\+Event\+::type}}\label{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}
+S\+D\+L\+\_\+\+K\+E\+Y\+D\+O\+W\+N or S\+D\+L\+\_\+\+K\+E\+Y\+U\+P
+
+\+::\+S\+D\+L\+\_\+\+K\+E\+Y\+D\+O\+W\+N or \+::\+S\+D\+L\+\_\+\+K\+E\+Y\+U\+P 
+
+Definition at line 127 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!type@{type}}
+\index{type@{type}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 S\+D\+L\+\_\+\+Keyboard\+Event\+::type}}\label{structSDL__KeyboardEvent_ae0b2f2aace6f80c1f47e5a14350d409a}
+\+::\+S\+D\+L\+\_\+\+K\+E\+Y\+D\+O\+W\+N or \+::\+S\+D\+L\+\_\+\+K\+E\+Y\+U\+P 
+
+Definition at line 181 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_acb25972bab6a9f142de5652530857b9b}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!which@{which}}
+\index{which@{which}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{which}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 S\+D\+L\+\_\+\+Keyboard\+Event\+::which}}\label{structSDL__KeyboardEvent_acb25972bab6a9f142de5652530857b9b}
+The keyboard device index 
+
+Definition at line 128 of file S\+D\+L\+\_\+events.\+h.
+
+\hypertarget{structSDL__KeyboardEvent_a56efb6780b96acd5b50d8f797efb3546}{\index{S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}!window\+I\+D@{window\+I\+D}}
+\index{window\+I\+D@{window\+I\+D}!S\+D\+L\+\_\+\+Keyboard\+Event@{S\+D\+L\+\_\+\+Keyboard\+Event}}
+\subsubsection[{window\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 S\+D\+L\+\_\+\+Keyboard\+Event\+::window\+I\+D}}\label{structSDL__KeyboardEvent_a56efb6780b96acd5b50d8f797efb3546}
+The window with keyboard focus, if any 
+
+Definition at line 183 of file S\+D\+L\+\_\+events.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+codeblocks/include/\+S\+D\+L/S\+D\+L\+\_\+events.\+h\end{DoxyCompactItemize}

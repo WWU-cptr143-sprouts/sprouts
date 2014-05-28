@@ -10,7 +10,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct GUILabel : public GUIElement
 {
@@ -24,7 +24,7 @@ struct GUILabel : public GUIElement
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool canHaveKeyboardFocus() const override final
     {
@@ -39,7 +39,7 @@ struct GUILabel : public GUIElement
      * @param maxZ
      * @param hasFocus
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {

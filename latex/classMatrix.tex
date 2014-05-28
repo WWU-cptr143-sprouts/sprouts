@@ -1,0 +1,1206 @@
+\hypertarget{classMatrix}{\section{Matrix Class Reference}
+\label{classMatrix}\index{Matrix@{Matrix}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$matrix.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classMatrix_a44c5cb86dbd3b1cceb4fb97f8a7162cf}{get} (const int x, const int y) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+void \hyperlink{classMatrix_afed63f439c03991f045224143dfea6bf}{set} (const int x, const int y, float value)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classMatrix_a795649d936f1eb2768d4a32f45c35c61}{Matrix} (float x00, float x10, float x20, float x30, float x01, float x11, float x21, float x31, float x02, float x12, float x22, float x32)
+\item 
+\hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+float \hyperlink{classMatrix_aadfa353962ca1bf43ed148d79cc71fc6}{determinant} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_acaac7c3eb8f32224c07dcd620ca44e26}{invert} () const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_ab915ae9d317df03b6731438f9add20d8}{concat} (\hyperlink{classMatrix}{Matrix} rt) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{classMatrix_ab7d05d1560328ca22ab4809299b6d128}{apply} (\hyperlink{structVectorF}{Vector\+F} v) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+\hyperlink{structVectorF}{Vector\+F} \hyperlink{classMatrix_a4c6d99e79768c1e3e01f1cf8ce143951}{apply\+To\+Normal} (\hyperlink{structVectorF}{Vector\+F} v) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_ab84e2141cb9aeda01998b21b2c0d0319}{identity} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate} (const \hyperlink{structVectorF}{Vector\+F} axis, const double angle)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{rotate\+X} (double angle)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{rotate\+Y} (double angle)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a1b0199d040686543579e52695eb6da14}{rotate\+Z} (double angle)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_adf246c47bce77c3c53b9e804ec475e35}{translate} (\hyperlink{structVectorF}{Vector\+F} position)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a77d32ea082434b9b04374af58f3d7007}{translate} (float x, float y, float z)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a1f36f7f62b8e99fea99880b6fc80a604}{scale} (float x, float y, float z)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a3420c2adfcea1a4ef5ae86d6875ef75e}{scale} (\hyperlink{structVectorF}{Vector\+F} s)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a1205b0fb62536a9b18a2c4ef6fc6a316}{scale} (float s)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\item 
+static \hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_a8198676e0d8fdc3d447f184260af7057}{theta\+Phi} (double theta, double phi)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMatrix_ae83b796149e7692ce40c1cbdf4dd6f09}{float {\bfseries x00}}\label{classMatrix_ae83b796149e7692ce40c1cbdf4dd6f09}
+
+\item 
+\hypertarget{classMatrix_a27444a60f9571b225f6b5ce12a5eca11}{float {\bfseries x10}}\label{classMatrix_a27444a60f9571b225f6b5ce12a5eca11}
+
+\item 
+\hypertarget{classMatrix_aeed1c8585b1117930be0ff04bb59b841}{float {\bfseries x20}}\label{classMatrix_aeed1c8585b1117930be0ff04bb59b841}
+
+\item 
+\hypertarget{classMatrix_aa7fd1be4eb967ca4a2dca1629913b320}{float {\bfseries x30}}\label{classMatrix_aa7fd1be4eb967ca4a2dca1629913b320}
+
+\item 
+\hypertarget{classMatrix_a0d61e61547844a875cbe7bbc9ac45655}{float {\bfseries x01}}\label{classMatrix_a0d61e61547844a875cbe7bbc9ac45655}
+
+\item 
+\hypertarget{classMatrix_a8ab47a8d3f04f391429640eee452f7a6}{float {\bfseries x11}}\label{classMatrix_a8ab47a8d3f04f391429640eee452f7a6}
+
+\item 
+\hypertarget{classMatrix_acee3423cbef48d33c2411d90c882a371}{float {\bfseries x21}}\label{classMatrix_acee3423cbef48d33c2411d90c882a371}
+
+\item 
+\hypertarget{classMatrix_a6f6dbdec61807b9ec97b5c43072d9a74}{float {\bfseries x31}}\label{classMatrix_a6f6dbdec61807b9ec97b5c43072d9a74}
+
+\item 
+\hypertarget{classMatrix_aececca699c796ad7b1dd2e52820218c3}{float {\bfseries x02}}\label{classMatrix_aececca699c796ad7b1dd2e52820218c3}
+
+\item 
+\hypertarget{classMatrix_a9d02b516fb5aace9e21be7ead5494b87}{float {\bfseries x12}}\label{classMatrix_a9d02b516fb5aace9e21be7ead5494b87}
+
+\item 
+\hypertarget{classMatrix_a86643f9e4ba0701c4c220ec6292fe426}{float {\bfseries x22}}\label{classMatrix_a86643f9e4ba0701c4c220ec6292fe426}
+
+\item 
+\hypertarget{classMatrix_a1b08b0cdc3390fcec6e9dc71d5156bac}{float {\bfseries x32}}\label{classMatrix_a1b08b0cdc3390fcec6e9dc71d5156bac}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMatrix}{Matrix} \hyperlink{classMatrix_aff21cecb1b3c4d8e3f3d525edebd7d5c}{inverse} (const \hyperlink{classMatrix}{Matrix} \&m)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+4x4 matrix for 3\+D transformation with last row always equal to \mbox{[}0 0 0 1\mbox{]}
+
+\begin{DoxyAuthor}{Author}
+jacob 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 14 of file matrix.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMatrix_a795649d936f1eb2768d4a32f45c35c61}{\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\subsubsection[{Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::\+Matrix (
+\begin{DoxyParamCaption}
+\item[{float}]{x00, }
+\item[{float}]{x10, }
+\item[{float}]{x20, }
+\item[{float}]{x30, }
+\item[{float}]{x01, }
+\item[{float}]{x11, }
+\item[{float}]{x21, }
+\item[{float}]{x31, }
+\item[{float}]{x02, }
+\item[{float}]{x12, }
+\item[{float}]{x22, }
+\item[{float}]{x32}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a795649d936f1eb2768d4a32f45c35c61}
+
+\begin{DoxyParams}{Parameters}
+{\em x32} & Write what the function does here\\
+\hline
+{\em x32} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Definition at line 171 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+191         \{
+192             this->x00 = x00;
+193             this->x10 = x10;
+194             this->x20 = x20;
+195             this->x30 = x30;
+196             this->x01 = x01;
+197             this->x11 = x11;
+198             this->x21 = x21;
+199             this->x31 = x31;
+200             this->x02 = x02;
+201             this->x12 = x12;
+202             this->x22 = x22;
+203             this->x32 = x32;
+204         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a2dba13c45127354c9f75ef576f49269b}{\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\index{Matrix@{Matrix}!Matrix@{Matrix}}
+\subsubsection[{Matrix}]{\setlength{\rightskip}{0pt plus 5cm}Matrix\+::\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a2dba13c45127354c9f75ef576f49269b}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 211 of file matrix.\+h.
+
+
+
+Referenced by concat(), identity(), invert(), rotate(), scale(), and translate().
+
+
+\begin{DoxyCode}
+212         \{
+213             this->x00 = 1;
+214             this->x10 = 0;
+215             this->x20 = 0;
+216             this->x30 = 0;
+217             this->x01 = 0;
+218             this->x11 = 1;
+219             this->x21 = 0;
+220             this->x31 = 0;
+221             this->x02 = 0;
+222             this->x12 = 0;
+223             this->x22 = 1;
+224             this->x32 = 0;
+225         \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMatrix_ab7d05d1560328ca22ab4809299b6d128}{\index{Matrix@{Matrix}!apply@{apply}}
+\index{apply@{apply}!Matrix@{Matrix}}
+\subsubsection[{apply}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Matrix\+::apply (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_ab7d05d1560328ca22ab4809299b6d128}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 546 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+547         \{
+548             \textcolor{keywordflow}{return} \hyperlink{structVectorF}{VectorF}(v.x * this->x00 + v.y * this->x10 + v.z * this->x20
+549                     + this->x30, v.x * this->x01 + v.y * this->x11 + v.z * this->x21
+550                     + this->x31, v.x * this->x02 + v.y * this->x12 + v.z * this->x22
+551                     + this->x32);
+552         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a4c6d99e79768c1e3e01f1cf8ce143951}{\index{Matrix@{Matrix}!apply\+To\+Normal@{apply\+To\+Normal}}
+\index{apply\+To\+Normal@{apply\+To\+Normal}!Matrix@{Matrix}}
+\subsubsection[{apply\+To\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector\+F} Matrix\+::apply\+To\+Normal (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{v}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a4c6d99e79768c1e3e01f1cf8ce143951}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 561 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+562         \{
+563             \textcolor{keywordflow}{return} normalize(\hyperlink{structVectorF}{VectorF}(v.x * this->x00 + v.y * this->x10 + v.z * this->x20, v.x
+564                         * this->x01 + v.y * this->x11 + v.z * this->x21, v.x * this->x02
+565                         + v.y * this->x12 + v.z * this->x22));
+566         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_ab915ae9d317df03b6731438f9add20d8}{\index{Matrix@{Matrix}!concat@{concat}}
+\index{concat@{concat}!Matrix@{Matrix}}
+\subsubsection[{concat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::concat (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix}}]{rt}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_ab915ae9d317df03b6731438f9add20d8}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rt} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 522 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+
+Referenced by theta\+Phi().
+
+
+\begin{DoxyCode}
+523         \{
+524             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(this->x00 * rt.x00 + this->x01 * rt.x10 + this->x02
+525                     * rt.x20, this->x10 * rt.x00 + this->x11 * rt.x10 + this->x12
+526                     * rt.x20, this->x20 * rt.x00 + this->x21 * rt.x10 + this->x22
+527                     * rt.x20, this->x30 * rt.x00 + this->x31 * rt.x10 + this->x32
+528                     * rt.x20 + rt.x30, this->x00 * rt.x01 + this->x01 * rt.x11
+529                     + this->x02 * rt.x21, this->x10 * rt.x01 + this->x11 * rt.x11
+530                     + this->x12 * rt.x21, this->x20 * rt.x01 + this->x21 * rt.x11
+531                     + this->x22 * rt.x21, this->x30 * rt.x01 + this->x31 * rt.x11
+532                     + this->x32 * rt.x21 + rt.x31, this->x00 * rt.x02 + this->x01
+533                     * rt.x12 + this->x02 * rt.x22, this->x10 * rt.x02 + this->x11
+534                     * rt.x12 + this->x12 * rt.x22, this->x20 * rt.x02 + this->x21
+535                     * rt.x12 + this->x22 * rt.x22, this->x30 * rt.x02 + this->x31
+536                     * rt.x12 + this->x32 * rt.x22 + rt.x32);
+537         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_aadfa353962ca1bf43ed148d79cc71fc6}{\index{Matrix@{Matrix}!determinant@{determinant}}
+\index{determinant@{determinant}!Matrix@{Matrix}}
+\subsubsection[{determinant}]{\setlength{\rightskip}{0pt plus 5cm}float Matrix\+::determinant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_aadfa353962ca1bf43ed148d79cc71fc6}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+the determinant of this matrix 
+
+
+\end{DoxyReturn}
+
+
+Definition at line 454 of file matrix.\+h.
+
+
+
+Referenced by invert().
+
+
+\begin{DoxyCode}
+455         \{
+456             \textcolor{keywordflow}{return} this->x00 * (this->x11 * this->x22 - this->x12 * this->x21)
+457                 + this->x10 * (this->x02 * this->x21 - this->x01 * this->x22)
+458                 + this->x20 * (this->x01 * this->x12 - this->x02 * this->x11);
+459         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a44c5cb86dbd3b1cceb4fb97f8a7162cf}{\index{Matrix@{Matrix}!get@{get}}
+\index{get@{get}!Matrix@{Matrix}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}float Matrix\+::get (
+\begin{DoxyParamCaption}
+\item[{const int}]{x, }
+\item[{const int}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_a44c5cb86dbd3b1cceb4fb97f8a7162cf}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 29 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+30         \{
+31 
+32             \textcolor{keywordflow}{switch}(x)
+33             \{
+34                 \textcolor{keywordflow}{case} 0:
+35 
+36                     \textcolor{keywordflow}{switch}(y)
+37                     \{
+38                         \textcolor{keywordflow}{case} 0:
+39                             \textcolor{keywordflow}{return} this->x00;
+40                         \textcolor{keywordflow}{case} 1:
+41                             \textcolor{keywordflow}{return} this->x01;
+42                         \textcolor{keywordflow}{case} 2:
+43                             \textcolor{keywordflow}{return} this->x02;
+44                         \textcolor{keywordflow}{default}:
+45                             \textcolor{keywordflow}{return} x == y ? 1 : 0;
+46                     \}
+47                 \textcolor{keywordflow}{case} 1:
+48 
+49                     \textcolor{keywordflow}{switch}(y)
+50                     \{
+51                         \textcolor{keywordflow}{case} 0:
+52                             \textcolor{keywordflow}{return} this->x10;
+53                         \textcolor{keywordflow}{case} 1:
+54                             \textcolor{keywordflow}{return} this->x11;
+55                         \textcolor{keywordflow}{case} 2:
+56                             \textcolor{keywordflow}{return} this->x12;
+57                         \textcolor{keywordflow}{default}:
+58                             \textcolor{keywordflow}{return} x == y ? 1 : 0;
+59                     \}
+60                 \textcolor{keywordflow}{case} 2:
+61 
+62                     \textcolor{keywordflow}{switch}(y)
+63                     \{
+64                         \textcolor{keywordflow}{case} 0:
+65                             \textcolor{keywordflow}{return} this->x20;
+66                         \textcolor{keywordflow}{case} 1:
+67                             \textcolor{keywordflow}{return} this->x21;
+68                         \textcolor{keywordflow}{case} 2:
+69                             \textcolor{keywordflow}{return} this->x22;
+70                         \textcolor{keywordflow}{default}:
+71                             \textcolor{keywordflow}{return} x == y ? 1 : 0;
+72                     \}
+73                 \textcolor{keywordflow}{case} 3:
+74 
+75                     \textcolor{keywordflow}{switch}(y)
+76                     \{
+77                         \textcolor{keywordflow}{case} 0:
+78                             \textcolor{keywordflow}{return} this->x30;
+79                         \textcolor{keywordflow}{case} 1:
+80                             \textcolor{keywordflow}{return} this->x31;
+81                         \textcolor{keywordflow}{case} 2:
+82                             \textcolor{keywordflow}{return} this->x32;
+83                         \textcolor{keywordflow}{default}:
+84                             \textcolor{keywordflow}{return} x == y ? 1 : 0;
+85                     \}
+86                 \textcolor{keywordflow}{default}:
+87                     \textcolor{keywordflow}{return} x == y ? 1 : 0;
+88             \}
+89         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_ab84e2141cb9aeda01998b21b2c0d0319}{\index{Matrix@{Matrix}!identity@{identity}}
+\index{identity@{identity}!Matrix@{Matrix}}
+\subsubsection[{identity}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::identity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_ab84e2141cb9aeda01998b21b2c0d0319}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 232 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+\begin{DoxyCode}
+233         \{
+234             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0);
+235         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_acaac7c3eb8f32224c07dcd620ca44e26}{\index{Matrix@{Matrix}!invert@{invert}}
+\index{invert@{invert}!Matrix@{Matrix}}
+\subsubsection[{invert}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} Matrix\+::invert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_acaac7c3eb8f32224c07dcd620ca44e26}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+the inverse of this matrix. 
+
+
+\end{DoxyReturn}
+
+
+Definition at line 467 of file matrix.\+h.
+
+
+
+References determinant(), and Matrix().
+
+
+\begin{DoxyCode}
+468         \{
+469             \textcolor{keywordtype}{float} det = \hyperlink{classMatrix_aadfa353962ca1bf43ed148d79cc71fc6}{determinant}();
+470             \textcolor{keywordflow}{if}(det == 0.0f)
+471                 \textcolor{keywordflow}{throw} domain\_error(\textcolor{stringliteral}{"can't invert singular matrix"});
+472             \textcolor{keywordtype}{float} factor = 1.0f / det;
+473             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}((this->x11 * this->x22 - this->x12 * this->x21) * factor,
+474                     (this->x12 * this->x20 - this->x10 * this->x22) * factor,
+475                     (this->x10 * this->x21 - this->x11 * this->x20) * factor,
+476                     (-this->x10 * this->x21 * this->x32 + this->x11
+477                      * this->x20 * this->x32 + this->x10 * this->x22
+478                      * this->x31 - this->x12 * this->x20 * this->x31
+479                      - this->x11 * this->x22 * this->x30 + this->x12
+480                      * this->x21 * this->x30)
+481                     * factor,
+482                     (this->x02 * this->x21 - this->x01 * this->x22) * factor,
+483                     (this->x00 * this->x22 - this->x02 * this->x20) * factor,
+484                     (this->x01 * this->x20 - this->x00 * this->x21) * factor,
+485                     (this->x00 * this->x21 * this->x32 - this->x01 * this->x20
+486                      * this->x32 - this->x00 * this->x22 * this->x31
+487                      + this->x02 * this->x20 * this->x31 + this->x01
+488                      * this->x22 * this->x30 - this->x02 * this->x21
+489                      * this->x30)
+490                     * factor,
+491                     (this->x01 * this->x12 - this->x02 * this->x11) * factor,
+492                     (this->x02 * this->x10 - this->x00 * this->x12) * factor,
+493                     (this->x00 * this->x11 - this->x01 * this->x10) * factor,
+494                     (-this->x00 * this->x11 * this->x32 + this->x01
+495                      * this->x10 * this->x32 + this->x00 * this->x12
+496                      * this->x31 - this->x02 * this->x10 * this->x31
+497                      - this->x01 * this->x12 * this->x30 + this->x02
+498                      * this->x11 * this->x30)
+499                         * factor);
+500         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{\index{Matrix@{Matrix}!rotate@{rotate}}
+\index{rotate@{rotate}!Matrix@{Matrix}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::rotate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector\+F}}]{axis, }
+\item[{const double}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}
+
+
+Write what the function does here. 
+
+creates a rotation matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & axis to rotate around \\
+\hline
+{\em angle} & angle to rotate in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new rotation matrix 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{rotate\+X(double angle)} 
+
+\hyperlink{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{rotate\+Y(double angle)} 
+
+\hyperlink{classMatrix_a1b0199d040686543579e52695eb6da14}{rotate\+Z(double angle)} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & \\
+\hline
+{\em angle} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 255 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+
+Referenced by rotate\+X(), rotate\+Y(), and rotate\+Z().
+
+
+\begin{DoxyCode}
+256         \{
+257             \hyperlink{structVectorF}{VectorF} axisv = normalize(axis);
+258             \textcolor{keywordtype}{float} c, s, v;
+259             c = cos(angle);
+260             s = sin(angle);
+261             v = 1 - c; \textcolor{comment}{// Versine}
+262             \textcolor{keywordtype}{float} xx, xy, xz, yy, yz, zz;
+263             xx = axisv.x * axisv.x;
+264             xy = axisv.x * axisv.y;
+265             xz = axisv.x * axisv.z;
+266             yy = axisv.y * axisv.y;
+267             yz = axisv.y * axisv.z;
+268             zz = axisv.z * axisv.z;
+269             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(xx + (1 - xx) * c, xy * v - axisv.z * s, xz * v
+270                     + axisv.y * s, 0, xy * v + axisv.z * s, yy + (1 - yy) * c, yz
+271                     * v - axisv.x * s, 0, xz * v - axisv.y * s, yz * v + axisv.x
+272                     * s, zz + (1 - zz) * c, 0);
+273         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{\index{Matrix@{Matrix}!rotate\+X@{rotate\+X}}
+\index{rotate\+X@{rotate\+X}!Matrix@{Matrix}}
+\subsubsection[{rotate\+X}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::rotate\+X (
+\begin{DoxyParamCaption}
+\item[{double}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}
+
+
+Write what the function does here. 
+
+creates a rotation matrix~\newline
+ the same as {\ttfamily Matrix\+::rotate(\+Vector\+F(1, 0, 0), angle)}
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & angle to rotate around the x axis in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new rotation matrix 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate(\+Vector\+F axis, double angle)} 
+
+\hyperlink{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{rotate\+Y(double angle)} 
+
+\hyperlink{classMatrix_a1b0199d040686543579e52695eb6da14}{rotate\+Z(double angle)} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 291 of file matrix.\+h.
+
+
+
+References rotate().
+
+
+
+Referenced by theta\+Phi().
+
+
+\begin{DoxyCode}
+292         \{
+293             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate}(\hyperlink{structVectorF}{VectorF}(1, 0, 0), angle);
+294         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{\index{Matrix@{Matrix}!rotate\+Y@{rotate\+Y}}
+\index{rotate\+Y@{rotate\+Y}!Matrix@{Matrix}}
+\subsubsection[{rotate\+Y}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::rotate\+Y (
+\begin{DoxyParamCaption}
+\item[{double}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}
+
+
+Write what the function does here. 
+
+creates a rotation matrix~\newline
+ the same as {\ttfamily Matrix\+::rotate(\+Vector\+F(0, 1, 0), angle)}
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & angle to rotate around the y axis in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new rotation matrix 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate(\+Vector\+F axis, double angle)} 
+
+\hyperlink{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{rotate\+X(double angle)} 
+
+\hyperlink{classMatrix_a1b0199d040686543579e52695eb6da14}{rotate\+Z(double angle)} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 312 of file matrix.\+h.
+
+
+
+References rotate().
+
+
+
+Referenced by theta\+Phi().
+
+
+\begin{DoxyCode}
+313         \{
+314             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate}(\hyperlink{structVectorF}{VectorF}(0, 1, 0), angle);
+315         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a1b0199d040686543579e52695eb6da14}{\index{Matrix@{Matrix}!rotate\+Z@{rotate\+Z}}
+\index{rotate\+Z@{rotate\+Z}!Matrix@{Matrix}}
+\subsubsection[{rotate\+Z}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::rotate\+Z (
+\begin{DoxyParamCaption}
+\item[{double}]{angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a1b0199d040686543579e52695eb6da14}
+
+
+Write what the function does here. 
+
+creates a rotation matrix~\newline
+ the same as {\ttfamily Matrix\+::rotate(\+Vector\+F(0, 0, 1), angle)}
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & angle to rotate around the z axis in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new rotation matrix 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate(\+Vector\+F axis, double angle)} 
+
+\hyperlink{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{rotate\+X(double angle)} 
+
+\hyperlink{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{rotate\+Y(double angle)} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 333 of file matrix.\+h.
+
+
+
+References rotate().
+
+
+\begin{DoxyCode}
+334         \{
+335             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a5cd82d7b398de86eae8ba93c57630c8a}{rotate}(\hyperlink{structVectorF}{VectorF}(0, 0, 1), angle);
+336         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a1f36f7f62b8e99fea99880b6fc80a604}{\index{Matrix@{Matrix}!scale@{scale}}
+\index{scale@{scale}!Matrix@{Matrix}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::scale (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a1f36f7f62b8e99fea99880b6fc80a604}
+
+
+Write what the function does here. 
+
+creates a scaling matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the amount to scale the x coordinate by \\
+\hline
+{\em y} & the amount to scale the y coordinate by \\
+\hline
+{\em z} & the amount to scale the z coordinate by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new scaling matrix 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em z} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 407 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+
+Referenced by G\+U\+I\+Label\+::render().
+
+
+\begin{DoxyCode}
+408         \{
+409             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0);
+410         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a3420c2adfcea1a4ef5ae86d6875ef75e}{\index{Matrix@{Matrix}!scale@{scale}}
+\index{scale@{scale}!Matrix@{Matrix}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::scale (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a3420c2adfcea1a4ef5ae86d6875ef75e}
+
+
+Write what the function does here. 
+
+creates a scaling matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & {\ttfamily s.\+x} is the amount to scale the x coordinate by.~\newline
+ {\ttfamily s.\+y} is the amount to scale the y coordinate by.~\newline
+ {\ttfamily s.\+z} is the amount to scale the z coordinate by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new scaling matrix 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 426 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+\begin{DoxyCode}
+427         \{
+428             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(s.x, 0, 0, 0, 0, s.y, 0, 0, 0, 0, s.z, 0);
+429         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a1205b0fb62536a9b18a2c4ef6fc6a316}{\index{Matrix@{Matrix}!scale@{scale}}
+\index{scale@{scale}!Matrix@{Matrix}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::scale (
+\begin{DoxyParamCaption}
+\item[{float}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a1205b0fb62536a9b18a2c4ef6fc6a316}
+
+
+Write what the function does here. 
+
+creates a scaling matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the amount to scale by \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new scaling matrix 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 443 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+\begin{DoxyCode}
+444         \{
+445             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(s, 0, 0, 0, 0, s, 0, 0, 0, 0, s, 0);
+446         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_afed63f439c03991f045224143dfea6bf}{\index{Matrix@{Matrix}!set@{set}}
+\index{set@{set}!Matrix@{Matrix}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix\+::set (
+\begin{DoxyParamCaption}
+\item[{const int}]{x, }
+\item[{const int}]{y, }
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classMatrix_afed63f439c03991f045224143dfea6bf}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+99         \{
+100 
+101             \textcolor{keywordflow}{switch}(x)
+102             \{
+103                 \textcolor{keywordflow}{case} 0:
+104 
+105                     \textcolor{keywordflow}{switch}(y)
+106                     \{
+107                         \textcolor{keywordflow}{case} 0:
+108                             this->x00 = value;
+109                             \textcolor{keywordflow}{return};
+110                         \textcolor{keywordflow}{case} 1:
+111                             this->x01 = value;
+112                             \textcolor{keywordflow}{return};
+113                         \textcolor{keywordflow}{case} 2:
+114                             this->x02 = value;
+115                             \textcolor{keywordflow}{return};
+116                         \textcolor{keywordflow}{default}:
+117                             \textcolor{keywordflow}{return};
+118                     \}
+119                 \textcolor{keywordflow}{case} 1:
+120 
+121                     \textcolor{keywordflow}{switch}(y)
+122                     \{
+123                         \textcolor{keywordflow}{case} 0:
+124                             this->x10 = value;
+125                             \textcolor{keywordflow}{return};
+126                         \textcolor{keywordflow}{case} 1:
+127                             this->x11 = value;
+128                             \textcolor{keywordflow}{return};
+129                         \textcolor{keywordflow}{case} 2:
+130                             this->x12 = value;
+131                             \textcolor{keywordflow}{return};
+132                         \textcolor{keywordflow}{default}:
+133                             \textcolor{keywordflow}{return};
+134                     \}
+135                 \textcolor{keywordflow}{case} 2:
+136 
+137                     \textcolor{keywordflow}{switch}(y)
+138                     \{
+139                         \textcolor{keywordflow}{case} 0:
+140                             this->x20 = value;
+141                             \textcolor{keywordflow}{return};
+142                         \textcolor{keywordflow}{case} 1:
+143                             this->x21 = value;
+144                             \textcolor{keywordflow}{return};
+145                         \textcolor{keywordflow}{case} 2:
+146                             this->x22 = value;
+147                             \textcolor{keywordflow}{return};
+148                         \textcolor{keywordflow}{default}:
+149                             \textcolor{keywordflow}{return};
+150                     \}
+151                 \textcolor{keywordflow}{case} 3:
+152 
+153                     \textcolor{keywordflow}{switch}(y)
+154                     \{
+155                         \textcolor{keywordflow}{case} 0:
+156                             this->x30 = value;
+157                             \textcolor{keywordflow}{return};
+158                         \textcolor{keywordflow}{case} 1:
+159                             this->x31 = value;
+160                             \textcolor{keywordflow}{return};
+161                         \textcolor{keywordflow}{case} 2:
+162                             this->x32 = value;
+163                             \textcolor{keywordflow}{return};
+164                         \textcolor{keywordflow}{default}:
+165                             \textcolor{keywordflow}{return};
+166                     \}
+167                 \textcolor{keywordflow}{default}:
+168                     \textcolor{keywordflow}{return};
+169             \}
+170         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a8198676e0d8fdc3d447f184260af7057}{\index{Matrix@{Matrix}!theta\+Phi@{theta\+Phi}}
+\index{theta\+Phi@{theta\+Phi}!Matrix@{Matrix}}
+\subsubsection[{theta\+Phi}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::theta\+Phi (
+\begin{DoxyParamCaption}
+\item[{double}]{theta, }
+\item[{double}]{phi}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a8198676e0d8fdc3d447f184260af7057}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em theta} & \\
+\hline
+{\em phi} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 576 of file matrix.\+h.
+
+
+
+References concat(), rotate\+X(), and rotate\+Y().
+
+
+\begin{DoxyCode}
+577         \{
+578             \hyperlink{classMatrix}{Matrix} t = \hyperlink{classMatrix_abc63d4009ae96f03ad44545e9d1c3c81}{rotateX}(-phi);
+579             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a83ee280c509de4ff036d26e8ed11d52f}{rotateY}(theta).\hyperlink{classMatrix_ab915ae9d317df03b6731438f9add20d8}{concat}(t);
+580         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_adf246c47bce77c3c53b9e804ec475e35}{\index{Matrix@{Matrix}!translate@{translate}}
+\index{translate@{translate}!Matrix@{Matrix}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::translate (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector\+F}}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_adf246c47bce77c3c53b9e804ec475e35}
+
+
+Write what the function does here. 
+
+creates a translation matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & the position to translate (0, 0, 0) to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new translation matrix 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 350 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+
+Referenced by G\+U\+I\+Label\+::render().
+
+
+\begin{DoxyCode}
+351         \{
+352             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(1,
+353                     0,
+354                     0,
+355                     position.x,
+356                     0,
+357                     1,
+358                     0,
+359                     position.y,
+360                     0,
+361                     0,
+362                     1,
+363                     position.z);
+364         \}
+\end{DoxyCode}
+\hypertarget{classMatrix_a77d32ea082434b9b04374af58f3d7007}{\index{Matrix@{Matrix}!translate@{translate}}
+\index{translate@{translate}!Matrix@{Matrix}}
+\subsubsection[{translate}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Matrix} Matrix\+::translate (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classMatrix_a77d32ea082434b9b04374af58f3d7007}
+
+
+Write what the function does here. 
+
+creates a translation matrix
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the x coordinate to translate (0, 0, 0) to \\
+\hline
+{\em y} & the y coordinate to translate (0, 0, 0) to \\
+\hline
+{\em z} & the z coordinate to translate (0, 0, 0) to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new translation matrix 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em z} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 384 of file matrix.\+h.
+
+
+
+References Matrix().
+
+
+\begin{DoxyCode}
+385         \{
+386             \textcolor{keywordflow}{return} \hyperlink{classMatrix_a2dba13c45127354c9f75ef576f49269b}{Matrix}(1, 0, 0, x, 0, 1, 0, y, 0, 0, 1, z);
+387         \}
+\end{DoxyCode}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classMatrix_aff21cecb1b3c4d8e3f3d525edebd7d5c}{\index{Matrix@{Matrix}!inverse@{inverse}}
+\index{inverse@{inverse}!Matrix@{Matrix}}
+\subsubsection[{inverse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix} inverse (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{classMatrix_aff21cecb1b3c4d8e3f3d525edebd7d5c}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+the inverse of this matrix. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 510 of file matrix.\+h.
+
+
+\begin{DoxyCode}
+511         \{
+512             \textcolor{keywordflow}{return} m.\hyperlink{classMatrix_acaac7c3eb8f32224c07dcd620ca44e26}{invert}();
+513         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+matrix.\+h\end{DoxyCompactItemize}

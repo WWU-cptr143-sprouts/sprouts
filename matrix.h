@@ -9,7 +9,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Matrix
 {
@@ -24,7 +24,7 @@ class Matrix
          * @param x
          * @param y
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float get(const int x, const int y) const
         {
@@ -185,7 +185,7 @@ class Matrix
                  *
                  * @param x32
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 float x32)
         {
@@ -206,7 +206,7 @@ class Matrix
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Matrix()
         {
@@ -227,7 +227,7 @@ class Matrix
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix identity()
         {
@@ -239,7 +239,7 @@ class Matrix
          *            axis to rotate around
          * @param angle
          *            angle to rotate in radians
-         * @return the new rotation matrix
+         * @retval (variable) (description of variable) the new rotation matrix
          * @see #rotateX(double angle)
          * @see #rotateY(double angle)
          * @see #rotateZ(double angle) */
@@ -250,7 +250,7 @@ class Matrix
          * @param axis
          * @param angle
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix rotate(const VectorF axis, const double angle)
         {
@@ -276,7 +276,7 @@ class Matrix
          *
          * @param angle
          *            angle to rotate around the x axis in radians
-         * @return the new rotation matrix
+         * @retval (variable) (description of variable) the new rotation matrix
          * @see #rotate(VectorF axis, double angle)
          * @see #rotateY(double angle)
          * @see #rotateZ(double angle) */
@@ -286,7 +286,7 @@ class Matrix
          *
          * @param angle
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix rotateX(double angle)
         {
@@ -297,7 +297,7 @@ class Matrix
          *
          * @param angle
          *            angle to rotate around the y axis in radians
-         * @return the new rotation matrix
+         * @retval (variable) (description of variable) the new rotation matrix
          * @see #rotate(VectorF axis, double angle)
          * @see #rotateX(double angle)
          * @see #rotateZ(double angle) */
@@ -307,7 +307,7 @@ class Matrix
          *
          * @param angle
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix rotateY(double angle)
         {
@@ -318,7 +318,7 @@ class Matrix
          *
          * @param angle
          *            angle to rotate around the z axis in radians
-         * @return the new rotation matrix
+         * @retval (variable) (description of variable) the new rotation matrix
          * @see #rotate(VectorF axis, double angle)
          * @see #rotateX(double angle)
          * @see #rotateY(double angle) */
@@ -328,7 +328,7 @@ class Matrix
          *
          * @param angle
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix rotateZ(double angle)
         {
@@ -338,14 +338,14 @@ class Matrix
          *
          * @param position
          *            the position to translate (0, 0, 0) to
-         * @return the new translation matrix */
+         * @retval (variable) (description of variable) the new translation matrix */
 
         /**
          * @brief Write what the function does here
          *
          * @param position
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix translate(VectorF position)
         {
@@ -370,7 +370,7 @@ class Matrix
          *            the y coordinate to translate (0, 0, 0) to
          * @param z
          *            the z coordinate to translate (0, 0, 0) to
-         * @return the new translation matrix */
+         * @retval (variable) (description of variable) the new translation matrix */
 
         /**
          * @brief Write what the function does here
@@ -379,7 +379,7 @@ class Matrix
          * @param y
          * @param z
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix translate(float x, float y, float z)
         {
@@ -393,7 +393,7 @@ class Matrix
          *            the amount to scale the y coordinate by
          * @param z
          *            the amount to scale the z coordinate by
-         * @return the new scaling matrix */
+         * @retval (variable) (description of variable) the new scaling matrix */
 
         /**
          * @brief Write what the function does here
@@ -402,7 +402,7 @@ class Matrix
          * @param y
          * @param z
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix scale(float x, float y, float z)
         {
@@ -414,14 +414,14 @@ class Matrix
          *            <code>s.x</code> is the amount to scale the x coordinate by.<br/>
          *            <code>s.y</code> is the amount to scale the y coordinate by.<br/>
          *            <code>s.z</code> is the amount to scale the z coordinate by.
-         * @return the new scaling matrix */
+         * @retval (variable) (description of variable) the new scaling matrix */
 
         /**
          * @brief Write what the function does here
          *
          * @param s
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix scale(VectorF s)
         {
@@ -431,25 +431,25 @@ class Matrix
          *
          * @param s
          *            the amount to scale by
-         * @return the new scaling matrix */
+         * @retval (variable) (description of variable) the new scaling matrix */
 
         /**
          * @brief Write what the function does here
          *
          * @param s
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix scale(float s)
         {
             return Matrix(s, 0, 0, 0, 0, s, 0, 0, 0, 0, s, 0);
         }
-        /** @return the determinant of this matrix */
+        /** @retval (variable) (description of variable) the determinant of this matrix */
 
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float determinant() const
         {
@@ -457,12 +457,12 @@ class Matrix
                 + this->x10 * (this->x02 * this->x21 - this->x01 * this->x22)
                 + this->x20 * (this->x01 * this->x12 - this->x02 * this->x11);
         }
-        /** @return the inverse of this matrix. */
+        /** @retval (variable) (description of variable) the inverse of this matrix. */
 
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Matrix invert() const
         {
@@ -498,14 +498,14 @@ class Matrix
                      * this->x11 * this->x30)
                         * factor);
         }
-        /** @return the inverse of this matrix. */
+        /** @retval (variable) (description of variable) the inverse of this matrix. */
 
         /**
          * @brief Write what the function does here
          *
          * @param m
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend Matrix inverse(const Matrix & m)
         {
@@ -517,7 +517,7 @@ class Matrix
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Matrix concat(Matrix rt) const
         {
@@ -541,7 +541,7 @@ class Matrix
          *
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         VectorF apply(VectorF v) const
         {
@@ -556,7 +556,7 @@ class Matrix
          *
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         VectorF applyToNormal(VectorF v) const
         {
@@ -571,7 +571,7 @@ class Matrix
          * @param theta
          * @param phi
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static Matrix thetaPhi(double theta, double phi)
         {
@@ -586,7 +586,7 @@ class Matrix
  * @param m
  * @param v
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline VectorF transform(const Matrix & m, VectorF v)
 {
@@ -599,7 +599,7 @@ inline VectorF transform(const Matrix & m, VectorF v)
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline bool operator ==(const Matrix & a, const Matrix & b)
 {
@@ -622,7 +622,7 @@ inline bool operator ==(const Matrix & a, const Matrix & b)
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline bool operator !=(const Matrix & a, const Matrix & b)
 {

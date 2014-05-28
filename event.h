@@ -15,7 +15,7 @@ class QuitEvent;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct EventHandler : public enable_shared_from_this<EventHandler>
 {
@@ -32,7 +32,7 @@ struct EventHandler : public enable_shared_from_this<EventHandler>
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class Event
 {
@@ -41,7 +41,7 @@ class Event
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         enum Type
         {
@@ -67,7 +67,7 @@ class Event
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class MouseEvent : public Event
 {
@@ -84,7 +84,7 @@ class MouseEvent : public Event
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class KeyEvent : public Event
 {
@@ -103,7 +103,7 @@ class KeyEvent : public Event
          * @param key
          * @param mods
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         KeyEvent(Type type, KeyboardKey key, KeyboardModifiers mods): Event(type), key(key), mods(mods)
     {
@@ -113,7 +113,7 @@ class KeyEvent : public Event
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class KeyDownEvent final : public KeyEvent
 {
@@ -131,7 +131,7 @@ class KeyDownEvent final : public KeyEvent
          * @param mods
          * @param isRepetition
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         KeyDownEvent(KeyboardKey key, KeyboardModifiers mods, bool isRepetition = false) : KeyEvent(Type_KeyDown, key, mods), isRepetition(isRepetition)
     {
@@ -142,7 +142,7 @@ class KeyDownEvent final : public KeyEvent
          *
          * @param eventHandler
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
         {
@@ -153,7 +153,7 @@ class KeyDownEvent final : public KeyEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class KeyUpEvent : public KeyEvent
 {
@@ -168,7 +168,7 @@ class KeyUpEvent : public KeyEvent
          *
          * @param eventHandler
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
         {
@@ -179,7 +179,7 @@ class KeyUpEvent : public KeyEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct KeyPressEvent : public Event
 {
@@ -194,7 +194,7 @@ struct KeyPressEvent : public Event
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -205,7 +205,7 @@ struct KeyPressEvent : public Event
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct MouseButtonEvent : public MouseEvent
 {
@@ -220,7 +220,7 @@ struct MouseButtonEvent : public MouseEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct MouseUpEvent : public MouseButtonEvent
 {
@@ -240,7 +240,7 @@ struct MouseUpEvent : public MouseButtonEvent
      * @param deltaY
      * @param button
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     MouseUpEvent(float x, float y, float deltaX, float deltaY, MouseButton button) : MouseButtonEvent(Type_MouseUp, x, y, deltaX, deltaY, button)
     {
@@ -251,7 +251,7 @@ struct MouseUpEvent : public MouseButtonEvent
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -262,7 +262,7 @@ struct MouseUpEvent : public MouseButtonEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct MouseDownEvent : public MouseButtonEvent
 {
@@ -276,7 +276,7 @@ struct MouseDownEvent : public MouseButtonEvent
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -287,7 +287,7 @@ struct MouseDownEvent : public MouseButtonEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct MouseMoveEvent : public MouseEvent
 {
@@ -301,7 +301,7 @@ struct MouseMoveEvent : public MouseEvent
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -312,7 +312,7 @@ struct MouseMoveEvent : public MouseEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct MouseScrollEvent : public MouseEvent
 {
@@ -327,7 +327,7 @@ struct MouseScrollEvent : public MouseEvent
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -338,7 +338,7 @@ struct MouseScrollEvent : public MouseEvent
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct QuitEvent : public Event
 {
@@ -352,7 +352,7 @@ struct QuitEvent : public Event
      *
      * @param eventHandler
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) override
     {
@@ -363,7 +363,7 @@ struct QuitEvent : public Event
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class CombinedEventHandler final : public EventHandler
 {
@@ -380,7 +380,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseUp(MouseUpEvent &event) override
         {
@@ -397,7 +397,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseDown(MouseDownEvent &event) override
         {
@@ -414,7 +414,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMove(MouseMoveEvent &event) override
         {
@@ -431,7 +431,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseScroll(MouseScrollEvent &event)override
         {
@@ -448,7 +448,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyUp(KeyUpEvent &event)override
         {
@@ -465,7 +465,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyDown(KeyDownEvent &event)override
         {
@@ -482,7 +482,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyPress(KeyPressEvent &event)override
         {
@@ -499,7 +499,7 @@ class CombinedEventHandler final : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleQuit(QuitEvent &event)override
         {

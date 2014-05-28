@@ -1,0 +1,81 @@
+\hypertarget{structdefault__comparer}{\section{default\+\_\+comparer$<$ T $>$ Struct Template Reference}
+\label{structdefault__comparer}\index{default\+\_\+comparer$<$ T $>$@{default\+\_\+comparer$<$ T $>$}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$util.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename U $>$ }\\int \hyperlink{structdefault__comparer_a744d24d37aa02d789d6bd18ad90f2cac}{operator()} (const T \&l, const U \&r) const 
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$struct default\+\_\+comparer$<$ T $>$}
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 1266 of file util.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structdefault__comparer_a744d24d37aa02d789d6bd18ad90f2cac}{\index{default\+\_\+comparer@{default\+\_\+comparer}!operator()@{operator()}}
+\index{operator()@{operator()}!default\+\_\+comparer@{default\+\_\+comparer}}
+\subsubsection[{operator()}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ template$<$typename U $>$ int {\bf default\+\_\+comparer}$<$ T $>$\+::operator() (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{l, }
+\item[{const U \&}]{r}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{structdefault__comparer_a744d24d37aa02d789d6bd18ad90f2cac}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 1278 of file util.\+h.
+
+
+\begin{DoxyCode}
+1279         \{
+1280 
+1281             \textcolor{keywordflow}{if}(l < r)
+1282             \{
+1283                 \textcolor{keywordflow}{return} -1;
+1284             \}
+1285 
+1286             \textcolor{keywordflow}{if}(r < l)
+1287             \{
+1288                 \textcolor{keywordflow}{return} 1;
+1289             \}
+1290             \textcolor{keywordflow}{return} 0;
+1291         \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+util.\+h\end{DoxyCompactItemize}

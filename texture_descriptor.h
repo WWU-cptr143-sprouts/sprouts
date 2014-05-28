@@ -6,7 +6,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct TextureDescriptor
 {
@@ -24,7 +24,7 @@ struct TextureDescriptor
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     operator bool() const
     {
@@ -34,7 +34,7 @@ struct TextureDescriptor
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     bool operator !() const
     {
@@ -49,7 +49,7 @@ struct TextureDescriptor
      * @param minV
      * @param maxV
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     TextureDescriptor subTexture(const float minU, const float maxU, const float minV, const float maxV) const
     {

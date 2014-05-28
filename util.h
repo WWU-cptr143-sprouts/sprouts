@@ -25,7 +25,7 @@ template <typename T>
  * @param minV
  * @param maxV
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline const T limit(const T v, const T minV, const T maxV) // returns the value v limited to the range minV <= v <= maxV
 {
@@ -47,7 +47,7 @@ inline const T limit(const T v, const T minV, const T maxV) // returns the value
  *
  * @param v
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline int ifloor(float v) // returns the floor of v as an int
 {
@@ -59,7 +59,7 @@ inline int ifloor(float v) // returns the floor of v as an int
  *
  * @param v
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline int iceil(float v) // returns the ceil of v as an int
 {
@@ -73,7 +73,7 @@ template <typename T>
  * @param v
  * @param negative
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline int sgn(T v) // the sign function : returns -1 if v is negative, 1 if v is positive and 0 if v == 0
 {
@@ -99,7 +99,7 @@ template <typename T>
  * @param b
  * @param 0
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline const T interpolate(const float t, const T a, const T b) // linear interpolation : returns a if t == 0, b if t == 1 and interpolates in between
 {
@@ -109,7 +109,7 @@ inline const T interpolate(const float t, const T a, const T b) // linear interp
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class initializer // class for running a function before main
 {
@@ -127,7 +127,7 @@ class initializer // class for running a function before main
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ~initializer()
         {
@@ -142,7 +142,7 @@ class initializer // class for running a function before main
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class finalizer // class for running a function after main or when exit is called
 {
@@ -160,7 +160,7 @@ class finalizer // class for running a function after main or when exit is calle
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ~finalizer()
         {
@@ -173,7 +173,7 @@ class finalizer // class for running a function after main or when exit is calle
  *
  * @param wstr
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline string wstringToString(wstring wstr)
 {
@@ -200,7 +200,7 @@ inline string wstringToString(wstring wstr)
  *
  * @param str
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline wstring stringToWString(string str)
 {
@@ -226,7 +226,7 @@ template <typename T, size_t arraySize>
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class circularDeque final // a deque class like #include <deque> but implemented as a circular queue
 {
@@ -242,7 +242,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         static constexpr size_type capacity()
         {
@@ -259,7 +259,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param random_access_iterator_tag
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         class iterator final : public std::iterator<random_access_iterator_tag, value_type>
     {
@@ -283,7 +283,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator &operator +=(difference_type n)
         {
@@ -307,7 +307,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator &operator -=(difference_type n)
         {
@@ -320,7 +320,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param n
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend iterator operator +(difference_type n, iterator i)
         {
@@ -333,7 +333,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param i
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend iterator operator +(iterator i, difference_type n)
         {
@@ -346,7 +346,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param i
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend iterator operator -(iterator i, difference_type n)
         {
@@ -386,7 +386,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &operator [](difference_type n) const
         {
@@ -396,7 +396,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &operator *() const
         {
@@ -406,7 +406,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T *operator ->() const
         {
@@ -416,7 +416,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const iterator &operator --()
         {
@@ -438,7 +438,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator operator --(int)
         {
@@ -459,7 +459,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const iterator &operator ++()
         {
@@ -481,7 +481,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator operator ++(int)
         {
@@ -505,7 +505,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const iterator &l, const iterator &r)
         {
@@ -518,7 +518,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const iterator &l, const iterator &r)
         {
@@ -531,7 +531,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >(const iterator &l, const iterator &r)
         {
@@ -544,7 +544,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >=(const iterator &l, const iterator &r)
         {
@@ -557,7 +557,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <(const iterator &l, const iterator &r)
         {
@@ -570,7 +570,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <=(const iterator &l, const iterator &r)
         {
@@ -584,7 +584,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param random_access_iterator_tag
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         class const_iterator final : public std::iterator<random_access_iterator_tag, const value_type>
     {
@@ -611,7 +611,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator &operator +=(difference_type n)
         {
@@ -635,7 +635,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator &operator -=(difference_type n)
         {
@@ -648,7 +648,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param n
          * @param i
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend const_iterator operator +(difference_type n, const_iterator i)
         {
@@ -661,7 +661,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param i
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend const_iterator operator +(const_iterator i, difference_type n)
         {
@@ -674,7 +674,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param i
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend const_iterator operator -(const_iterator i, difference_type n)
         {
@@ -714,7 +714,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param n
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &operator [](difference_type n) const
         {
@@ -724,7 +724,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &operator *() const
         {
@@ -734,7 +734,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T *operator ->() const
         {
@@ -744,7 +744,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator --()
         {
@@ -766,7 +766,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator --(int)
         {
@@ -787,7 +787,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator ++()
         {
@@ -809,7 +809,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator ++(int)
         {
@@ -833,7 +833,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const const_iterator &l, const const_iterator &r)
         {
@@ -846,7 +846,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const const_iterator &l, const const_iterator &r)
         {
@@ -859,7 +859,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >(const const_iterator &l, const const_iterator &r)
         {
@@ -872,7 +872,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >=(const const_iterator &l, const const_iterator &r)
         {
@@ -885,7 +885,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <(const const_iterator &l, const const_iterator &r)
         {
@@ -898,7 +898,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <=(const const_iterator &l, const const_iterator &r)
         {
@@ -915,7 +915,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator begin()
         {
@@ -925,7 +925,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator begin() const
         {
@@ -935,7 +935,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator cbegin() const
         {
@@ -945,7 +945,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator end()
         {
@@ -955,7 +955,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator end() const
         {
@@ -965,7 +965,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator cend() const
         {
@@ -975,7 +975,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         reverse_iterator rbegin()
         {
@@ -985,7 +985,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator rbegin() const
         {
@@ -995,7 +995,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator crbegin() const
         {
@@ -1005,7 +1005,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         reverse_iterator rend()
         {
@@ -1015,7 +1015,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator rend() const
         {
@@ -1025,7 +1025,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator crend() const
         {
@@ -1035,7 +1035,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &front()
         {
@@ -1045,7 +1045,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &front() const
         {
@@ -1055,7 +1055,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &back()
         {
@@ -1065,7 +1065,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &back() const
         {
@@ -1075,7 +1075,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         size_type size() const
         {
@@ -1087,7 +1087,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param pos
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &at(size_type pos)
         {
@@ -1104,7 +1104,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param pos
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &at(size_type pos) const
         {
@@ -1121,7 +1121,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param pos
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &operator [](size_type pos)
         {
@@ -1133,7 +1133,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
          *
          * @param pos
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &operator [](size_type pos) const
         {
@@ -1143,7 +1143,7 @@ class circularDeque final // a deque class like #include <deque> but implemented
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         bool empty() const
         {
@@ -1261,7 +1261,7 @@ template <typename T>
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct default_comparer final // the default comparer class for balanced_tree
 {
@@ -1273,7 +1273,7 @@ struct default_comparer final // the default comparer class for balanced_tree
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int operator()(const T &l, const U &r) const
         {
@@ -1295,7 +1295,7 @@ template <typename T, typename Compare = default_comparer<T>>
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class balanced_tree final // a balanced tree class that also has all the nodes in a linked list
 {
@@ -1304,7 +1304,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct Node // the tree node class
         {
@@ -1495,7 +1495,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param node
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             static Node *removeInorderPredecessorH(Node *&node) // remove inorder predecessor's helper
             {
@@ -1526,7 +1526,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param node
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             static Node *removeInorderPredecessor(Node *node)
             {
@@ -1541,7 +1541,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  * @param tree
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 Node *removeNode(Node *&tree, ComparedType searchFor) // remove a node from the tree and linked list
                 {
@@ -1655,7 +1655,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  * @param value
                  * @param tree
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 Node *find(ComparedType value, Node *tree) // find a node with value value
                 {
@@ -1689,7 +1689,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  * @param value
                  * @param tree
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 const Node *find(ComparedType value, const Node *tree) // find a node with value value
                 {
@@ -1741,7 +1741,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param tree
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             static Node *cloneTree(const Node *tree) // return a duplicated subtree from tree
             {
@@ -1803,7 +1803,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param bidirectional_iterator_tag
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             class const_iterator final : public std::iterator<bidirectional_iterator_tag, T>
     {
@@ -1824,7 +1824,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator ++()
         {
@@ -1837,7 +1837,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator ++(int)
         {
@@ -1849,7 +1849,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_iterator &operator --()
         {
@@ -1862,7 +1862,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_iterator operator --(int)
         {
@@ -1877,7 +1877,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const_iterator a, const_iterator b)
         {
@@ -1890,7 +1890,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const_iterator a, const_iterator b)
         {
@@ -1900,7 +1900,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &operator *() const
         {
@@ -1910,7 +1910,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T *operator ->() const
         {
@@ -1923,7 +1923,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param bidirectional_iterator_tag
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             class iterator final : public std::iterator<bidirectional_iterator_tag, T>
     {
@@ -1943,7 +1943,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         operator const_iterator() const
         {
@@ -1953,7 +1953,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const iterator &operator ++()
         {
@@ -1966,7 +1966,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator operator ++(int)
         {
@@ -1978,7 +1978,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const iterator &operator --()
         {
@@ -1991,7 +1991,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         iterator operator --(int)
         {
@@ -2006,7 +2006,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(iterator a, iterator b)
         {
@@ -2019,7 +2019,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(iterator a, iterator b)
         {
@@ -2032,7 +2032,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const_iterator a, iterator b)
         {
@@ -2045,7 +2045,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const_iterator a, iterator b)
         {
@@ -2058,7 +2058,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(iterator a, const_iterator b)
         {
@@ -2071,7 +2071,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(iterator a, const_iterator b)
         {
@@ -2081,7 +2081,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &operator *() const
         {
@@ -2091,7 +2091,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T *operator ->() const
         {
@@ -2106,7 +2106,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param bidirectional_iterator_tag
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             class const_reverse_iterator final : public std::iterator<bidirectional_iterator_tag, T>
     {
@@ -2127,7 +2127,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_reverse_iterator &operator ++()
         {
@@ -2140,7 +2140,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator operator ++(int)
         {
@@ -2152,7 +2152,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const const_reverse_iterator &operator --()
         {
@@ -2165,7 +2165,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const_reverse_iterator operator --(int)
         {
@@ -2180,7 +2180,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const_reverse_iterator a, const_reverse_iterator b)
         {
@@ -2193,7 +2193,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const_reverse_iterator a, const_reverse_iterator b)
         {
@@ -2203,7 +2203,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T &operator *() const
         {
@@ -2213,7 +2213,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const T *operator ->() const
         {
@@ -2226,7 +2226,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param bidirectional_iterator_tag
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             class reverse_iterator final : public std::iterator<bidirectional_iterator_tag, T>
     {
@@ -2246,7 +2246,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         operator const_reverse_iterator() const
         {
@@ -2256,7 +2256,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const reverse_iterator &operator ++()
         {
@@ -2269,7 +2269,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         reverse_iterator operator ++(int)
         {
@@ -2281,7 +2281,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const reverse_iterator &operator --()
         {
@@ -2294,7 +2294,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         reverse_iterator operator --(int)
         {
@@ -2309,7 +2309,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(reverse_iterator a, reverse_iterator b)
         {
@@ -2322,7 +2322,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(reverse_iterator a, reverse_iterator b)
         {
@@ -2335,7 +2335,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const_reverse_iterator a, reverse_iterator b)
         {
@@ -2348,7 +2348,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const_reverse_iterator a, reverse_iterator b)
         {
@@ -2361,7 +2361,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(reverse_iterator a, const_reverse_iterator b)
         {
@@ -2374,7 +2374,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
          * @param a
          * @param b
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(reverse_iterator a, const_reverse_iterator b)
         {
@@ -2384,7 +2384,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T &operator *() const
         {
@@ -2394,7 +2394,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         T *operator ->() const
         {
@@ -2429,7 +2429,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             ~balanced_tree()
             {
@@ -2441,7 +2441,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const balanced_tree &operator =(const balanced_tree &rt)
             {
@@ -2462,7 +2462,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const balanced_tree &operator =(balanced_tree &&rt)
             {
@@ -2516,7 +2516,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param value
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 const_iterator find(ComparedType value) const // find the value value
                 {
@@ -2529,7 +2529,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param value
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 iterator get(ComparedType value) // find the value value
                 {
@@ -2562,7 +2562,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 bool erase(ComparedType searchFor) // erase the value == searchFor and return if any values were erased
                 {
@@ -2581,7 +2581,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param iter
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             iterator erase(iterator iter) // erase the value pointed to by iter and return the next location
             {
@@ -2596,7 +2596,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
              *
              * @param iter
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_iterator erase(const_iterator iter) // erase the value pointed to by iter and return the next location
             {
@@ -2609,7 +2609,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             iterator begin()
             {
@@ -2619,7 +2619,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_iterator begin() const
             {
@@ -2629,7 +2629,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_iterator cbegin() const
             {
@@ -2639,7 +2639,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             reverse_iterator rbegin()
             {
@@ -2649,7 +2649,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_reverse_iterator rbegin() const
             {
@@ -2659,7 +2659,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_reverse_iterator crbegin() const
             {
@@ -2669,7 +2669,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             iterator end()
             {
@@ -2679,7 +2679,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_iterator end() const
             {
@@ -2689,7 +2689,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_iterator cend() const
             {
@@ -2699,7 +2699,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             reverse_iterator rend()
             {
@@ -2709,7 +2709,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_reverse_iterator rend() const
             {
@@ -2719,7 +2719,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             const_reverse_iterator crend() const
             {
@@ -2732,7 +2732,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 const_iterator rangeCBegin(CompareType searchFor) const // return the iterator to the first position where value >= searchFor
                 {
@@ -2772,7 +2772,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 const_iterator rangeCEnd(CompareType searchFor) const // return the iterator to the first position where value < searchFor
                 {
@@ -2812,7 +2812,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 iterator rangeBegin(CompareType searchFor) // return the iterator to the first position where value >= searchFor
                 {
@@ -2852,7 +2852,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
                  *
                  * @param searchFor
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 iterator rangeEnd(CompareType searchFor) // return the iterator to the first position where value < searchFor
                 {
@@ -2892,7 +2892,7 @@ class balanced_tree final // a balanced tree class that also has all the nodes i
  *
  * @param 1
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline int solveLinear(float a/*constant*/, float b/*linear*/, float retval[1]) // find all the solutions x to a + b * x == 0 and return the number of solutions
 {
@@ -2911,7 +2911,7 @@ inline int solveLinear(float a/*constant*/, float b/*linear*/, float retval[1]) 
  *
  * @param 2
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline int solveQuadratic(float a/*constant*/, float b/*linear*/, float c/*quadratic*/, float retval[2]) // find all the solutions x to a + b * x + c * x * x == 0 and return the number of solutions
 {
@@ -2945,7 +2945,7 @@ inline int solveCubic(float a/*constant*/, float b/*linear*/, float c/*quadratic
          *
          * @param 3
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         float retval[3]) // find all the solutions x to a + b * x + c * x * x + d * x * x * x == 0 and return the number of solutions
 {

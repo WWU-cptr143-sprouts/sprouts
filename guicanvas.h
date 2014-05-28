@@ -9,7 +9,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class GUICanvas : public GUIElement
 {
@@ -29,7 +29,7 @@ class GUICanvas : public GUIElement
      * @param minY
      * @param maxY
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     GUICanvas(float minX, float maxX, float minY, float maxY)
         : GUIElement(minX, maxX, minY, maxY), generateMeshFn([]() -> Mesh {throw logic_error("generateMeshFn called instead of overridden generateMesh");})

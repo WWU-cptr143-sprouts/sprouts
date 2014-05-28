@@ -8,7 +8,7 @@ struct Region;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct Edge
 {

@@ -1,0 +1,80 @@
+\hypertarget{classKeyUpEvent}{\section{Key\+Up\+Event Class Reference}
+\label{classKeyUpEvent}\index{Key\+Up\+Event@{Key\+Up\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Key\+Up\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classKeyUpEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classKeyUpEvent_a26f3177d7dc9887e87fbea4f5dded283}{{\bfseries Key\+Up\+Event} (Keyboard\+Key key, Keyboard\+Modifiers mods)}\label{classKeyUpEvent_a26f3177d7dc9887e87fbea4f5dded283}
+
+\item 
+virtual bool \hyperlink{classKeyUpEvent_a24d061fc9e6559908c91972376d4a3d4}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 158 of file event.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classKeyUpEvent_a24d061fc9e6559908c91972376d4a3d4}{\index{Key\+Up\+Event@{Key\+Up\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Key\+Up\+Event@{Key\+Up\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Key\+Up\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classKeyUpEvent_a24d061fc9e6559908c91972376d4a3d4}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 173 of file event.\+h.
+
+
+\begin{DoxyCode}
+174         \{
+175             \textcolor{keywordflow}{return} eventHandler->handleKeyUp(*\textcolor{keyword}{this});
+176         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

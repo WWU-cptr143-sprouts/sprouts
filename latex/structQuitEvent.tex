@@ -1,0 +1,77 @@
+\hypertarget{structQuitEvent}{\section{Quit\+Event Struct Reference}
+\label{structQuitEvent}\index{Quit\+Event@{Quit\+Event}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+Inheritance diagram for Quit\+Event\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structQuitEvent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}{dispatch} (shared\+\_\+ptr$<$ \hyperlink{structEventHandler}{Event\+Handler} $>$ event\+Handler) override
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 343 of file event.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}{\index{Quit\+Event@{Quit\+Event}!dispatch@{dispatch}}
+\index{dispatch@{dispatch}!Quit\+Event@{Quit\+Event}}
+\subsubsection[{dispatch}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Quit\+Event\+::dispatch (
+\begin{DoxyParamCaption}
+\item[{shared\+\_\+ptr$<$ {\bf Event\+Handler} $>$}]{event\+Handler}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}}\label{structQuitEvent_ac008fb404abe76e5a79741b61e59c37c}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Handler} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classEvent}{Event}.
+
+
+
+Definition at line 357 of file event.\+h.
+
+
+\begin{DoxyCode}
+358     \{
+359         \textcolor{keywordflow}{return} eventHandler->handleQuit(*\textcolor{keyword}{this});
+360     \}
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+event.\+h\end{DoxyCompactItemize}

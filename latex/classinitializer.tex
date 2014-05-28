@@ -1,0 +1,83 @@
+\hypertarget{classinitializer}{\section{initializer Class Reference}
+\label{classinitializer}\index{initializer@{initializer}}
+}
+
+
+Write what the function does here.  
+
+
+
+
+{\ttfamily \#include $<$util.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinitializer_ad7eff8ec9662dda6c90a5eebbb5bb774}{{\bfseries initializer} (void($\ast$init\+Fn)(), void($\ast$finalize\+Fn)()=nullptr)}\label{classinitializer_ad7eff8ec9662dda6c90a5eebbb5bb774}
+
+\item 
+\hyperlink{classinitializer_a9ac296c0a8420f783af46a77792f4253}{$\sim$initializer} ()
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinitializer_a040920f2a1db4d0545d84c81ec6319d9}{{\bfseries initializer} (const \hyperlink{classinitializer}{initializer} \&rt)=delete}\label{classinitializer_a040920f2a1db4d0545d84c81ec6319d9}
+
+\item 
+\hypertarget{classinitializer_a622a590c3eeac8414877886cddb3c133}{void {\bfseries operator=} (const \hyperlink{classinitializer}{initializer} \&rt)=delete}\label{classinitializer_a622a590c3eeac8414877886cddb3c133}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classinitializer_abb0e43532e705e711cb64318defa0a4f}{void($\ast$ {\bfseries finalize\+Fn} )()}\label{classinitializer_abb0e43532e705e711cb64318defa0a4f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 114 of file util.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classinitializer_a9ac296c0a8420f783af46a77792f4253}{\index{initializer@{initializer}!````~initializer@{$\sim$initializer}}
+\index{````~initializer@{$\sim$initializer}!initializer@{initializer}}
+\subsubsection[{$\sim$initializer}]{\setlength{\rightskip}{0pt plus 5cm}initializer\+::$\sim$initializer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classinitializer_a9ac296c0a8420f783af46a77792f4253}
+
+
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 132 of file util.\+h.
+
+
+\begin{DoxyCode}
+133         \{
+134 
+135             \textcolor{keywordflow}{if}(finalizeFn)
+136             \{
+137                 finalizeFn();
+138             \}
+139         \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+util.\+h\end{DoxyCompactItemize}

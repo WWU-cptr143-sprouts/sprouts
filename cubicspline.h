@@ -9,7 +9,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct CubicSpline final
 {
@@ -31,7 +31,7 @@ struct CubicSpline final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF getConstant() const
     {
@@ -41,7 +41,7 @@ struct CubicSpline final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF getLinear() const
     {
@@ -51,7 +51,7 @@ struct CubicSpline final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF getQuadratic() const
     {
@@ -61,7 +61,7 @@ struct CubicSpline final
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF getCubic() const
     {
@@ -73,7 +73,7 @@ struct CubicSpline final
      *
      * @param t
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     VectorF evaluate(float t) const
     {
@@ -87,7 +87,7 @@ struct CubicSpline final
      * @param minT
      * @param maxT
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     CubicSpline subSection(float minT, float maxT) const
     {

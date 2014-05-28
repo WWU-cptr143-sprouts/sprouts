@@ -12,7 +12,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct GUIButton : public GUIElement
 {
@@ -33,7 +33,7 @@ struct GUIButton : public GUIElement
          * @param selectedButtonColor
          * @param pressEvent
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         selectedButtonColor(selectedButtonColor), buttonPressEvent(pressEvent)
         {
@@ -50,7 +50,7 @@ struct GUIButton : public GUIElement
          *
          * @param selectedButtonColor
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         selectedButtonColor(selectedButtonColor), buttonPressEvent([]()
                 {
@@ -59,7 +59,7 @@ struct GUIButton : public GUIElement
                 /**
                  * @brief Write what the function does here
                  *
-                 * @return
+                 * @retval (variable) (description of variable)
                  **/
                 })
     {
@@ -69,7 +69,7 @@ struct GUIButton : public GUIElement
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float getLeftToMiddleX() const
     {
@@ -79,7 +79,7 @@ struct GUIButton : public GUIElement
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float getMiddleToRightX() const
     {
@@ -93,7 +93,7 @@ struct GUIButton : public GUIElement
      * @param x
      * @param y
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool isPointInside(float x, float y) const override
     {
@@ -132,7 +132,7 @@ struct GUIButton : public GUIElement
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool canHaveKeyboardFocus() const override
     {
@@ -144,7 +144,7 @@ struct GUIButton : public GUIElement
      *
      * @param event
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool handleMouseUp(MouseUpEvent &event)
     {
@@ -162,7 +162,7 @@ struct GUIButton : public GUIElement
      *
      * @param event
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool handleMouseDown(MouseDownEvent &event) override
     {
@@ -183,7 +183,7 @@ struct GUIButton : public GUIElement
      *
      * @param event
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool handleMouseMoveOut(MouseEvent &event) override
     {
@@ -196,7 +196,7 @@ struct GUIButton : public GUIElement
      *
      * @param event
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual bool handleKeyDown(KeyDownEvent &event) override
     {
@@ -214,7 +214,7 @@ struct GUIButton : public GUIElement
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     bool isPressed() const
     {
@@ -236,7 +236,7 @@ struct GUIButton : public GUIElement
      * @param maxZ
      * @param hasFocus
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {

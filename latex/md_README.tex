@@ -1,0 +1,38 @@
+Okay, here's the deal. I created an automated script generate a doxygen comment for every function. Unfortunately, scripts aren't perfect. It still saves us hours of work, but it does mean that we'll have to have a list of files that need to be checked, and then go through each file and delete/fix any small errors. Some files have more things wrong than others. Most of the files should be \char`\"{}correct\char`\"{} out of the box.
+
+The only important files in this branch are the .h files that were modified, along with this readme and a list \char`\"{}checklist.\+md\char`\"{}. Please edit the \hyperlink{checklist_8md_source}{checklist.\+md} with your name/date next to whichever .h file you went through and checked and then push the changes to this repo when you're done. When all the files have been changed, we'll merge this with the master repo and work on actually filling in the boilerplate. I will be looking at the script in the meantime to see if I can modify it to \char`\"{}proof\char`\"{} it for more things. With that in mind, feel free to work \char`\"{}easiest to hardest\char`\"{} on the files and leave the really long and messy ones for me.
+
+-\/\+Jared
+
+Note to self\+:
+
+Script currently breaks on\+:
+
+
+\begin{DoxyEnumerate}
+\item functions with no \{
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item if statements $\vert$ F\+I\+X\+E\+D
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item switch statements $\vert$ F\+I\+X\+E\+D
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item else statement $\vert$ F\+I\+X\+E\+D
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item while loop $\vert$ F\+I\+X\+E\+D
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Anything starting with \{ that's not a function, really. $\vert$ F\+I\+X\+E\+D (should be)
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Breaks if \char`\"{}\{\char`\"{} isn't one line below function name
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Breaks if entire function is commented out \char`\"{}//\char`\"{} style (don't do this! We have version control for a reason)
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Breaks if function is void w/no parameters 
+\end{DoxyEnumerate}

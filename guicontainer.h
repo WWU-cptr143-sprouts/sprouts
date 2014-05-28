@@ -7,7 +7,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class GUIContainer : public GUIElement
 {
@@ -30,7 +30,7 @@ class GUIContainer : public GUIElement
          *
          * @param index
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         shared_ptr<GUIElement> getElement(size_t index)
         {
@@ -40,7 +40,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         size_t getElementCount()
         {
@@ -50,7 +50,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         size_t getCurrentElementIndex()
         {
@@ -68,7 +68,7 @@ class GUIContainer : public GUIElement
          *
          * @param element
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         shared_ptr<GUIContainer> add(shared_ptr<GUIElement> element)
         {
@@ -81,7 +81,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual shared_ptr<GUIElement> getFocusElement() override final
         {
@@ -93,7 +93,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool canHaveKeyboardFocus() const override final
         {
@@ -147,7 +147,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool prevFocusElement() override final /// returns true when reached container boundary
         {
@@ -165,7 +165,7 @@ class GUIContainer : public GUIElement
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             do
             {
@@ -187,7 +187,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool nextFocusElement() override final /// returns true when reached container boundary
         {
@@ -205,7 +205,7 @@ class GUIContainer : public GUIElement
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             do
             {
@@ -231,7 +231,7 @@ class GUIContainer : public GUIElement
          * @param x
          * @param y
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         size_t getIndexFromPosition(float x, float y)
         {
@@ -251,7 +251,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseUp(MouseUpEvent &event) override final
         {
@@ -284,7 +284,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseDown(MouseDownEvent &event) override final
         {
@@ -317,7 +317,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMove(MouseMoveEvent &event) override final
         {
@@ -350,7 +350,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMoveOut(MouseEvent &event) override final
         {
@@ -369,7 +369,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMoveIn(MouseEvent &event) override final
         {
@@ -388,7 +388,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseScroll(MouseScrollEvent &event) override final
         {
@@ -421,7 +421,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyUp(KeyUpEvent &event) override final
         {
@@ -436,7 +436,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyDown(KeyDownEvent &event) override final
         {
@@ -493,7 +493,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyPress(KeyPressEvent &event) override final
         {
@@ -508,7 +508,7 @@ class GUIContainer : public GUIElement
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleQuit(QuitEvent &event) override final
         {
@@ -525,7 +525,7 @@ class GUIContainer : public GUIElement
          * @param maxZ
          * @param hasFocus
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
         {
@@ -595,7 +595,7 @@ class GUIContainer : public GUIElement
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual shared_ptr<GUIContainer> getTopLevelParent() override final
         {
@@ -609,7 +609,7 @@ class GUIContainer : public GUIElement
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline shared_ptr<GUIContainer> GUIElement::getTopLevelParent() // this is here so that GUIContainer is defined
 {

@@ -16,7 +16,7 @@ shared_ptr<Reader> getResourceReader(wstring resource);
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 enum KeyboardKey
 {
@@ -171,7 +171,7 @@ enum KeyboardKey
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 enum KeyboardModifiers
 {
@@ -196,7 +196,7 @@ enum KeyboardModifiers
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 enum MouseButton
 {
@@ -211,7 +211,7 @@ enum MouseButton
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 namespace Display
 {

@@ -19,7 +19,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct graph_build_error : public runtime_error
 {
@@ -36,7 +36,7 @@ template <typename NT, typename ET = NT>
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class graph
 {
@@ -46,7 +46,7 @@ class graph
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct Edge
         {
@@ -67,7 +67,7 @@ class graph
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct Node
         {
@@ -91,7 +91,7 @@ class graph
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         graph() // default constructor : constructs empty graph
         {
@@ -100,7 +100,7 @@ class graph
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ~graph() // destructor : destroys graph
         {
@@ -121,7 +121,7 @@ class graph
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         graph(const graph &rt)  // copy constructor
         {
@@ -154,7 +154,7 @@ class graph
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         graph(graph  &&rt) // move constructor
         {
@@ -167,7 +167,7 @@ class graph
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const graph &operator =(graph && rt)  // move assignment
         {
@@ -181,7 +181,7 @@ class graph
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const graph &operator =(const graph &rt)   // copy assignment
         {
@@ -350,7 +350,7 @@ friend class node_iterator;
  *
  * @param random_access_iterator_tag
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class node_iterator : public iterator<random_access_iterator_tag, NT> // node iterator
 {
@@ -362,7 +362,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Node *get() const
     {
@@ -373,7 +373,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     node_iterator()
     {
@@ -389,7 +389,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator ==(const node_iterator &l, const node_iterator &r)
     {
@@ -402,7 +402,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator !=(const node_iterator &l, const node_iterator &r)
     {
@@ -412,7 +412,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const NT *operator ->() const
     {
@@ -422,7 +422,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const NT &operator *() const
     {
@@ -432,7 +432,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const node_iterator &operator ++()
     {
@@ -445,7 +445,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      *
      * @param int
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     node_iterator operator ++(int)
     {
@@ -455,7 +455,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const node_iterator &operator --()
     {
@@ -468,7 +468,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      *
      * @param int
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     node_iterator operator --(int)
     {
@@ -481,7 +481,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param v
      * @param iter
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend node_iterator operator +(int v, const node_iterator &iter)
     {
@@ -494,7 +494,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param iter
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend node_iterator operator +(const node_iterator &iter, int v)
     {
@@ -507,7 +507,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param iter
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend node_iterator operator -(const node_iterator &iter, int v)
     {
@@ -520,7 +520,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend int operator -(const node_iterator &l, const node_iterator &r)
     {
@@ -533,7 +533,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator <(const node_iterator &l, const node_iterator &r)
     {
@@ -546,7 +546,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator <=(const node_iterator &l, const node_iterator &r)
     {
@@ -559,7 +559,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator >=(const node_iterator &l, const node_iterator &r)
     {
@@ -572,7 +572,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend bool operator >(const node_iterator &l, const node_iterator &r)
     {
@@ -584,7 +584,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const node_iterator &operator +=(int v)
     {
@@ -597,7 +597,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const node_iterator &operator -=(int v)
     {
@@ -610,7 +610,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
      *
      * @param index2
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const NT &operator [](int index2) const
     {
@@ -620,7 +620,7 @@ class node_iterator : public iterator<random_access_iterator_tag, NT> // node it
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const int position() const
     {
@@ -634,7 +634,7 @@ class edge_iterator : public
                        *
                        * @param random_access_iterator_tag
                        *
-                       * @return
+                       * @retval (variable) (description of variable)
                        **/
                       iterator<random_access_iterator_tag, pair<const ET &, node_iterator> > // edge iterator
 {
@@ -646,7 +646,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         edge_iterator()
         {
@@ -662,7 +662,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator ==(const edge_iterator &l, const edge_iterator &r)
         {
@@ -675,7 +675,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator !=(const edge_iterator &l, const edge_iterator &r)
         {
@@ -685,7 +685,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         pair<const ET &, node_iterator> operator *() const
         {
@@ -695,7 +695,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const edge_iterator &operator ++()
         {
@@ -708,7 +708,7 @@ class edge_iterator : public
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         edge_iterator operator ++(int)
         {
@@ -718,7 +718,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const edge_iterator &operator --()
         {
@@ -731,7 +731,7 @@ class edge_iterator : public
          *
          * @param int
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         edge_iterator operator --(int)
         {
@@ -744,7 +744,7 @@ class edge_iterator : public
          * @param v
          * @param iter
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend edge_iterator operator +(int v, const edge_iterator &iter)
         {
@@ -757,7 +757,7 @@ class edge_iterator : public
          * @param iter
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend edge_iterator operator +(const edge_iterator &iter, int v)
         {
@@ -770,7 +770,7 @@ class edge_iterator : public
          * @param iter
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend edge_iterator operator -(const edge_iterator &iter, int v)
         {
@@ -783,7 +783,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend int operator -(const edge_iterator &l, const edge_iterator &r)
         {
@@ -796,7 +796,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <(const edge_iterator &l, const edge_iterator &r)
         {
@@ -809,7 +809,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator <=(const edge_iterator &l, const edge_iterator &r)
         {
@@ -822,7 +822,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >=(const edge_iterator &l, const edge_iterator &r)
         {
@@ -835,7 +835,7 @@ class edge_iterator : public
          * @param l
          * @param r
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         friend bool operator >(const edge_iterator &l, const edge_iterator &r)
         {
@@ -847,7 +847,7 @@ class edge_iterator : public
          *
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const edge_iterator &operator +=(int v)
         {
@@ -860,7 +860,7 @@ class edge_iterator : public
          *
          * @param v
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const edge_iterator &operator -=(int v)
         {
@@ -873,7 +873,7 @@ class edge_iterator : public
          *
          * @param index
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         pair<const ET &, node_iterator> operator [](int index) const
         {
@@ -883,7 +883,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         node_iterator src() const
         {
@@ -893,7 +893,7 @@ class edge_iterator : public
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         node_iterator dest() const
         {
@@ -904,7 +904,7 @@ class edge_iterator : public
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator begin() const // return iterator to first node
 {
@@ -914,7 +914,7 @@ node_iterator begin() const // return iterator to first node
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator cbegin() const // return iterator to first node
 {
@@ -924,7 +924,7 @@ node_iterator cbegin() const // return iterator to first node
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator end() const // return iterator to past-the-end node
 {
@@ -934,7 +934,7 @@ node_iterator end() const // return iterator to past-the-end node
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator cend() const // return iterator to past-the-end node
 {
@@ -946,7 +946,7 @@ node_iterator cend() const // return iterator to past-the-end node
  *
  * @param ni
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator begin(node_iterator ni) const // return iterator to first edge
 {
@@ -958,7 +958,7 @@ edge_iterator begin(node_iterator ni) const // return iterator to first edge
  *
  * @param ni
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator cbegin(node_iterator ni) const // return iterator to first edge
 {
@@ -970,7 +970,7 @@ edge_iterator cbegin(node_iterator ni) const // return iterator to first edge
  *
  * @param ni
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator end(node_iterator ni) const // return iterator to past-the-end edge
 {
@@ -982,7 +982,7 @@ edge_iterator end(node_iterator ni) const // return iterator to past-the-end edg
  *
  * @param ni
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator cend(node_iterator ni) const // return iterator to past-the-end edge
 {
@@ -1026,7 +1026,7 @@ void isGraphConnectedDepthFirstHelper(Node *node) const  // depth first search h
  *
  * @param state
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 bool anyFlagMatches(bool state) const // return if any node's flag matches state
 {
@@ -1045,7 +1045,7 @@ bool anyFlagMatches(bool state) const // return if any node's flag matches state
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 bool anyMarked() const // return if any nodes are marked
 {
@@ -1055,7 +1055,7 @@ bool anyMarked() const // return if any nodes are marked
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 bool allMarked() const // return if all nodes are marked
 {
@@ -1067,7 +1067,7 @@ bool isGraphConnectedDepthFirst()
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const // return if the graph is connected starting from the first node
 {
@@ -1085,7 +1085,7 @@ bool isGraphConnectedBreadthFirst()
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     const // return if the graph is connected starting from the first node
 {
@@ -1121,7 +1121,7 @@ bool isGraphConnectedBreadthFirst()
  *
  * @param data
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator addNode(const NT &data)
 {
@@ -1135,7 +1135,7 @@ node_iterator addNode(const NT &data)
  *
  * @param data
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 node_iterator addNode(NT  &&data)
 {
@@ -1150,7 +1150,7 @@ node_iterator addNode(NT  &&data)
  * @param src
  * @param dest
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 bool hasEdge(node_iterator src, node_iterator dest) const
 {
@@ -1183,7 +1183,7 @@ bool hasEdge(node_iterator src, node_iterator dest) const
  * @param src
  * @param dest
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
 {
@@ -1212,7 +1212,7 @@ edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
  * @param src
  * @param dest
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
 {
@@ -1239,7 +1239,7 @@ friend ostream &operator <<(ostream &os, const graph<NT2, ET2> &g);
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 size_t nodeCount() const
 {
@@ -1249,7 +1249,7 @@ size_t nodeCount() const
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 size_t edgeCount() const
 {
@@ -1266,7 +1266,7 @@ template <typename NT, typename ET>
  * @param NT
  * @param sourceNode
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(const graph<NT, ET> & g, typename graph<NT, ET>::node_iterator sourceNode) // finds shortest path from sourceNode to all other nodes using dijkstra's algorithm
 {
@@ -1346,7 +1346,7 @@ inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int 
          *
          * @param maximumEdgeValue
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int maximumEdgeValue)
 {
@@ -1385,7 +1385,7 @@ inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int 
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 namespace GraphingInternals
 {
@@ -1394,7 +1394,7 @@ namespace GraphingInternals
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         struct DrawGraphEdge
         {
@@ -1417,7 +1417,7 @@ namespace GraphingInternals
             /**
              * @brief Write what the function does here
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             DrawGraphEdge()
             {
@@ -1428,7 +1428,7 @@ namespace GraphingInternals
              *
              * @param other
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool intersectsY(const DrawGraphEdge &other) const
             {
@@ -1470,7 +1470,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator ==(const DrawGraphEdge &rt) const
             {
@@ -1482,7 +1482,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator !=(const DrawGraphEdge &rt) const
             {
@@ -1494,7 +1494,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator <(const DrawGraphEdge &rt) const
             {
@@ -1512,7 +1512,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator >(const DrawGraphEdge &rt) const
             {
@@ -1530,7 +1530,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator <=(const DrawGraphEdge &rt) const
             {
@@ -1548,7 +1548,7 @@ namespace GraphingInternals
              *
              * @param rt
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             bool operator >=(const DrawGraphEdge &rt) const
             {
@@ -1594,7 +1594,7 @@ template <typename NT, typename ET>
  * @param NT
  * @param g
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 {
@@ -1841,7 +1841,7 @@ template <typename NT, typename ET>
  * @param ET
  * @param 1
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infinity = (ET)-1)
 {

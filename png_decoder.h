@@ -9,7 +9,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class PngLoadError final : public IOException
 {
@@ -26,7 +26,7 @@ class PngLoadError final : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class PngDecoder final
 {
@@ -43,7 +43,7 @@ class PngDecoder final
          *
          * @param rt
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         PngDecoder(PngDecoder && rt)
         {
@@ -56,7 +56,7 @@ class PngDecoder final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         ~PngDecoder()
         {
@@ -70,7 +70,7 @@ class PngDecoder final
          * @param y
          * @param byteNum
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint8_t operator()(int x, int y, int byteNum) const
         {
@@ -87,7 +87,7 @@ class PngDecoder final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int width() const
         {
@@ -97,7 +97,7 @@ class PngDecoder final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         int height() const
         {
@@ -107,7 +107,7 @@ class PngDecoder final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         uint8_t * removeData()
         {

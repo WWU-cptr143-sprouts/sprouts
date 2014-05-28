@@ -8,7 +8,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 namespace Text
 {
@@ -16,7 +16,7 @@ namespace Text
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     struct TextProperties
     {

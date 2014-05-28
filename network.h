@@ -6,7 +6,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class NetworkException : public IOException
 {
@@ -20,7 +20,7 @@ class NetworkException : public IOException
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class NetworkConnection final : public StreamRW
 {
@@ -38,7 +38,7 @@ class NetworkConnection final : public StreamRW
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     shared_ptr<Reader> preader() override
     {
@@ -48,7 +48,7 @@ class NetworkConnection final : public StreamRW
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     shared_ptr<Writer> pwriter() override
     {
@@ -59,7 +59,7 @@ class NetworkConnection final : public StreamRW
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class NetworkServer final : public StreamServer
 {

@@ -1,0 +1,85 @@
+\hypertarget{classCompressWriter}{\section{Compress\+Writer Class Reference}
+\label{classCompressWriter}\index{Compress\+Writer@{Compress\+Writer}}
+}
+Inheritance diagram for Compress\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCompressWriter}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structCompressWriter_1_1Match}{Match}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCompressWriter_a02f579d91e6ab012bbdba90481d327ef}{{\bfseries Compress\+Writer} (shared\+\_\+ptr$<$ \hyperlink{classWriter}{Writer} $>$ writer)}\label{classCompressWriter_a02f579d91e6ab012bbdba90481d327ef}
+
+\item 
+\hypertarget{classCompressWriter_a3e8580dad4dc5585d5f7af073d23e64b}{{\bfseries Compress\+Writer} (\hyperlink{classWriter}{Writer} \&writer)}\label{classCompressWriter_a3e8580dad4dc5585d5f7af073d23e64b}
+
+\item 
+\hypertarget{classCompressWriter_a23ba48ca17b9781ff531f7baeb08773e}{virtual void {\bfseries flush} () override}\label{classCompressWriter_a23ba48ca17b9781ff531f7baeb08773e}
+
+\item 
+\hypertarget{classCompressWriter_a3151658fd8e01af378e1d2ab12a24019}{virtual void {\bfseries write\+Byte} (uint8\+\_\+t v) override}\label{classCompressWriter_a3151658fd8e01af378e1d2ab12a24019}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCompressWriter_ab0fa055ce027b0f5be42531a285e2217}{size\+\_\+t {\bfseries get\+Actual\+Location} (size\+\_\+t l)}\label{classCompressWriter_ab0fa055ce027b0f5be42531a285e2217}
+
+\item 
+\hypertarget{classCompressWriter_a7c45f54c89b0e3ddac53f4ee95effa41}{void {\bfseries add\+Byte} (uint\+\_\+fast8\+\_\+t v)}\label{classCompressWriter_a7c45f54c89b0e3ddac53f4ee95effa41}
+
+\item 
+\hypertarget{classCompressWriter_a4e97ecc6a294aa87d685ce422cef6c56}{\hyperlink{structCompressWriter_1_1Match}{Match} {\bfseries get\+Biggest\+Match} ()}\label{classCompressWriter_a4e97ecc6a294aa87d685ce422cef6c56}
+
+\item 
+\hypertarget{classCompressWriter_ab958684312e2c0b9be302a1331410210}{void {\bfseries write\+Code} ()}\label{classCompressWriter_ab958684312e2c0b9be302a1331410210}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCompressWriter_ad0c42284addda151ec815efa9eb1b333}{size\+\_\+t {\bfseries location}}\label{classCompressWriter_ad0c42284addda151ec815efa9eb1b333}
+
+\item 
+\hypertarget{classCompressWriter_afa45b760576d6845b4f955ea486d603c}{shared\+\_\+ptr$<$ \hyperlink{classWriter}{Writer} $>$ {\bfseries writer}}\label{classCompressWriter_afa45b760576d6845b4f955ea486d603c}
+
+\item 
+\hypertarget{classCompressWriter_a4a42d0a68afca7b21ac9edea6a6d465e}{\hyperlink{classcircularDeque}{circular\+Deque}$<$ uint\+\_\+fast8\+\_\+t, \\*
+buffer\+Size+1 $>$ {\bfseries current\+Input}}\label{classCompressWriter_a4a42d0a68afca7b21ac9edea6a6d465e}
+
+\item 
+\hypertarget{classCompressWriter_a6dea17049f70649520ca9fd02931a5e1}{\hyperlink{classcircularDeque}{circular\+Deque}$<$ uint\+\_\+fast8\+\_\+t, \\*
+buffer\+Size+2 $>$ {\bfseries buffer}}\label{classCompressWriter_a6dea17049f70649520ca9fd02931a5e1}
+
+\item 
+\hypertarget{classCompressWriter_a130499c9d22e1461044dd4316edfb50c}{list$<$ size\+\_\+t $>$ {\bfseries nodes} \mbox{[}uint8\+\_\+max+1\mbox{]}}\label{classCompressWriter_a130499c9d22e1461044dd4316edfb50c}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classCompressWriter_ace86be05e5886cfd42f77a5091c06b7a}{static constexpr int {\bfseries uint8\+\_\+max} = (1 $<$$<$ 8) -\/ 1}\label{classCompressWriter_ace86be05e5886cfd42f77a5091c06b7a}
+
+\item 
+\hypertarget{classCompressWriter_a96d2b6c2db5e69b996be1fefa7f337cb}{static constexpr size\+\_\+t {\bfseries buffer\+Size} = L\+Z77\+Code\+Type\+::max\+Offset + 1}\label{classCompressWriter_a96d2b6c2db5e69b996be1fefa7f337cb}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 170 of file compressed\+\_\+stream.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+compressed\+\_\+stream.\+h\end{DoxyCompactItemize}

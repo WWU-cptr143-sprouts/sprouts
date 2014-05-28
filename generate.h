@@ -11,7 +11,7 @@ using namespace std;
  *
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh invert(Mesh mesh)
 {
@@ -33,7 +33,7 @@ inline Mesh invert(Mesh mesh)
  *
  * @param mesh
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline TransformedMesh invert(TransformedMesh mesh)
 {
@@ -50,7 +50,7 @@ inline TransformedMesh invert(TransformedMesh mesh)
  * @param normal
  * @param p
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p) + d < 0
 {
@@ -137,7 +137,7 @@ inline Mesh cut(Mesh mesh, VectorF normal, float d) /// keep where dot(normal, p
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 namespace Generate
 {
@@ -155,7 +155,7 @@ namespace Generate
      * @param p4
      * @param c4
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     inline Mesh quadrilateral(TextureDescriptor texture, VectorF p1, Color c1, VectorF p2, Color c2, VectorF p3, Color c3, VectorF p4, Color c4)
     {
@@ -169,7 +169,7 @@ namespace Generate
          * @param minU
          * @param maxV
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const TextureCoord t4 = TextureCoord(texture.minU, texture.maxV);
         return Mesh(new Mesh_t(texture.image, vector<Triangle> {Triangle(p1, c1, t1, p2, c2, t2, p3, c3, t3), Triangle(p3, c3, t3, p4, c4, t4, p1, c1, t1)}));
@@ -186,7 +186,7 @@ namespace Generate
      * @param nz
      * @param pz
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     inline Mesh unitBox(TextureDescriptor nx, TextureDescriptor px, TextureDescriptor ny, TextureDescriptor py, TextureDescriptor nz, TextureDescriptor pz)
     {

@@ -8,7 +8,7 @@ class GUIRunner;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class GUIElement : public EventHandler
 {
@@ -17,7 +17,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         shared_ptr<GUIElement> shared_from_this()
         {
@@ -27,7 +27,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         shared_ptr<const GUIElement> shared_from_this() const
         {
@@ -39,7 +39,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         Mesh render()
         {
@@ -52,7 +52,7 @@ class GUIElement : public EventHandler
          * @param x
          * @param y
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool isPointInside(float x, float y) const
         {
@@ -64,7 +64,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool canHaveKeyboardFocus() const
         {
@@ -76,7 +76,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseUp(MouseUpEvent &event) override
         {
@@ -88,7 +88,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseDown(MouseDownEvent &event) override
         {
@@ -101,7 +101,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMove(MouseMoveEvent &event) override
         {
@@ -113,7 +113,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMoveOut(MouseEvent &event)
         {
@@ -125,7 +125,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseMoveIn(MouseEvent &event)
         {
@@ -137,7 +137,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleMouseScroll(MouseScrollEvent &event) override
         {
@@ -149,7 +149,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyUp(KeyUpEvent &event) override
         {
@@ -161,7 +161,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyDown(KeyDownEvent &event) override
         {
@@ -173,7 +173,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleKeyPress(KeyPressEvent &event) override
         {
@@ -185,7 +185,7 @@ class GUIElement : public EventHandler
          *
          * @param event
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool handleQuit(QuitEvent &event) override
         {
@@ -195,7 +195,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual shared_ptr<GUIElement> getFocusElement()
         {
@@ -205,7 +205,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool nextFocusElement() /// returns true when reached container boundary
         {
@@ -215,7 +215,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         virtual bool prevFocusElement() /// returns true when reached container boundary
         {
@@ -252,7 +252,7 @@ class GUIElement : public EventHandler
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         shared_ptr<GUIContainer> getParent() const
         {

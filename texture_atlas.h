@@ -5,7 +5,7 @@
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 class TextureAtlas final
 {
@@ -20,7 +20,7 @@ class TextureAtlas final
          * @param maxU
          * @param minV
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         const float minU, maxU, minV, maxV;
         enum {textureXRes = 256, textureYRes = 256};
@@ -37,7 +37,7 @@ class TextureAtlas final
              * @param pixelOffset
              * @param textureYRes
              *
-             * @return
+             * @retval (variable) (description of variable)
              **/
             maxV(1 - (top + pixelOffset) / textureYRes)
             {
@@ -47,7 +47,7 @@ class TextureAtlas final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         TextureDescriptor td() const
         {
@@ -57,7 +57,7 @@ class TextureAtlas final
         /**
          * @brief Write what the function does here
          *
-         * @return
+         * @retval (variable) (description of variable)
          **/
         TextureDescriptor tdNoOffset() const
         {

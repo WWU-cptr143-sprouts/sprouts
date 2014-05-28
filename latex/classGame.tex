@@ -1,0 +1,103 @@
+\hypertarget{classGame}{\section{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+}
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGame}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_aa79443880de5f26387c2a1c70c8c1aae}{{\bfseries Game} (const \hyperlink{classGame}{Game} \&)}\label{classGame_aa79443880de5f26387c2a1c70c8c1aae}
+
+\item 
+\hypertarget{classGame_aec1439ca4c76f4a002c235134d590158}{\hyperlink{classGame}{Game} \& {\bfseries operator=} (const \hyperlink{classGame}{Game} \&)}\label{classGame_aec1439ca4c76f4a002c235134d590158}
+
+\item 
+\hypertarget{classGame_a23882a4a63f1ea6c17bc6330440ff6f4}{void {\bfseries do\+Move} (const Line \&, \hyperlink{structCoord}{Coord} middle, bool extra\+Checks=false)}\label{classGame_a23882a4a63f1ea6c17bc6330440ff6f4}
+
+\item 
+\hypertarget{classGame_ac0652dbca9ce754f465cee5a81f508ae}{void {\bfseries update\+Areas} ()}\label{classGame_ac0652dbca9ce754f465cee5a81f508ae}
+
+\item 
+\hypertarget{classGame_a6134468ea7bb0bd23cc2b03a5f1a7e7c}{int {\bfseries moves} () const }\label{classGame_a6134468ea7bb0bd23cc2b03a5f1a7e7c}
+
+\item 
+\hypertarget{classGame_aa82304a9d084304f05ef8d8a6eeb732a}{bool {\bfseries connectable} (const \hyperlink{classNode}{Node} \&, const \hyperlink{classNode}{Node} \&) const }\label{classGame_aa82304a9d084304f05ef8d8a6eeb732a}
+
+\item 
+\hypertarget{classGame_a2c5aa5c26eb65e3f992701ac0408393e}{bool {\bfseries is\+In\+Area} (const Area \&, \hyperlink{structCoord}{Coord}) const }\label{classGame_a2c5aa5c26eb65e3f992701ac0408393e}
+
+\item 
+\hypertarget{classGame_a73b99aad84bf161b64ad012173528cfa}{bool {\bfseries game\+Ended} () const }\label{classGame_a73b99aad84bf161b64ad012173528cfa}
+
+\item 
+\hypertarget{classGame_ad377f36ff3fe304f6905f05427aa1ab2}{\hyperlink{classNode}{Node} \& {\bfseries insert\+Node} (\hyperlink{structCoord}{Coord}, \hyperlink{structConnection}{Connection}=\hyperlink{structConnection}{Connection}(), \hyperlink{structConnection}{Connection}=\hyperlink{structConnection}{Connection}())}\label{classGame_ad377f36ff3fe304f6905f05427aa1ab2}
+
+\item 
+\hypertarget{classGame_a25d65e35ad5efbd14c4dbe4476bb5ec0}{\hyperlink{classNode}{Node} $\ast$ {\bfseries find\+Node} (\hyperlink{structCoord}{Coord}) const }\label{classGame_a25d65e35ad5efbd14c4dbe4476bb5ec0}
+
+\item 
+\hypertarget{classGame_a8698d31d2f9314753f392dbd9bb13b3c}{Line \& {\bfseries insert\+Line} (const Line \&)}\label{classGame_a8698d31d2f9314753f392dbd9bb13b3c}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a1ab0295c1555fa04614de7644d9999c3}{vector$<$ Areaset $\ast$ $>$ {\bfseries areasets}}\label{classGame_a1ab0295c1555fa04614de7644d9999c3}
+
+\item 
+\hypertarget{classGame_a21787871b15141dcf1cafeacbd68bc8c}{vector$<$ \hyperlink{classNode}{Node} $\ast$ $>$ {\bfseries nodes}}\label{classGame_a21787871b15141dcf1cafeacbd68bc8c}
+
+\item 
+\hypertarget{classGame_acef1deb6e1ef97d367afaeb04af5226c}{vector$<$ Line $\ast$ $>$ {\bfseries lines}}\label{classGame_acef1deb6e1ef97d367afaeb04af5226c}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a961f632fbe7f4ba08d23fe9edc7711be}{void {\bfseries cleanup} ()}\label{classGame_a961f632fbe7f4ba08d23fe9edc7711be}
+
+\item 
+\hypertarget{classGame_a6334d9f0e04044e0fb711f32fe4cfac4}{void {\bfseries copy} (const \hyperlink{classGame}{Game} \&)}\label{classGame_a6334d9f0e04044e0fb711f32fe4cfac4}
+
+\item 
+\hypertarget{classGame_a18db1f732aa95c4c6d78440b6d4d109b}{void {\bfseries clear\+Areas} ()}\label{classGame_a18db1f732aa95c4c6d78440b6d4d109b}
+
+\item 
+\hypertarget{classGame_a53b0e200e4727eb76ba1bbbd44164c76}{void {\bfseries delete\+Last\+Node} ()}\label{classGame_a53b0e200e4727eb76ba1bbbd44164c76}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_ad03a503539b01315b3fd020e148ff480}{bool {\bfseries updated}}\label{classGame_ad03a503539b01315b3fd020e148ff480}
+
+\item 
+\hypertarget{classGame_a3de2efa2690b73e5565fcd3f17ccbebc}{int {\bfseries move\+Count}}\label{classGame_a3de2efa2690b73e5565fcd3f17ccbebc}
+
+\item 
+\hypertarget{classGame_a75c85a025952d38a27db2b0b84206328}{vector$<$ Area $\ast$ $>$ {\bfseries areas}}\label{classGame_a75c85a025952d38a27db2b0b84206328}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a7bb9176e07b6f6c73c930dba6400265f}{ostream \& {\bfseries operator$<$$<$} (ostream \&, const \hyperlink{classGame}{Game} \&)}\label{classGame_a7bb9176e07b6f6c73c930dba6400265f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 53 of file game.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+headers/game.\+h\item 
+old-\/source/game.\+cpp\end{DoxyCompactItemize}

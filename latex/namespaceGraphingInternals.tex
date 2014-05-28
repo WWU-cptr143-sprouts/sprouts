@@ -1,0 +1,72 @@
+\hypertarget{namespaceGraphingInternals}{\section{Graphing\+Internals Namespace Reference}
+\label{namespaceGraphingInternals}\index{Graphing\+Internals@{Graphing\+Internals}}
+}
+
+
+Write what the function does here.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structGraphingInternals_1_1DrawGraphEdge}{Draw\+Graph\+Edge}
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceGraphingInternals_ad65278d3b477dc96eb0b2b4242e49a3d}{draw\+Text\+Block} (ostream \&os, const vector$<$ vector$<$ string $>$ $>$ \&text\+Block, int line\+Length)
+\begin{DoxyCompactList}\small\item\em Write what the function does here. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Write what the function does here. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceGraphingInternals_ad65278d3b477dc96eb0b2b4242e49a3d}{\index{Graphing\+Internals@{Graphing\+Internals}!draw\+Text\+Block@{draw\+Text\+Block}}
+\index{draw\+Text\+Block@{draw\+Text\+Block}!Graphing\+Internals@{Graphing\+Internals}}
+\subsubsection[{draw\+Text\+Block}]{\setlength{\rightskip}{0pt plus 5cm}void Graphing\+Internals\+::draw\+Text\+Block (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{const vector$<$ vector$<$ string $>$ $>$ \&}]{text\+Block, }
+\item[{int}]{line\+Length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceGraphingInternals_ad65278d3b477dc96eb0b2b4242e49a3d}
+
+
+Write what the function does here. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & \\
+\hline
+{\em text\+Block} & \\
+\hline
+{\em line\+Length} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1572 of file graph.\+h.
+
+
+\begin{DoxyCode}
+1573     \{
+1574         os << \textcolor{stringliteral}{"\(\backslash\)n"};
+1575 
+1576         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} y = 0; y < (int)textBlock.size(); y++)
+1577         \{
+1578             \textcolor{keywordtype}{string} line = \textcolor{stringliteral}{""};
+1579 
+1580             \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} x = 0; x < lineLength; x++)
+1581             \{
+1582                 line += textBlock[y][x];
+1583             \}
+1584             os << line << \textcolor{stringliteral}{"\(\backslash\)n"};
+1585         \}
+1586     \}
+\end{DoxyCode}

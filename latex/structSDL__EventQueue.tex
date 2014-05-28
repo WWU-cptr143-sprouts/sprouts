@@ -1,0 +1,54 @@
+\hypertarget{structSDL__EventQueue}{\section{S\+D\+L\+\_\+\+Event\+Queue Struct Reference}
+\label{structSDL__EventQueue}\index{S\+D\+L\+\_\+\+Event\+Queue@{S\+D\+L\+\_\+\+Event\+Queue}}
+}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structSDL__EventQueue_a7823a668b7f54be749cce9c424f3b680}{\hyperlink{structSDL__EventQueueEntry}{S\+D\+L\+\_\+\+Event\+Queue\+Entry} {\bfseries entries} \mbox{[}M\+A\+X\+\_\+\+E\+N\+T\+R\+I\+E\+S\mbox{]}}\label{structSDL__EventQueue_a7823a668b7f54be749cce9c424f3b680}
+
+\item 
+\hypertarget{structSDL__EventQueue_a542f7d779dfdc510ab2998b19400b14a}{char {\bfseries cache\+\_\+pad1} \mbox{[}S\+D\+L\+\_\+\+C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+S\+I\+Z\+E-\/((sizeof(\hyperlink{structSDL__EventQueueEntry}{S\+D\+L\+\_\+\+Event\+Queue\+Entry})$\ast$M\+A\+X\+\_\+\+E\+N\+T\+R\+I\+E\+S)\%S\+D\+L\+\_\+\+C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+S\+I\+Z\+E)\mbox{]}}\label{structSDL__EventQueue_a542f7d779dfdc510ab2998b19400b14a}
+
+\item 
+\hypertarget{structSDL__EventQueue_af8806dee54c335542edff9b12076d36d}{\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t} {\bfseries enqueue\+\_\+pos}}\label{structSDL__EventQueue_af8806dee54c335542edff9b12076d36d}
+
+\item 
+\hypertarget{structSDL__EventQueue_a9bf8fe9affd9a3701e74a361fe4d707f}{char {\bfseries cache\+\_\+pad2} \mbox{[}S\+D\+L\+\_\+\+C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+S\+I\+Z\+E-\/sizeof(\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t})\mbox{]}}\label{structSDL__EventQueue_a9bf8fe9affd9a3701e74a361fe4d707f}
+
+\item 
+\hypertarget{structSDL__EventQueue_adbaa58f38eae61362b577121e103773a}{\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t} {\bfseries dequeue\+\_\+pos}}\label{structSDL__EventQueue_adbaa58f38eae61362b577121e103773a}
+
+\item 
+\hypertarget{structSDL__EventQueue_acf4c58c4c5633e953e5336eb9218571f}{char {\bfseries cache\+\_\+pad3} \mbox{[}S\+D\+L\+\_\+\+C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+S\+I\+Z\+E-\/sizeof(\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t})\mbox{]}}\label{structSDL__EventQueue_acf4c58c4c5633e953e5336eb9218571f}
+
+\item 
+\hypertarget{structSDL__EventQueue_adedb6ecc98ef5bb80489914ab4950f32}{S\+D\+L\+\_\+\+Spin\+Lock {\bfseries lock}}\label{structSDL__EventQueue_adedb6ecc98ef5bb80489914ab4950f32}
+
+\item 
+\hypertarget{structSDL__EventQueue_a659e0a8e56f33dbe1e120a38e7b4ea48}{\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t} {\bfseries rwcount}}\label{structSDL__EventQueue_a659e0a8e56f33dbe1e120a38e7b4ea48}
+
+\item 
+\hypertarget{structSDL__EventQueue_a40437a4c5ee9ca1a2e8b62edd4fae391}{\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t} {\bfseries watcher}}\label{structSDL__EventQueue_a40437a4c5ee9ca1a2e8b62edd4fae391}
+
+\item 
+\hypertarget{structSDL__EventQueue_ae6e9b8efd398b956b58719592ed1b5eb}{char {\bfseries cache\+\_\+pad4} \mbox{[}S\+D\+L\+\_\+\+C\+A\+C\+H\+E\+L\+I\+N\+E\+\_\+\+S\+I\+Z\+E-\/sizeof(S\+D\+L\+\_\+\+Spin\+Lock)-\/2 $\ast$sizeof(\hyperlink{structSDL__atomic__t}{S\+D\+L\+\_\+atomic\+\_\+t})\mbox{]}}\label{structSDL__EventQueue_ae6e9b8efd398b956b58719592ed1b5eb}
+
+\item 
+\hypertarget{structSDL__EventQueue_a4f307e74316a087224cb14772bc92a9f}{volatile S\+D\+L\+\_\+bool {\bfseries active}}\label{structSDL__EventQueue_a4f307e74316a087224cb14772bc92a9f}
+
+\item 
+\hypertarget{structSDL__EventQueue_a3e5678a0ca768db940fedce03293fe04}{S\+D\+L\+\_\+mutex $\ast$ {\bfseries mutex}}\label{structSDL__EventQueue_a3e5678a0ca768db940fedce03293fe04}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 268 of file testatomic.\+c.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+S\+D\+L2-\/2.\+0.\+3/test/testatomic.\+c\end{DoxyCompactItemize}

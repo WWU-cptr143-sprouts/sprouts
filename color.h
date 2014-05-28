@@ -9,7 +9,7 @@ using namespace std;
 /**
  * @brief Write what the function does here
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
 {
@@ -21,7 +21,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param v
      * @param 1
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Color(float v, float a = 1)
     {
@@ -32,7 +32,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Color()
     {
@@ -47,7 +47,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param b
      * @param 1
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     Color(float r, float g, float b, float a = 1)
     {
@@ -65,7 +65,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param b
      * @param a
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color RGBA(float r, float g, float b, float a)
     {
@@ -79,7 +79,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param g
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color RGB(float r, float g, float b)
     {
@@ -92,7 +92,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param v
      * @param a
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color VA(float v, float a)
     {
@@ -104,7 +104,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      *
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color V(float v)
     {
@@ -119,7 +119,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param s
      * @param v
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color HSV(float h, float s, float v)
     {
@@ -134,7 +134,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param s
      * @param b
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     static Color HSB(float h, float s, float b)
     {
@@ -144,7 +144,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     uint8_t ri() const /// get red value as a byte in the range 0 to 0xFF
     {
@@ -154,7 +154,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     uint8_t gi() const /// get green value as a byte in the range 0 to 0xFF
     {
@@ -164,7 +164,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     uint8_t bi() const /// get blue value as a byte in the range 0 to 0xFF
     {
@@ -174,7 +174,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     uint8_t ai() const /// get alpha value as a byte in the range 0 to 0xFF
     {
@@ -227,7 +227,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend Color scale(Color l, Color r) /// multiply componentwise
     {
@@ -240,7 +240,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend Color scale(float l, Color r) /// scales the color but not the alpha
     {
@@ -253,7 +253,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend Color scale(Color l, float r) /// scales the color but not the alpha
     {
@@ -266,7 +266,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param l
      * @param r
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend Color add(Color l, Color r)
     {
@@ -279,7 +279,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
      * @param os
      * @param c
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     friend ostream & operator <<(ostream & os, const Color & c) /// writes a color to a ostream
     {
@@ -289,7 +289,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float hue() const
     {
@@ -332,7 +332,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float saturation() const
     {
@@ -346,7 +346,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float value() const
     {
@@ -356,7 +356,7 @@ struct Color final /// RGBA color with rgba in the range 0.0 to 1.0
     /**
      * @brief Write what the function does here
      *
-     * @return
+     * @retval (variable) (description of variable)
      **/
     float brightness() const
     {
@@ -374,7 +374,7 @@ template <>
  * @param a
  * @param b
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline const Color interpolate<Color>(const float t, const Color a, const Color b)
 {
@@ -389,7 +389,7 @@ inline const Color interpolate<Color>(const float t, const Color a, const Color 
  * @param value
  * @param a
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Color Color::HSVA(float hue, float saturation, float value, float a)
 {
@@ -437,7 +437,7 @@ inline Color Color::HSVA(float hue, float saturation, float value, float a)
  * @param brightness
  * @param a
  *
- * @return
+ * @retval (variable) (description of variable)
  **/
 inline Color Color::HSBA(float hue, float saturation, float brightness, float a)
 {
