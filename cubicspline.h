@@ -49,6 +49,10 @@ struct CubicSpline final
     {
         return CubicSpline(evaluate(minT), evaluate(maxT), (maxT - minT) * (minT * (3 * minT * getCubic() + 2 * getQuadratic()) + getLinear()), (maxT - minT) * (maxT * (3 * maxT * getCubic() + 2 * getQuadratic()) + getLinear()));
     }
+    CubicSpline reversed() const
+    {
+        return CubicSpline(p1, p0, -dp1, -dp0);
+    }
 };
 
 #endif // CUBICSPLINE_H_INCLUDED

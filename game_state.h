@@ -34,6 +34,8 @@ struct hash<GameState>
 };
 }
 
+void recalculateRegions(GameState gs);
+
 bool isValidGameState(GameState gs);
 
 Mesh renderGameState(GameState gs);

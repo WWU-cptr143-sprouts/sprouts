@@ -3,7 +3,7 @@
 #define REGION_H
 
 #include <memory>
-#include <list>
+#include <vector>
 #include "graph.h"
 #include "cubicspline.h"
 #include "node.h"
@@ -12,8 +12,8 @@ using namespace std;
 
 struct Region
 {
-    list<weak_ptr<Edge>> edges;
-    list<shared_ptr<Node>> nodes;
+    vector<weak_ptr<Edge>> edges;
+    vector<shared_ptr<Node>> nodes;
 };
 
 #endif // REGION_H

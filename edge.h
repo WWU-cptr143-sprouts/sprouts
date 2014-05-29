@@ -1,3 +1,4 @@
+#include "node.h"
 #ifndef EDGE_H
 #define EDGE_H
 
@@ -12,12 +13,17 @@ struct Edge
 {
     vector<CubicSpline> cubicSplines; //list of cubic splines
     shared_ptr<Region> inside, outside;
-    Edge(vector<CubicSpline> cubicSplines, shared_ptr<Region> inside, shared_ptr<Region> outside)
-        : cubicSplines(cubicSplines), inside(inside), outside(outside)
-    {
-    }
+    shared_ptr<Node> start, end;
+    Edge(vector<CubicSpline> cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end);
 };
 
 #include "region.h"
+
+inline Edge::Edge(vector<CubicSpline> cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end)
+    : cubicSplines(cubicSplines), start(start), end(end)
+{
+    assert(cubicSplines[0].p0 == start->position);
+    assert(cubicSplines.back().p1 == end->position);
+}
 
 #endif // EDGE_H

@@ -104,7 +104,7 @@ static void mainGame()
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-#if 1
+#if 0
     gui->add(make_shared<MyCanvas>(-0.9, 0.9, -0.9, 0.9));
 #else
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
@@ -112,7 +112,9 @@ static void testBigButton()
         GameState gs = makeEmptyGameState();
         auto node1 = gs->addNode(make_shared<Node>(VectorF(-0.5, 0.5, 0)));
         auto node2 = gs->addNode(make_shared<Node>(VectorF(-0.5, -0.5, 0)));
-        gs->addEdge(make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position, VectorF(1, 0, 0), VectorF(1, 0, 0))}, nullptr, nullptr), node1, node2);
+        shared_ptr<Edge> edge1 = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position, VectorF(1, 0, 0), VectorF(1, 0, 0))}, *node1, *node2);
+        gs->addEdge(edge1, node1, node2);
+        gs->addEdge(edge1, node2, node1);
         return renderGameState(gs);
     }));
 #endif
