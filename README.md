@@ -16,12 +16,15 @@ Note to self:
 Script currently breaks on:
 
 1.     functions with no {
-1.     if statements | FIXED
-1.     switch statements | FIXED
-1.     else statement | FIXED
-1.     while loop | FIXED
-1.     Anything starting with { that's not a function, really. | FIXED (should be)
 1.     Breaks if "{" isn't one line below function name
 1.     Breaks if entire function is commented out "//" style (don't do this! We have version control for a reason)
 1.     Breaks if function is void w/no parameters
+1.     Cannot handle lambda functions, either adding proper spacing above function or subsequent :Dox running.
 
+Todo:
+
+1.  Add logic to find void w/no parameters
+1.  Add logic to properly handle lambda functions | Script now will create lines above lambdas correctly without breaking other things.
+1.  Edit plugin to parse for "returns"?
+1.  Edit plugin to work with void + no parameters
+1.  :Dox works just fine with lambda... So the reason the script was breaking wasn't "lambda" but rather improper handling of adding spaces above function
