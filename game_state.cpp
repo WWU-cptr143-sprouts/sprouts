@@ -162,6 +162,10 @@ struct MyEdge
     {
         return !operator ==(l, r);
     }
+    MyEdge reversed() const
+    {
+        return MyEdge(edge, end, start);
+    }
 };
 
 float getPseudoAngle(VectorF v) // doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
@@ -265,7 +269,7 @@ float getEdgeAngle(MyEdge v)
 
 float getAngleBetween(MyEdge a, MyEdge b)
 {
-    float angle = getEdgeAngle(a) - getEdgeAngle(b);
+    float angle = getEdgeAngle(a) - getEdgeAngle(b.reversed());
     if(angle >= 2 * M_PI)
         angle -= 2 * M_PI;
     if(angle < 0)
