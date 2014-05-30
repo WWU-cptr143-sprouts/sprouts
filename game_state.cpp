@@ -435,7 +435,7 @@ void recalculateRegions(GameState gs)
         }
     }
     // Creates polygon for the region
-    Polygon poly = getRegionPolygon(r);
+    Polygon poly = getRegionPolygon(outsideRegion);
     // Iterates through all the nodes in the game state
     for(shared_ptr<Node> node : *gs)
     {

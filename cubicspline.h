@@ -55,4 +55,25 @@ struct CubicSpline final
     }
 };
 
+inline vector<CubicSpline> splinesFromLines(vector<VectorF> line)
+{
+    vector<CubicSpline> retval;
+    if(line.size() < 2)
+        return retval;
+    retval.reserve(line.size() - 1);
+    vector<VectorF> derivatives;
+    derivatives.reserve(line.size());
+    derivatives.push_back(VectorF(0));
+    for(size_t i = 2; i < line.size(); i++)
+    {
+        derivatives.push_back(line[i] - line[i - 2]);
+    }
+    derivatives.push_back(VectorF(0));
+    for(size_t i = 1; i < line.size(); i++)
+    {
+        retval.push_back(CubicSpline(line[i - 1], line[i], derivatives[i - 1], derivatives[i]));
+    }
+    return retval;
+}
+
 #endif // CUBICSPLINE_H_INCLUDED

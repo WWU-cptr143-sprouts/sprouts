@@ -44,6 +44,7 @@ Edge makeMiddleEdge(VectorF p1, VectorF p2, VectorF p3, float distance, float li
         {
             edgeDir = -edgeDir;
         }
+        edgeDir *= min(max(sqrt(min(absSquared(p2 - p1), absSquared(p2 - p3))) / lineWidth, 3.0f), sqrt(2.0f) / sqrt(1 - dot(delta1, delta2)));
     }
     return Edge(p2 - edgeDir * lineWidth, p2 + edgeDir * lineWidth, distance);
 }

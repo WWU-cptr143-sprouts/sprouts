@@ -4,6 +4,9 @@
 #include "cubicspline.h"
 #include "game_state.h"
 #include <cstdlib>
+#include <sstream>
+
+using namespace std;
 
 namespace
 {
@@ -18,6 +21,11 @@ class MyCanvas : public GUICanvas
     vector<VectorF> line;
     Mesh mesh;
     bool mouseDown = false;
+    size_t lineSegmentCount = 0;
+    inline Mesh makeMesh() const
+    {
+        return CubicSpline::renderSplineList(splinesFromLines(line), TextureAtlas::ButtonMiddleDiffuse.td(), Color::HSV(fmod(Display::timer() / 10, 1), 1, 1), 0.01);
+    }
 public:
     MyCanvas(float minX, float maxX, float minY, float maxY)
         : GUICanvas(minX, maxX, minY, maxY), mesh(Mesh(new Mesh_t))
@@ -27,14 +35,11 @@ public:
     {
         if(!mouseDown)
             return true;
-        line.push_back(getMousePosition(event));
+        line.back() = getMousePosition(event);
         return true;
     }
     virtual bool handleMouseMoveOut(MouseEvent &event) override
     {
-        mesh->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
-        line.clear();
-        mouseDown = false;
         return true;
     }
     virtual bool handleMouseDown(MouseDownEvent &event) override
@@ -42,27 +47,55 @@ public:
         if(event.button == MouseButton_Left)
         {
             mouseDown = true;
-            line.clear();
             line.push_back(getMousePosition(event));
+            if(line.size() <= 1)
+                line.push_back(getMousePosition(event));
+            lineSegmentCount++;
+        }
+        if(event.button == MouseButton_Right && line.size() >= 2)
+        {
+            line.back() = getMousePosition(event);
+            mesh->add(makeMesh());
+            line.clear();
+            if(mouseDown)
+            {
+                line.push_back(getMousePosition(event));
+            }
         }
         return true;
     }
     virtual bool handleMouseUp(MouseUpEvent &event) override
     {
-        if(event.button == MouseButton_Left)
-        {
-            mesh->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
-            line.clear();
-            mouseDown = false;
-        }
         return true;
+    }
+    size_t getLineSegmentCount() const
+    {
+        return lineSegmentCount;
     }
 protected:
     virtual Mesh generateMesh() const override
     {
         Mesh retval = Mesh(new Mesh_t(*mesh));
-        retval->add(Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), Color::V(1), 0.01));
+        retval->add(makeMesh());
         return retval;
+    }
+};
+
+class MyCanvasLineCountLabel : public GUILabel
+{
+    shared_ptr<MyCanvas> myCanvas;
+public:
+    MyCanvasLineCountLabel(float minX, float maxX, float minY, float maxY, shared_ptr<MyCanvas> myCanvas)
+        : GUILabel(L"", minX, maxX, minY, maxY), myCanvas(myCanvas)
+    {
+    }
+protected:
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
+    {
+        wstringstream os;
+        os << L"Line Segment Count : " << myCanvas->getLineSegmentCount();
+        text = os.str();
+        return GUILabel::render(minZ, maxZ, hasFocus);
     }
 };
 }
@@ -104,8 +137,10 @@ static void mainGame()
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-#if 0
-    gui->add(make_shared<MyCanvas>(-0.9, 0.9, -0.9, 0.9));
+#if 1
+    shared_ptr<MyCanvas> canvas = make_shared<MyCanvas>(-0.9, 0.9, -0.9, 0.9);
+    gui->add(canvas);
+    gui->add(make_shared<MyCanvasLineCountLabel>(-0.4, 0.4, 0.9, 1, canvas));
 #else
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
     {
