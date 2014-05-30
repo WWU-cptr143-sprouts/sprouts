@@ -386,12 +386,23 @@ void recalculateRegions(GameState gs)
     if(!path.empty())
         faces.push_back(move(path));
 
+    shared_ptr<Region> outsideRegion = make_shared<Region>();
+    outsideRegion->isOutsideRegion = true;
+
     //Converting faces found into regions
     for(vector<MyEdge> face : faces)
     {
         shared_ptr<Region> r = make_shared<Region>();
         MyEdge lastEdge = face.back();
         float angleSum = 0;
+        for(MyEdge edge : face)
+        {
+            angleSum += getAngleDelta(lastEdge, edge);
+            lastEdge = edge;
+        }
+        r->isOutsideRegion = false;
+        if(angleSum < 0)
+            r = outsideRegion;
         /* Adds all edges and nodes that are in the face */
         for(MyEdge edge : face)
         {
@@ -404,15 +415,13 @@ void recalculateRegions(GameState gs)
                 edge.edge->inside = r;
             else
                 edge.edge->outside = r;
-            angleSum += getAngleDelta(lastEdge, edge);
-            lastEdge = edge;
         }
-        // If angleSum < 0, then r->isOutsideRegion is true
-        r->isOutsideRegion = (angleSum < 0 ) ;
+        if(r->isOutsideRegion)
+            continue;
         // Creates polygon for the region
         Polygon poly = getRegionPolygon(r);
         // Iterates through all the nodes in the game state
-        for( shared_ptr<Node> node : *gs )
+        for(shared_ptr<Node> node : *gs)
         {
             // Checks if the current node is not already in the region's nodes
             if(find(r->nodes.begin(), r->nodes.end(), node) == r->nodes.end())
@@ -423,6 +432,21 @@ void recalculateRegions(GameState gs)
                 if(isPointInPolygon(poly, node->position) ^ r->isOutsideRegion)
                     r->nodes.push_back(node);
             }
+        }
+    }
+    // Creates polygon for the region
+    Polygon poly = getRegionPolygon(r);
+    // Iterates through all the nodes in the game state
+    for(shared_ptr<Node> node : *gs)
+    {
+        // Checks if the current node is not already in the region's nodes
+        if(find(outsideRegion->nodes.begin(), outsideRegion->nodes.end(), node) == outsideRegion->nodes.end())
+        {
+            // Checks if current node is inside region
+            // If point check fails, it's inside region (for an outside region)
+            // see "isPointInRegion" function
+            if(isPointInPolygon(poly, node->position) ^ outsideRegion->isOutsideRegion)
+                outsideRegion->nodes.push_back(node);
         }
     }
 }
