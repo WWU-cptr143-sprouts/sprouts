@@ -3,6 +3,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
+#include <cmath>
+
+using namespace std;
 
 #if 0
 bool operator ==(GameState l, GameState r)
@@ -161,8 +164,7 @@ struct MyEdge
     }
 };
 
-float getCompareAngle(VectorF
-                      v) // doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
+float getPseudoAngle(VectorF v) // doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
 {
     v.z = 0;
 
@@ -188,8 +190,7 @@ float getCompareAngle(VectorF
  *
  * \note doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
  */
-float getEdgeCompareAngle(MyEdge
-                          v) //
+float getEdgePseudoAngle(MyEdge v)
 {
     auto edge = v.edge;
     auto node = v.start;
@@ -206,15 +207,70 @@ float getEdgeCompareAngle(MyEdge
 
     if(absSquared(linear) > eps * eps)
     {
-        return getCompareAngle(linear);
+        return getPseudoAngle(linear);
     }
 
     if(absSquared(quadratic) > eps * eps)
     {
-        return getCompareAngle(quadratic);
+        return getPseudoAngle(quadratic);
     }
 
-    return getCompareAngle(cubic);
+    return getPseudoAngle(cubic);
+}
+
+float getAngle(VectorF v)
+{
+    v.z = 0;
+
+    if(v == VectorF(0))
+    {
+        return 0;
+    }
+
+    float angle = atan2(v.y, v.x);
+    if(angle >= 2 * M_PI)
+        angle -= 2 * M_PI;
+    if(angle < 0)
+        angle += 2 * M_PI;
+    return angle;
+}
+
+float getEdgeAngle(MyEdge v)
+{
+    auto edge = v.edge;
+    auto node = v.start;
+    CubicSpline spline = edge->cubicSplines.front();
+
+    if(node->position != spline.p0)
+    {
+        spline = edge->cubicSplines.back().reversed();
+    }
+
+    VectorF cubic = spline.getCubic();
+    VectorF quadratic = spline.getQuadratic();
+    VectorF linear = spline.getLinear();
+
+    if(absSquared(linear) > eps * eps)
+    {
+        return getAngle(linear);
+    }
+
+    if(absSquared(quadratic) > eps * eps)
+    {
+        return getAngle(quadratic);
+    }
+
+    return getAngle(cubic);
+}
+
+float getAngleBetween(MyEdge a, MyEdge b)
+{
+    float angle = getEdgeAngle(a) - getEdgeAngle(b);
+    if(angle >= 2 * M_PI)
+        angle -= 2 * M_PI;
+    if(angle < 0)
+        angle += 2 * M_PI;
+    return angle;
 }
 }
 
