@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// Gamestate comparison function
 #if 0
 bool operator ==(GameState l, GameState r)
 {
@@ -16,6 +17,7 @@ bool operator ==(GameState l, GameState r)
 #warning finish
 #endif
 
+// Returns hash for current gamestate
 #if 0
 size_t std::hash<GameState>::operator()(GameState gs)
 {
@@ -267,9 +269,9 @@ float getEdgeAngle(MyEdge v)
     return getAngle(cubic);
 }
 
-float getAngleBetween(MyEdge a, MyEdge b)
+float getAngleDelta(MyEdge a, MyEdge b)
 {
-    float angle = getEdgeAngle(a) - getEdgeAngle(b.reversed());
+    float angle = getEdgeAngle(a) - getEdgeAngle(b);
     if(angle >= 2 * M_PI)
         angle -= 2 * M_PI;
     if(angle < 0)
@@ -337,7 +339,7 @@ void recalculateRegions(GameState gs)
 
         sort(neighbors.begin(), neighbors.end(), [](MyEdge a, MyEdge b)
         {
-            return getEdgeCompareAngle(a) < getEdgeCompareAngle(b);
+            return getEdgePseudoAngle(a) < getEdgePseudoAngle(b);
         });
         neighborsMap[node] = neighbors;
     }
@@ -380,22 +382,48 @@ void recalculateRegions(GameState gs)
             edges.erase(theEdge);
         }
     }
+
     if(!path.empty())
         faces.push_back(move(path));
+
+    //Converting faces found into regions
     for(vector<MyEdge> face : faces)
     {
         shared_ptr<Region> r = make_shared<Region>();
-        r->isOutsideRegion = false; /// @todo fix
+        MyEdge lastEdge = face.back();
+        float angleSum = 0;
+        /* Adds all edges and nodes that are in the face */
         for(MyEdge edge : face)
         {
+            // .push_back adds to the vector that makes up the region
             r->edges.push_back(edge.edge);
             r->nodes.push_back(edge.start);
+            // There are two region vectors in each pointer
+            // The if/else determines which is inside and which is outside
             if(edge.edge->start == edge.start)
                 edge.edge->inside = r;
             else
                 edge.edge->outside = r;
+            angleSum += getAngleDelta(lastEdge, edge);
+            lastEdge = edge;
         }
-        /// @todo add code to add all other nodes to the region if they are inside
+        // If angleSum < 0, then r->isOutsideRegion is true
+        r->isOutsideRegion = (angleSum < 0 ) ;
+        // Creates polygon for the region
+        Polygon poly = getRegionPolygon(r);
+        // Iterates through all the nodes in the game state
+        for( shared_ptr<Node> node : *gs )
+        {
+            // Checks if the current node is not already in the region's nodes
+            if(find(r->nodes.begin(), r->nodes.end(), node) == r->nodes.end())
+            {
+                // Checks if current node is inside region
+                // If point check fails, it's inside region (for an outside region)
+                // see "isPointInRegion" function
+                if(isPointInPolygon(poly, node->position) ^ r->isOutsideRegion)
+                    r->nodes.push_back(node);
+            }
+        }
     }
 }
 
