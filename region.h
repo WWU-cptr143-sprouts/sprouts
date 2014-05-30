@@ -14,6 +14,7 @@ struct Region
 {
     vector<weak_ptr<Edge>> edges;
     vector<shared_ptr<Node>> nodes;
+    bool isOutsideRegion;
 };
 
 #endif // REGION_H

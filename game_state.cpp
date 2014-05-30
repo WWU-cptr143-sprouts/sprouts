@@ -181,8 +181,15 @@ float getCompareAngle(VectorF
     return 3 + v.x;
 }
 
+/** \brief returns a number that sorts in the same order as angles but can be calculated faster
+ *
+ * \param the edge
+ * \return the pseudo-angle
+ *
+ * \note doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
+ */
 float getEdgeCompareAngle(MyEdge
-                          v) // doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
+                          v) //
 {
     auto edge = v.edge;
     auto node = v.start;
@@ -318,6 +325,7 @@ void recalculateRegions(GameState gs)
     for(vector<MyEdge> face : faces)
     {
         shared_ptr<Region> r = make_shared<Region>();
+        r->isOutsideRegion = false; /// @todo fix
         for(MyEdge edge : face)
         {
             r->edges.push_back(edge.edge);
@@ -327,5 +335,102 @@ void recalculateRegions(GameState gs)
             else
                 edge.edge->outside = r;
         }
+        /// @todo add code to add all other nodes to the region if they are inside
     }
 }
+
+bool isPointInPolygon(const Polygon & poly, VectorF p)
+{
+    assert(poly.size() >= 3);
+    size_t hitCount = 0;
+    for(size_t i = 0; i < poly.size(); i++)
+    {
+        size_t j = (i + 1) % poly.size();
+        VectorF delta = poly[j] - poly[i];
+        assert(absSquared(delta) > eps * eps);
+        float t = (poly[i].y - p.y) / delta.y;
+        if(t <= 0 || t > 1)
+            continue;
+        VectorF hitPt = poly[i] + t * delta;
+        if(hitPt.x < p.x)
+            continue;
+        hitCount++;
+    }
+    return (hitCount % 2 == 0);
+}
+
+Polygon getRegionPolygon(shared_ptr<Region> r)
+{
+    const int splitCount = 20;
+    assert(r);
+    assert(r->edges.size() > 0);
+    Polygon poly;
+    poly.reserve(splitCount * r->edges.size() * 3);
+    VectorF lastPt = shared_ptr<Edge>(r->edges[0])->cubicSplines[0].p0;
+    for(weak_ptr<Edge> wedge : r->edges)
+    {
+        shared_ptr<Edge> edge = shared_ptr<Edge>(wedge);
+        VectorF startPt = edge->cubicSplines[0].p0;
+        VectorF endPt = edge->cubicSplines.back().p1;
+        if(absSquared(startPt - lastPt) < absSquared(endPt - lastPt)) // if the edge is forward
+        {
+            for(size_t i = 0; i < edge->cubicSplines.size(); i++)
+            {
+                CubicSpline spline = edge->cubicSplines[i];
+                for(int j = 0; j < splitCount; j++)
+                {
+                    float t = (float)j / splitCount;
+                    poly.push_back(spline.evaluate(t));
+                }
+            }
+            lastPt = endPt;
+        }
+        else // the edge is reversed
+        {
+            for(ptrdiff_t i = edge->cubicSplines.size() - 1; i >= 0; i--)
+            {
+                CubicSpline spline = edge->cubicSplines[i];
+                for(int j = 0; j < splitCount; j++)
+                {
+                    float t = 1 - (float)j / splitCount;
+                    poly.push_back(spline.evaluate(t));
+                }
+            }
+            lastPt = startPt;
+        }
+    }
+    return poly;
+}
+
+bool isPointInRegion(shared_ptr<Region> r, VectorF p)
+{
+    if(isPointInPolygon(getRegionPolygon(r), p))
+        return !r->isOutsideRegion;
+    return r->isOutsideRegion;
+}
+
+#if 1
+#warning finish implementing splitPolygon
+#else
+vector<Polygon> splitPolygon(Polygon poly)
+{
+    if(poly.size() <= 3)
+        return vector<Polygon>(1, poly);
+    vector<Polygon> retval;
+    do
+    {
+        retval.push_back(Polygon());
+        int polyIndex = 0;
+        retval.back().push_back(poly[polyIndex++]);
+        retval.back().push_back(poly[polyIndex++]);
+        retval.back().push_back(poly[polyIndex++]); // push 3 points for a triangle
+        for(;;)
+        {
+            retval.back().push_back(poly[polyIndex]);
+            if(isConvexPolygon(retval.back()))
+        }
+    }
+    while(poly.size() > 0);
+    return retval;
+}
+#endif
