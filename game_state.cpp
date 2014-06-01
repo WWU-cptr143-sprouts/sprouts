@@ -300,6 +300,7 @@ struct hash<MyEdge>
  */
 void recalculateRegions(GameState gs)
 {
+#warning finish implementing recalculateRegions
     assert(gs);
     unordered_set<MyEdge> edges;
     unordered_map<shared_ptr<Node>, vector<MyEdge>> neighborsMap;
@@ -471,15 +472,14 @@ bool isPointInPolygon(const Polygon & poly, VectorF p)
     return (hitCount % 2 == 0);
 }
 
-Polygon getRegionPolygon(shared_ptr<Region> r)
+Polygon getLandPolygon(const Land &land)
 {
     const int splitCount = 20;
-    assert(r);
-    assert(r->edges.size() > 0);
+    assert(land.edges.size() > 0);
     Polygon poly;
-    poly.reserve(splitCount * r->edges.size() * 3);
-    VectorF lastPt = shared_ptr<Edge>(r->edges[0])->cubicSplines[0].p0;
-    for(weak_ptr<Edge> wedge : r->edges)
+    poly.reserve(splitCount * land.edges.size() * 3);
+    VectorF lastPt = shared_ptr<Edge>(land.edges[0])->cubicSplines[0].p0;
+    for(weak_ptr<Edge> wedge : land.edges)
     {
         shared_ptr<Edge> edge = shared_ptr<Edge>(wedge);
         VectorF startPt = edge->cubicSplines[0].p0;
@@ -512,6 +512,32 @@ Polygon getRegionPolygon(shared_ptr<Region> r)
         }
     }
     return poly;
+}
+
+Polygon getRegionPolygon(shared_ptr<Region> r)
+{
+    assert(r);
+    vector<Polygon> polys;
+    for(const Land &land : r->lands)
+    {
+        polys.push_back(getLandPolygon(land));
+    }
+    if(polys.size() == 0)
+        return Polygon();
+    if(polys.size() == 1)
+        return polys[0];
+    Polygon retval;
+    for(Polygon & poly : polys)
+    {
+        if(poly.size() < 3)
+        {
+            continue;
+        }
+        poly.push_back(poly.begin());
+        for(auto point : poly)
+            retval.push_back(point);
+    }
+    return retval;
 }
 
 bool isPointInRegion(shared_ptr<Region> r, VectorF p)

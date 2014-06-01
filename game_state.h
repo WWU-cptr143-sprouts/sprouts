@@ -36,6 +36,8 @@ struct hash<GameState>
 
 typedef vector<VectorF> Polygon;
 
+Polygon getLandPolygon(const Land &land);
+
 Polygon getRegionPolygon(shared_ptr<Region> r);
 
 vector<Polygon> splitPolygon(Polygon poly);

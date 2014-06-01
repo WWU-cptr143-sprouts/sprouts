@@ -10,9 +10,15 @@
 
 using namespace std;
 
-struct Region
+struct Land
 {
     vector<weak_ptr<Edge>> edges;
+    bool isInverted;
+};
+
+struct Region
+{
+    vector<Land> lands;
     vector<shared_ptr<Node>> nodes;
     bool isOutsideRegion;
 };
