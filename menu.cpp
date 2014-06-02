@@ -13,7 +13,17 @@ namespace
 
 class GameCanvas : public GUICanvas
 {
-
+    GameState gs;
+public:
+    GameCanvas(float minX, float maxX, float minY, float maxY, GameState gs)
+        : GUICanvas(minX, maxX, minY, maxY), gs(gs)
+    {
+    }
+protected:
+    virtual Mesh generateMesh() const override
+    {
+        return renderGameState(gs);
+    }
 };
 
 class MyCanvas : public GUICanvas
@@ -134,13 +144,31 @@ static void mainGame()
     runAsDialog(gui);
 }
 
+static GameState makeTestGameState()
+{
+    GameState retval = makeEmptyGameState();
+    auto node1 = retval->addNode(make_shared<Node>(VectorF(-0.5, -0.5, 0)));
+    auto node2 = retval->addNode(make_shared<Node>(VectorF(-0.5, 0.5, 0)));
+    auto node3 = retval->addNode(make_shared<Node>(VectorF(0.5, -0.5, 0)));
+    auto edge1 = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position)}, *node1, *node2);
+    retval->addEdge(edge1, node1, node2);
+    retval->addEdge(edge1, node2, node1);
+    auto edge2 = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node3)->position)}, *node1, *node3);
+    retval->addEdge(edge2, node1, node3);
+    retval->addEdge(edge2, node3, node1);
+    recalculateRegions(retval);
+    return retval;
+}
+
 static void testBigButton()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-#if 1
+#if 0
     shared_ptr<MyCanvas> canvas = make_shared<MyCanvas>(-0.9, 0.9, -0.9, 0.9);
     gui->add(canvas);
     gui->add(make_shared<MyCanvasLineCountLabel>(-0.4, 0.4, 0.9, 1, canvas));
+#elif 1
+    gui->add(make_shared<GameCanvas>(-0.9, 0.9, -0.9, 0.9, makeTestGameState()));
 #else
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
     {

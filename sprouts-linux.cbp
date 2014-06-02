@@ -115,6 +115,7 @@
 		<Unit filename="platform.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
+		<Unit filename="polygon.h" />
 		<Unit filename="region.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />

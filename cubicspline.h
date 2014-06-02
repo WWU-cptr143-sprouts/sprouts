@@ -66,7 +66,7 @@ inline vector<CubicSpline> splinesFromLines(vector<VectorF> line)
     derivatives.push_back(VectorF(0));
     for(size_t i = 2; i < line.size(); i++)
     {
-        derivatives.push_back(line[i] - line[i - 2]);
+        derivatives.push_back((line[i] - line[i - 2]) / sqrt(2));
     }
     derivatives.push_back(VectorF(0));
     for(size_t i = 1; i < line.size(); i++)

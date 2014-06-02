@@ -43,11 +43,11 @@ Mesh CubicSpline::renderSplineList(const vector<CubicSpline> &splines, TextureDe
 {
     if(splines.size() == 0)
         return Mesh(new Mesh_t());
-    const int pointsPerSpline = 50;
+    const int pointsPerSpline = 10;
     vector<VectorF> points;
     points.reserve(1 + pointsPerSpline * splines.size());
     points.push_back(splines[0].evaluate(0));
-    for(int i = 0; i < splines.size(); i++)
+    for(size_t i = 0; i < splines.size(); i++)
     {
         for(int j = 1; j <= pointsPerSpline; j++)
         {

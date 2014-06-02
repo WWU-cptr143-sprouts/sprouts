@@ -7,6 +7,7 @@
 #include "edge.h"
 #include "mesh.h"
 #include "generate.h"
+#include "polygon.h"
 #include <functional>
 #include <stack>
 
@@ -34,38 +35,17 @@ struct hash<GameState>
 };
 }
 
-typedef vector<VectorF> Polygon;
-
 Polygon getLandPolygon(const Land &land);
 
-Polygon getRegionPolygon(shared_ptr<Region> r);
-
-vector<Polygon> splitPolygon(Polygon poly);
-
-inline bool isConvexPolygon(const Polygon & poly)
-{
-    if(poly.size() <= 3)
-        return true;
-    VectorF normal = cross(poly[0] - poly[1], poly[1] - poly[2]);
-    for(size_t i = 1; i < poly.size(); i++)
-    {
-        size_t j = (i + 1) % poly.size();
-        size_t k = (j + 1) % poly.size();
-        if(dot(normal, cross(poly[i] - poly[j], poly[j] - poly[k])) <= 0)
-            return false;
-    }
-    return true;
-}
-
 bool isPointInRegion(shared_ptr<Region> r, VectorF p);
-
-bool isPointInPolygon(const Polygon & poly, VectorF p);
 
 void recalculateRegions(GameState gs);
 
 bool isValidGameState(GameState gs);
 
 Mesh renderGameState(GameState gs);
+
+GameState duplicate(GameState gs);
 
 typedef stack<GameState> GameStateStack;
 

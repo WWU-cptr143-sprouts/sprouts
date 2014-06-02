@@ -143,17 +143,20 @@ Mesh renderGameState(GameState gs)
 
 namespace
 {
+struct Face;
+
 struct MyEdge
 {
     shared_ptr<Edge> edge;
     shared_ptr<Node> start;
     shared_ptr<Node> end;
+    weak_ptr<Face> face;
     MyEdge(shared_ptr<Edge> edge, bool reversed)
-        : edge(edge), start(reversed ? edge->end : edge->start), end(reversed ? edge->start : edge->end)
+        : edge(edge), start(reversed ? edge->end : edge->start), end(reversed ? edge->start : edge->end), face(shared_ptr<Face>(nullptr))
     {
     }
-    MyEdge(shared_ptr<Edge> edge, shared_ptr<Node> start, shared_ptr<Node> end)
-        : edge(edge), start(start), end(end)
+    MyEdge(shared_ptr<Edge> edge, shared_ptr<Node> start, shared_ptr<Node> end, shared_ptr<Face> face = nullptr)
+        : edge(edge), start(start), end(end), face(face)
     {
     }
     friend bool operator ==(const MyEdge &l, const MyEdge &r)
@@ -169,6 +172,56 @@ struct MyEdge
         return MyEdge(edge, end, start);
     }
 };
+
+struct Face
+{
+    vector<MyEdge> edges;
+    unordered_set<shared_ptr<Face>> interiorFaces;
+    vector<shared_ptr<Face>> removeList;
+    weak_ptr<Face> parent;
+    Polygon polygon;
+    bool isOutside;
+    shared_ptr<Land> land;
+    shared_ptr<Region> region;
+};
+
+Polygon getFacePolygon(shared_ptr<Face> face)
+{
+    const int splitCount = 20;
+    assert(face);
+    assert(face->edges.size() > 0);
+    Polygon poly;
+    poly.reserve(splitCount * face->edges.size() * 3);
+    for(MyEdge myEdge : face->edges)
+    {
+        shared_ptr<Edge> edge = myEdge.edge;
+        if(edge->start == myEdge.start) // if the edge is forward
+        {
+            for(size_t i = 0; i < edge->cubicSplines.size(); i++)
+            {
+                CubicSpline spline = edge->cubicSplines[i];
+                for(int j = 0; j < splitCount; j++)
+                {
+                    float t = (float)j / splitCount;
+                    poly.push_back(spline.evaluate(t));
+                }
+            }
+        }
+        else // the edge is reversed
+        {
+            for(ptrdiff_t i = edge->cubicSplines.size() - 1; i >= 0; i--)
+            {
+                CubicSpline spline = edge->cubicSplines[i];
+                for(int j = 0; j < splitCount; j++)
+                {
+                    float t = 1 - (float)j / splitCount;
+                    poly.push_back(spline.evaluate(t));
+                }
+            }
+        }
+    }
+    return poly;
+}
 
 float getPseudoAngle(VectorF v) // doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
 {
@@ -295,17 +348,17 @@ struct hash<MyEdge>
 /**
  * recalculate regions in the graph
  *
- * @note this algorithm is from http://www.sagemath.org/doc/reference/graphs/sage/graphs/generic_graph.html#sage.graphs.generic_graph.GenericGraph.faces
- * @todo implement merging disjoint graph sections and nodes without edges
+ * @note part of this algorithm is from http://www.sagemath.org/doc/reference/graphs/sage/graphs/generic_graph.html#sage.graphs.generic_graph.GenericGraph.faces
  */
 void recalculateRegions(GameState gs)
 {
-#warning finish implementing recalculateRegions
     assert(gs);
-    unordered_set<MyEdge> edges;
+    unordered_set<MyEdge> edges, edgesLeft;
     unordered_map<shared_ptr<Node>, vector<MyEdge>> neighborsMap;
     vector<MyEdge> path;
-    vector<vector<MyEdge>> faces;
+    vector<shared_ptr<Face>> faces;
+    unordered_map<MyEdge, shared_ptr<Face>> facesMap;
+    vector<shared_ptr<Node>> isolatedNodes;
 
     for(auto ni = gs->begin(); ni != gs->end(); ni++)
     {
@@ -343,15 +396,20 @@ void recalculateRegions(GameState gs)
             return getEdgePseudoAngle(a) < getEdgePseudoAngle(b);
         });
         neighborsMap[node] = neighbors;
+        if(neighbors.size() == 0)
+            isolatedNodes.push_back(node);
     }
 
-    if(!edges.empty())
+    edgesLeft = edges;
+
+    if(!edgesLeft.empty())
     {
-        path.push_back(*edges.begin());
-        edges.erase(edges.begin());
+        path.push_back(*edgesLeft.begin());
+        edgesLeft.erase(edgesLeft.begin());
     }
 
-    while(!edges.empty())
+    // find all faces
+    while(!edgesLeft.empty())
     {
         auto &neighbors = neighborsMap[path.back().end];
         auto curEdge = find_if(neighbors.begin(), neighbors.end(),
@@ -369,85 +427,171 @@ void recalculateRegions(GameState gs)
         auto theEdge = *curEdge;
         if(theEdge == path.front())
         {
-            faces.push_back(move(path));
+            shared_ptr<Face> face = make_shared<Face>();
+            face->edges = std::move(path);
+            for(auto edge : face->edges)
+                facesMap[edge] = face;
+            faces.push_back(face);
             path.clear();
-            if(!edges.empty())
+            if(!edgesLeft.empty())
             {
-                path.push_back(*edges.begin());
-                edges.erase(edges.begin());
+                path.push_back(*edgesLeft.begin());
+                edgesLeft.erase(edgesLeft.begin());
             }
         }
         else
         {
             path.push_back(theEdge);
-            edges.erase(theEdge);
+            edgesLeft.erase(theEdge);
         }
     }
 
     if(!path.empty())
-        faces.push_back(move(path));
-
-    shared_ptr<Region> outsideRegion = make_shared<Region>();
-    outsideRegion->isOutsideRegion = true;
-
-    //Converting faces found into regions
-    for(vector<MyEdge> face : faces)
     {
-        shared_ptr<Region> r = make_shared<Region>();
-        MyEdge lastEdge = face.back();
+        shared_ptr<Face> face = make_shared<Face>();
+        face->edges = std::move(path);
+        for(auto edge : face->edges)
+            facesMap[edge] = face;
+        faces.push_back(face);
+    }
+
+    // compute face attributes
+
+    for(shared_ptr<Face> face : faces)
+    {
         float angleSum = 0;
-        for(MyEdge edge : face)
+        MyEdge lastEdge = face->edges.back();
+        for(MyEdge edge : face->edges)
         {
             angleSum += getAngleDelta(lastEdge, edge);
             lastEdge = edge;
         }
-        r->isOutsideRegion = false;
+        face->isOutside = false;
         if(angleSum < 0)
-            r = outsideRegion;
-        /* Adds all edges and nodes that are in the face */
-        for(MyEdge edge : face)
+            face->isOutside = true;
+        face->polygon = getFacePolygon(face);
+    }
+
+    // calculate interiorFaces
+
+    for(shared_ptr<Face> face : faces)
+    {
+        if(face->isOutside)
         {
-            // .push_back adds to the vector that makes up the region
-            r->edges.push_back(edge.edge);
-            r->nodes.push_back(edge.start);
-            // There are two region vectors in each pointer
-            // The if/else determines which is inside and which is outside
-            if(edge.edge->start == edge.start)
-                edge.edge->inside = r;
-            else
-                edge.edge->outside = r;
-        }
-        if(r->isOutsideRegion)
-            continue;
-        // Creates polygon for the region
-        Polygon poly = getRegionPolygon(r);
-        // Iterates through all the nodes in the game state
-        for(shared_ptr<Node> node : *gs)
-        {
-            // Checks if the current node is not already in the region's nodes
-            if(find(r->nodes.begin(), r->nodes.end(), node) == r->nodes.end())
+            for(MyEdge edge : face->edges)
             {
-                // Checks if current node is inside region
-                // If point check fails, it's inside region (for an outside region)
-                // see "isPointInRegion" function
-                if(isPointInPolygon(poly, node->position) ^ r->isOutsideRegion)
-                    r->nodes.push_back(node);
+                shared_ptr<Face> interiorFace = facesMap[edge.reversed()];
+                if(interiorFace != face)
+                    face->interiorFaces.insert(interiorFace);
+            }
+        }
+        else
+        {
+            for(MyEdge edge : edges)
+            {
+                bool canTest = true;
+                for(MyEdge edge2 : face->edges)
+                {
+                    if(edge.start == edge2.start || edge.start == edge2.end || edge.end == edge2.start || edge.end == edge2.end)
+                    {
+                        canTest = false;
+                        break;
+                    }
+                }
+                if(!canTest)
+                    continue;
+                if(!isPointInPolygon(face->polygon, edge.start->position))
+                    continue;
+                shared_ptr<Face> interiorFace = facesMap[edge];
+                face->interiorFaces.insert(interiorFace);
             }
         }
     }
-    // Creates polygon for the region
-    Polygon poly = getRegionPolygon(outsideRegion);
-    // Iterates through all the nodes in the game state
-    for(shared_ptr<Node> node : *gs)
+
+    // convert to a tree and create lands
+
+    for(shared_ptr<Face> face : faces)
     {
-        // Checks if the current node is not already in the region's nodes
-        if(find(outsideRegion->nodes.begin(), outsideRegion->nodes.end(), node) == outsideRegion->nodes.end())
+        face->removeList.reserve(faces.size());
+        for(shared_ptr<Face> interiorFace : face->interiorFaces)
         {
-            // Checks if current node is inside region
-            // If point check fails, it's inside region (for an outside region)
-            // see "isPointInRegion" function
-            if(isPointInPolygon(poly, node->position) ^ outsideRegion->isOutsideRegion)
-                outsideRegion->nodes.push_back(node);
+            copy(interiorFace->interiorFaces.begin(), interiorFace->interiorFaces.end(), back_inserter(face->removeList));
+        }
+        face->parent = shared_ptr<Face>(nullptr);
+    }
+
+    for(shared_ptr<Face> face : faces)
+    {
+        for(shared_ptr<Face> removeFace : face->removeList)
+        {
+            face->interiorFaces.erase(removeFace);
+        }
+        for(shared_ptr<Face> interiorFace : face->interiorFaces)
+        {
+            interiorFace->parent = face;
+        }
+        face->land = make_shared<Land>();
+        face->land->isInverted = face->isOutside;
+        face->land->polygon = face->polygon;
+        for(MyEdge edge : face->edges)
+        {
+            face->land->edges.push_back(edge.edge);
+            face->land->nodes.push_back(edge.start);
+        }
+    }
+
+    // convert faces found into regions
+
+    vector<shared_ptr<Region>> regions;
+    shared_ptr<Region> outsideRegion = make_shared<Region>();
+    regions.push_back(outsideRegion);
+    for(shared_ptr<Face> face : faces)
+    {
+        if(!face->parent.lock())
+        {
+            outsideRegion->lands.push_back(*face->land);
+            face->region = outsideRegion;
+            continue;
+        }
+        shared_ptr<Face> regionFace = face;
+        if(regionFace->isOutside)
+        {
+            regionFace = shared_ptr<Face>(regionFace->parent);
+        }
+        if(regionFace->region == nullptr)
+        {
+            regionFace->region = make_shared<Region>();
+            regions.push_back(regionFace->region);
+        }
+        face->region = regionFace->region;
+        face->region->lands.push_back(*face->land);
+    }
+
+    // set region pointers in edges
+
+    for(MyEdge edge : edges)
+    {
+        if(edge.start == edge.edge->start)
+        {
+            edge.edge->inside = facesMap[edge]->region;
+        }
+        else
+        {
+            edge.edge->outside = facesMap[edge]->region;
+        }
+    }
+
+    // add isolated nodes to regions
+
+    for(shared_ptr<Node> node : isolatedNodes)
+    {
+        for(shared_ptr<Region> region : regions)
+        {
+            if(isPointInRegion(region, node->position))
+            {
+                region->isolatedNodes.push_back(node);
+                break;
+            }
         }
     }
 }
@@ -514,37 +658,28 @@ Polygon getLandPolygon(const Land &land)
     return poly;
 }
 
-Polygon getRegionPolygon(shared_ptr<Region> r)
-{
-    assert(r);
-    vector<Polygon> polys;
-    for(const Land &land : r->lands)
-    {
-        polys.push_back(getLandPolygon(land));
-    }
-    if(polys.size() == 0)
-        return Polygon();
-    if(polys.size() == 1)
-        return polys[0];
-    Polygon retval;
-    for(Polygon & poly : polys)
-    {
-        if(poly.size() < 3)
-        {
-            continue;
-        }
-        poly.push_back(poly.begin());
-        for(auto point : poly)
-            retval.push_back(point);
-    }
-    return retval;
-}
-
 bool isPointInRegion(shared_ptr<Region> r, VectorF p)
 {
-    if(isPointInPolygon(getRegionPolygon(r), p))
-        return !r->isOutsideRegion;
-    return r->isOutsideRegion;
+    bool isOutsideRegion = true;
+    assert(r);
+    for(Land land : r->lands)
+    {
+        if(!land.isInverted)
+            isOutsideRegion = false;
+        if(isPointInPolygon(land.polygon, p))
+        {
+            if(land.isInverted)
+                return false;
+        }
+        else if(!land.isInverted)
+        {
+            return false;
+        }
+    }
+    if(isOutsideRegion)
+        return true;
+    else
+        return false;
 }
 
 #if 1
@@ -572,3 +707,31 @@ vector<Polygon> splitPolygon(Polygon poly)
     return retval;
 }
 #endif
+
+GameState duplicate(GameState gs)
+{
+    GameState retval = makeEmptyGameState();
+    unordered_map<shared_ptr<Node>, shared_ptr<Node>> nodeMap;
+    unordered_map<shared_ptr<Edge>, shared_ptr<Edge>> edgeMap;
+    unordered_set<shared_ptr<Edge>> edges;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        auto node = *ni;
+        auto newNode = make_shared<Node>(node->position);
+        nodeMap[node] = newNode;
+        newNode->iter = retval->addNode(newNode);
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            shared_ptr<Edge> edge = get<0>(*ei);
+            edges.insert(edge);
+        }
+    }
+    for(shared_ptr<Edge> edge : edges)
+    {
+        auto newEdge = make_shared<Edge>(edge->cubicSplines, nodeMap[edge->start], nodeMap[edge->end]);
+        retval->addEdge(newEdge, newEdge->start->iter, newEdge->end->iter);
+        retval->addEdge(newEdge, newEdge->end->iter, newEdge->start->iter);
+    }
+    recalculateRegions(retval);
+    return retval;
+}
