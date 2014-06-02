@@ -93,3 +93,48 @@ Mesh Generate::line(const vector<VectorF> &linePointsIn, TextureDescriptor textu
     }
     return retval;
 }
+
+Mesh Generate::lineLoop(vector<VectorF> linePointsIn, TextureDescriptor texture, Color color, float lineWidth)
+{
+    if(linePointsIn.size() < 2) // if less than 2 points then we can't have a line
+    {
+        return Mesh(new Mesh_t());
+    }
+    vector<VectorF> linePoints;
+    linePoints.reserve(linePointsIn.size());
+    linePoints.push_back(linePointsIn[0]);
+    for(size_t i = 1; i < linePointsIn.size(); i++)
+    {
+        if(absSquared(linePointsIn[i] - linePoints.back()) >= eps * eps) // remove duplicates
+            linePoints.push_back(linePointsIn[i]);
+    }
+    if(linePoints.size() < 2) // if less than 2 points then we can't have a line
+    {
+        return Mesh(new Mesh_t());
+    }
+    if(linePoints.size() == 2)
+        return Generate::line(linePoints, texture, color, lineWidth);
+
+    vector<Edge> edges;
+    edges.reserve(linePoints.size());
+    float distance = 0;
+    for(size_t i = 0; i < linePoints.size(); i++)
+    {
+        size_t j = (i + 1) % linePoints.size();
+        size_t k = (i + 2) % linePoints.size();
+        edges.push_back(makeMiddleEdge(linePoints[i], linePoints[j], linePoints[k], distance, lineWidth));
+        distance += abs(linePoints[j] - linePoints[k]);
+    }
+    Mesh retval = nullptr;
+    for(size_t i = 0; i < edges.size(); i++)
+    {
+        size_t j = (i + 1) % edges.size();
+        TextureDescriptor currentTexture = texture.subTexture(edges[i].distance / distance, edges[j].distance / distance, 0, 1);
+        Mesh mesh = Generate::quadrilateral(currentTexture, edges[i].p2, color, edges[j].p2, color, edges[j].p1, color, edges[i].p1, color);
+        if(retval == nullptr)
+            retval = mesh;
+        else
+            retval->add(mesh);
+    }
+    return retval;
+}

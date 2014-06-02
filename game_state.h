@@ -39,6 +39,8 @@ Polygon getLandPolygon(const Land &land);
 
 bool isPointInRegion(shared_ptr<Region> r, VectorF p);
 
+shared_ptr<Region> pointToRegion(GameState gs, VectorF p);
+
 void recalculateRegions(GameState gs);
 
 bool isValidGameState(GameState gs);

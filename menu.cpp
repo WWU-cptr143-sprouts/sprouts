@@ -8,21 +8,60 @@
 
 using namespace std;
 
+static GameState makeTestGameState();
+
 namespace
 {
 
 class GameCanvas : public GUICanvas
 {
     GameState gs;
+    VectorF mousePosition = VectorF(0);
+    shared_ptr<Region> mouseRegion = nullptr;
 public:
     GameCanvas(float minX, float maxX, float minY, float maxY, GameState gs)
         : GUICanvas(minX, maxX, minY, maxY), gs(gs)
     {
     }
-protected:
-    virtual Mesh generateMesh() const override
+    virtual bool handleMouseMove(MouseMoveEvent &event) override
     {
-        return renderGameState(gs);
+        mousePosition = getMousePosition(event);
+        mousePosition.z = 0;
+        mouseRegion = pointToRegion(gs, mousePosition);
+        return GUICanvas::handleMouseMove(event);
+    }
+protected:
+    virtual Mesh generateMesh() override
+    {
+        Mesh retval = renderGameState(gs);
+        if(mouseRegion)
+        {
+            for(Land land : mouseRegion->lands)
+            {
+                Color color = (land.isInverted ? Color::RGB(0, 1, 0) : Color::RGB(0, 0, 1));
+                retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(land.polygon, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
+            }
+        }
+        return retval;
+    }
+    friend class GameStateLabel;
+};
+
+class GameStateLabel : public GUILabel
+{
+    shared_ptr<GameCanvas> gameCanvas;
+public:
+    GameStateLabel(float minX, float maxX, float minY, float maxY, shared_ptr<GameCanvas> gameCanvas)
+        : GUILabel(L"", minX, maxX, minY, maxY), gameCanvas(gameCanvas)
+    {
+    }
+protected:
+    virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
+    {
+        wstringstream os;
+        //os << L"Region : " << gameCanvas->mouseRegion;
+        text = os.str();
+        return GUILabel::render(minZ, maxZ, hasFocus);
     }
 };
 
@@ -83,7 +122,7 @@ public:
         return lineSegmentCount;
     }
 protected:
-    virtual Mesh generateMesh() const override
+    virtual Mesh generateMesh() override
     {
         Mesh retval = Mesh(new Mesh_t(*mesh));
         retval->add(makeMesh());
@@ -144,20 +183,57 @@ static void mainGame()
     runAsDialog(gui);
 }
 
+static decltype(makeEmptyGameState()->begin()) addNodeToGraph(GameState gs, VectorF position)
+{
+    return gs->addNode(make_shared<Node>(position));
+}
+
+static void addEdgeToGraph(GameState gs, decltype(makeEmptyGameState()->begin()) node1, decltype(makeEmptyGameState()->begin()) node2)
+{
+    auto edge = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position)}, *node1, *node2);
+    gs->addEdge(edge, node1, node2);
+    gs->addEdge(edge, node2, node1);
+}
+
+static void addEdgeToGraph(GameState gs, decltype(makeEmptyGameState()->begin()) node1, decltype(makeEmptyGameState()->begin()) node2, VectorF dp1, VectorF dp2)
+{
+    auto edge = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position, dp1, dp2)}, *node1, *node2);
+    gs->addEdge(edge, node1, node2);
+    gs->addEdge(edge, node2, node1);
+}
+
 static GameState makeTestGameState()
 {
-    GameState retval = makeEmptyGameState();
-    auto node1 = retval->addNode(make_shared<Node>(VectorF(-0.5, -0.5, 0)));
-    auto node2 = retval->addNode(make_shared<Node>(VectorF(-0.5, 0.5, 0)));
-    auto node3 = retval->addNode(make_shared<Node>(VectorF(0.5, -0.5, 0)));
-    auto edge1 = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node2)->position)}, *node1, *node2);
-    retval->addEdge(edge1, node1, node2);
-    retval->addEdge(edge1, node2, node1);
-    auto edge2 = make_shared<Edge>(vector<CubicSpline>{CubicSpline((*node1)->position, (*node3)->position)}, *node1, *node3);
-    retval->addEdge(edge2, node1, node3);
-    retval->addEdge(edge2, node3, node1);
-    recalculateRegions(retval);
-    return retval;
+    GameState gs = makeEmptyGameState();
+    auto n11 = addNodeToGraph(gs, VectorF(0.2, 0, 0));
+    auto n12 = addNodeToGraph(gs, VectorF(0.3, 0, 0));
+    auto n1 = addNodeToGraph(gs, VectorF(-0.9, -0.3, 0));
+    auto n2 = addNodeToGraph(gs, VectorF(-0.7, 0, 0));
+    auto n3 = addNodeToGraph(gs, VectorF(-0.6, 0, 0));
+    auto n4 = addNodeToGraph(gs, VectorF(-0.5, 0, 0));
+    auto n5 = addNodeToGraph(gs, VectorF(-0.4, 0, 0));
+    auto n6 = addNodeToGraph(gs, VectorF(-0.7, 0.1, 0));
+    auto n7 = addNodeToGraph(gs, VectorF(-0.9, 0.3, 0));
+    auto n8 = addNodeToGraph(gs, VectorF(-0.6, 0.5, 0));
+    auto n9 = addNodeToGraph(gs, VectorF(0, 0, 0));
+    auto n10 = addNodeToGraph(gs, VectorF(0.1, 0, 0));
+    auto n13 = addNodeToGraph(gs, VectorF(0.4, 0, 0));
+    addEdgeToGraph(gs, n1, n7);
+    addEdgeToGraph(gs, n1, n5);
+    addEdgeToGraph(gs, n1, n2);
+    addEdgeToGraph(gs, n2, n3);
+    addEdgeToGraph(gs, n2, n7);
+    addEdgeToGraph(gs, n3, n4, VectorF(0.01, -.1, 0), VectorF(0.01, .1, 0));
+    addEdgeToGraph(gs, n3, n4, VectorF(0.01, .1, 0), VectorF(0.01, -.1, 0));
+    addEdgeToGraph(gs, n4, n5);
+    addEdgeToGraph(gs, n5, n7);
+    //addEdgeToGraph(gs, n5, n9);
+    addEdgeToGraph(gs, n9, n13, VectorF(0.01, -2, 0), VectorF(0.01, 2, 0));
+    addEdgeToGraph(gs, n9, n13, VectorF(0.01, 2, 0), VectorF(0.01, -2, 0));
+    addEdgeToGraph(gs, n11, n12, VectorF(0.05, -1, 0), VectorF(0.05, 1, 0));
+    addEdgeToGraph(gs, n11, n12, VectorF(0.05, 1, 0), VectorF(0.05, -1, 0));
+    recalculateRegions(gs);
+    return gs;
 }
 
 static void testBigButton()
@@ -168,7 +244,9 @@ static void testBigButton()
     gui->add(canvas);
     gui->add(make_shared<MyCanvasLineCountLabel>(-0.4, 0.4, 0.9, 1, canvas));
 #elif 1
-    gui->add(make_shared<GameCanvas>(-0.9, 0.9, -0.9, 0.9, makeTestGameState()));
+    shared_ptr<GameCanvas> canvas = make_shared<GameCanvas>(-0.9, 0.9, -0.9, 0.9, makeTestGameState());
+    gui->add(canvas);
+    gui->add(make_shared<GameStateLabel>(-0.4, 0.4, 0.9, 1, canvas));
 #else
     gui->add(make_shared<GUICanvas>(-0.9, 0.9, -0.9, 0.9, []()->Mesh
     {

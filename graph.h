@@ -26,7 +26,7 @@ struct graph_build_error : public runtime_error
 };
 
 /**
-    class for a directed graph
+    class for a directed multi-graph
 */
 template <typename NT, typename ET = NT>
 class graph
@@ -178,100 +178,6 @@ public:
         }
 
         edges.clear();
-    }
-    void build() // builds graph interactively
-    {
-        clear();
-        cout << "Enter the number of nodes:";
-        int nodeCount;
-
-        if(!(cin >> nodeCount) || nodeCount < 0)
-        {
-            throw graph_build_error("invalid node count");
-        }
-
-        vector<vector<pair<Edge *, int> > > adjacencyLists;
-        adjacencyLists.resize(nodeCount);
-
-        try
-        {
-            for(int i = 0; i < nodeCount; i++)
-            {
-                cout << "Node #" << (i + 1) << ":\n";
-                cout << "Enter Node Data:";
-                NT data;
-
-                if(!(cin >> data))
-                {
-                    throw graph_build_error("invalid node data");
-                }
-
-                Node *newNode = new Node(nodes.size(), move(data));  // move if we can because it's more efficient
-                nodes.push_back(newNode);
-
-                for(;;)
-                {
-                    cout << "Enter adjacent node (or 0 to end):";
-                    int n;
-
-                    if(!(cin >> n) || n < 0 || n > nodeCount)
-                    {
-                        throw graph_build_error("invalid node adjacency");
-                    }
-
-                    if(n == 0)
-                    {
-                        break;
-                    }
-
-                    for(auto edge : adjacencyLists[i])
-                    {
-                        if(get<1>(edge) == n - 1)
-                        {
-                            throw graph_build_error("duplicate node adjacency");
-                        }
-                    }
-
-                    ET data;
-                    cout << "Enter edge data:";
-
-                    if(!(cin >> data))
-                    {
-                        throw graph_build_error("invalid edge data");
-                    }
-
-                    Edge *newEdge;
-                    newEdge = new Edge(move(data)); // move if we can because it's more efficient
-                    adjacencyLists[i].push_back(make_pair(newEdge, n - 1));
-                }
-            }
-        }
-        catch(...)
-        {
-            for(auto adjacencyList : adjacencyLists)
-            {
-                for(auto edgePair : adjacencyList)
-                {
-                    delete get<0>(edgePair);
-                }
-            }
-
-            throw;
-        }
-
-        for(int i = 0; i < nodeCount; i++)
-        {
-            Node *node = nodes[i];
-
-            for(auto edgePair : adjacencyLists[i])
-            {
-                int destIndex = get<1>(edgePair);
-                Edge *edge = get<0>(edgePair);
-                edge->src = node;
-                edge->dest = nodes[destIndex];
-                node->adjacencyList.push_back(edge);
-            }
-        }
     }
     friend class node_iterator;
     class node_iterator : public iterator<random_access_iterator_tag, NT> // node iterator
@@ -508,88 +414,6 @@ public:
     {
         return edge_iterator(nodes[ni.index]->adjacencyList.end(), this);
     }
-private:
-    void isGraphConnectedDepthFirstHelper(Node *node) const  // depth first search helper
-    {
-        node->flag = true;
-
-        for(Edge *edge : node->adjacencyList)
-        {
-            if(!edge->dest->flag)
-            {
-                isGraphConnectedDepthFirstHelper(edge->dest);
-            }
-        }
-    }
-    void unmarkAll() const // clear all flags
-    {
-        for(Node *node : nodes)
-        {
-            node->flag = false;
-        }
-    }
-    bool anyFlagMatches(bool state) const // return if any node's flag matches state
-    {
-        for(Node *node : nodes)
-        {
-            if(state == node->flag)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-    bool anyMarked() const // return if any nodes are marked
-    {
-        return anyFlagMatches(true);
-    }
-    bool allMarked() const // return if all nodes are marked
-    {
-        return !anyFlagMatches(false);
-    }
-public:
-    bool isGraphConnectedDepthFirst()
-    const // return if the graph is connected starting from the first node
-    {
-        if(nodes.empty())
-        {
-            return true;
-        }
-
-        unmarkAll();
-        isGraphConnectedDepthFirstHelper(nodes.front());
-        return allMarked();
-    }
-    bool isGraphConnectedBreadthFirst()
-    const // return if the graph is connected starting from the first node
-    {
-        if(nodes.empty())
-        {
-            return true;
-        }
-
-        unmarkAll();
-        deque<Node *> nodeQueue;
-        nodeQueue.push_back(nodes.front());
-
-        while(!nodeQueue.empty())
-        {
-            Node *node = nodeQueue.front();
-            nodeQueue.pop_front();
-            node->flag = true;
-
-            for(Edge *edge : node->adjacencyList)
-            {
-                if(!edge->dest->flag)
-                {
-                    nodeQueue.push_back(edge->dest);
-                }
-            }
-        }
-
-        return allMarked();
-    }
     node_iterator addNode(const NT &data)
     {
         node_iterator retval(nodes.size(), this);
@@ -602,39 +426,32 @@ public:
         nodes.push_back(new Node(nodes.size(), move(data)));
         return retval;
     }
-    bool hasEdge(node_iterator src, node_iterator dest) const
+    size_t edgeCount(node_iterator src, node_iterator dest) const
     {
         if(src == end())
         {
-            return false;
+            return 0;
         }
 
         if(dest == end())
         {
-            return false;
+            return 0;
         }
 
+        size_t retval = 0;
         for(edge_iterator i = begin(src); i != end(src); i++)
         {
             if(get<1>(*i) == dest)
             {
-                return true;
+                retval++;
             }
         }
 
-        return false;
+        return retval;
     }
     edge_iterator addEdge(const ET &data, node_iterator src, node_iterator dest)
     {
         assert(src != end() && dest != end());
-
-        for(edge_iterator i = begin(src); i != end(src); i++)
-        {
-            if(get<1>(*i) == dest)
-            {
-                assert(false);
-            }
-        }
 
         Edge *newEdge = new Edge(data);
         newEdge->src = src.get();
@@ -646,14 +463,6 @@ public:
     edge_iterator addEdge(ET  &&data, node_iterator src, node_iterator dest)
     {
         assert(src != end() && dest != end());
-
-        for(edge_iterator i = begin(src); i != end(src); i++)
-        {
-            if(get<1>(*i) == dest)
-            {
-                assert(false);
-            }
-        }
 
         Edge *newEdge = new Edge(move(data));
         newEdge->src = src.get();
@@ -673,111 +482,6 @@ public:
         return edges.size();
     }
 };
-
-template <typename NT, typename ET>
-inline vector<vector<typename graph<NT, ET>::node_iterator> > findShortestPath(const graph<NT, ET> & g, typename graph<NT, ET>::node_iterator sourceNode) // finds shortest path from sourceNode to all other nodes using dijkstra's algorithm
-{
-    if(sourceNode == g.end())
-        return vector<vector<typename graph<NT, ET>::node_iterator> >();
-    vector<ET> distance;
-    const ET infinity = (ET)-1; // special value for infinity
-    distance.resize(g.nodeCount(), infinity);
-    distance[sourceNode.position()] = 0;
-    vector<typename graph<NT, ET>::node_iterator> previous;
-    previous.resize(g.nodeCount(), g.end());
-    previous[sourceNode.position()] = sourceNode;
-
-    list<typename graph<NT, ET>::node_iterator> nodesLeft;
-    for(size_t i = 0; i < g.nodeCount(); i++)
-    {
-        nodesLeft.push_back(g.begin() + i);
-    }
-
-    while(!nodesLeft.empty())
-    {
-        ET minDistance = infinity;
-        auto minIterator = nodesLeft.end();
-        for(auto i = nodesLeft.begin(); i != nodesLeft.end(); i++)
-        {
-            ET curDistance = distance[i->position()];
-            if(curDistance == minDistance || minDistance == infinity || (curDistance != infinity && curDistance <= minDistance))
-            {
-                minDistance = curDistance;
-                minIterator = i;
-            }
-        }
-        if(minDistance == infinity)
-            break;
-        auto node = *minIterator;
-        nodesLeft.erase(minIterator);
-        for(auto edge = g.begin(node); edge != g.end(node); edge++)
-        {
-            ET alternateDistance = distance[node.position()];
-            if(alternateDistance != infinity)
-                alternateDistance += get<0>(*edge);
-            auto destNode = get<1>(*edge);
-            if(distance[destNode.position()] == alternateDistance || distance[destNode.position()] == infinity || (alternateDistance != infinity && alternateDistance <= distance[destNode.position()]))
-            {
-                distance[destNode.position()] = alternateDistance;
-                previous[destNode.position()] = node;
-            }
-        }
-    }
-
-    vector<vector<typename graph<NT, ET>::node_iterator> > retval;
-    retval.resize(g.nodeCount());
-    for(size_t i = 0; i < g.nodeCount(); i++)
-    {
-        if(previous[i] == g.end())
-            continue;
-        auto node = g.begin() + i;
-        retval[i].push_back(node);
-        while(node != sourceNode)
-        {
-            node = previous[node.position()];
-            retval[i].push_back(node);
-        }
-        reverse(retval[i].begin(), retval[i].end());
-    }
-    return retval;
-}
-
-inline graph<int> generateRandomGraph(int numberOfNodes, int numberOfEdges, int minimumEdgeValue,
-                               int maximumEdgeValue)
-{
-    assert(numberOfEdges <= numberOfNodes * numberOfNodes);
-    graph<int> retval;
-
-    for(int i = 0; i < numberOfNodes; i++)
-    {
-        retval.addNode(i + 1);
-    }
-
-    for(int i = 0; i < numberOfEdges; i++)
-    {
-        int srcNode = rand() % numberOfNodes;
-        int destNode = rand() % numberOfNodes;
-        int testCount = 0;
-
-        while(retval.hasEdge(retval.begin() + srcNode, retval.begin() + destNode))
-        {
-            if(++testCount > numberOfNodes * numberOfNodes)
-            {
-                assert(false);
-            }
-
-            srcNode++;
-            destNode += srcNode / numberOfNodes;
-            destNode %= numberOfNodes;
-            srcNode %= numberOfNodes;
-        }
-
-        retval.addEdge(rand() % (maximumEdgeValue - minimumEdgeValue + 1) + minimumEdgeValue,
-                       retval.begin() + srcNode, retval.begin() + destNode);
-    }
-
-    return move(retval);
-}
 
 namespace GraphingInternals
 {
@@ -1128,59 +832,5 @@ inline ostream &operator <<(ostream &os, const graph<NT, ET> &g)
 
     drawTextBlock(os, textBlock, xOffset + totalSize);
     return os;
-}
-
-template <typename NT, typename ET>
-inline graph<NT, ET> findAllShortestPaths(const graph<NT, ET> & g, const ET infinity = (ET)-1)
-{
-    vector<vector<ET> > dist;
-    dist.resize(g.nodeCount());
-    for(vector<ET> & v : dist)
-    {
-        v.resize(g.nodeCount(), infinity);
-    }
-    for(size_t i = 0; i < g.nodeCount(); i++)
-    {
-        auto node = g.begin() + i;
-        for(auto edge = g.begin(node); edge != g.end(node); edge++)
-        {
-            dist[i][edge.dest().position()] = get<0>(*edge);
-        }
-        dist[i][i] = 0;
-    }
-    for(size_t k = 0; k < g.nodeCount(); k++)
-    {
-        for(size_t i = 0; i < g.nodeCount(); i++)
-        {
-            for(size_t j = 0; j < g.nodeCount(); j++)
-            {
-                ET sumDist = dist[i][k];
-                if(sumDist != infinity && dist[k][j] != infinity)
-                    sumDist = dist[i][k] + dist[k][j];
-                else
-                    sumDist = infinity;
-                if(sumDist != infinity && (dist[i][j] == infinity || dist[i][j] > sumDist))
-                {
-                    dist[i][j] = sumDist;
-                }
-            }
-        }
-    }
-    graph<NT, ET> retval;
-    for(size_t i = 0; i < g.nodeCount(); i++)
-    {
-        retval.addNode(g.begin()[i]);
-    }
-    for(size_t i = 0; i < g.nodeCount(); i++)
-    {
-        for(size_t j = 0; j < g.nodeCount(); j++)
-        {
-            if(dist[i][j] != infinity)
-            {
-                retval.addEdge(move(dist[i][j]), retval.begin() + i, retval.begin() + j);
-            }
-        }
-    }
-    return move(retval);
 }
 #endif // GRAPH_H_INCLUDED

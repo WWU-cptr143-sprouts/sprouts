@@ -198,6 +198,7 @@ inline Mesh unitBox(TextureDescriptor nx, TextureDescriptor px, TextureDescripto
 }
 
 Mesh line(const vector<VectorF> &linePoints, TextureDescriptor texture, Color color, float lineWidth);
+Mesh lineLoop(vector<VectorF> linePoints, TextureDescriptor texture, Color color, float lineWidth);
 }
 
 #endif // GENERATE_H_INCLUDED

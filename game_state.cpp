@@ -29,7 +29,7 @@ size_t std::hash<GameState>::operator()(GameState gs)
 
 const int edgePerNodeMax = 3;
 
-bool isValidGameState(GameState gs)
+bool isValidGameState(GameState gs, bool ignoreNodeCounts = false)
 {
     unordered_map<shared_ptr<Edge>, int> edgesMap;
     vector<shared_ptr<Edge>> edges;
@@ -43,7 +43,7 @@ bool isValidGameState(GameState gs)
         for(auto edgeIterator = gs->begin(nodeIterator); edgeIterator != gs->end(nodeIterator);
                 edgeIterator++)
         {
-            if(++edgeCount > edgePerNodeMax)
+            if(++edgeCount > edgePerNodeMax && !ignoreNodeCounts)
             {
                 return false;
             }
@@ -242,14 +242,7 @@ float getPseudoAngle(VectorF v) // doesn't really return the angle : returns a n
     return 3 + v.x;
 }
 
-/** \brief returns a number that sorts in the same order as angles but can be calculated faster
- *
- * \param the edge
- * \return the pseudo-angle
- *
- * \note doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
- */
-float getEdgePseudoAngle(MyEdge v)
+VectorF getEdgeAngleVector(MyEdge v)
 {
     auto edge = v.edge;
     auto node = v.start;
@@ -259,22 +252,37 @@ float getEdgePseudoAngle(MyEdge v)
     {
         spline = edge->cubicSplines.back().reversed();
     }
-
+#if 1
+    return spline.evaluate(0.1) - spline.p0;
+#else
     VectorF cubic = spline.getCubic();
     VectorF quadratic = spline.getQuadratic();
     VectorF linear = spline.getLinear();
 
     if(absSquared(linear) > eps * eps)
     {
-        return getPseudoAngle(linear);
+        return linear;
     }
 
     if(absSquared(quadratic) > eps * eps)
     {
-        return getPseudoAngle(quadratic);
+        return quadratic;
     }
 
-    return getPseudoAngle(cubic);
+    return cubic;
+#endif
+}
+
+/** \brief returns a number that sorts in the same order as angles but can be calculated faster
+ *
+ * \param the edge
+ * \return the pseudo-angle
+ *
+ * \note doesn't really return the angle : returns a number that sorts in the same order but can be calculated faster
+ */
+float getEdgePseudoAngle(MyEdge v)
+{
+    return getPseudoAngle(getEdgeAngleVector(v));
 }
 
 float getAngle(VectorF v)
@@ -296,40 +304,34 @@ float getAngle(VectorF v)
 
 float getEdgeAngle(MyEdge v)
 {
-    auto edge = v.edge;
-    auto node = v.start;
-    CubicSpline spline = edge->cubicSplines.front();
-
-    if(node->position != spline.p0)
-    {
-        spline = edge->cubicSplines.back().reversed();
-    }
-
-    VectorF cubic = spline.getCubic();
-    VectorF quadratic = spline.getQuadratic();
-    VectorF linear = spline.getLinear();
-
-    if(absSquared(linear) > eps * eps)
-    {
-        return getAngle(linear);
-    }
-
-    if(absSquared(quadratic) > eps * eps)
-    {
-        return getAngle(quadratic);
-    }
-
-    return getAngle(cubic);
+    return getAngle(getEdgeAngleVector(v));
 }
 
 float getAngleDelta(MyEdge a, MyEdge b)
 {
     float angle = getEdgeAngle(a) - getEdgeAngle(b);
-    if(angle >= 2 * M_PI)
+    if(angle > M_PI)
         angle -= 2 * M_PI;
-    if(angle < 0)
+    if(angle <= -M_PI)
         angle += 2 * M_PI;
     return angle;
+}
+
+float getPolygonAngleSum(const Polygon &poly)
+{
+    float retval = 0;
+    for(size_t i = 0; i < poly.size(); i++)
+    {
+        size_t j = (i + 1) % poly.size();
+        size_t k = (i + 2) % poly.size();
+        float angle = getAngle(poly[j] - poly[i]) - getAngle(poly[k] - poly[j]);
+        if(angle > M_PI)
+            angle -= 2 * M_PI;
+        if(angle <= -M_PI)
+            angle += 2 * M_PI;
+        retval += angle;
+    }
+    return retval;
 }
 }
 
@@ -345,6 +347,114 @@ struct hash<MyEdge>
 };
 }
 
+inline ostream & operator <<(ostream & os, shared_ptr<Node> node)
+{
+    return os << node->position;
+}
+
+inline ostream & operator <<(ostream & os, shared_ptr<Edge> edge)
+{
+    return os << edge.get() << ":";
+}
+
+inline ostream & operator <<(ostream & os, const CubicSpline &spline)
+{
+    return os << spline.p0 << spline.dp0 << "-" << spline.p1 << spline.dp1;
+}
+
+inline ostream & operator <<(ostream & os, const Land & land)
+{
+    os << (land.isInverted ? "true" : "false") << "\n";
+    for(size_t i = 0; i < land.edges.size(); i++)
+    {
+        auto edge = shared_ptr<Edge>(land.edges[i]);
+        if(edge->start == land.nodes[i]) // if forward
+        {
+            for(CubicSpline spline : edge->cubicSplines)
+            {
+                os << spline << "\n";
+            }
+        }
+        else
+        {
+            for(size_t j = 0; j < edge->cubicSplines.size(); j++)
+            {
+                os << edge->cubicSplines[edge->cubicSplines.size() - j - 1].reversed() << "\n";
+            }
+        }
+    }
+    return os;
+}
+
+inline ostream & operator <<(ostream & os, shared_ptr<Face> face)
+{
+    os << "Face:\n";
+    for(size_t i = 0; i < face->edges.size(); i++)
+    {
+        auto edge = shared_ptr<Edge>(face->edges[i].edge);
+        if(edge->start == face->edges[i].start) // if forward
+        {
+            for(CubicSpline spline : edge->cubicSplines)
+            {
+                os << spline << "\n";
+            }
+        }
+        else
+        {
+            for(size_t j = 0; j < edge->cubicSplines.size(); j++)
+            {
+                os << edge->cubicSplines[edge->cubicSplines.size() - j - 1].reversed() << "\n";
+            }
+        }
+    }
+    return os;
+}
+
+inline ostream & operator <<(ostream & os, shared_ptr<Region> region)
+{
+    for(Land land : region->lands)
+    {
+        os << land;
+    }
+    return os;
+}
+
+inline ostream & operator <<(ostream & os, const MyEdge & edge)
+{
+    return os << edge.start->position << "-" << edge.end->position;
+}
+
+inline ostream & operator <<(ostream & os, unordered_multiset<MyEdge> edges)
+{
+    os << "Set of MyEdge:\n{\n";
+    for(auto v : edges)
+    {
+        os << v << "\n";
+    }
+    return os << "}\n";
+}
+
+inline ostream & operator <<(ostream & os, vector<MyEdge> edges)
+{
+    os << "Vector of MyEdge:\n{\n";
+    for(auto v : edges)
+    {
+        os << v << "\n";
+    }
+    return os << "}\n";
+}
+
+namespace
+{
+struct MyEdgeTotalEqual
+{
+    bool operator()(const MyEdge & a, const MyEdge & b) const
+    {
+        return a == b && a.edge == b.edge;
+    }
+};
+}
+
 /**
  * recalculate regions in the graph
  *
@@ -353,11 +463,12 @@ struct hash<MyEdge>
 void recalculateRegions(GameState gs)
 {
     assert(gs);
-    unordered_set<MyEdge> edges, edgesLeft;
+    assert(isValidGameState(gs, true));
+    unordered_multiset<MyEdge> edges, edgesLeft;
     unordered_map<shared_ptr<Node>, vector<MyEdge>> neighborsMap;
     vector<MyEdge> path;
     vector<shared_ptr<Face>> faces;
-    unordered_map<MyEdge, shared_ptr<Face>> facesMap;
+    unordered_map<MyEdge, shared_ptr<Face>, hash<MyEdge>, MyEdgeTotalEqual> facesMap;
     vector<shared_ptr<Node>> isolatedNodes;
 
     for(auto ni = gs->begin(); ni != gs->end(); ni++)
@@ -387,8 +498,7 @@ void recalculateRegions(GameState gs)
             }
 
             neighbors.push_back(MyEdge(edge, node, destNode));
-            edges.insert(MyEdge(edge, false));
-            edges.insert(MyEdge(edge, true));
+            edges.insert(MyEdge(edge, node, destNode));
         }
 
         sort(neighbors.begin(), neighbors.end(), [](MyEdge a, MyEdge b)
@@ -402,6 +512,7 @@ void recalculateRegions(GameState gs)
 
     edgesLeft = edges;
 
+    //cout << edgesLeft << flush;
     if(!edgesLeft.empty())
     {
         path.push_back(*edgesLeft.begin());
@@ -411,11 +522,12 @@ void recalculateRegions(GameState gs)
     // find all faces
     while(!edgesLeft.empty())
     {
+        //cout << path << endl;
         auto &neighbors = neighborsMap[path.back().end];
         auto curEdge = find_if(neighbors.begin(), neighbors.end(),
                                            [&path](MyEdge e) -> bool
         {
-            return path.back().start == e.end;
+            return path.back().start == e.end && path.back().edge == e.edge;
         });
         assert(curEdge != neighbors.end());
 
@@ -427,12 +539,16 @@ void recalculateRegions(GameState gs)
         auto theEdge = *curEdge;
         if(theEdge == path.front())
         {
+            //cout << "theEdge : " << theEdge << "\nEnd Of Path\n\n\n" << flush;
             shared_ptr<Face> face = make_shared<Face>();
             face->edges = std::move(path);
-            for(auto edge : face->edges)
-                facesMap[edge] = face;
-            faces.push_back(face);
             path.clear();
+            for(auto edge : face->edges)
+            {
+                assert(facesMap.find(edge) == facesMap.end());
+                facesMap[edge] = face;
+            }
+            faces.push_back(face);
             if(!edgesLeft.empty())
             {
                 path.push_back(*edgesLeft.begin());
@@ -441,9 +557,21 @@ void recalculateRegions(GameState gs)
         }
         else
         {
+            //cout << "theEdge : " << theEdge << "\n\n\n\n" << flush;
             path.push_back(theEdge);
-            edgesLeft.erase(theEdge);
+            auto range = edgesLeft.equal_range(theEdge);
+            auto i = get<0>(range);
+            while(i != get<1>(range))
+            {
+                if(i->edge == theEdge.edge)
+                    break;
+                else
+                    i++;
+            }
+            assert(i != get<1>(range));
+            edgesLeft.erase(i);
         }
+        //cout << edgesLeft << flush;
     }
 
     if(!path.empty())
@@ -451,7 +579,10 @@ void recalculateRegions(GameState gs)
         shared_ptr<Face> face = make_shared<Face>();
         face->edges = std::move(path);
         for(auto edge : face->edges)
+        {
+            assert(facesMap.find(edge) == facesMap.end());
             facesMap[edge] = face;
+        }
         faces.push_back(face);
     }
 
@@ -459,17 +590,11 @@ void recalculateRegions(GameState gs)
 
     for(shared_ptr<Face> face : faces)
     {
-        float angleSum = 0;
-        MyEdge lastEdge = face->edges.back();
-        for(MyEdge edge : face->edges)
-        {
-            angleSum += getAngleDelta(lastEdge, edge);
-            lastEdge = edge;
-        }
+        face->polygon = getFacePolygon(face);
+        float angleSum = getPolygonAngleSum(face->polygon);
         face->isOutside = false;
         if(angleSum < 0)
             face->isOutside = true;
-        face->polygon = getFacePolygon(face);
     }
 
     // calculate interiorFaces
@@ -503,7 +628,8 @@ void recalculateRegions(GameState gs)
                 if(!isPointInPolygon(face->polygon, edge.start->position))
                     continue;
                 shared_ptr<Face> interiorFace = facesMap[edge];
-                face->interiorFaces.insert(interiorFace);
+                if(interiorFace->isOutside)
+                    face->interiorFaces.insert(interiorFace);
             }
         }
     }
@@ -547,7 +673,7 @@ void recalculateRegions(GameState gs)
     regions.push_back(outsideRegion);
     for(shared_ptr<Face> face : faces)
     {
-        if(!face->parent.lock())
+        if(!face->parent.lock() && face->isOutside)
         {
             outsideRegion->lands.push_back(*face->land);
             face->region = outsideRegion;
@@ -594,26 +720,43 @@ void recalculateRegions(GameState gs)
             }
         }
     }
+    //cout << "Faces:\n";
+//    for(shared_ptr<Face> face : faces)
+//    {
+//        cout << face << "\n";
+//    }
+//    cout << "Regions:\n";
+//    for(shared_ptr<Region> region : regions)
+//    {
+//        cout << region << "\n";
+//    }
+//    cout << "Graph:\n" << *gs << endl;
 }
 
 bool isPointInPolygon(const Polygon & poly, VectorF p)
 {
     assert(poly.size() >= 3);
+    p += VectorF(eps);
     size_t hitCount = 0;
+    //cout << p << " ";
     for(size_t i = 0; i < poly.size(); i++)
     {
         size_t j = (i + 1) % poly.size();
         VectorF delta = poly[j] - poly[i];
         assert(absSquared(delta) > eps * eps);
-        float t = (poly[i].y - p.y) / delta.y;
-        if(t <= 0 || t > 1)
+        if(abs(delta.y) < eps)
+            continue;
+        float t = (p.y - poly[i].y) / delta.y;
+        if(t <= eps || t > 1 + eps)
             continue;
         VectorF hitPt = poly[i] + t * delta;
         if(hitPt.x < p.x)
             continue;
         hitCount++;
+        //cout << poly[i] << "-" << poly[j] << hitPt << " ";
     }
-    return (hitCount % 2 == 0);
+    //cout << ": " << hitCount << "\n";
+    return (hitCount % 2 != 0);
 }
 
 Polygon getLandPolygon(const Land &land)
@@ -660,12 +803,9 @@ Polygon getLandPolygon(const Land &land)
 
 bool isPointInRegion(shared_ptr<Region> r, VectorF p)
 {
-    bool isOutsideRegion = true;
     assert(r);
     for(Land land : r->lands)
     {
-        if(!land.isInverted)
-            isOutsideRegion = false;
         if(isPointInPolygon(land.polygon, p))
         {
             if(land.isInverted)
@@ -676,10 +816,7 @@ bool isPointInRegion(shared_ptr<Region> r, VectorF p)
             return false;
         }
     }
-    if(isOutsideRegion)
-        return true;
-    else
-        return false;
+    return true;
 }
 
 #if 1
@@ -734,4 +871,25 @@ GameState duplicate(GameState gs)
     }
     recalculateRegions(retval);
     return retval;
+}
+
+shared_ptr<Region> pointToRegion(GameState gs, VectorF p)
+{
+    //cout << "\x1b[H\x1b[2J";
+    unordered_set<shared_ptr<Region>> regions;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            shared_ptr<Edge> edge = get<0>(*ei);
+            regions.insert(edge->inside);
+            regions.insert(edge->outside);
+        }
+    }
+    for(shared_ptr<Region> region : regions)
+    {
+        if(isPointInRegion(region, p))
+            return region;
+    }
+    return nullptr;
 }

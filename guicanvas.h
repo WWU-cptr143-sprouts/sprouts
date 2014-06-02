@@ -35,7 +35,7 @@ protected:
         retval.y *= 2;
         return retval;
     }
-    virtual Mesh generateMesh() const
+    virtual Mesh generateMesh()
     {
         return generateMeshFn();
     }
