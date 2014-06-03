@@ -43,12 +43,32 @@ shared_ptr<Region> pointToRegion(GameState gs, VectorF p);
 
 void recalculateRegions(GameState gs);
 
-bool isValidGameState(GameState gs);
+bool isValidGameState(GameState gs, bool ignoreNodeCounts = false);
+
+TransformedMesh renderNode(shared_ptr<Node> node, Color color = Color::V(0.5));
 
 Mesh renderGameState(GameState gs);
 
-GameState duplicate(GameState gs);
+GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList = vector<shared_ptr<Node> *>());
 
 typedef stack<GameState> GameStateStack;
+
+GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path); // returns nullptr if it is an invalid move
+
+inline shared_ptr<Node> findClosestNode(GameState gs, VectorF p, float maxDistance = 0.02)
+{
+    shared_ptr<Node> retval = nullptr;
+    float distSquared = maxDistance * maxDistance;
+    for(shared_ptr<Node> node : *gs)
+    {
+        float curDistSquared = absSquared(node->position - p);
+        if(curDistSquared < distSquared)
+        {
+            distSquared = curDistSquared;
+            retval = node;
+        }
+    }
+    return retval;
+}
 
 #endif // GAME_STATE_H_INCLUDED

@@ -53,9 +53,10 @@ struct CubicSpline final
     {
         return CubicSpline(p1, p0, -dp1, -dp0);
     }
+    bool isSelfIntersecting() const;
 };
 
-inline vector<CubicSpline> splinesFromLines(vector<VectorF> line)
+inline vector<CubicSpline> splinesFromLines(const vector<VectorF> & line)
 {
     vector<CubicSpline> retval;
     if(line.size() < 2)
@@ -75,5 +76,7 @@ inline vector<CubicSpline> splinesFromLines(vector<VectorF> line)
     }
     return retval;
 }
+
+bool isPathSelfIntersecting(const vector<CubicSpline> & path);
 
 #endif // CUBICSPLINE_H_INCLUDED

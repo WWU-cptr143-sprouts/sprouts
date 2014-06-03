@@ -29,7 +29,7 @@ size_t std::hash<GameState>::operator()(GameState gs)
 
 const int edgePerNodeMax = 3;
 
-bool isValidGameState(GameState gs, bool ignoreNodeCounts = false)
+bool isValidGameState(GameState gs, bool ignoreNodeCounts)
 {
     unordered_map<shared_ptr<Edge>, int> edgesMap;
     vector<shared_ptr<Edge>> edges;
@@ -54,21 +54,20 @@ bool isValidGameState(GameState gs, bool ignoreNodeCounts = false)
             assert(node2 != nullptr && node2 != node);
             assert(edge->cubicSplines.size() > 0);
 
-            if(edge->cubicSplines.front().p0 == node->position)
+            if(absSquared(edge->cubicSplines.front().p0 - node->position) < eps * eps)
             {
-                assert(edge->cubicSplines.front().p0 == node->position);
-                assert(edge->cubicSplines.back().p1 == node2->position);
+                assert(absSquared(edge->cubicSplines.front().p0 - node->position) < eps * eps);
+                assert(absSquared(edge->cubicSplines.back().p1 - node2->position) < eps * eps);
             }
             else
             {
-                assert(edge->cubicSplines.front().p0 == node2->position);
-                assert(edge->cubicSplines.back().p1 == node->position);
+                assert(absSquared(edge->cubicSplines.front().p0 - node2->position) < eps * eps);
+                assert(absSquared(edge->cubicSplines.back().p1 - node->position) < eps * eps);
             }
 
             for(size_t i = 1; i < edge->cubicSplines.size(); i++)
             {
-                assert(edge->cubicSplines[i - 1].p1 == edge->cubicSplines[i].p0);
-                assert(edge->cubicSplines[i - 1].dp1 == edge->cubicSplines[i].dp0);
+                assert(absSquared(edge->cubicSplines[i - 1].p1 - edge->cubicSplines[i].p0) < eps * eps);
             }
 
             if(edgesMap.find(edge) == edgesMap.end())
@@ -86,7 +85,7 @@ bool isValidGameState(GameState gs, bool ignoreNodeCounts = false)
     for(auto i = edges.begin(); i != edges.end(); i++)
     {
         vector<CubicSpline> edge1 = (*i)->cubicSplines;
-        const float adjustDistance = 0.01;
+        const float adjustDistance = 0.1;
         edge1[0] = edge1[0].subSection(adjustDistance, 1);
         edge1[edge1.size() - 1] = edge1[edge1.size() - 1].subSection(0, 1 - adjustDistance);
 
@@ -110,19 +109,24 @@ bool isValidGameState(GameState gs, bool ignoreNodeCounts = false)
     return true;
 }
 
+TransformedMesh renderNode(shared_ptr<Node> node, Color color)
+{
+    const float dotSize = 0.02;
+    Mesh mesh = Generate::line({node->position + VectorF(-dotSize, 0, -1), node->position + VectorF(dotSize, 0, -1)},
+                               TextureAtlas::Point.td(), color, dotSize);
+    return transform(Matrix::scale(0.5), mesh);
+}
+
 Mesh renderGameState(GameState gs)
 {
     const float lineWidth = 0.01;
-    const float dotSize = 0.02;
     Mesh retval = Mesh(new Mesh_t());
     unordered_set<shared_ptr<Edge>> edges;
 
     for(auto nodeIterator = gs->begin(); nodeIterator != gs->end(); nodeIterator++)
     {
         shared_ptr<Node> node = *nodeIterator;
-        Mesh mesh = Generate::line({node->position + VectorF(-dotSize, 0, -1), node->position + VectorF(dotSize, 0, -1)},
-                                   TextureAtlas::Point.td(), Color::V(1), dotSize);
-        retval->add(transform(Matrix::scale(0.5), mesh));
+        retval->add(renderNode(node));
 
         for(auto edgeIterator = gs->begin(nodeIterator); edgeIterator != gs->end(nodeIterator);
                 edgeIterator++)
@@ -486,7 +490,7 @@ void recalculateRegions(GameState gs)
             assert(destNode);
             assert(edge->cubicSplines.size() > 0);
 
-            if(edge->cubicSplines[0].p0 == node->position)
+            if(absSquared(edge->cubicSplines[0].p0 - node->position) < eps * eps)
             {
                 edge->start = node;
                 edge->end = destNode;
@@ -845,11 +849,10 @@ vector<Polygon> splitPolygon(Polygon poly)
 }
 #endif
 
-GameState duplicate(GameState gs)
+GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList)
 {
     GameState retval = makeEmptyGameState();
     unordered_map<shared_ptr<Node>, shared_ptr<Node>> nodeMap;
-    unordered_map<shared_ptr<Edge>, shared_ptr<Edge>> edgeMap;
     unordered_set<shared_ptr<Edge>> edges;
     for(auto ni = gs->begin(); ni != gs->end(); ni++)
     {
@@ -870,6 +873,12 @@ GameState duplicate(GameState gs)
         retval->addEdge(newEdge, newEdge->end->iter, newEdge->start->iter);
     }
     recalculateRegions(retval);
+    for(shared_ptr<Node> * i : translateList)
+    {
+        assert(i);
+        shared_ptr<Node> & node = *i;
+        node = nodeMap[node];
+    }
     return retval;
 }
 
@@ -892,4 +901,66 @@ shared_ptr<Region> pointToRegion(GameState gs, VectorF p)
             return region;
     }
     return nullptr;
+}
+
+GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path)
+{
+    assert(gs);
+    assert(startNode);
+    assert(endNode);
+    assert(path.size() >= 1);
+    if(isPathSelfIntersecting(path))
+        return nullptr;
+    assert(absSquared(path.front().p0 - startNode->position) < eps * eps);
+    assert(absSquared(path.back().p1 - endNode->position) < eps * eps);
+    for(size_t i = 1; i < path.size(); i++)
+    {
+        assert(absSquared(path[i - 1].p1 - path[i].p0) < eps * eps);
+    }
+    VectorF pathCenterPosition = path[path.size() / 2].evaluate(0.5f * (path.size() % 2));
+    gs = duplicate(gs, vector<shared_ptr<Node> *>{&startNode, &endNode});
+    auto startNodeIterator = find(gs->begin(), gs->end(), startNode);
+    assert(startNodeIterator != gs->end());
+    auto endNodeIterator = find(gs->begin(), gs->end(), endNode);
+    assert(endNodeIterator != gs->end());
+    auto newNodeIterator = gs->addNode(make_shared<Node>(pathCenterPosition));
+    vector<CubicSpline> path1, path2;
+    path1.reserve((path.size() + 1) / 2);
+    path2.reserve((path.size() + 1) / 2);
+    for(size_t i = 0; i < path.size() / 2; i++)
+    {
+        path1.push_back(path[i]);
+    }
+    if(path.size() % 2 != 0)
+    {
+        path1.push_back(path[path.size() / 2].subSection(0, 0.5f));
+        path1.back().p1 = pathCenterPosition;
+        path2.push_back(path[path.size() / 2].subSection(0.5f, 1));
+        path2.front().p0 = pathCenterPosition;
+    }
+    for(size_t i = (path.size() + 1) / 2; i < path.size(); i++)
+    {
+        path2.push_back(path[i]);
+    }
+    shared_ptr<Edge> edge1 = shared_ptr<Edge>(new Edge(path1, startNode, *newNodeIterator));
+    shared_ptr<Edge> edge2 = shared_ptr<Edge>(new Edge(path2, *newNodeIterator, endNode));
+    gs->addEdge(edge1, startNodeIterator, newNodeIterator);
+    gs->addEdge(edge1, newNodeIterator, startNodeIterator);
+    gs->addEdge(edge2, newNodeIterator, endNodeIterator);
+    gs->addEdge(edge2, endNodeIterator, newNodeIterator);
+    if(isValidGameState(gs))
+    {
+        recalculateRegions(gs);
+        return gs;
+    }
+    return nullptr;
+}
+
+Edge::Edge(const vector<CubicSpline> & cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end)
+    : cubicSplines(cubicSplines)
+{
+    this->start = start;
+    this->end = end;
+//    assert(cubicSplines[0].p0 == start->position);
+//    assert(cubicSplines.back().p1 == end->position);
 }

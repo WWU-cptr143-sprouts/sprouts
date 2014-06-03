@@ -15,25 +15,76 @@ namespace
 
 class GameCanvas : public GUICanvas
 {
-    GameState gs;
+    vector<VectorF> line;
+    bool mouseDown = false;
+    GameStateStack gss;
     VectorF mousePosition = VectorF(0);
     shared_ptr<Region> mouseRegion = nullptr;
+    shared_ptr<Node> mouseNode = nullptr;
+    inline VectorF getMousePosition(MouseEvent &event) // sets the mousePosition variable
+    {
+        mousePosition = GUICanvas::getMousePosition(event);
+        mousePosition.z = 0;
+        mouseRegion = pointToRegion(gss.top(), mousePosition);
+        mouseNode = findClosestNode(gss.top(), mousePosition);
+        if(mouseNode)
+            mousePosition = mouseNode->position;
+        return mousePosition;
+    }
+    inline Mesh makeMesh() const
+    {
+        return CubicSpline::renderSplineList(splinesFromLines(line), TextureAtlas::ButtonMiddleDiffuse.td(), Color::HSV(fmod(Display::timer() / 10, 1), 1, 1), 0.005);
+    }
 public:
     GameCanvas(float minX, float maxX, float minY, float maxY, GameState gs)
-        : GUICanvas(minX, maxX, minY, maxY), gs(gs)
+        : GUICanvas(minX, maxX, minY, maxY)
     {
+        gss.push(gs);
     }
     virtual bool handleMouseMove(MouseMoveEvent &event) override
     {
-        mousePosition = getMousePosition(event);
-        mousePosition.z = 0;
-        mouseRegion = pointToRegion(gs, mousePosition);
-        return GUICanvas::handleMouseMove(event);
+        if(line.size() < 1)
+            line.push_back(VectorF());
+        line.back() = getMousePosition(event);
+        if(!mouseDown)
+            return true;
+        return true;
+    }
+    virtual bool handleMouseMoveOut(MouseEvent &event) override
+    {
+        return true;
+    }
+    virtual bool handleMouseDown(MouseDownEvent &event) override
+    {
+        getMousePosition(event);
+        if(event.button == MouseButton_Left && line.size() >= 2 && mouseNode && mouseDown)
+        {
+            line.back() = mousePosition;
+            vector<CubicSpline> path = splinesFromLines(line);
+            line.clear();
+            shared_ptr<Node> startNode = findClosestNode(gss.top(), path.front().p0);
+            GameState newGameState = move(gss.top(), startNode, mouseNode, path);
+            if(newGameState)
+                gss.push(newGameState);
+            mouseDown = false;
+        }
+        else if(event.button == MouseButton_Left && (mouseNode || mouseDown))
+        {
+            mouseDown = true;
+            line.push_back(mousePosition);
+            if(line.size() <= 1)
+                line.push_back(mousePosition);
+        }
+        return true;
+    }
+    virtual bool handleMouseUp(MouseUpEvent &event) override
+    {
+        return true;
     }
 protected:
     virtual Mesh generateMesh() override
     {
-        Mesh retval = renderGameState(gs);
+        Mesh retval = renderGameState(gss.top());
         if(mouseRegion)
         {
             for(Land land : mouseRegion->lands)
@@ -42,6 +93,11 @@ protected:
                 retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(land.polygon, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
             }
         }
+        if(mouseNode)
+        {
+            retval->add(transform(Matrix::scale(0.25f), renderNode(mouseNode, Color::V(1))));
+        }
+        retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25f * 0.75f)), makeMesh()));
         return retval;
     }
     friend class GameStateLabel;
@@ -172,14 +228,26 @@ static void creditsScreen()
     runAsDialog(gui);
 }
 
+static GameState makeInitialGameState(int nodeCount = 3)
+{
+    GameState gs = makeEmptyGameState();
+    for(int i = 0; i < nodeCount; i++)
+    {
+        float angle = (float)i / nodeCount * 2 * M_PI;
+        gs->addNode(make_shared<Node>(0.5 * VectorF(cos(angle), sin(angle), 0)));
+    }
+    recalculateRegions(gs);
+    return gs;
+}
+
 static void mainGame()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    gui->add(make_shared<GUILabel>(creditsText, -1, 1, -0.8, 1, Color::V(0)));
+    gui->add(make_shared<GameCanvas>(-Display::scaleX(), Display::scaleX(), 0.1 - Display::scaleY(), Display::scaleY(), makeInitialGameState()));
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
-    }, L"Return to Main Menu", -0.4, 0.4, -0.95, -0.85));
+    }, L"Return to Main Menu", -0.4, 0.4, -Display::scaleY(), 0.1 - Display::scaleY()));
     runAsDialog(gui);
 }
 
@@ -401,8 +469,13 @@ void mainMenu()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
     shared_ptr<GUICircleArrangement> circleArrangement = createCircleArrangement();
-    circleArrangement->add(make_shared<GUIButton>([]()
+    circleArrangement->add(make_shared<GUIButton>([&gui]()
     {
+        GUIRunner::get(gui)->scheduleFunction([&gui]()
+        {
+            mainGame();
+            gui->reset();
+        });
     }, L"Start New Game", -0.4, 0.4, -0.8, -0.7));
     circleArrangement->add(make_shared<GUIButton>([]()
     {
@@ -423,14 +496,6 @@ void mainMenu()
             gui->reset();
         });
     }, L"Credits", -0.4, 0.4, -0.8, -0.7));
-    circleArrangement->add(make_shared<GUIButton>([&gui]()
-    {
-        GUIRunner::get(gui)->scheduleFunction([&gui]()
-        {
-            testBigButton();
-            gui->reset();
-        });
-    }, L"Test", -0.4, 0.4, -0.8, -0.7));
     circleArrangement->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->scheduleFunction([]()
