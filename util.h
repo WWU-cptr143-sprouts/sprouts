@@ -18,7 +18,7 @@
 
 using namespace std;
 
-const float eps = 1e-4;
+const float eps = 1e-3; // change back to 1e-4
 
 template <typename T>
 inline const T limit(const T v, const T minV, const T maxV) // returns the value v limited to the range minV <= v <= maxV

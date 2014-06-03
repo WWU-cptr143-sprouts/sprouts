@@ -328,6 +328,8 @@ float getPolygonAngleSum(const Polygon &poly)
     {
         size_t j = (i + 1) % poly.size();
         size_t k = (i + 2) % poly.size();
+        if(absSquared(poly[i] - poly[k]) < eps * eps)
+            continue;
         float angle = getAngle(poly[j] - poly[i]) - getAngle(poly[k] - poly[j]);
         if(angle > M_PI)
             angle -= 2 * M_PI;
@@ -597,7 +599,7 @@ void recalculateRegions(GameState gs)
         face->polygon = getFacePolygon(face);
         float angleSum = getPolygonAngleSum(face->polygon);
         face->isOutside = false;
-        if(angleSum < 0)
+        if(angleSum <= 0)
             face->isOutside = true;
     }
 
