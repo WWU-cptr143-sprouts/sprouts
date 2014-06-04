@@ -749,7 +749,6 @@ bool isPointInPolygon(const Polygon & poly, VectorF p)
     {
         size_t j = (i + 1) % poly.size();
         VectorF delta = poly[j] - poly[i];
-        assert(absSquared(delta) > eps * eps);
         if(abs(delta.y) < eps)
             continue;
         float t = (p.y - poly[i].y) / delta.y;
