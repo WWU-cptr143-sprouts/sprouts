@@ -33,6 +33,15 @@ bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2,
 
     return absSquared(interpolate(t1, start1, end1) - interpolate(t2, start2, end2)) < eps * eps;
 #else
+    if(endSpace > 0)
+    {
+        pair<VectorF, VectorF> line1 = make_pair(interpolate(endSpace, start1, end1), interpolate(endSpace, end1, start1));
+        pair<VectorF, VectorF> line2 = make_pair(interpolate(endSpace, start2, end2), interpolate(endSpace, end2, start2));
+        start1 = get<0>(line1);
+        end1 = get<1>(line1);
+        start2 = get<0>(line2);
+        end2 = get<1>(line2);
+    }
     return CCW(start1, start2, end2) != CCW(end1, start2, end2) && CCW(start1, end1, start2) != CCW(start1, end1, end2);
 #endif
 }
