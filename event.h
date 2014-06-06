@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/*
+This code basically handles any possible I/O events from the user, including keyboard and mouse
+movement/keys and special circumstances like quitting the game
+*/
+
 class KeyDownEvent;
 class MouseUpEvent;
 class MouseDownEvent;
@@ -15,6 +20,7 @@ class KeyUpEvent;
 class KeyPressEvent;
 class QuitEvent;
 
+//Create a struct to handle our events, with functions we can define down the line
 struct EventHandler : public enable_shared_from_this<EventHandler>
 {
     virtual bool handleMouseUp(MouseUpEvent &event) = 0;
@@ -27,6 +33,9 @@ struct EventHandler : public enable_shared_from_this<EventHandler>
     virtual bool handleQuit(QuitEvent &event) = 0;
 };
 
+//Create an event class to handle events.
+//It has different types enumerated to decide which event happened
+//Also has a function to dispatch an event
 class Event
 {
 public:
@@ -51,6 +60,8 @@ public:
     virtual bool dispatch(shared_ptr<EventHandler> eventHandler) = 0;
 };
 
+//Class for mouse events, child of Event with extra variables a mouse needs
+//Such as current position and change in position (which gives velocity)
 class MouseEvent : public Event
 {
 public:
@@ -63,6 +74,8 @@ protected:
     }
 };
 
+//Class for keyboard events, child of Event with extra variables for
+//Both the keys on the keyboard and modifiers such as shift/etc
 class KeyEvent : public Event
 {
 public:
@@ -74,6 +87,8 @@ protected:
     }
 };
 
+//Child of KeyEvent to handle explicitly when a key is pressed down. 
+//Has a bool to determine if the key is held or repeated quickly
 class KeyDownEvent final : public KeyEvent
 {
 public:
@@ -87,6 +102,7 @@ public:
     }
 };
 
+//Child of KeyEvent to handle explicitly when a key is released 
 class KeyUpEvent : public KeyEvent
 {
 public:
@@ -100,6 +116,10 @@ public:
     }
 };
 
+//Child of KeyEvent to handle when a key is pressed
+//The unique thing about this is it gets what character is pressed
+//It applies modifiers such as shift to get a capital letter or 
+//Symbol instead of a number.
 struct KeyPressEvent : public Event
 {
     const wchar_t character;
@@ -113,6 +133,8 @@ struct KeyPressEvent : public Event
     }
 };
 
+//Child of MouseEvent to handle when a mouse button is pressed
+//Has a variable for which button is pressed
 struct MouseButtonEvent : public MouseEvent
 {
     const MouseButton button;
@@ -123,6 +145,7 @@ protected:
     }
 };
 
+//Child of the MouseButtonEvent class to determine exactly when the mouse button is released
 struct MouseUpEvent : public MouseButtonEvent
 {
     MouseUpEvent(float x, float y, float deltaX, float deltaY, MouseButton button) : MouseButtonEvent(Type_MouseUp, x, y, deltaX, deltaY, button)
@@ -135,6 +158,7 @@ struct MouseUpEvent : public MouseButtonEvent
     }
 };
 
+//Child of the MouseButtonEvent class to determine exactly when the mouse button is first pressed
 struct MouseDownEvent : public MouseButtonEvent
 {
     MouseDownEvent(float x, float y, float deltaX, float deltaY, MouseButton button)
@@ -148,6 +172,7 @@ struct MouseDownEvent : public MouseButtonEvent
     }
 };
 
+//Child of MouseEvent to handle when the mouse moves
 struct MouseMoveEvent : public MouseEvent
 {
     MouseMoveEvent(float x, float y, float deltaX, float deltaY)
@@ -161,6 +186,7 @@ struct MouseMoveEvent : public MouseEvent
     }
 };
 
+//Child of MouseEvent to handle the scroll wheel 
 struct MouseScrollEvent : public MouseEvent
 {
     const int scrollX, scrollY;
@@ -175,6 +201,7 @@ struct MouseScrollEvent : public MouseEvent
     }
 };
 
+//Struct to handle quitting the game
 struct QuitEvent : public Event
 {
     QuitEvent()
@@ -187,6 +214,9 @@ struct QuitEvent : public Event
     }
 };
 
+//This class uses the others to actually respond to any event necessary 
+//The first-> calls make sure it's the first such event so events don't get called
+//Repeatedly I believe
 class CombinedEventHandler final : public EventHandler
 {
 private:
