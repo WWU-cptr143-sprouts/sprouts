@@ -93,9 +93,9 @@ bool isValidGameState(GameState gs, bool ignoreNodeCounts)
         {
             const vector<CubicSpline> &edge2 = (*j)->cubicSplines;
 
-            for(CubicSpline spline1 : edge2)
+            for(CubicSpline spline1 : edge1)
             {
-                for(CubicSpline spline2 : edge1)
+                for(CubicSpline spline2 : edge2)
                 {
                     if(spline1.intersects(spline2))
                     {

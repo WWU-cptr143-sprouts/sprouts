@@ -4,29 +4,15 @@
 
 namespace
 {
+bool CCW(VectorF p1, VectorF p2, VectorF p3)
+{
+    return (p3.y - p1.y) * (p2.x - p1.x) > (p2.y - p1.y) * (p3.x - p1.x);
+}
+
 bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2,
                     float endSpace = eps)
 {
-    //    VectorF delta1 = end1 - start1;
-    //    VectorF delta2 = end2 - start2;
-    //    if(absSquared(delta1) < eps * eps || absSquared(delta2) < eps * eps)
-    //        return false;
-    //    VectorF normal = cross(cross(delta1, delta2), delta1);
-    //    if(abs(dot(normal, delta1)) < eps * eps * eps * eps * eps * eps)
-    //    {
-    //        if(absSquared((start1 + end1) - (start2 + end2)) < eps * eps)
-    //            return true;
-    //        return false;
-    //    }
-    //    normal = normalize(normal);
-    //    float t = findIntersectionPoint(start1, end1, normal, -dot(normal, start2));
-    //    if(t < endSpace || t > 1 - endSpace)
-    //        return false;
-    //    VectorF pt = start1 + t * (end1 - start1);
-    //    t = dot(delta2, pt - start2) / abs(delta2);
-    //    if(t < endSpace || t > 1 - endSpace)
-    //        return false;
-    //    return absSquared(pt - start2 - t * (end2 - start2)) < eps * eps;
+#if 0
     float divisor = (start2.x * start1.z - end2.x * start1.z - start2.x * end1.z + end2.x * end1.z -
                      start1.x * start2.z + end1.x * start2.z + start1.x * end2.z - end1.x * end2.z);
 
@@ -46,6 +32,9 @@ bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2,
     }
 
     return absSquared(interpolate(t1, start1, end1) - interpolate(t2, start2, end2)) < eps * eps;
+#else
+    return CCW(start1, start2, end2) != CCW(end1, start2, end2) && CCW(start1, end1, start2) != CCW(start1, end1, end2);
+#endif
 }
 
 vector<VectorF> getSplinePoints(CubicSpline spline)
@@ -71,7 +60,7 @@ bool CubicSpline::intersects(const CubicSpline &rt, VectorF ignoreAxis) const
     {
         for(size_t j = 1; j < path2.size(); j++)
         {
-            if(linesIntersect(path1[i - 1], path1[i], path2[i - 1], path2[i], 0))
+            if(linesIntersect(path1[i - 1], path1[i], path2[j - 1], path2[j], 0))
                 return true;
         }
     }
