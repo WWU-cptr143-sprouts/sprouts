@@ -78,5 +78,6 @@ inline vector<CubicSpline> splinesFromLines(const vector<VectorF> & line)
 }
 
 bool isPathSelfIntersecting(const vector<CubicSpline> & path);
+bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2, float endSpace = eps);
 
 #endif // CUBICSPLINE_H_INCLUDED

@@ -90,7 +90,16 @@ protected:
             for(Land land : mouseRegion->lands)
             {
                 Color color = (land.isInverted ? Color::RGB(0, 1, 0) : Color::RGB(0, 0, 1));
-                retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(land.polygon, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
+                vector<Polygon> parts;
+#if 0
+                parts = splitPolygon(despikePolygon(land.polygon));
+#else
+                parts.push_back(land.polygon);
+#endif
+                for(const Polygon & poly : parts)
+                {
+                    retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(poly, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
+                }
             }
         }
         if(mouseNode)

@@ -8,9 +8,9 @@ bool CCW(VectorF p1, VectorF p2, VectorF p3)
 {
     return (p3.y - p1.y) * (p2.x - p1.x) > (p2.y - p1.y) * (p3.x - p1.x);
 }
+}
 
-bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2,
-                    float endSpace = eps)
+bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2, float endSpace)
 {
 #if 0
     float divisor = (start2.x * start1.z - end2.x * start1.z - start2.x * end1.z + end2.x * end1.z -
@@ -46,6 +46,8 @@ bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2,
 #endif
 }
 
+namespace
+{
 vector<VectorF> getSplinePoints(CubicSpline spline)
 {
     const int pointsPerSpline = 20;

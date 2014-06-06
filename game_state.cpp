@@ -726,17 +726,6 @@ void recalculateRegions(GameState gs)
             }
         }
     }
-    //cout << "Faces:\n";
-//    for(shared_ptr<Face> face : faces)
-//    {
-//        cout << face << "\n";
-//    }
-//    cout << "Regions:\n";
-//    for(shared_ptr<Region> region : regions)
-//    {
-//        cout << region << "\n";
-//    }
-//    cout << "Graph:\n" << *gs << endl;
 }
 
 bool isPointInPolygon(const Polygon & poly, VectorF p)
@@ -824,28 +813,52 @@ bool isPointInRegion(shared_ptr<Region> r, VectorF p)
     return true;
 }
 
-#if 1
+#if 0
 #warning finish implementing splitPolygon
 #else
 vector<Polygon> splitPolygon(Polygon poly)
 {
-    if(poly.size() <= 3)
-        return vector<Polygon>(1, poly);
+    assert(isNonComplex(poly));
     vector<Polygon> retval;
-    do
+    while(poly.size() > 3)
     {
         retval.push_back(Polygon());
-        int polyIndex = 0;
+        size_t polyIndex = 0;
         retval.back().push_back(poly[polyIndex++]);
         retval.back().push_back(poly[polyIndex++]);
         retval.back().push_back(poly[polyIndex++]); // push 3 points for a triangle
         for(;;)
         {
             retval.back().push_back(poly[polyIndex]);
-            if(isConvexPolygon(retval.back()))
+            if(!isConvexPolygon(retval.back()))
+            {
+                retval.back().pop_back();
+                break;
+            }
+            if(polyIndex != poly.size() - 1)
+            {
+                bool intersects = false;
+                for(size_t i = polyIndex; i < poly.size(); i++)
+                {
+                    size_t j = (i + 1) % poly.size();
+                    if(linesIntersect(poly[0], poly[polyIndex], poly[i], poly[j]))
+                    {
+                        intersects = true;
+                        break;
+                    }
+                }
+                if(intersects)
+                {
+                    retval.back().pop_back();
+                    break;
+                }
+            }
+            polyIndex++;
         }
+        poly.erase(poly.begin() + 1, poly.begin() + (polyIndex - 1));
     }
-    while(poly.size() > 0);
+    if(poly.size() >= 3)
+        retval.push_back(poly);
     return retval;
 }
 #endif
