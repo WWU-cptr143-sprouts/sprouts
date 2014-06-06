@@ -15,8 +15,8 @@ struct Region;
 struct Edge
 {
     vector<CubicSpline> cubicSplines; //list of cubic splines
-    shared_ptr<Region> inside, outside;
-    shared_ptr<Node> start, end;
+    shared_ptr<Region> inside, outside; //Denoting what regions are inside and outside of this edge
+    shared_ptr<Node> start, end; //List of the start and end points of this edge
     Edge(const vector<CubicSpline> & cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end); // in game_state.cpp
 };
 
