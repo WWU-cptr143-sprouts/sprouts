@@ -3,11 +3,21 @@
 
 #include <vector>
 #include "vector.h"
+#include "matrix.h"
 #include "cubicspline.h"
 
 using namespace std;
 
 typedef vector<VectorF> Polygon;
+
+inline Polygon transform(const Matrix & tform, Polygon poly)
+{
+    for(VectorF & p : poly)
+    {
+        p = tform.apply(p);
+    }
+    return std::move(poly);
+}
 
 vector<Polygon> splitPolygon(Polygon poly);
 

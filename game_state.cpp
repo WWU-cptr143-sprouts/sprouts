@@ -638,7 +638,7 @@ void recalculateRegions(GameState gs)
         face->polygon = getFacePolygon(face);
         float angleSum = getPolygonAngleSum(face->polygon);
         face->isOutside = false;
-        if(angleSum <= 0)
+        if(angleSum <= eps)
             face->isOutside = true;
     }
 

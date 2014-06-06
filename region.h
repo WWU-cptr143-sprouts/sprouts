@@ -19,11 +19,26 @@ struct Land
     Polygon polygon;
 };
 
+inline Land transform(const Matrix & tform, Land land)
+{
+    land.polygon = transform(tform, std::move(land.polygon));
+    return std::move(land);
+}
+
 struct Region
 {
     vector<Land> lands;
     vector<shared_ptr<Node>> isolatedNodes;
 };
+
+inline Region transform(const Matrix & tform, Region region)
+{
+    for(Land & land : region.lands)
+    {
+        land = transform(tform, std::move(land));
+    }
+    return std::move(region);
+}
 
 struct DisjointPartition
 {

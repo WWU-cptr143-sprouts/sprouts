@@ -10,6 +10,7 @@
 #include "polygon.h"
 #include <functional>
 #include <stack>
+#include <unordered_set>
 
 using namespace std;
 
@@ -54,6 +55,34 @@ GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList = vec
 typedef stack<GameState> GameStateStack;
 
 GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path); // returns nullptr if it is an invalid move
+
+inline GameState transform(const Matrix & tform, GameState gs)
+{
+    unordered_set<shared_ptr<Edge>> edges;
+    unordered_set<shared_ptr<Region>> regions;
+    for(shared_ptr<Node> node : *gs)
+    {
+        *node = transform(tform, std::move(*node));
+    }
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            edges.insert(get<0>(*ei));
+        }
+    }
+    for(shared_ptr<Edge> edge : edges)
+    {
+        regions.insert(edge->inside);
+        regions.insert(edge->outside);
+        *edge = transform(tform, std::move(*edge));
+    }
+    for(shared_ptr<Region> region : regions)
+    {
+        *region = transform(tform, std::move(*region));
+    }
+    return gs;
+}
 
 inline shared_ptr<Node> findClosestNode(GameState gs, VectorF p, float maxDistance = 0.02)
 {

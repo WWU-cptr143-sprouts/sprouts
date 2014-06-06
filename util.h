@@ -15,6 +15,7 @@
 #include <condition_variable>
 #include <atomic>
 #include <iterator>
+#include <vector>
 
 using namespace std;
 
@@ -1807,6 +1808,55 @@ inline int solveCubic(float a/*constant*/, float b/*linear*/, float c/*quadratic
     float AB = A + B;
     retval[0] = AB - c / 3;
     return 1;
+}
+
+inline int solveQuartic(float a/*constant*/, float b/*linear*/, float c/*quadratic*/, float d/*cubic*/, float e/*quartic*/, float retval[4])
+{
+    if(abs(e) < eps)
+        return solveCubic(a, b, c, d, retval);
+
+    a /= e;
+    b /= e;
+    c /= e;
+    d /= e;
+
+    float aSquared = a * a;
+    float p = -0.375f * aSquared + b;
+    float q = 0.125f * (aSquared * a) - 0.5f * a * b + c;
+    float r = (-3.0f / 256) * (aSquared * aSquared) + 0.625f * aSquared * b - 1.0 / 4.0 * a * c + d;
+    int rootCount = 0;
+    if(abs(r) < eps)
+    {
+        rootCount = solveCubic(q, p, 0, 1, retval);
+        retval[rootCount++] = 0;
+    }
+    else
+    {
+        assert(1 <= solveCubic(0.5f * r * p - 0.125f * (q * q), -r, -0.5f * p, 1, retval));
+        float z = retval[0];
+        float u = z * z - r;
+        float v = 2 * z - p;
+        if(abs(u) < eps)
+            u = 0;
+        else if(u > 0)
+            u = sqrt(u);
+        else
+            return 0;
+        if(abs(v) < eps)
+            v = 0;
+        else if(v > 0)
+            v = sqrt(v);
+        else
+            return 0;
+        rootCount = solveQuadratic(z - u, (q < 0 ? -v : v), 1, retval);
+        rootCount += solveQuadratic(z + u, (q < 0 ? v : -v), 1, &retval[rootCount]);
+    }
+
+    float temp = 0.25f * a;
+    for(int i = 0; i < rootCount; i++)
+        retval[i] -= temp;
+
+    return rootCount;
 }
 
 //unused

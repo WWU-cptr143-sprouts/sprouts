@@ -4,6 +4,7 @@
 #include <cmath>
 #include "mesh.h"
 #include "vector.h"
+#include "matrix.h"
 #include <vector>
 
 using namespace std;
@@ -79,5 +80,19 @@ inline vector<CubicSpline> splinesFromLines(const vector<VectorF> & line)
 
 bool isPathSelfIntersecting(const vector<CubicSpline> & path);
 bool linesIntersect(VectorF start1, VectorF end1, VectorF start2, VectorF end2, float endSpace = eps);
+
+inline CubicSpline transform(const Matrix & tform, CubicSpline spline)
+{
+    return CubicSpline(tform.apply(spline.p0), tform.apply(spline.p1), tform.applyNoTranslate(spline.dp0), tform.applyNoTranslate(spline.dp1));
+}
+
+inline vector<CubicSpline> transform(const Matrix & tform, vector<CubicSpline> splines)
+{
+    for(CubicSpline & spline : splines)
+    {
+        spline = transform(tform, spline);
+    }
+    return std::move(splines);
+}
 
 #endif // CUBICSPLINE_H_INCLUDED

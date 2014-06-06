@@ -414,6 +414,13 @@ public:
                 + v.y * this->x12 + v.z * this->x22));
     }
 
+    VectorF applyNoTranslate(VectorF v) const
+    {
+        return VectorF(v.x * this->x00 + v.y * this->x10 + v.z * this->x20, v.x
+                * this->x01 + v.y * this->x11 + v.z * this->x21, v.x * this->x02
+                + v.y * this->x12 + v.z * this->x22);
+    }
+
     static Matrix thetaPhi(double theta, double phi)
     {
         Matrix t = rotateX(-phi);

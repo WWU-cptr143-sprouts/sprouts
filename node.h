@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "vector.h"
 #include "graph.h"
+#include "matrix.h"
 
 using namespace std;
 
@@ -19,6 +20,12 @@ struct Node //node structure
     {
     }
 };
+
+inline Node transform(const Matrix &tform, Node node)
+{
+    node.position = tform.apply(node.position);
+    return std::move(node);
+}
 
 #include "region.h"
 #include "edge.h"

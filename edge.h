@@ -20,6 +20,12 @@ struct Edge
     Edge(const vector<CubicSpline> & cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end); // in game_state.cpp
 };
 
+inline Edge transform(const Matrix &tform, Edge edge)
+{
+    edge.cubicSplines = transform(tform, std::move(edge.cubicSplines));
+    return std::move(edge);
+}
+
 #include "region.h"
 
 #endif // EDGE_H
