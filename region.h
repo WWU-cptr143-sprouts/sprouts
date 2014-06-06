@@ -25,4 +25,10 @@ struct Region
     vector<shared_ptr<Node>> isolatedNodes;
 };
 
+struct DisjointPartition
+{
+    vector<weak_ptr<Node>> nodes;
+    shared_ptr<Region> containingRegion;
+};
+
 #endif // REGION_H

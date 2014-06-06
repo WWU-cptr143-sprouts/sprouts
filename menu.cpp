@@ -28,7 +28,10 @@ class GameCanvas : public GUICanvas
         mouseRegion = pointToRegion(gss.top(), mousePosition);
         mouseNode = findClosestNode(gss.top(), mousePosition);
         if(mouseNode)
+        {
             mousePosition = mouseNode->position;
+            mouseRegion = mouseNode->partition->containingRegion;
+        }
         return mousePosition;
     }
     inline Mesh makeMesh() const
@@ -124,7 +127,12 @@ protected:
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
         wstringstream os;
-        //os << L"Region : " << gameCanvas->mouseRegion;
+        os << L"Region : " << gameCanvas->mouseRegion;
+        os << L" Node : " << gameCanvas->mouseNode;
+        if(gameCanvas->mouseNode)
+        {
+            os << " Partition : " << gameCanvas->mouseNode->partition;
+        }
         text = os.str();
         return GUILabel::render(minZ, maxZ, hasFocus);
     }
@@ -252,11 +260,13 @@ static GameState makeInitialGameState(int nodeCount = 3)
 static void mainGame()
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    gui->add(make_shared<GameCanvas>(-Display::scaleX(), Display::scaleX(), 0.1 - Display::scaleY(), Display::scaleY(), makeInitialGameState(3)));
+    shared_ptr<GameCanvas> canvas = make_shared<GameCanvas>(-Display::scaleX(), Display::scaleX(), 0.1 - Display::scaleY(), Display::scaleY() - 0.1, makeInitialGameState(3));
+    gui->add(canvas);
+    gui->add(make_shared<GameStateLabel>(-Display::scaleX(), Display::scaleX(), Display::scaleY() - 0.1, Display::scaleY(), canvas));
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
-    }, L"Return to Main Menu", -0.4, 0.4, -Display::scaleY(), 0.1 - Display::scaleY()));
+    }, L"Main Menu", -0.4, 0.4, -Display::scaleY(), 0.1 - Display::scaleY()));
     runAsDialog(gui);
 }
 

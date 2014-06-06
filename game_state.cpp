@@ -580,6 +580,8 @@ void recalculateRegions(GameState gs)
         //cout << edgesLeft << flush;
     }
 
+    unordered_map<shared_ptr<Node>, shared_ptr<Face>> nodeFacesMap;
+
     if(!path.empty())
     {
         shared_ptr<Face> face = make_shared<Face>();
@@ -588,8 +590,45 @@ void recalculateRegions(GameState gs)
         {
             assert(facesMap.find(edge) == facesMap.end());
             facesMap[edge] = face;
+            nodeFacesMap[edge.start] = face;
+            nodeFacesMap[edge.end] = face;
         }
         faces.push_back(face);
+    }
+
+    // calculate graph partitions
+
+    unordered_map<shared_ptr<Node>, shared_ptr<unordered_set<shared_ptr<Node>>>> partitionsMap;
+    for(shared_ptr<Node> node : *gs)
+    {
+        partitionsMap[node] = make_shared<unordered_set<shared_ptr<Node>>>(unordered_set<shared_ptr<Node>>{node});
+    }
+
+    for(MyEdge edge : edges)
+    {
+        shared_ptr<Node> start = edge.start, end = edge.end;
+        shared_ptr<unordered_set<shared_ptr<Node>>> & startPartition = partitionsMap[start];
+        shared_ptr<unordered_set<shared_ptr<Node>>> & endPartition = partitionsMap[end];
+        if(startPartition != endPartition)
+        {
+            for(auto v : *endPartition)
+            {
+                startPartition->insert(v);
+            }
+            endPartition = startPartition;
+        }
+    }
+
+    unordered_map<shared_ptr<unordered_set<shared_ptr<Node>>>, shared_ptr<DisjointPartition>> partitions;
+
+    for(shared_ptr<Node> node : *gs)
+    {
+        shared_ptr<unordered_set<shared_ptr<Node>>> partition = partitionsMap[node];
+        shared_ptr<DisjointPartition> & finalPartition = partitions[partition];
+        if(finalPartition == nullptr)
+            finalPartition = make_shared<DisjointPartition>();
+        finalPartition->nodes.push_back(node);
+        node->partition = finalPartition;
     }
 
     // compute face attributes
@@ -672,6 +711,41 @@ void recalculateRegions(GameState gs)
         }
     }
 
+    // finish setting parents
+
+    for(shared_ptr<Face> face : faces)
+    {
+        if(face->isOutside)
+            continue;
+        if(!face->parent.lock())
+        {
+            unordered_set<shared_ptr<Face>> facesSet;
+            facesSet.insert(face);
+            bool didAnything = true;
+            while(didAnything && !face->parent.lock())
+            {
+                didAnything = false;
+                for(MyEdge edge : face->edges)
+                {
+                    shared_ptr<Face> otherFace = facesMap[edge.reversed()];
+                    if(otherFace->isOutside)
+                    {
+                        face->parent = otherFace;
+                        break;
+                    }
+                    else if(otherFace->parent.lock())
+                    {
+                        face->parent = otherFace->parent;
+                        break;
+                    }
+                    if(get<1>(facesSet.insert(otherFace)))
+                        didAnything = true;
+                }
+            }
+            assert(face->parent.lock());
+        }
+    }
+
     // convert faces found into regions
 
     vector<shared_ptr<Region>> regions;
@@ -722,7 +796,32 @@ void recalculateRegions(GameState gs)
             if(isPointInRegion(region, node->position))
             {
                 region->isolatedNodes.push_back(node);
+                node->partition->containingRegion = region;
                 break;
+            }
+        }
+    }
+
+    // add faces to partitions
+
+    for(shared_ptr<Face> face : faces)
+    {
+        if(face->isOutside)
+        {
+            for(MyEdge edge : face->edges)
+            {
+                edge.start->partition->containingRegion = face->region;
+                edge.end->partition->containingRegion = face->region;
+            }
+        }
+        else
+        {
+            shared_ptr<Face> parentFace = face->parent.lock();
+            assert(parentFace);
+            for(MyEdge edge : face->edges)
+            {
+                edge.start->partition->containingRegion = parentFace->region;
+                edge.end->partition->containingRegion = parentFace->region;
             }
         }
     }
