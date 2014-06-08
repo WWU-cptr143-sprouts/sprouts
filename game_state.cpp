@@ -962,10 +962,11 @@ vector<Polygon> splitPolygon(Polygon poly)
 }
 #endif
 
-GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList)
+GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateNodeList, vector<shared_ptr<Edge> *> translateEdgeList)
 {
     GameState retval = makeEmptyGameState();
     unordered_map<shared_ptr<Node>, shared_ptr<Node>> nodeMap;
+    unordered_map<shared_ptr<Edge>, shared_ptr<Edge>> edgeMap;
     unordered_set<shared_ptr<Edge>> edges;
     for(auto ni = gs->begin(); ni != gs->end(); ni++)
     {
@@ -984,13 +985,20 @@ GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList)
         auto newEdge = make_shared<Edge>(edge->cubicSplines, nodeMap[edge->start], nodeMap[edge->end]);
         retval->addEdge(newEdge, newEdge->start->iter, newEdge->end->iter);
         retval->addEdge(newEdge, newEdge->end->iter, newEdge->start->iter);
+        edgeMap[edge] = newEdge;
     }
     recalculateRegions(retval);
-    for(shared_ptr<Node> * i : translateList)
+    for(shared_ptr<Node> * i : translateNodeList)
     {
         assert(i);
         shared_ptr<Node> & node = *i;
         node = nodeMap[node];
+    }
+    for(shared_ptr<Edge> * i : translateEdgeList)
+    {
+        assert(i);
+        shared_ptr<Edge> & edge = *i;
+        edge = edgeMap[edge];
     }
     return retval;
 }
@@ -1016,14 +1024,17 @@ shared_ptr<Region> pointToRegion(GameState gs, VectorF p)
     return nullptr;
 }
 
-GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path)
+GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path)
 {
     assert(gs);
+    this->initialState = gs;
     assert(startNode);
+    this->startNode = startNode;
     assert(endNode);
+    this->endNode = endNode;
     assert(path.size() >= 1);
     if(isPathSelfIntersecting(path))
-        return nullptr;
+        throw InvalidMoveException();
     assert(absSquared(path.front().p0 - startNode->position) < eps * eps);
     assert(absSquared(path.back().p1 - endNode->position) < eps * eps);
     for(size_t i = 1; i < path.size(); i++)
@@ -1064,9 +1075,22 @@ GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNod
     if(isValidGameState(gs))
     {
         recalculateRegions(gs);
-        return gs;
+        finalState = gs;
     }
-    return nullptr;
+    else
+        throw InvalidMoveException();
+}
+
+GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<shared_ptr<DisjointPartition>> insidePartitions, vector<shared_ptr<DisjointPartition>> outsidePartitions, shared_ptr<Region> containingRegion)
+{
+#warning finish
+    assert(false);
+}
+
+void GameStateMove::calculateFinalState()
+{
+#warning finish
+    assert(false);
 }
 
 Edge::Edge(const vector<CubicSpline> & cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end)

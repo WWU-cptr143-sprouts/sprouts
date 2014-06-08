@@ -11,6 +11,8 @@
 #include <functional>
 #include <stack>
 #include <unordered_set>
+#include <unordered_map>
+#include <stdexcept>
 
 using namespace std;
 
@@ -50,11 +52,108 @@ TransformedMesh renderNode(shared_ptr<Node> node, Color color = Color::V(0.5));
 
 Mesh renderGameState(GameState gs);
 
-GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateList = vector<shared_ptr<Node> *>());
+GameState duplicate(GameState gs, vector<shared_ptr<Node> *> translateNodeList = vector<shared_ptr<Node> *>(), vector<shared_ptr<Edge> *> translateEdgeList = vector<shared_ptr<Edge> *>());
 
 typedef stack<GameState> GameStateStack;
 
-GameState move(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path); // returns nullptr if it is an invalid move
+struct InvalidMoveException final : public runtime_error
+{
+    explicit InvalidMoveException()
+        : runtime_error("invalid move")
+    {
+    }
+};
+
+class GameStateMove final
+{
+private:
+    GameState initialState, finalState;
+    shared_ptr<Node> startNode;
+    shared_ptr<Node> endNode;
+    vector<shared_ptr<DisjointPartition>> insidePartitions;
+    vector<shared_ptr<DisjointPartition>> outsidePartitions;
+    shared_ptr<Region> containingRegion;
+    void calculateFinalState();
+public:
+    GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path);
+    GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<shared_ptr<DisjointPartition>> insidePartitions, vector<shared_ptr<DisjointPartition>> outsidePartitions, shared_ptr<Region> containingRegion);
+    operator GameState()
+    {
+        if(finalState == nullptr)
+            calculateFinalState();
+        return finalState;
+    }
+};
+
+inline int validMoveCount(GameState gs)
+{
+    unordered_map<shared_ptr<Region>, unordered_set<shared_ptr<Node>>> regions;
+    unordered_set<shared_ptr<DisjointPartition>> partitions;
+    unordered_map<shared_ptr<Node>, int> nodeEdgeCount;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        auto node = *ni;
+        partitions.insert(node->partition);
+        int & curNodeEdgeCount = nodeEdgeCount[node];
+        curNodeEdgeCount = 0;
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            auto edge = get<0>(*ei);
+            regions[edge->inside].insert(node);
+            regions[edge->inside].insert(*get<1>(*ei));
+            regions[edge->outside].insert(node);
+            regions[edge->outside].insert(*get<1>(*ei));
+            curNodeEdgeCount++;
+        }
+    }
+    for(auto &v : regions)
+    {
+        auto region = get<0>(v);
+        for(auto node : region->isolatedNodes)
+        {
+            get<1>(v).insert(node);
+        }
+    }
+    int retval = 0;
+    if(regions.empty())
+    {
+        return gs->nodeCount() * gs->nodeCount();
+    }
+    for(auto &v : regions)
+    {
+        shared_ptr<Region> region = get<0>(v);
+        unordered_set<shared_ptr<Node>> & nodes = get<1>(v);
+        for(shared_ptr<Node> startNode : nodes)
+        {
+            if(nodeEdgeCount[startNode] >= 3)
+                continue;
+            for(shared_ptr<Node> endNode : nodes)
+            {
+                if(endNode == startNode && nodeEdgeCount[endNode] >= 2)
+                    continue;
+                else if(nodeEdgeCount[endNode] >= 3)
+                    continue;
+                if(endNode->partition != startNode->partition)
+                {
+                    retval++;
+                    continue;
+                }
+                int availablePartitionCount = 0;
+                for(auto partition : partitions)
+                {
+                    if(partition->containingRegion != region)
+                        continue;
+                    if(partition == startNode->partition)
+                        continue;
+                    assert(partition != endNode->partition);
+                    availablePartitionCount++;
+                }
+                retval += 1 << availablePartitionCount;
+            }
+        }
+    }
+    return retval;
+}
 
 inline GameState transform(const Matrix & tform, GameState gs)
 {

@@ -18,13 +18,12 @@ class GameCanvas : public GUICanvas
     vector<VectorF> line;
     bool mouseDown = false;
     GameStateStack gss;
-    VectorF mousePosition = VectorF(0);
+    VectorF mousePosition = VectorF(0), rawMousePosition = VectorF(0);
     shared_ptr<Region> mouseRegion = nullptr;
     shared_ptr<Node> mouseNode = nullptr;
-    inline VectorF getMousePosition(MouseEvent &event) // sets the mousePosition variable
+    inline void setMouseProperties()
     {
-        mousePosition = GUICanvas::getMousePosition(event);
-        mousePosition.z = 0;
+        mousePosition = rawMousePosition;
         mouseRegion = pointToRegion(gss.top(), mousePosition);
         mouseNode = findClosestNode(gss.top(), mousePosition);
         if(mouseNode)
@@ -32,6 +31,12 @@ class GameCanvas : public GUICanvas
             mousePosition = mouseNode->position;
             mouseRegion = mouseNode->partition->containingRegion;
         }
+    }
+    inline VectorF getMousePosition(MouseEvent &event) // sets the mousePosition variable
+    {
+        rawMousePosition = GUICanvas::getMousePosition(event);
+        rawMousePosition.z = 0;
+        setMouseProperties();
         return mousePosition;
     }
     inline Mesh makeMesh() const
@@ -66,9 +71,14 @@ public:
             vector<CubicSpline> path = splinesFromLines(line);
             line.clear();
             shared_ptr<Node> startNode = findClosestNode(gss.top(), path.front().p0);
-            GameState newGameState = move(gss.top(), startNode, mouseNode, path);
-            if(newGameState)
+            try
+            {
+                GameState newGameState = (GameState)GameStateMove(gss.top(), startNode, mouseNode, path);
                 gss.push(newGameState);
+            }
+            catch(InvalidMoveException & e)
+            {
+            }
             mouseDown = false;
         }
         else if(event.button == MouseButton_Left && (mouseNode || mouseDown))
@@ -84,27 +94,27 @@ public:
     {
         return true;
     }
+    void undo()
+    {
+        if(gss.size() > 1)
+            gss.pop();
+        setMouseProperties();
+    }
 protected:
     virtual Mesh generateMesh() override
     {
+        setMouseProperties();
         Mesh retval = renderGameState(gss.top());
+#if 0
         if(mouseRegion)
         {
             for(Land land : mouseRegion->lands)
             {
                 Color color = (land.isInverted ? Color::RGB(0, 1, 0) : Color::RGB(0, 0, 1));
-                vector<Polygon> parts;
-#if 0
-                parts = splitPolygon(despikePolygon(land.polygon));
-#else
-                parts.push_back(land.polygon);
-#endif
-                for(const Polygon & poly : parts)
-                {
-                    retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(poly, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
-                }
+                retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::lineLoop(land.polygon, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
             }
         }
+#endif
         if(mouseNode)
         {
             retval->add(transform(Matrix::scale(0.25f), renderNode(mouseNode, Color::V(1))));
@@ -127,12 +137,20 @@ protected:
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
         wstringstream os;
+#if 1
+        if(validMoveCount(gameCanvas->gss.top()) > 0)
+            os << L"Player " << ((1 + gameCanvas->gss.size()) % 2 + 1) << L" to move.";
+        else
+            os << L"Player " << (gameCanvas->gss.size() % 2 + 1) << L" wins.";
+#else
         os << L"Region : " << gameCanvas->mouseRegion;
         os << L" Node : " << gameCanvas->mouseNode;
         if(gameCanvas->mouseNode)
         {
-            os << " Partition : " << gameCanvas->mouseNode->partition;
+            os << L" Partition : " << gameCanvas->mouseNode->partition;
         }
+        os << L" Moves available : " << validMoveCount(gameCanvas->gss.top());
+#endif
         text = os.str();
         return GUILabel::render(minZ, maxZ, hasFocus);
     }
@@ -266,7 +284,11 @@ static void mainGame()
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
-    }, L"Main Menu", -0.4, 0.4, -Display::scaleY(), 0.1 - Display::scaleY()));
+    }, L"Main Menu", -0.6, -0.05, -Display::scaleY(), 0.1 - Display::scaleY()));
+    gui->add(make_shared<GUIButton>([&canvas]()
+    {
+        canvas->undo();
+    }, L"Undo Move", 0.05, 0.6, -Display::scaleY(), 0.1 - Display::scaleY()));
     runAsDialog(gui);
 }
 
