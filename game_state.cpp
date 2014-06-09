@@ -329,7 +329,10 @@ float getPolygonAngleSum(const Polygon &poly)
         size_t j = (i + 1) % poly.size();
         size_t k = (i + 2) % poly.size();
         if(absSquared(poly[i] - poly[k]) < eps * eps)
+        {
+            retval -= M_PI;
             continue;
+        }
         float angle = getAngle(poly[j] - poly[i]) - getAngle(poly[k] - poly[j]);
         if(angle > M_PI)
             angle -= 2 * M_PI;
@@ -604,18 +607,32 @@ void recalculateRegions(GameState gs)
         partitionsMap[node] = make_shared<unordered_set<shared_ptr<Node>>>(unordered_set<shared_ptr<Node>>{node});
     }
 
-    for(MyEdge edge : edges)
+    unordered_set<shared_ptr<Node>> nodeUsedInPartition;
+
+    for(shared_ptr<Node> node : *gs)
     {
-        shared_ptr<Node> start = edge.start, end = edge.end;
-        shared_ptr<unordered_set<shared_ptr<Node>>> & startPartition = partitionsMap[start];
-        shared_ptr<unordered_set<shared_ptr<Node>>> & endPartition = partitionsMap[end];
-        if(startPartition != endPartition)
+        if(nodeUsedInPartition.find(node) != nodeUsedInPartition.end())
+            continue;
+        shared_ptr<unordered_set<shared_ptr<Node>>> partition = make_shared<unordered_set<shared_ptr<Node>>>(unordered_set<shared_ptr<Node>>{node});
+        bool anyChange = true;
+        while(anyChange)
         {
-            for(auto v : *endPartition)
+            anyChange = false;
+            vector<shared_ptr<Node>> partitionNodes;
+            partitionNodes.assign(partition->begin(), partition->end());
+            for(shared_ptr<Node> nodeInPartition : partitionNodes)
             {
-                startPartition->insert(v);
+                for(MyEdge edge : neighborsMap[nodeInPartition])
+                {
+                    if(get<1>(partition->insert(edge.end)))
+                        anyChange = true;
+                }
             }
-            endPartition = startPartition;
+        }
+        for(shared_ptr<Node> nodeInPartition : *partition)
+        {
+            partitionsMap[nodeInPartition] = partition;
+            nodeUsedInPartition.insert(nodeInPartition);
         }
     }
 

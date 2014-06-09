@@ -91,10 +91,9 @@
 		<Unit filename="node.h" />
 		<Unit filename="platform.cpp" />
 		<Unit filename="platform.h" />
-		<Unit filename="png.h" />
 		<Unit filename="png_decoder.cpp" />
 		<Unit filename="png_decoder.h" />
-		<Unit filename="pngconf.h" />
+		<Unit filename="polygon.h" />
 		<Unit filename="region.cpp" />
 		<Unit filename="region.h" />
 		<Unit filename="stream.cpp" />
@@ -109,7 +108,6 @@
 		<Unit filename="vector.cpp" />
 		<Unit filename="vector.h" />
 		<Unit filename="zconf.h" />
-		<Unit filename="zlib.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
