@@ -7,6 +7,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 // Gamestate comparison function
 #if 0
 bool operator ==(GameState l, GameState r)

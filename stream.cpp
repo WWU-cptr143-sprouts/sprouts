@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 namespace
 {
 const size_t bufferSize = 8192;

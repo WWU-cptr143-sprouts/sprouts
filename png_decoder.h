@@ -6,6 +6,12 @@
 #include <stdexcept>
 #include "stream.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 class PngLoadError final : public IOException

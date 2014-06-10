@@ -18,6 +18,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 double Display::realtimeTimer()
 {
     return static_cast<double>(chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now().time_since_epoch()).count()) * 1e-9;

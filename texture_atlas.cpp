@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 namespace
 {
 Image loadImage()

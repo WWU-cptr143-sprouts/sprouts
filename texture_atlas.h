@@ -3,6 +3,12 @@
 
 #include "texture_descriptor.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 class TextureAtlas final
 {
 public:

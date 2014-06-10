@@ -8,6 +8,12 @@
 #include "vector.h"
 #include "stream.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 #ifndef EVENT_H_INCLUDED
 class EventHandler;
 #endif // EVENT_H_INCLUDED

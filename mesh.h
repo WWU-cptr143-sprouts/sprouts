@@ -11,6 +11,12 @@
 #include "texture_descriptor.h"
 #include "stream.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 class Mesh_t;
 
 typedef shared_ptr<Mesh_t> Mesh;

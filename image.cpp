@@ -4,6 +4,12 @@
 #include <cstring>
 #include <iostream>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 Image::Image(wstring resourceName)
 {
     try

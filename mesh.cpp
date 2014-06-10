@@ -2,6 +2,12 @@
 #include "platform.h"
 #include <iostream>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 Renderer & Renderer::operator <<(const Mesh_t & m)
 {
     m.texture().bind();

@@ -14,6 +14,12 @@
 #include <unordered_map>
 #include <stdexcept>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 typedef shared_ptr<graph<shared_ptr<Node>, shared_ptr<Edge>>> GameState;

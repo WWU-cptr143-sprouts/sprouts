@@ -6,6 +6,12 @@
 #include <cmath>
 #include "util.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 struct Color final /// RGBA color with rgba in the range 0.0 to 1.0

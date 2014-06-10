@@ -6,6 +6,12 @@
 #include <memory> //used for shared_ptr and weak_ptr
 #include <cassert>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 #include "cubicspline.h"

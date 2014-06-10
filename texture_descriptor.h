@@ -4,6 +4,12 @@
 #include "image.h"
 #include "util.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 struct TextureDescriptor
 {
     Image image;

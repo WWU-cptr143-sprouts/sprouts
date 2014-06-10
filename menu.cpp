@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 static GameState makeTestGameState();
 
 namespace

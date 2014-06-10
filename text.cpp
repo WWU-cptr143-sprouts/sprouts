@@ -4,6 +4,12 @@
 #include "util.h"
 #include <iostream>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 const Text::TextProperties Text::defaultTextProperties = Text::TextProperties();
 
 namespace

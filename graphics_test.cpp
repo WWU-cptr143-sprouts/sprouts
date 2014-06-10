@@ -1,6 +1,12 @@
 #include "platform.h"
 #include "menu.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 int main()
 {
     startGraphics();

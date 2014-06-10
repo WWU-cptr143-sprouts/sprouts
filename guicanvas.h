@@ -6,6 +6,12 @@
 #include <functional>
 #include <stdexcept>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 class GUICanvas : public GUIElement

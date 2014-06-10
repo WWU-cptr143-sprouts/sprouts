@@ -51,7 +51,7 @@
 		<Linker>
 			<Add library="opengl32" />
 			<Add library="SDL2" />
-			<Add library="./libpng.dll.a" />
+			<Add library=".\libpng.dll.a" />
 			<Add directory="SDL2-2.0.3/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="color.h" />
@@ -59,7 +59,6 @@
 		<Unit filename="compressed_stream.h" />
 		<Unit filename="cubicspline.cpp" />
 		<Unit filename="cubicspline.h" />
-		<Unit filename="draw.cpp" />
 		<Unit filename="edge.h" />
 		<Unit filename="event.h" />
 		<Unit filename="game_state.cpp" />

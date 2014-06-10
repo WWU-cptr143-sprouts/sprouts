@@ -5,6 +5,12 @@
 #include "platform.h"
 #include <cmath>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 class GUICircleArrangement final : public GUIContainer

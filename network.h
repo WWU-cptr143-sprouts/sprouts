@@ -4,6 +4,12 @@
 #include "stream.h"
 #include <memory>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 class NetworkException : public IOException
 {
 public:

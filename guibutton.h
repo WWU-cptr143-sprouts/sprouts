@@ -9,6 +9,12 @@
 #include <functional>
 #include <stdexcept>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 struct GUIButton : public GUIElement

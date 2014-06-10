@@ -9,6 +9,12 @@
 
 using namespace std;
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 struct VectorF;
 
 struct VectorI //integer vector

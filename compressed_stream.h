@@ -5,6 +5,12 @@
 #include "stream.h"
 #include <iostream>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 class LZ77FormatException final : public IOException
 {
 public:

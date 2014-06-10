@@ -7,6 +7,12 @@
 #include <functional>
 #include <stdexcept>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 struct GUILabel : public GUIElement

@@ -6,6 +6,12 @@
 #include "matrix.h"
 #include "cubicspline.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 typedef vector<VectorF> Polygon;

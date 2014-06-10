@@ -5,6 +5,12 @@
 #include "platform.h"
 #include <vector>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 class GUIContainer : public GUIElement
 {
 private:

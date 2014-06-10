@@ -10,6 +10,12 @@
 #include "color.h"
 #include "stream.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 class ImageLoadError final : public runtime_error

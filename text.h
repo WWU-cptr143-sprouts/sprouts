@@ -5,6 +5,12 @@
 #include <cwchar>
 #include <string>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 namespace Text

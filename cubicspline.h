@@ -7,6 +7,12 @@
 #include "matrix.h"
 #include <vector>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 struct CubicSpline final

@@ -2,6 +2,12 @@
 #include "util.h"
 #include "generate.h"
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 namespace
 {
 bool CCW(VectorF p1, VectorF p2, VectorF p3)

@@ -17,6 +17,12 @@
 #include <iterator>
 #include <vector>
 
+/**************
+/*Description:
+/*Input:
+/*Output:
+**************/
+
 using namespace std;
 
 const float eps = 1e-4;
