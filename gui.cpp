@@ -1,9 +1,9 @@
 #include "gui.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 unordered_map<shared_ptr<GUIContainer>, weak_ptr<GUIRunner>> * GUIRunner::runners = nullptr;

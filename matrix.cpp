@@ -1,7 +1,7 @@
 #include "matrix.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/

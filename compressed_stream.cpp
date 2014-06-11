@@ -5,9 +5,9 @@
 #include <thread>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 #if 0 // use demo code

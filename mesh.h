@@ -12,9 +12,9 @@
 #include "stream.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class Mesh_t;

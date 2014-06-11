@@ -19,9 +19,9 @@
 using namespace std;
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 double Display::realtimeTimer()

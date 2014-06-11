@@ -3,9 +3,9 @@
 #include "generate.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 namespace
@@ -215,4 +215,37 @@ bool isPathSelfIntersecting(const vector<CubicSpline> &splines)
     }
 
     return false;
+}
+
+vector<VectorF> getSplineLoopPoints(vector<CubicSpline> splines)
+{
+    if(splines.size() == 0)
+        return vector<VectorF>();
+    const int pointsPerSpline = 20;
+    vector<VectorF> points;
+    points.reserve(1 + pointsPerSpline * splines.size());
+    points.push_back(splines[0].evaluate(0));
+
+    for(size_t i = 0; i < splines.size(); i++)
+    {
+        for(int j = 1; j <= pointsPerSpline; j++)
+        {
+            points.push_back(splines[i].evaluate((float)j / pointsPerSpline));
+        }
+    }
+    for(size_t i = 0; i < points.size() && points.size() > 1;)
+    {
+        size_t j = (i + 1) % points.size();
+        if(absSquared(points[i] - points[j]) < eps * eps)
+        {
+            points.erase(points.begin() + j);
+            if(j == 0)
+                break;
+        }
+        else
+            i++;
+    }
+    if(points.size() <= 1)
+        return vector<VectorF>();
+    return std::move(points);
 }

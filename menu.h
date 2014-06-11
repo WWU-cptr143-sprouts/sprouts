@@ -2,9 +2,9 @@
 #define MENU_H_INCLUDED
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 void mainMenu();

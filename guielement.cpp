@@ -1,9 +1,9 @@
 #include "guielement.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 GUIElement::GUIElement(float minX, float maxX, float minY, float maxY)

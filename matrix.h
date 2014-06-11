@@ -4,9 +4,9 @@
 #include "vector.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 /** 4x4 matrix for 3D transformation with last row always equal to [0 0 0 1]

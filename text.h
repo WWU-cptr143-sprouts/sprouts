@@ -6,9 +6,9 @@
 #include <string>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 using namespace std;

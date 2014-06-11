@@ -9,9 +9,9 @@
 using namespace std;
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 #if 0 // testing balanced_tree

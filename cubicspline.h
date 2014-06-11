@@ -8,9 +8,9 @@
 #include <vector>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 using namespace std;
@@ -100,5 +100,7 @@ inline vector<CubicSpline> transform(const Matrix & tform, vector<CubicSpline> s
     }
     return std::move(splines);
 }
+
+vector<VectorF> getSplineLoopPoints(vector<CubicSpline> splines);
 
 #endif // CUBICSPLINE_H_INCLUDED

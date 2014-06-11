@@ -5,9 +5,9 @@
 #include "mesh.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class GUIContainer;

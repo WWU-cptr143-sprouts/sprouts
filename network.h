@@ -5,9 +5,9 @@
 #include <memory>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class NetworkException : public IOException

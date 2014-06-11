@@ -10,9 +10,9 @@
 #include "polygon.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 using namespace std;
@@ -49,7 +49,7 @@ inline Region transform(const Matrix & tform, Region region)
 struct DisjointPartition
 {
     vector<weak_ptr<Node>> nodes;
-    shared_ptr<Region> containingRegion;
+    weak_ptr<Region> containingRegion;
 };
 
 #endif // REGION_H

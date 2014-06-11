@@ -6,9 +6,9 @@
 #include <vector>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class GUIContainer : public GUIElement

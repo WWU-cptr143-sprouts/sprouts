@@ -7,9 +7,9 @@
 #include <vector>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 using namespace std;

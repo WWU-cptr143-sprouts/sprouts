@@ -3,9 +3,9 @@
 #include <iostream>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 Renderer & Renderer::operator <<(const Mesh_t & m)

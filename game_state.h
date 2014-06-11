@@ -15,9 +15,9 @@
 #include <stdexcept>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 using namespace std;
@@ -54,6 +54,8 @@ void recalculateRegions(GameState gs);
 
 bool isValidGameState(GameState gs, bool ignoreNodeCounts = false);
 
+bool doesCubicSplineListIntersect(GameState gs, vector<CubicSpline> splines);
+
 TransformedMesh renderNode(shared_ptr<Node> node, Color color = Color::V(0.5));
 
 Mesh renderGameState(GameState gs);
@@ -81,7 +83,7 @@ private:
     shared_ptr<Region> containingRegion;
     void calculateFinalState();
 public:
-    GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, const vector<CubicSpline> & path);
+    GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<CubicSpline> path, bool isNestedCall = false); // isNestedCall is for implementation
     GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<shared_ptr<DisjointPartition>> insidePartitions, vector<shared_ptr<DisjointPartition>> outsidePartitions, shared_ptr<Region> containingRegion);
     operator GameState()
     {
@@ -147,7 +149,7 @@ inline int validMoveCount(GameState gs)
                 int availablePartitionCount = 0;
                 for(auto partition : partitions)
                 {
-                    if(partition->containingRegion != region)
+                    if(partition->containingRegion.lock() != region)
                         continue;
                     if(partition == startNode->partition)
                         continue;
@@ -189,7 +191,7 @@ inline GameState transform(const Matrix & tform, GameState gs)
     return gs;
 }
 
-inline shared_ptr<Node> findClosestNode(GameState gs, VectorF p, float maxDistance = 0.02)
+inline shared_ptr<Node> findClosestNode(GameState gs, VectorF p, float maxDistance = 0.03)
 {
     shared_ptr<Node> retval = nullptr;
     float distSquared = maxDistance * maxDistance;
@@ -204,5 +206,46 @@ inline shared_ptr<Node> findClosestNode(GameState gs, VectorF p, float maxDistan
     }
     return retval;
 }
+
+inline unordered_set<shared_ptr<Region>> getRegions(GameState gs)
+{
+    unordered_set<shared_ptr<Region>> regions;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            shared_ptr<Edge> edge = get<0>(*ei);
+            regions.insert(edge->inside);
+            regions.insert(edge->outside);
+        }
+    }
+    return regions;
+}
+
+inline unordered_set<shared_ptr<Edge>> getEdges(GameState gs)
+{
+    unordered_set<shared_ptr<Edge>> edges;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            shared_ptr<Edge> edge = get<0>(*ei);
+            edges.insert(edge);
+        }
+    }
+    return edges;
+}
+
+inline unordered_set<shared_ptr<DisjointPartition>> getPartitions(GameState gs)
+{
+    unordered_set<shared_ptr<DisjointPartition>> retval;
+    for(auto node : *gs)
+    {
+        retval.insert(node->partition);
+    }
+    return retval;
+}
+
+vector<vector<pair<VectorF, shared_ptr<void>>>> getDelaunayTriangulation(const vector<pair<VectorF, shared_ptr<void>>> &points, size_t stopStep = -1); // stopStep is for debugging
 
 #endif // GAME_STATE_H_INCLUDED

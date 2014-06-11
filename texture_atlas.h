@@ -4,9 +4,9 @@
 #include "texture_descriptor.h"
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class TextureAtlas final

@@ -9,12 +9,12 @@
 using namespace std;
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
-static GameState makeTestGameState();
+//static GameState makeTestGameState();
 
 namespace
 {
@@ -35,7 +35,7 @@ class GameCanvas : public GUICanvas
         if(mouseNode)
         {
             mousePosition = mouseNode->position;
-            mouseRegion = mouseNode->partition->containingRegion;
+            mouseRegion = mouseNode->partition->containingRegion.lock();
         }
     }
     inline VectorF getMousePosition(MouseEvent &event) // sets the mousePosition variable
@@ -121,6 +121,69 @@ protected:
             }
         }
 #endif
+#if 0
+        vector<pair<VectorF, shared_ptr<void>>> points;
+        unordered_set<VectorF> pointsSet;
+        unordered_set<shared_ptr<Region>> regions = getRegions(gss.top());
+        for(auto node : *gss.top())
+        {
+            VectorF point = node->position;
+            if(get<1>(pointsSet.insert(point)))
+                points.push_back(make_pair(point, node->partition));
+        }
+        for(auto region : regions)
+        {
+            for(Land land : region->lands)
+            {
+                for(auto wedge : land.edges)
+                {
+                    shared_ptr<Edge> edge = shared_ptr<Edge>(wedge);
+                    assert(edge);
+                    const size_t pointCount = 3;
+                    for(size_t i = 0; i <= pointCount * edge->cubicSplines.size(); i++)
+                    {
+                        size_t splineIndex = i / pointCount;
+                        if(splineIndex > edge->cubicSplines.size() - 1)
+                            splineIndex = edge->cubicSplines.size() - 1;
+                        CubicSpline spline = edge->cubicSplines[splineIndex];
+                        float t = (float)(i - pointCount * splineIndex) / pointCount;
+                        VectorF point = spline.evaluate(t);
+                        if(get<1>(pointsSet.insert(point)))
+                            points.push_back(make_pair(point, land.nodes.front()->partition));
+                    }
+                }
+            }
+        }
+        float maxR = -1;
+        for(auto p : points)
+        {
+            VectorF point = get<0>(p);
+            maxR = max(maxR, abs(point));
+        }
+        maxR += 0.1;
+        const int circlePointCount = 20;
+        for(int i = 0; i < circlePointCount; i++)
+        {
+            float a = (float)i / circlePointCount * 2 * M_PI;
+            points.push_back(make_pair(maxR * VectorF(cos(a), sin(a), 0), shared_ptr<void>(nullptr)));
+        }
+        vector<vector<pair<VectorF, shared_ptr<void>>>> triangulation = getDelaunayTriangulation(points);
+        for(vector<pair<VectorF, shared_ptr<void>>> triangle : triangulation)
+        {
+            VectorF lastPoint = get<0>(triangle.back());
+            shared_ptr<void> lastValue = get<1>(triangle.back());
+            for(auto p : triangle)
+            {
+                vector<VectorF> line{lastPoint, get<0>(p)};
+                Color color = Color::RGB(1, 1, 0);
+                if(lastValue != get<1>(p))
+                    color = Color::RGB(1, 0, 0);
+                retval->add(transform(Matrix::translate(0, 0, -1).concat(Matrix::scale(0.25)), Generate::line(line, TextureAtlas::ButtonMiddleDiffuse.td(), color, 0.003)));
+                lastPoint = get<0>(p);
+                lastValue = get<1>(p);
+            }
+        }
+#endif
         if(mouseNode)
         {
             retval->add(transform(Matrix::scale(0.25f), renderNode(mouseNode, Color::V(1))));
@@ -136,7 +199,7 @@ class GameStateLabel : public GUILabel
     shared_ptr<GameCanvas> gameCanvas;
 public:
     GameStateLabel(float minX, float maxX, float minY, float maxY, shared_ptr<GameCanvas> gameCanvas)
-        : GUILabel(L"", minX, maxX, minY, maxY), gameCanvas(gameCanvas)
+        : GUILabel(L"", minX, maxX, minY, maxY, Color::RGB(0, 0, 1)), gameCanvas(gameCanvas)
     {
     }
 protected:
@@ -162,6 +225,7 @@ protected:
     }
 };
 
+#if 0
 class MyCanvas : public GUICanvas
 {
     vector<VectorF> line;
@@ -244,6 +308,7 @@ protected:
         return GUILabel::render(minZ, maxZ, hasFocus);
     }
 };
+#endif
 }
 
 static const wchar_t *const creditsText =
@@ -281,10 +346,10 @@ static GameState makeInitialGameState(int nodeCount = 3)
     return gs;
 }
 
-static void mainGame()
+static void mainGame(int nodeCount = 3)
 {
     shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
-    shared_ptr<GameCanvas> canvas = make_shared<GameCanvas>(-Display::scaleX(), Display::scaleX(), 0.1 - Display::scaleY(), Display::scaleY() - 0.1, makeInitialGameState(3));
+    shared_ptr<GameCanvas> canvas = make_shared<GameCanvas>(-Display::scaleX(), Display::scaleX(), 0.1 - Display::scaleY(), Display::scaleY() - 0.1, makeInitialGameState(nodeCount));
     gui->add(canvas);
     gui->add(make_shared<GameStateLabel>(-Display::scaleX(), Display::scaleX(), Display::scaleY() - 0.1, Display::scaleY(), canvas));
     gui->add(make_shared<GUIButton>([&gui]()
@@ -298,6 +363,32 @@ static void mainGame()
     runAsDialog(gui);
 }
 
+static void startMainGame()
+{
+    shared_ptr<GUIContainer> gui = make_shared<GUIContainer>(-Display::scaleX(), Display::scaleX(), -Display::scaleY(), Display::scaleY());
+    shared_ptr<GUICircleArrangement> circleArrangement = createCircleArrangement();
+    int nodeCount = -1;
+    for(int i = 1; i <= 6; i++)
+    {
+        wostringstream os;
+        os << i << L" Node Game";
+        circleArrangement->add(make_shared<GUIButton>([&nodeCount, &gui, i]()
+        {
+            nodeCount = i;
+            GUIRunner::get(gui)->quit();
+        }, os.str(), -0.4, 0.4, -0.8, -0.7));
+    }
+    circleArrangement->add(make_shared<GUIButton>([&gui]()
+    {
+        GUIRunner::get(gui)->quit();
+    }, L"Return to Main Menu", -0.4, 0.4, -0.8, -0.7));
+    gui->add(circleArrangement);
+    runAsDialog(gui);
+    if(nodeCount != -1)
+        mainGame(nodeCount);
+}
+
+#if 0
 static decltype(makeEmptyGameState()->begin()) addNodeToGraph(GameState gs, VectorF position)
 {
     return gs->addNode(make_shared<Node>(position));
@@ -327,11 +418,11 @@ static GameState makeTestGameState()
     auto n3 = addNodeToGraph(gs, VectorF(-0.6, 0, 0));
     auto n4 = addNodeToGraph(gs, VectorF(-0.5, 0, 0));
     auto n5 = addNodeToGraph(gs, VectorF(-0.4, 0, 0));
-    auto n6 = addNodeToGraph(gs, VectorF(-0.7, 0.1, 0));
+    /*auto n6 = */addNodeToGraph(gs, VectorF(-0.7, 0.1, 0));
     auto n7 = addNodeToGraph(gs, VectorF(-0.9, 0.3, 0));
-    auto n8 = addNodeToGraph(gs, VectorF(-0.6, 0.5, 0));
+    /*auto n8 = */addNodeToGraph(gs, VectorF(-0.6, 0.5, 0));
     auto n9 = addNodeToGraph(gs, VectorF(0, 0, 0));
-    auto n10 = addNodeToGraph(gs, VectorF(0.1, 0, 0));
+    /*auto n10 = */addNodeToGraph(gs, VectorF(0.1, 0, 0));
     auto n13 = addNodeToGraph(gs, VectorF(0.4, 0, 0));
     addEdgeToGraph(gs, n1, n7);
     addEdgeToGraph(gs, n1, n5);
@@ -402,6 +493,7 @@ static Mesh shadeMesh(Mesh mesh)
     }
     return Mesh(new Mesh_t(mesh->texture(), triangles));
 }
+#endif
 
 static void testSplineRendering()
 {
@@ -520,7 +612,7 @@ void mainMenu()
     {
         GUIRunner::get(gui)->scheduleFunction([&gui]()
         {
-            mainGame();
+            startMainGame();
             gui->reset();
         });
     }, L"Start New Game", -0.4, 0.4, -0.8, -0.7));

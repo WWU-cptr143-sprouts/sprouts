@@ -5,9 +5,9 @@
 #include <iostream>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 const Text::TextProperties Text::defaultTextProperties = Text::TextProperties();

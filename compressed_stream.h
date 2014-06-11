@@ -6,9 +6,9 @@
 #include <iostream>
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 class LZ77FormatException final : public IOException

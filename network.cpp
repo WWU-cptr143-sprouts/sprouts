@@ -14,9 +14,9 @@
 using namespace std;
 
 /**************
-/*Description:
-/*Input:
-/*Output:
+ *Description:
+ *Input:
+ *Output:
 **************/
 
 namespace
