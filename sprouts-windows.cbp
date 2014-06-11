@@ -40,7 +40,7 @@
 		<Linker>
 			<Add library="opengl32" />
 			<Add library="SDL2" />
-			<Add library="./libpng.dll.a" />
+			<Add library=".\libpng.dll.a" />
 			<Add directory="SDL2-2.0.3/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="color.h" />
@@ -52,9 +52,12 @@
 		<Unit filename="event.h" />
 		<Unit filename="game_state.cpp" />
 		<Unit filename="game_state.h" />
+		<Unit filename="generate.cpp" />
 		<Unit filename="generate.h" />
 		<Unit filename="graph.h" />
-		<Unit filename="graphics_test.cpp" />
+		<Unit filename="graphics_test.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
 		<Unit filename="guibutton.h" />
