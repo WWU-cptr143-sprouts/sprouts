@@ -82,6 +82,7 @@ private:
     vector<shared_ptr<DisjointPartition>> outsidePartitions;
     shared_ptr<Region> containingRegion;
     void calculateFinalState();
+    bool doesPathWork(const vector<CubicSpline> &path) const;
 public:
     GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<CubicSpline> path, bool isNestedCall = false); // isNestedCall is for implementation
     GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_ptr<Node> endNode, vector<shared_ptr<DisjointPartition>> insidePartitions, vector<shared_ptr<DisjointPartition>> outsidePartitions, shared_ptr<Region> containingRegion);
@@ -91,7 +92,108 @@ public:
             calculateFinalState();
         return finalState;
     }
+    void dump() const;
 };
+
+inline vector<GameStateMove> getValidMoves(GameState gs)
+{
+    unordered_map<shared_ptr<Region>, unordered_set<shared_ptr<Node>>> regions;
+    unordered_set<shared_ptr<DisjointPartition>> partitions;
+    unordered_map<shared_ptr<Node>, int> nodeEdgeCount;
+    for(auto ni = gs->begin(); ni != gs->end(); ni++)
+    {
+        auto node = *ni;
+        partitions.insert(node->partition);
+        int & curNodeEdgeCount = nodeEdgeCount[node];
+        curNodeEdgeCount = 0;
+        for(auto ei = gs->begin(ni); ei != gs->end(ni); ei++)
+        {
+            auto edge = get<0>(*ei);
+            regions[edge->inside].insert(node);
+            regions[edge->inside].insert(*get<1>(*ei));
+            regions[edge->outside].insert(node);
+            regions[edge->outside].insert(*get<1>(*ei));
+            curNodeEdgeCount++;
+        }
+    }
+    for(auto &v : regions)
+    {
+        auto region = get<0>(v);
+        for(auto node : region->isolatedNodes)
+        {
+            get<1>(v).insert(node);
+        }
+    }
+    vector<GameStateMove> retval;
+    if(regions.empty())
+    {
+        for(auto startNode : *gs)
+        {
+            for(auto endNode : *gs)
+            {
+                retval.push_back(GameStateMove(gs, startNode, endNode, vector<shared_ptr<DisjointPartition>>(), vector<shared_ptr<DisjointPartition>>(), nullptr));
+                if(endNode == startNode)
+                    break;
+            }
+        }
+        return retval;
+    }
+    for(auto &v : regions)
+    {
+        shared_ptr<Region> region = get<0>(v);
+        unordered_set<shared_ptr<Node>> & nodes = get<1>(v);
+        for(shared_ptr<Node> startNode : nodes)
+        {
+            if(nodeEdgeCount[startNode] >= 3)
+                continue;
+            for(shared_ptr<Node> endNode : nodes)
+            {
+                if(endNode == startNode && nodeEdgeCount[endNode] >= 2)
+                    continue;
+                else if(nodeEdgeCount[endNode] >= 3)
+                    continue;
+                if(endNode->partition != startNode->partition)
+                {
+                    retval.push_back(GameStateMove(gs, startNode, endNode, vector<shared_ptr<DisjointPartition>>(), vector<shared_ptr<DisjointPartition>>(), region));
+                    continue;
+                }
+                vector<shared_ptr<DisjointPartition>> availablePartitions;
+                for(auto partition : partitions)
+                {
+                    if(partition->containingRegion.lock() != region)
+                        continue;
+                    if(partition == startNode->partition)
+                        continue;
+                    assert(partition != endNode->partition);
+                    availablePartitions.push_back(partition);
+                }
+                vector<bool> partitionLocations;
+                partitionLocations.resize(availablePartitions.size(), false);
+                do
+                {
+                    vector<shared_ptr<DisjointPartition>> insidePartitions;
+                    vector<shared_ptr<DisjointPartition>> outsidePartitions;
+                    for(size_t i = 0; i < availablePartitions.size(); i++)
+                    {
+                        if(partitionLocations[i])
+                            insidePartitions.push_back(availablePartitions[i]);
+                        else
+                            outsidePartitions.push_back(availablePartitions[i]);
+                    }
+                    retval.push_back(GameStateMove(gs, startNode, endNode, insidePartitions, outsidePartitions, region));
+                    for(size_t i = 0; i < partitionLocations.size(); i++)
+                    {
+                        partitionLocations[i] = !partitionLocations[i];
+                        if(partitionLocations[i])
+                            break;
+                    }
+                }
+                while(any_of(partitionLocations.begin(), partitionLocations.end(), [](bool v){return v;}));
+            }
+        }
+    }
+    return retval;
+}
 
 inline int validMoveCount(GameState gs)
 {
@@ -247,5 +349,7 @@ inline unordered_set<shared_ptr<DisjointPartition>> getPartitions(GameState gs)
 }
 
 vector<vector<pair<VectorF, shared_ptr<void>>>> getDelaunayTriangulation(const vector<pair<VectorF, shared_ptr<void>>> &points, size_t stopStep = -1); // stopStep is for debugging
+
+GameStateMove getAIMove(GameState gs);
 
 #endif // GAME_STATE_H_INCLUDED

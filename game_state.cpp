@@ -4,6 +4,8 @@
 #include <unordered_set>
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -12,6 +14,14 @@ using namespace std;
  *Input:
  *Output:
 **************/
+
+namespace
+{
+initializer init1([]()
+{
+    srand((unsigned)time(nullptr));
+});
+}
 
 // Gamestate comparison function
 #if 0
@@ -1340,34 +1350,44 @@ GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_pt
                 for(auto wnode : partition->nodes)
                 {
                     auto node = shared_ptr<Node>(wnode);
+
                     if(isPointInPolygon(poly, node->position))
                     {
                         isValid = false;
                         break;
                     }
                 }
+
                 if(!isValid)
+                {
                     break;
+                }
             }
+
             for(auto partition : gsm.outsidePartitions)
             {
                 for(auto wnode : partition->nodes)
                 {
                     auto node = shared_ptr<Node>(wnode);
+
                     if(isPointInPolygon(poly, node->position))
                     {
                         isValid = false;
                         break;
                     }
                 }
+
                 if(!isValid)
+                {
                     break;
+                }
             }
 
             float minSize = 0.01;
             float maxSize = 0.3;
 
-            if(isValid && !doesCubicSplineListIntersect(gs, makeCircularPath(startNode->position, nodeDir, minSize)))
+            if(isValid
+                    && !doesCubicSplineListIntersect(gs, makeCircularPath(startNode->position, nodeDir, minSize)))
             {
                 for(int i = 0; i < 6; i++)
                 {
@@ -1472,15 +1492,38 @@ GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_pt
         finalState = gs;
         auto partitions = getPartitions(gs);
 
-        for(auto partition : partitions)
+        if(startNode == endNode)
         {
-            if(partition->containingRegion.lock() == edge1->inside)
+            Polygon poly = getSplineLoopPoints(path);
+
+            for(auto partition : partitions)
             {
-                insidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                if(partition->containingRegion.lock() == edge1->inside
+                        || partition->containingRegion.lock() == edge1->outside)
+                {
+                    if(isPointInPolygon(poly, partition->nodes.front().lock()->position))
+                    {
+                        insidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                    }
+                    else
+                    {
+                        outsidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                    }
+                }
             }
-            else if(partition->containingRegion.lock() == edge1->outside)
+        }
+        else
+        {
+            for(auto partition : partitions)
             {
-                outsidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                if(partition->containingRegion.lock() == edge1->inside)
+                {
+                    insidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                }
+                else if(partition->containingRegion.lock() == edge1->outside)
+                {
+                    outsidePartitions.push_back(inverseNodeMap[partition->nodes.front().lock()]->partition);
+                }
             }
         }
     }
@@ -1494,8 +1537,12 @@ GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_pt
                              vector<shared_ptr<DisjointPartition>> insidePartitions,
                              vector<shared_ptr<DisjointPartition>> outsidePartitions, shared_ptr<Region> containingRegion)
 {
-#warning finish
-    assert(false);
+    this->initialState = gs;
+    this->startNode = startNode;
+    this->endNode = endNode;
+    this->insidePartitions = insidePartitions;
+    this->outsidePartitions = outsidePartitions;
+    this->containingRegion = containingRegion;
 }
 
 namespace
@@ -1743,10 +1790,300 @@ vector<vector<pair<VectorF, shared_ptr<void>>>> getDelaunayTriangulation(
     return std::move(retval);
 }
 
+namespace
+{
+template <typename T>
+bool doesSetsMatch(const vector<shared_ptr<T>> &a, const vector<shared_ptr<T>> &b)
+{
+    unordered_set<shared_ptr<T>> aSet, bSet;
+    for(shared_ptr<T> v : a)
+    {
+        aSet.insert(v);
+    }
+    for(shared_ptr<T> v : b)
+    {
+        bSet.insert(v);
+    }
+    for(shared_ptr<T> v : a)
+    {
+        if(bSet.find(v) == bSet.end())
+            return false;
+    }
+    for(shared_ptr<T> v : b)
+    {
+        if(aSet.find(v) == aSet.end())
+            return false;
+    }
+    return true;
+}
+}
+
+bool GameStateMove::doesPathWork(const vector<CubicSpline> &path) const
+{
+    if(doesCubicSplineListIntersect(initialState, path))
+        return false;
+    try
+    {
+        GameStateMove gsm(initialState, startNode, endNode, path, true);
+        if(gsm.containingRegion != containingRegion)
+            return false;
+        if(!doesSetsMatch(insidePartitions, gsm.insidePartitions))
+            return false;
+        if(!doesSetsMatch(outsidePartitions, gsm.outsidePartitions))
+            return false;
+    }
+    catch(InvalidMoveException & e)
+    {
+        return false;
+    }
+    return true;
+}
+
 void GameStateMove::calculateFinalState()
 {
-#warning finish
-    assert(false);
+    vector<CubicSpline> path;
+    GameState gs = initialState;
+    unordered_map<shared_ptr<Node>, vector<shared_ptr<Node>>> neighborMap;
+    auto edges = getEdges(gs);
+
+    for(auto edge : edges)
+    {
+        neighborMap[edge->start].push_back(edge->end);
+        neighborMap[edge->end].push_back(edge->start);
+    }
+
+    if(gs->edgeCount() == 0 && startNode != endNode)
+        path = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+    else if(startNode == endNode && insidePartitions.empty())
+    {
+        shared_ptr<Edge> edge = nullptr;
+        bool isEdgeStart = false;
+
+        for(auto ei = gs->begin(startNode->iter); ei != gs->end(startNode->iter); ei++)
+        {
+            assert(edge == nullptr);
+            edge = get<0>(*ei);
+
+            if(edge->start == startNode)
+            {
+                isEdgeStart = true;
+                assert(edge->end != startNode);
+            }
+        }
+
+        VectorF nodeDir = normalizeNoThrow(startNode->position);
+
+        if(absSquared(nodeDir) < eps * eps)
+        {
+            nodeDir = VectorF(1, 0, 0);
+        }
+
+        if(edge)
+        {
+            CubicSpline spline = (isEdgeStart ? edge->cubicSplines.front() :
+                                  edge->cubicSplines.back().reversed());
+
+            if(absSquared(spline.getLinear()) > eps * eps)
+            {
+                nodeDir = -normalize(spline.getLinear());
+            }
+            else if(absSquared(spline.getQuadratic()) > eps * eps)
+            {
+                nodeDir = -normalize(spline.getQuadratic());
+            }
+            else
+            {
+                nodeDir = -normalize(spline.getCubic());
+            }
+        }
+
+        float minSize = 0.01;
+        float maxSize = 0.3;
+
+        if(!doesCubicSplineListIntersect(gs, makeCircularPath(startNode->position, nodeDir, minSize)))
+        {
+            for(int i = 0; i < 6; i++)
+            {
+                float testSize = (minSize + maxSize) * 0.5f;
+
+                if(doesCubicSplineListIntersect(gs, makeCircularPath(startNode->position, nodeDir, testSize)))
+                {
+                    maxSize = testSize;
+                }
+                else
+                {
+                    minSize = testSize;
+                }
+            }
+
+            float size = max(minSize - 0.04f, minSize * 0.5f);
+            path = makeCircularPath(startNode->position, nodeDir, size);
+        }
+    }
+    else if(startNode != endNode && getRegions(gs).size() == 1)
+    {
+        auto newPath = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+
+        if(!doesCubicSplineListIntersect(gs, newPath))
+        {
+            path = newPath;
+        }
+    }
+
+    if(startNode != endNode && path.empty())
+    {
+        bool anyInside = false;
+        shared_ptr<Region> theRegion = pointToRegion(gs, 0.5f * (startNode->position + endNode->position));
+
+        if(theRegion == containingRegion && !doesCubicSplineListIntersect(gs, vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)}))
+        {
+            if(doesPathWork(vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)}))
+                path = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+        }
+    }
+
+//    if(startNode != endNode && path.empty())
+//    {
+//        if(neighborMap[startNode].size() == 2 && neighborMap[startNode][0] == endNode
+//                && neighborMap[startNode][1] == endNode &&
+//                neighborMap[endNode].size() == 2 && neighborMap[endNode][0] == startNode
+//                && neighborMap[endNode][1] == startNode)
+//        {
+//            bool anyInside = false;
+//            shared_ptr<Region> theRegion = pointToRegion(gs, 0.5f * (startNode->position + endNode->position));
+//
+//            if(theRegion == containingRegion && !doesCubicSplineListIntersect(gs, vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)}))
+//            {
+//                for(auto partition : insidePartitions)
+//                {
+//                    if(isPointInRegion(theRegion, partition->nodes.front().lock()->position))
+//                    {
+//                        anyInside = true;
+//                        break;
+//                    }
+//                }
+//
+//                if(!anyInside)
+//                {
+//                    for(auto partition : outsidePartitions)
+//                    {
+//                        if(isPointInRegion(theRegion, partition->nodes.front().lock()->position))
+//                        {
+//                            anyInside = true;
+//                            break;
+//                        }
+//                    }
+//                }
+//
+//                if(!anyInside)
+//                    path = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+//            }
+//        }
+//        else
+//        {
+//            bool good = true;
+//            shared_ptr<Node> otherNode;
+//            if(neighborMap[startNode].size() == 2 && neighborMap[startNode][0] == endNode
+//                    && neighborMap[startNode][1] == endNode &&
+//                    neighborMap[endNode].size() == 3 && ((neighborMap[endNode][0] == startNode)
+//                    + (neighborMap[endNode][1] == startNode) + (neighborMap[endNode][2] == startNode)) == 2)
+//            {
+//                const vector<shared_ptr<Node>> & nodeList = neighborMap[endNode];
+//                auto findNode = startNode;
+//                otherNode = *find_if(nodeList.begin(), nodeList.end(), [findNode](shared_ptr<Node> node){return node != findNode;});
+//            }
+//            else if(neighborMap[endNode].size() == 2 && neighborMap[endNode][0] == startNode
+//                    && neighborMap[endNode][1] == startNode &&
+//                    neighborMap[startNode].size() == 3 && ((neighborMap[startNode][0] == endNode)
+//                    + (neighborMap[startNode][1] == endNode) + (neighborMap[startNode][2] == endNode)) == 2)
+//            {
+//                const vector<shared_ptr<Node>> & nodeList = neighborMap[startNode];
+//                auto findNode = endNode;
+//                otherNode = *find_if(nodeList.begin(), nodeList.end(), [findNode](shared_ptr<Node> node){return node != findNode;});
+//            }
+//            else
+//                good = false;
+//            if(good)
+//            {
+//                good = !isPointInRegion(containingRegion, otherNode->position);
+//            }
+//            if(good)
+//            {
+//                bool anyInside = false;
+//                shared_ptr<Region> theRegion = pointToRegion(gs, 0.5f * (startNode->position + endNode->position));
+//
+//                if(theRegion == containingRegion && !doesCubicSplineListIntersect(gs, vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)}))
+//                {
+//                    for(auto partition : insidePartitions)
+//                    {
+//                        if(isPointInRegion(theRegion, partition->nodes.front().lock()->position))
+//                        {
+//                            anyInside = true;
+//                            break;
+//                        }
+//                    }
+//
+//                    if(!anyInside)
+//                    {
+//                        for(auto partition : outsidePartitions)
+//                        {
+//                            if(isPointInRegion(theRegion, partition->nodes.front().lock()->position))
+//                            {
+//                                anyInside = true;
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    if(!anyInside)
+//                        path = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+//                }
+//            }
+//        }
+//    }
+    if(startNode != endNode && path.empty() && doesPathWork(vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)}))
+    {
+        path = vector<CubicSpline> {CubicSpline(startNode->position, endNode->position)};
+    }
+    if(startNode != endNode && path.empty())
+    {
+        VectorF delta = endNode->position - startNode->position;
+        VectorF sideways = abs(delta) * 1.2f * normalize(cross(delta, VectorF(0, 0, 1)));
+        for(size_t i = 0; i < 10; i++)
+        {
+            float v = (float)rand() / RAND_MAX;
+            v = v * 2 - 1;
+            vector<CubicSpline> testPath = splinesFromLines(vector<VectorF>{startNode->position, 0.5f * (startNode->position + endNode->position) + sideways * v, endNode->position});
+            if(doesPathWork(testPath))
+            {
+                path = testPath;
+                break;
+            }
+        }
+    }
+    if(startNode != endNode && path.empty())
+    {
+        for(size_t i = 0; i < 100; i++)
+        {
+            VectorF p1 = VectorF((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, 0) * 3 - VectorF(1.5f);
+            VectorF p2 = VectorF((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, 0) * 3 - VectorF(1.5f);
+            vector<CubicSpline> testPath = splinesFromLines(vector<VectorF>{startNode->position, p1, p2, endNode->position});
+            if(doesPathWork(testPath))
+            {
+                path = testPath;
+                break;
+            }
+        }
+    }
+
+    if(path.size() == 0)
+    {
+        throw InvalidMoveException();
+    }
+    else
+    {
+        *this = GameStateMove(gs, startNode, endNode, path);
+    }
 }
 
 Edge::Edge(const vector<CubicSpline> &cubicSplines, shared_ptr<Node> start, shared_ptr<Node> end)
@@ -1758,3 +2095,38 @@ Edge::Edge(const vector<CubicSpline> &cubicSplines, shared_ptr<Node> start, shar
     //    assert(cubicSplines.back().p1 == end->position);
 }
 
+GameStateMove getAIMove(GameState gs)
+{
+    vector<GameStateMove> moves = getValidMoves(gs);
+
+    if(moves.size() == 0)
+    {
+        throw InvalidMoveException();
+    }
+
+    for(GameStateMove &m : moves)
+    {
+#if 0
+        try
+        {
+            GameState gs = (GameState)m;
+
+            if(validMoveCount(gs) == 0) // winning move
+            {
+                return m;
+            }
+        }
+        catch(InvalidMoveException & e)
+        {
+        }
+#endif
+    }
+
+    return moves[rand() % moves.size()];
+}
+
+
+void GameStateMove::dump() const
+{
+    cout << "Start : " << startNode->position << "\nEnd : " << endNode->position << "\n";
+}

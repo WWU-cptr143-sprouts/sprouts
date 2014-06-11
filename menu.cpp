@@ -102,9 +102,31 @@ public:
     }
     void undo()
     {
+        if(mouseDown)
+        {
+            mouseDown = false;
+            line.clear();
+            return;
+        }
         if(gss.size() > 1)
             gss.pop();
         setMouseProperties();
+    }
+    void aiMove()
+    {
+        if(mouseDown)
+        {
+            return;
+        }
+        try
+        {
+            auto theMove = getAIMove(gss.top());
+            theMove.dump();
+            gss.push((GameState)theMove);
+        }
+        catch(InvalidMoveException & e)
+        {
+        }
     }
 protected:
     virtual Mesh generateMesh() override
@@ -355,11 +377,15 @@ static void mainGame(int nodeCount = 3)
     gui->add(make_shared<GUIButton>([&gui]()
     {
         GUIRunner::get(gui)->quit();
-    }, L"Main Menu", -0.6, -0.05, -Display::scaleY(), 0.1 - Display::scaleY()));
+    }, L"Main Menu", -0.9, -0.35, -Display::scaleY(), 0.1 - Display::scaleY()));
     gui->add(make_shared<GUIButton>([&canvas]()
     {
         canvas->undo();
-    }, L"Undo Move", 0.05, 0.6, -Display::scaleY(), 0.1 - Display::scaleY()));
+    }, L"Undo Move", -0.3, 0.3, -Display::scaleY(), 0.1 - Display::scaleY()));
+    gui->add(make_shared<GUIButton>([&canvas]()
+    {
+        canvas->aiMove();
+    }, L"AI Move", 0.35, 0.9, -Display::scaleY(), 0.1 - Display::scaleY()));
     runAsDialog(gui);
 }
 
