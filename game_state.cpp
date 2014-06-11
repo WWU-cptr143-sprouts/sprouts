@@ -1286,6 +1286,7 @@ GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_pt
     this->endNode = endNode;
     assert(path.size() >= 1);
 
+#if 0
     if(!isNestedCall)
     {
         if(gs->edgeCount() == 0 && startNode != endNode)
@@ -1417,6 +1418,7 @@ GameStateMove::GameStateMove(GameState gs, shared_ptr<Node> startNode, shared_pt
             }
         }
     }
+#endif
 
     if(isPathSelfIntersecting(path))
     {

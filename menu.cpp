@@ -143,7 +143,7 @@ protected:
             }
         }
 #endif
-#if 0
+#if 1
         vector<pair<VectorF, shared_ptr<void>>> points;
         unordered_set<VectorF> pointsSet;
         unordered_set<shared_ptr<Region>> regions = getRegions(gss.top());
