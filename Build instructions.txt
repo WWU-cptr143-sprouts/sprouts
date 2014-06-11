@@ -1,0 +1,6 @@
+In order to build project, do this to the Network.cpp and graphics_test.cpp:
+
+-Right click on the .cpp file under the sources heading
+-Select properties
+-Go to the "Build" tab
+-Deselect all things in the "Belongs in Target" section
