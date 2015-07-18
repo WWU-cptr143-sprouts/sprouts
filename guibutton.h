@@ -17,9 +17,14 @@
 
 using namespace std;
 
+/*Create a struct we can use to place buttons, of type GUIElement of course
+It has private variables for colors, default sizes/etc for the button itself
+and then some functions to do things like see where it is, see if a point
+is inside of it, and handle events.
+*/
 struct GUIButton : public GUIElement
 {
-    wstring title;
+    wstring title; 
     Color textColor;
     Color selectedTextColor;
     Color buttonColor;
@@ -40,10 +45,14 @@ protected:
           selectedTextColor(selectedTextColor), buttonColor(buttonColor),
           selectedButtonColor(selectedButtonColor), buttonPressEvent([]()
     {
+        //Basically this function should be overwritten to actually function properly, so if this is called
+        //and runs through to here that's a problem -- throw an error
         throw logic_error("button press event function called instead of overridden member");
     })
     {
     }
+    //The following are some private variables the public functions use to determine things 
+    //like is pointinside etc, pretty self-explanatory
 private:
     float getLeftToMiddleX() const
     {
@@ -53,9 +62,16 @@ private:
     {
         return maxX - 0.5 * (maxY - minY);
     }
+    
+    //This is where things get interesting, here the button handles things like mouse events
+    //And determines if a point is inside it
 public:
+    //This takes in an x,y coordinate and determines if it's inside the button. 
+    //It uses the private functions and some relatively simple logic to do so.
     virtual bool isPointInside(float x, float y) const override
     {
+        //I believe this checks to see if it's in the element at all, which
+        //Is a larger area than this particular button
         if(!GUIElement::isPointInside(x, y))
         {
             return false;
@@ -78,9 +94,11 @@ public:
             x -= leftToMiddleX;
         }
 
+        //Get the vertical midpoint of the button
         float halfHeight = 0.5 * (maxY - minY);
         y -= 0.5 * (minY + maxY);
 
+        //Basically if x^2 + y^2 < halfHeight^2 then it has to be inside the button
         if(x * x + y * y < halfHeight * halfHeight)
         {
             return true;
@@ -88,10 +106,14 @@ public:
 
         return false;
     }
+    //Check to see if this element can have the keyboard's focus
+    //I'm guessing this is for highlighting/etc and determining if
+    //You'll skip this element when using the keyboard/etc
     virtual bool canHaveKeyboardFocus() const override
     {
         return true;
     }
+    //Allows the button to change variables as needed when the mouse is released
     virtual bool handleMouseUp(MouseUpEvent &event)
     {
         if(event.button == MouseButton_Left)
@@ -102,6 +124,7 @@ public:
 
         return GUIElement::handleMouseUp(event);
     }
+    //Run anything needed when the button is clicked, calls other button functions
     virtual bool handleMouseDown(MouseDownEvent &event) override
     {
         if(event.button == MouseButton_Left)
@@ -115,11 +138,13 @@ public:
 
         return GUIElement::handleMouseDown(event);
     }
+    //If the button is sensitive to highlighting with mouse you can change things here
     virtual bool handleMouseMoveOut(MouseEvent &event) override
     {
-        isMousePressed = false;
+        isMousePressed = false; //Just to be safe really
         return true;
     }
+    //If the button has a key assigned then this handles that, send to the same function as a mouse click
     virtual bool handleKeyDown(KeyDownEvent &event) override
     {
         if(!event.isRepetition && (event.key == KeyboardKey_Return || event.key == KeyboardKey_Space))
@@ -132,30 +157,37 @@ public:
         return GUIElement::handleKeyDown(event);
     }
 protected:
+    //Simple function that allows children to see if the button is pressed
     bool isPressed() const
     {
         return isMousePressed || (Display::timer() - lastDownTime < 0.1);
     }
+    //a virtual void you can add stuff to in child classes, just redirects right now
     virtual void handleButtonPress()
     {
         buttonPressEvent();
     }
+    //Actually render the button, changes color if the button has focus
     virtual Mesh render(float minZ, float maxZ, bool hasFocus) override
     {
+        //Choose the colors of the button and text
         Color buttonColor = this->buttonColor;
         Color textColor = this->textColor;
 
+        //If we have the focus, then highlight the button
         if(hasFocus)
         {
             buttonColor = this->selectedButtonColor;
             textColor = this->selectedTextColor;
         }
 
+        //Set some variables for displaying
         bool pressed = isPressed();
         float textWidth = Text::width(title);
         float textHeight = Text::height(title);
         float leftToMiddleX = getLeftToMiddleX();
         float middleToRightX = getMiddleToRightX();
+        //Create the button by layering colored meshes on top of each other
         Mesh diffuse = Generate::quadrilateral(TextureAtlas::ButtonLeftDiffuse.td(),
                                                VectorF(minX, minY, -1), buttonColor,
                                                VectorF(leftToMiddleX, minY, -1), buttonColor,
@@ -187,7 +219,7 @@ protected:
                                               VectorF(maxX, maxY, -1), Color(1),
                                               VectorF(middleToRightX, maxY, -1), Color(1)));
         Matrix buttonTransform = Matrix::identity();
-
+        //If the button is pressed, move it just a little bit to show that it's pressed
         if(pressed)
         {
             float midX = (minX + maxX) * 0.5, midY = (minY + maxY) * 0.5;
@@ -195,9 +227,11 @@ protected:
                                                 0).concat(Matrix::rotateZ(M_PI)).concat(Matrix::translate(midX, midY, 0));
         }
 
+        //Return the mesh of the transformed button/created
         Mesh retval = (Mesh)transform(buttonTransform.concat(Matrix::scale(interpolate(2.0 / 3, minZ,
                                       maxZ))), diffuse);
 
+        //If we have text, scaled it properly and change things depending on if it's pressed or not
         if(textHeight > 0 && textWidth > 0)
         {
             float textScale = 0.5 * (maxY - minY) / textHeight;
@@ -214,16 +248,18 @@ protected:
             retval->add(transform(Matrix::scale(textScale).concat(Matrix::translate(xOffset, yOffset,
                                   -1).concat(Matrix::scale(minZ))), Text::mesh(title, textColor)));
         }
-
+        //Add the specular mesh to our return value
         retval->add(transform(buttonTransform.concat(Matrix::scale(interpolate(1.0 / 3, minZ, maxZ))),
                               specular));
         return retval;
     }
+    //Reset the state of the button, where it hasn't been pressed yet
     virtual void reset()
     {
         isMousePressed = false;
         lastDownTime = -1;
     }
+    //Some more basic private variables to use for the button state
 private:
     bool isMousePressed = false;
     double lastDownTime = -1;
